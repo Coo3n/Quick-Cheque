@@ -1,0 +1,8 @@
+Flask==2.1.2
+psycopg2==2.9.3
+PyJWT==2.4.0
+requests==2.27.1
+gunicorn==20.1.0
+pycurl==7.45.1
+pytest==7.1.2
+coverage==6.4.2

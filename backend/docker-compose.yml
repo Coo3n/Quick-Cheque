@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+
+  container-front:
+    image: "nginx:stable"
+    profiles: ["frontend", "all"]
+    ports:
+      - "8080:80"
+    volumes:
+      - ./container-front/static:/usr/share/nginx/html:ro
+      - ./container-front/nginx.conf:/etc/nginx/nginx.conf:ro
+
+  container-back:
+    build:
+      context: container-back
+      dockerfile: Dockerfile
+    profiles: ["backend", "backend-api", "all"]
+    volumes:
+      - ./container-back/src:/var/app
+    env_file: .env
+
+  container-db:
+    image: "postgres:14-bullseye"
+    profiles: ["backend", "backend-db", "all"]
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    env_file: .env
