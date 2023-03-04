@@ -13,6 +13,8 @@ COPY src/. .
 COPY gunicorn.sh .
 
 USER nobody
+
+# For Development
 CMD ["flask", "run", "-h", "0.0.0.0"]
 
 # For Deployment
