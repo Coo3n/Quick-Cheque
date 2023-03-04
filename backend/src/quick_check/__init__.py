@@ -30,8 +30,4 @@ def create_app(test_config=None):
     from . import auth
     app.register_blueprint(auth.bp)
     
-    from . import the_tyre
-    app.register_blueprint(the_tyre.bp)
-    app.add_url_rule('/', endpoint='index')
-
     return app

@@ -10,7 +10,7 @@ RUN pip install -r requirements.txt
 
 # For Development
 ENV FLASK_ENV=development
-ENV FLASK_APP=./ritm3
+ENV FLASK_APP=./quick_check
 
 COPY src/. .
 COPY gunicorn.sh .
