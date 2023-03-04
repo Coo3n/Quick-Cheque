@@ -1,6 +1,6 @@
 #!/bin/sh
 
-URL='192.168.0.77:8080/api/login'
+URL='localhost:8080/api/login'
 
 PASS=admin123
 USER=admin

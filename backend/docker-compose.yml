@@ -3,7 +3,7 @@ version: "3.9"
 services:
   container-back:
     ports:
-      - "127.0.0.1:8080:80"
+      - "127.0.0.1:8080:5000"
     build:
       dockerfile: Dockerfile
     profiles: ["backend-api", "all"]
@@ -13,8 +13,6 @@ services:
 
   container-db:
     image: "postgres:14-bullseye"
-    ports:
-      - "127.0.0.1:5432:5432"
     profiles: ["backend-db", "all"]
     volumes:
       - ./data:/var/lib/postgresql/data
