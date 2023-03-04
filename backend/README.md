@@ -14,23 +14,20 @@
 7.3. [/api/auth_test](#apiauth_test)\
 8. [Тестирование](#тестирование)
 
-## Архитектура веб-приложения
+## Архитектура бэкенда
 
-Основная цель приложения - обработка данных со сторонних API для последующей манипуляции с ними. Приложение поддерживает функционал [выгрузки данных](#выгрузка-данных), [их обработки](#обработка-данных) и [сохранения](#сохранение-данных) либо в базу данных, либо в файл. Каждая функция представлена в виде отдельного блока - [процессора](#процессор). Процессоры можно выстраивать в любом порядке для получения желаемого результата с помощью [конвейера процессоров](#конвйеер-процессоров). Приложение работает с помощью [запросов](#api-reference) между бекендом, базой данных и фронтендом, где каждый элемент представлен в виде [отдельного Docker контейнера](#структура-контейнеров).
+Основная цель приложения - предоставление API для хранения информации о пользвателях и их чеках\списках. API реализованное на `Python\Flask` сохраняет
+данные в `Postgre` базуданных. `Python` приложение и база данных находятся
+в отдельных `docker` контейнерах
 
 ## Структура контейнеров
 
 Основная информация о структуре контейнеров храниться в файле `docker-compose.yml`.
 
-Есть 3 контейнера:
-- `container-front` - фронтенд составляющая
-(веб-приложение, отрисовка GUI, авторизация пользователя через back-end API)
+Есть 2 контейнера:
 - `container-back` - бекенд составляющая (предоставление бекенд API, авторизация
 пользователя, взаимодействие с базой данных)
 - `container-bd` - база данных PostgreSQL
-
-Фронтенд и бэкенд контейнерам соответсвуют папки `container-front` и `container-back`, в которых
-находится код, используемый данными контейнерами.
 
 В `container-back` есть `Dockerfile`. Этот файл содержит инструкции для более детальной настройки контейнера.
 
@@ -48,42 +45,40 @@
 Каждому контейнеру присвоено нескольно профилей, что позволяет запускать те контейнеры,
 которые нужны в данный момент.
 
-- frontend: `container-front`
 - backend: `container-back`
-- backend-api: `container-back`
+- backend-api: `container-api`
 - backend-db: `container-db`
-- all: `container-front` `container-back` `container-db`
+- all: `container-back` `container-db`
 
-Запустить все 3 контейнера:
-(для некоторых систем команда может быть `docker-compose`, а не `docker compose`)
-```bash
-docker compose --profile all up --build
+Запустить оба контейнера:
+```console
+$ docker compose --profile all up --build
 ```
 
-Запустить `container-front` и `container-back`:
+Запустить `container-back`:
 ```bash
-docker compose --profile frontend --profile backend-api up --build
+$ docker compose --profile backend-api up --build
 ```
 
 Опция `-d` позволяет запустить конейнеры в фоновом режиме.
 Запустить `container-back` в фоновом режиме:
-```bash
-docker compose --profile backend up --build -d
+```console
+$ docker compose --profile backend up --build -d
 ```
 
-Отобразить контейнеры, которые запущенны сейчас:
-```bash
-docker ps
+Отобразить контейнеры, которые запущены сейчас:
+```console
+$ docker ps
 ```
 
 Остановить контейнер `<container_name>`:
-```bash
-docker rm -f <container_name>
+```console
+$ docker rm -f <container_name>
 ```
 
 Зайти в `bash` на уже запущенном контейнере `<container_name>`:
-```bash
-docker exec -it <container_name> bash
+```console
+$ docker exec -it <container_name> bash
 ```
 
 [Обратно к оглавлению](#документация-ritm3-the-tyre)
@@ -181,8 +176,8 @@ user = fetchone_by_pattern_attribute_value(table_name, query)
 Переменные среды - из файла `.env`
 
 Подключение к интерфесу СУБД (сначала зайти в `bash`):
-```bash
-psql -U "$POSTGRES_USER" "$POSTGRES_DB"
+```console
+$ psql -U "$POSTGRES_USER" "$POSTGRES_DB"
 ```
 
 База данных создается в корне проекта в папке `data`, поэтому ее нужно создать перед запуском.
@@ -190,8 +185,8 @@ psql -U "$POSTGRES_USER" "$POSTGRES_DB"
 Чтобы произвести инициализацию базы данных, необходимо после создания проекта зайти в `bash` на контейнере
 `container-back` и прописать следующую команду:
 
-```bash
-flask init-db
+```console
+$ flask init-db
 ```
 (конечно, `container-db` должен быть запушен в это время)
 
@@ -303,9 +298,6 @@ fetch(url, config)
 - [/api/login](#apilogin)
 - [/api/register](#apiregister)
 - [/api/auth_test](#apiauth_test)
-- [/api/handle-workflow](#apihandle-workflow)
-- [/api/get-processors-list](#apiget-processors-list)
-- [/api/get-workflow-status](#apiget-workflow-status)
 
 [Обратно к оглавлению](#документация-ritm3-the-tyre)
 
@@ -420,22 +412,22 @@ failure | token expired
 Для реализации юнит-тестов использовался фреймворк `pytest 7.1.2`. 
 
 Расположение папки с юнит-тестами:
-```bash
-container-back/src/tests/
+```console
+$ container-back/src/tests/
 ```
 
 Чтобы протестировать существующий код, необходимо выполнить следующий набор действий:
 1. Запустить контейнер бекенда с именем ritm3-the-tyre-container-back-1
-```bash
-docker compose --profile backend-api up --build
+```console
+$ docker compose --profile backend-api up --build
 ```
 2. Войти в bash панель контейнера бекенда
-```bash
-docker exec -it ritm3-the-tyre-container-back-1 bash
+```console
+$ docker exec -it ritm3-the-tyre-container-back-1 bash
 ```
 3. Запустить работу юнит-тестов командой
-```bash
-pytest
+```console
+$ pytest
 ```
 
 Внимание! В процессе выполнения тестов могут выходить предупреждения (warnings): это нормально. На данные предупреждения не нужно обращать внимания.
