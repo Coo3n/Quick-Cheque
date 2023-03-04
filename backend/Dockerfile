@@ -2,9 +2,6 @@ FROM python:3.10-bullseye
 
 WORKDIR /var/app
 
-RUN mkdir /var/processors
-RUN chown nobody:nogroup /var/processors
-
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
