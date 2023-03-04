@@ -1,27 +1,4 @@
-import pycurl
-import certifi
-
-from io import BytesIO
-
 from .db import get_db
-
-
-def get_page_html_markup(url):
-    buffer = BytesIO()
-    curl = pycurl.Curl()
-    url = url.encode('utf-8')
-
-    curl.setopt(curl.URL, url)
-    curl.setopt(curl.WRITEDATA, buffer)
-    curl.setopt(curl.CAINFO, certifi.where())
-    curl.perform()
-    curl.close()
-
-    body = buffer.getvalue()
-    # To let it work with not English characters
-    encoded_body = body.decode('utf-8')
-
-    return encoded_body
 
 
 def check_json_fields_existance(fields_list, json_dict):
