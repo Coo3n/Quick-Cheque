@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ReceiptWindowFragment">
-
+    tools:context=".screens.ReceiptWindowFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/custom_toll_bar"
@@ -41,7 +40,7 @@
             android:layout_marginBottom="13dp"
             android:background="@drawable/style_for_toolbar_search"
             android:ellipsize="end"
-            android:hint="Поиск"
+            android:hint="@string/search"
             android:maxLines="1"
             android:paddingStart="11dp"
             android:paddingEnd="10dp"
@@ -50,11 +49,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/buttonBack"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.833"
-            tools:ignore="HardcodedText" />
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/wrapperStagesMenu"
@@ -90,10 +86,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:maxLines="1"
-                    android:text="Чек"
+                    android:text="@string/cheque"
                     android:textColor="@color/black"
-                    android:textSize="10sp"
-                    tools:ignore="HardcodedText,SmallSp" />
+                    android:textSize="10sp" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
@@ -168,13 +163,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxLines="1"
-                    android:text="Распределение"
+                    android:text="@string/distribution"
                     android:textColor="@color/black"
                     android:textSize="10sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="HardcodedText,SmallSp" />
+                    tools:ignore="SmallSp" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/personImage"
@@ -255,7 +250,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxLines="1"
-                    android:text="Оплата"
+                    android:text="@string/payment"
                     android:textColor="@color/black"
                     android:textSize="10sp"
                     tools:ignore="HardcodedText,SmallSp" />
@@ -289,7 +284,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="20dp"
         android:overScrollMode="never"
         android:paddingTop="15dp"
         android:scrollbars="none"
@@ -324,14 +319,11 @@
         android:gravity="center"
         android:paddingTop="1dp"
         android:paddingBottom="4dp"
-        android:text="Продолжить"
+        android:text="@string/next"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:ignore="HardcodedText" />
-
-
+        app:layout_constraintRight_toRightOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

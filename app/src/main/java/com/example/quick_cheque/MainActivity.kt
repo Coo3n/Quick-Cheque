@@ -2,7 +2,7 @@ package com.example.quick_cheque
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import com.example.quick_cheque.screens.ReceiptWindowFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -10,13 +10,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Log.i("MyTag", "onCreateMain")
-
         supportFragmentManager
             .beginTransaction()
             .add(R.id.container, ReceiptWindowFragment())
             .commit()
-
     }
-
 }

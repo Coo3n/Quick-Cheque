@@ -3,7 +3,7 @@ package com.example.quick_cheque.adapters
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quick_cheque.delegates.Delegate
-import com.example.quick_cheque.expandable_list_items.ListItem
+import com.example.quick_cheque.list_items.ListItem
 
 class ListAdapterWithDelegates(
     var delegates: List<Delegate>,
