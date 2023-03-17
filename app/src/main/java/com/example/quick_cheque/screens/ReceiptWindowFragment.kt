@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.quick_cheque.R
 import com.example.quick_cheque.adapters.ListAdapterWithDelegates
 import com.example.quick_cheque.databinding.FragmentReceiptWindowBinding
 import com.example.quick_cheque.delegates.ExpandableListDelegate
 import com.example.quick_cheque.list_items.ChequeListItem
+import com.example.quick_cheque.list_items.ListItem
 import com.example.quick_cheque.model.Cheque
 import com.example.quick_cheque.model.User
 
@@ -34,6 +36,7 @@ class ReceiptWindowFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         chequeRecyclerViewList = _binding.chequeList
+        chequeRecyclerViewList.setHasFixedSize(true)
         chequeRecyclerViewList.layoutManager = LinearLayoutManager(requireContext())
 
         chequeRecyclerViewList.adapter = ListAdapterWithDelegates(
@@ -42,32 +45,49 @@ class ReceiptWindowFragment : Fragment() {
         )
     }
 
-    private fun getChequeList(): List<ChequeListItem> {
-        return listOf(
+    private fun getChequeList(): MutableList<ListItem> {
+        return mutableListOf(
             ChequeListItem(
                 Cheque(
-                    title = "",
-                    owner = User("Valera"),
+                    title = "Valera",
+                    owner = User("Zloi", R.drawable.cheque),
                     sumOfCheque = 30,
+                    membersCheque = mutableListOf(
+                        User("ZA", R.drawable.cheque),
+                        User("ZA", R.drawable.cheque),
+                        User("ZA", R.drawable.cheque),
+                        User("ZA", R.drawable.cheque),
+                        User("ZA", R.drawable.cheque),
+                        User("ZA", R.drawable.cheque),
+                        User("ZA", R.drawable.cheque),
+                    ),
                 ),
                 isExpanded = true
             ),
 
             ChequeListItem(
                 Cheque(
-                    title = "Ilya",
-                    owner = User("Valera"),
-                    sumOfCheque = 30,
-                )
+                    title = "Valera",
+                    owner = User("Zloi", R.drawable.cheque),
+                ),
             ),
 
             ChequeListItem(
                 Cheque(
-                    title = "Ilya",
-                    owner = User("Valera"),
+                    title = "Valera",
+                    owner = User("Zloi", R.drawable.cheque),
                     sumOfCheque = 30,
-                )
-            )
+                    membersCheque = mutableListOf(
+                        User("ZA", R.drawable.cheque),
+                        User("ZA", R.drawable.cheque),
+                        User("ZA", R.drawable.cheque),
+                        User("ZA", R.drawable.cheque),
+                        User("ZA", R.drawable.cheque),
+                        User("ZA", R.drawable.cheque),
+                        User("ZA", R.drawable.cheque),
+                    ),
+                ),
+            ),
         )
     }
 

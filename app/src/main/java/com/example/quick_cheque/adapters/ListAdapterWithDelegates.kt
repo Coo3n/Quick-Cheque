@@ -7,7 +7,7 @@ import com.example.quick_cheque.list_items.ListItem
 
 class ListAdapterWithDelegates(
     var delegates: List<Delegate>,
-    var listItems: List<ListItem>
+    var listItems: MutableList<ListItem>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =

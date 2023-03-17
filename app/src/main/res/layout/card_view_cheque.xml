@@ -65,7 +65,7 @@
             android:id="@+id/fullInformationOfCheque"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_info_cheque"
+            android:background="@drawable/background_cheque"
             android:orientation="vertical"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -104,6 +104,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/iconAdminInCheque"
                     android:layout_width="32dp"
                     android:layout_height="30dp"
                     android:background="@drawable/mini_user_icon"
@@ -148,16 +149,16 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="19dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="30dp">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/listChequeMembers"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginEnd="10dp"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constrainedWidth="true"
