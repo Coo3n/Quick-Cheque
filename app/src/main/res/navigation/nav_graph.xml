@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/receiptWindowFragment"
-        android:name="com.example.quick_cheque.screens.ReceiptWindowFragment"
+        android:name="com.example.quick_cheque.screens.ChoiceChequeFragment"
         android:label="fragment_receipt_window"
         tools:layout="@layout/fragment_receipt_window" />
 </navigation>

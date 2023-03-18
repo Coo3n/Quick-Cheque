@@ -2,7 +2,7 @@ package com.example.quick_cheque
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.quick_cheque.screens.ReceiptWindowFragment
+import com.example.quick_cheque.screens.ChoiceChequeFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
 
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.container, ReceiptWindowFragment())
+            .add(R.id.container, ChoiceChequeFragment())
             .commit()
     }
 }

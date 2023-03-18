@@ -32,22 +32,24 @@ class ExpandableListDelegate : Delegate {
         private val iconAdminInCheque: ImageView = itemView.findViewById(R.id.iconAdminInCheque)
         private val nameOwnerCheque: TextView = itemView.findViewById(R.id.nameOwnerCheque)
         private val sumOfCheque: TextView = itemView.findViewById(R.id.sumOfCheque)
+
         private val membersRecyclerViewList: RecyclerView =
             itemView.findViewById(R.id.listChequeMembers)
-        private val constraintLayoutListItem: ConstraintLayout =
+
+        private val previewListItem: ConstraintLayout =
             itemView.findViewById(R.id.listItem)
-        private val linearLayoutExpandableChequeInfo: LinearLayout =
+        private val expandableInfoOfCheque: LinearLayout =
             itemView.findViewById(R.id.fullInformationOfCheque)
 
         fun bind(expandableListItem: ChequeListItem) {
             if (expandableListItem.isExpanded) {
-                constraintLayoutListItem.setBackgroundResource(R.drawable.style_cheque_card_expandable)
+                previewListItem.setBackgroundResource(R.drawable.style_cheque_card_expandable)
             } else {
-                constraintLayoutListItem.setBackgroundResource(R.drawable.custom_layer_list)
+                previewListItem.setBackgroundResource(R.drawable.style_cheque_card_classic)
             }
 
             if (!expandableListItem.isExpanded) { // Если не расширен, то схлопываем элемент
-                linearLayoutExpandableChequeInfo.visibility = View.GONE
+                expandableInfoOfCheque.visibility = View.GONE
             }
 
             with(expandableListItem.cheque) {
@@ -63,15 +65,16 @@ class ExpandableListDelegate : Delegate {
                     InnerListMembersChequeAdapter(membersCheque)
             }
 
-            constraintLayoutListItem.setOnClickListener {
-                linearLayoutExpandableChequeInfo.visibility =
+            previewListItem.setOnClickListener {
+                expandableInfoOfCheque.visibility =
                     if (expandableListItem.isExpanded) View.GONE else View.VISIBLE
 
                 expandableListItem.isExpanded = !expandableListItem.isExpanded
+
                 if (expandableListItem.isExpanded) {
-                    constraintLayoutListItem.setBackgroundResource(R.drawable.style_cheque_card_expandable)
+                    previewListItem.setBackgroundResource(R.drawable.style_cheque_card_expandable)
                 } else {
-                    constraintLayoutListItem.setBackgroundResource(R.drawable.custom_layer_list)
+                    previewListItem.setBackgroundResource(R.drawable.style_cheque_card_classic)
                 }
             }
         }
