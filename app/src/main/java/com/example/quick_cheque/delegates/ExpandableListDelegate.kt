@@ -17,7 +17,7 @@ import com.example.quick_cheque.list_items.ListItem
 class ExpandableListDelegate : Delegate {
     override fun getViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
         return ExpandableListViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.card_view_cheque, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.card_choice_item, parent, false)
         )
     }
 
