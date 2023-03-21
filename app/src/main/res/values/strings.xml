@@ -8,4 +8,9 @@
     <string name="admin">Админ</string>
     <string name="participants">Участники</string>
     <string name="sumOfCheque">Сумма чека</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nav_bottom_create_text">Добавить</string>
+    <string name="nav_bottom_profile_text">профиль</string>
+    <string name="nav_bottom_join_text">присоединиться</string>
 </resources>
