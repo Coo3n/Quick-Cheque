@@ -7,6 +7,8 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.navigation.ActivityNavigator
+import androidx.navigation.ActivityNavigatorExtras
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quick_cheque.R
@@ -17,7 +19,7 @@ import com.example.quick_cheque.list_items.ListItem
 class ExpandableListDelegate : Delegate {
     override fun getViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
         return ExpandableListViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.card_view_cheque, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.card_choice_item, parent, false)
         )
     }
 
@@ -36,8 +38,11 @@ class ExpandableListDelegate : Delegate {
         private val membersRecyclerViewList: RecyclerView =
             itemView.findViewById(R.id.listChequeMembers)
 
+        private val expandableButton: ImageView = itemView.findViewById(R.id.expandableButton)
+
         private val previewListItem: ConstraintLayout =
             itemView.findViewById(R.id.listItem)
+
         private val expandableInfoOfCheque: LinearLayout =
             itemView.findViewById(R.id.fullInformationOfCheque)
 
@@ -65,7 +70,7 @@ class ExpandableListDelegate : Delegate {
                     InnerListMembersChequeAdapter(membersCheque)
             }
 
-            previewListItem.setOnClickListener {
+            expandableButton.setOnClickListener {
                 expandableInfoOfCheque.visibility =
                     if (expandableListItem.isExpanded) View.GONE else View.VISIBLE
 

@@ -3,21 +3,22 @@ package com.example.quick_cheque.screens
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.quick_cheque.MainActivity
 import com.example.quick_cheque.R
 import com.example.quick_cheque.adapters.ListAdapterWithDelegates
-import com.example.quick_cheque.databinding.ChoiceChequeFragmentBinding
+import com.example.quick_cheque.databinding.FragmentChoiceChequeBinding
 import com.example.quick_cheque.delegates.ExpandableListDelegate
 import com.example.quick_cheque.list_items.ChequeListItem
 import com.example.quick_cheque.list_items.ListItem
 import com.example.quick_cheque.model.Cheque
 import com.example.quick_cheque.model.User
 
-
 class ChoiceChequeFragment : Fragment() {
-    private var binding: ChoiceChequeFragmentBinding? = null
-    private val _binding: ChoiceChequeFragmentBinding
+    private var binding: FragmentChoiceChequeBinding? = null
+    private val _binding: FragmentChoiceChequeBinding
         get() = binding!!
 
     private lateinit var chequeRecyclerViewList: RecyclerView
@@ -27,7 +28,11 @@ class ChoiceChequeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = ChoiceChequeFragmentBinding.inflate(inflater)
+        binding = FragmentChoiceChequeBinding.inflate(inflater)
+        _binding.buttonNextToDistributeCheque.setOnClickListener {
+            Navigation.findNavController(_binding.root).navigate(R.id.action_choiceChequeFragment_to_blankFragment)
+        }
+
         return _binding.root
     }
 
