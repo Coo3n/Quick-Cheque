@@ -8,4 +8,5 @@
     <string name="admin">Админ</string>
     <string name="participants">Участники</string>
     <string name="sumOfCheque">Сумма чека</string>
+    <string name="pay">Оплатить</string>
 </resources>

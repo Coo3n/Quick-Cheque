@@ -33,6 +33,7 @@ android {
         viewBinding true
         dataBinding true
     }
+    namespace 'com.example.quick_cheque'
 }
 
 dependencies {
