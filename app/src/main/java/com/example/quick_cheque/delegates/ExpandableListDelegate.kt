@@ -1,5 +1,6 @@
 package com.example.quick_cheque.delegates
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,14 +8,13 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.navigation.ActivityNavigator
-import androidx.navigation.ActivityNavigatorExtras
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quick_cheque.R
 import com.example.quick_cheque.adapters.InnerListMembersChequeAdapter
 import com.example.quick_cheque.list_items.ChequeListItem
 import com.example.quick_cheque.list_items.ListItem
+import com.example.quick_cheque.model.User
 
 class ExpandableListDelegate : Delegate {
     override fun getViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
@@ -29,11 +29,12 @@ class ExpandableListDelegate : Delegate {
 
     override fun forItem(listItem: ListItem): Boolean = listItem is ChequeListItem
 
+
     inner class ExpandableListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val titleListItem: TextView = itemView.findViewById(R.id.titleListItem)
         private val iconAdminInCheque: ImageView = itemView.findViewById(R.id.iconAdminInCheque)
         private val nameOwnerCheque: TextView = itemView.findViewById(R.id.nameOwnerCheque)
-        private val sumOfCheque: TextView = itemView.findViewById(R.id.sumOfCheque)
+        private val finalSumOfCheque: TextView = itemView.findViewById(R.id.finalSumOfCheque)
 
         private val membersRecyclerViewList: RecyclerView =
             itemView.findViewById(R.id.listChequeMembers)
@@ -47,41 +48,39 @@ class ExpandableListDelegate : Delegate {
             itemView.findViewById(R.id.fullInformationOfCheque)
 
         fun bind(expandableListItem: ChequeListItem) {
-            if (expandableListItem.isExpanded) {
-                previewListItem.setBackgroundResource(R.drawable.style_cheque_card_expandable)
-            } else {
-                previewListItem.setBackgroundResource(R.drawable.style_cheque_card_classic)
-            }
-
-            if (!expandableListItem.isExpanded) { // Если не расширен, то схлопываем элемент
-                expandableInfoOfCheque.visibility = View.GONE
-            }
+            changingStyleExpandableObjectInChequeListItem(expandableListItem.isExpanded)
 
             with(expandableListItem.cheque) {
-                this@ExpandableListViewHolder.titleListItem.text = title
-                this@ExpandableListViewHolder.nameOwnerCheque.text = owner.name
-                this@ExpandableListViewHolder.iconAdminInCheque.setBackgroundResource(owner.icon)
-                this@ExpandableListViewHolder.sumOfCheque.text = sumOfCheque.toString()
+                titleListItem.text = title
+                nameOwnerCheque.text = owner.name
+                iconAdminInCheque.setBackgroundResource(owner.icon)
+                finalSumOfCheque.text = sumOfCheque.toString()
 
-                this@ExpandableListViewHolder.membersRecyclerViewList.setHasFixedSize(true)
-                this@ExpandableListViewHolder.membersRecyclerViewList.layoutManager =
-                    LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
-                this@ExpandableListViewHolder.membersRecyclerViewList.adapter =
-                    InnerListMembersChequeAdapter(membersCheque)
+                setupMembersRecyclerViewList(membersCheque)
             }
 
             expandableButton.setOnClickListener {
-                expandableInfoOfCheque.visibility =
-                    if (expandableListItem.isExpanded) View.GONE else View.VISIBLE
-
                 expandableListItem.isExpanded = !expandableListItem.isExpanded
-
-                if (expandableListItem.isExpanded) {
-                    previewListItem.setBackgroundResource(R.drawable.style_cheque_card_expandable)
-                } else {
-                    previewListItem.setBackgroundResource(R.drawable.style_cheque_card_classic)
-                }
+                changingStyleExpandableObjectInChequeListItem(expandableListItem.isExpanded)
             }
+        }
+
+        private fun changingStyleExpandableObjectInChequeListItem(isExpandedListItem: Boolean) {
+            if (isExpandedListItem) {
+                previewListItem.setBackgroundResource(R.drawable.style_cheque_card_expandable)
+                expandableInfoOfCheque.visibility = View.VISIBLE
+            } else {
+                previewListItem.setBackgroundResource(R.drawable.style_cheque_card_classic)
+                expandableInfoOfCheque.visibility = View.GONE
+            }
+        }
+
+        private fun setupMembersRecyclerViewList(membersCheque: MutableList<User>) {
+            membersRecyclerViewList.setHasFixedSize(true)
+            membersRecyclerViewList.layoutManager =
+                LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
+            membersRecyclerViewList.adapter =
+                InnerListMembersChequeAdapter(membersCheque)
         }
     }
 }

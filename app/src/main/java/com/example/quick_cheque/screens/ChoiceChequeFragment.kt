@@ -1,20 +1,26 @@
 package com.example.quick_cheque.screens
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.quick_cheque.MainActivity
 import com.example.quick_cheque.R
 import com.example.quick_cheque.adapters.ListAdapterWithDelegates
 import com.example.quick_cheque.databinding.FragmentChoiceChequeBinding
+import com.example.quick_cheque.delegates.Delegate
 import com.example.quick_cheque.delegates.ExpandableListDelegate
 import com.example.quick_cheque.list_items.ChequeListItem
 import com.example.quick_cheque.list_items.ListItem
 import com.example.quick_cheque.model.Cheque
 import com.example.quick_cheque.model.User
+import com.jakewharton.rxbinding2.widget.RxTextView
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 
 class ChoiceChequeFragment : Fragment() {
     private var binding: FragmentChoiceChequeBinding? = null
@@ -22,6 +28,10 @@ class ChoiceChequeFragment : Fragment() {
         get() = binding!!
 
     private lateinit var chequeRecyclerViewList: RecyclerView
+    private lateinit var chequeRecyclerViewListAdapterWithDelegates: ListAdapterWithDelegates
+    private lateinit var listItems: MutableList<ListItem>
+
+    private val disposeBag = CompositeDisposable()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,23 +39,65 @@ class ChoiceChequeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentChoiceChequeBinding.inflate(inflater)
-        _binding.buttonNextToDistributeCheque.setOnClickListener {
-            Navigation.findNavController(_binding.root).navigate(R.id.action_choiceChequeFragment_to_blankFragment)
-        }
-
         return _binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        _binding.buttonNextToDistributeCheque.setOnClickListener {
+            Navigation.findNavController(_binding.root)
+                .navigate(R.id.action_choiceChequeFragment_to_blankFragment)
+        }
+
+        listItems = getChequeList()
+
+        setupChequeRecyclerViewList(
+            listOf(ExpandableListDelegate()),
+            listItems
+        )
+
+        disposeBag.add(
+            RxTextView
+                .textChanges(_binding.searchEditText)
+                .debounce(500, TimeUnit.MILLISECONDS)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    Log.i("MyTag", it.toString())
+                    filterSearchingItems(it.toString())
+                }
+        )
+    }
+
+    private fun filterSearchingItems(searchText: String) {
+        val filteredListItems: MutableList<ListItem> =
+            (listItems as MutableList<ChequeListItem>)
+                .filter { item ->
+                    item.cheque.title.lowercase().trim()
+                        .contains(searchText.lowercase().trim())
+                }
+                .toMutableList()
+
+        chequeRecyclerViewListAdapterWithDelegates.filterRecyclerViewListItems(filteredListItems)
+    }
+
+    private fun setupChequeRecyclerViewList(
+        delegates: List<Delegate>,
+        listItems: MutableList<ListItem>
+    ) {
         chequeRecyclerViewList = _binding.chequeList
+
         chequeRecyclerViewList.setHasFixedSize(true)
         chequeRecyclerViewList.layoutManager = LinearLayoutManager(requireContext())
 
         chequeRecyclerViewList.adapter = ListAdapterWithDelegates(
-            delegates = listOf(ExpandableListDelegate()),
-            listItems = getChequeList()
+            delegates = delegates,
+            listItems = listItems
         )
+
+        chequeRecyclerViewListAdapterWithDelegates =
+            chequeRecyclerViewList.adapter as ListAdapterWithDelegates
     }
 
     private fun getChequeList(): MutableList<ListItem> {
@@ -95,6 +147,7 @@ class ChoiceChequeFragment : Fragment() {
     }
 
     override fun onDestroy() {
+        disposeBag.clear()
         binding = null
         super.onDestroy()
     }
