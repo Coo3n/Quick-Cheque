@@ -3,24 +3,48 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/choiceChequeFragment">
+    app:startDestination="@id/mainScreenFragment">
 
-    <fragment
-        android:id="@+id/blankFragment"
-        android:name="com.example.quick_cheque.screens.BlankFragment"
-        android:label="fragment_blank"
-        tools:layout="@layout/fragment_blank" >
-        <action
-            android:id="@+id/action_blankFragment_to_choiceChequeFragment"
-            app:destination="@id/choiceChequeFragment" />
-    </fragment>
     <fragment
         android:id="@+id/choiceChequeFragment"
         android:name="com.example.quick_cheque.screens.ChoiceChequeFragment"
         android:label="fragment_choice_cheque"
         tools:layout="@layout/fragment_choice_cheque" >
         <action
-            android:id="@+id/action_choiceChequeFragment_to_blankFragment"
-            app:destination="@id/blankFragment" />
+            android:id="@+id/action_choiceChequeFragment_to_mainScreenFragment"
+            app:destination="@id/mainScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainScreenFragment"
+        android:name="com.example.quick_cheque.screens.MainScreenFragment"
+        android:label="fragment_main_screen"
+        tools:layout="@layout/fragment_main_screen" >
+        <action
+            android:id="@+id/action_mainScreenFragment_to_choiceChequeFragment"
+            app:destination="@id/choiceChequeFragment" />
+        <action
+            android:id="@+id/action_mainScreenFragment_to_joinScreenFragment"
+            app:destination="@id/joinScreenFragment" />
+        <action
+            android:id="@+id/action_mainScreenFragment_to_profileScreenFragment"
+            app:destination="@id/profileScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/joinScreenFragment"
+        android:name="com.example.quick_cheque.screens.JoinScreenFragment"
+        android:label="fragment_join_screen"
+        tools:layout="@layout/fragment_join_screen" >
+        <action
+            android:id="@+id/action_joinScreenFragment_to_mainScreenFragment"
+            app:destination="@id/mainScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileScreenFragment"
+        android:name="com.example.quick_cheque.screens.ProfileScreenFragment"
+        android:label="fragment_profile_screen"
+        tools:layout="@layout/fragment_profile_screen" >
+        <action
+            android:id="@+id/action_profileScreenFragment_to_mainScreenFragment"
+            app:destination="@id/mainScreenFragment" />
     </fragment>
 </navigation>

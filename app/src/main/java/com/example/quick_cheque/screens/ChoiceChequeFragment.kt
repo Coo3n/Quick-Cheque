@@ -23,7 +23,7 @@ import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
 class ChoiceChequeFragment : Fragment() {
-    private var binding: FragmentChoiceChequeBinding? = null
+    private lateinit var binding: FragmentChoiceChequeBinding
     private val _binding: FragmentChoiceChequeBinding
         get() = binding!!
 
@@ -45,10 +45,11 @@ class ChoiceChequeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        /*
         _binding.buttonNextToDistributeCheque.setOnClickListener {
             Navigation.findNavController(_binding.root)
                 .navigate(R.id.action_choiceChequeFragment_to_blankFragment)
-        }
+        }*/
 
         listItems = getChequeList()
 
@@ -148,7 +149,6 @@ class ChoiceChequeFragment : Fragment() {
 
     override fun onDestroy() {
         disposeBag.clear()
-        binding = null
         super.onDestroy()
     }
 }
