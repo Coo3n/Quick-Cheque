@@ -13,7 +13,7 @@ class InnerListMembersChequeAdapter(
 ) : RecyclerView.Adapter<InnerListMembersChequeAdapter.ListMembersChequeViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListMembersChequeViewHolder {
         return ListMembersChequeViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_list_members, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.list_member_item, parent, false)
         )
     }
 

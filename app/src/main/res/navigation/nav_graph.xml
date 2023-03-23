@@ -3,11 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/receiptWindowFragment">
+    app:startDestination="@id/choiceChequeFragment">
 
     <fragment
-        android:id="@+id/receiptWindowFragment"
+        android:id="@+id/blankFragment"
+        android:name="com.example.quick_cheque.screens.BlankFragment"
+        android:label="fragment_blank"
+        tools:layout="@layout/fragment_blank" >
+        <action
+            android:id="@+id/action_blankFragment_to_choiceChequeFragment"
+            app:destination="@id/choiceChequeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/choiceChequeFragment"
         android:name="com.example.quick_cheque.screens.ChoiceChequeFragment"
-        android:label="fragment_receipt_window"
-        tools:layout="@layout/fragment_receipt_window" />
+        android:label="fragment_choice_cheque"
+        tools:layout="@layout/fragment_choice_cheque" >
+        <action
+            android:id="@+id/action_choiceChequeFragment_to_blankFragment"
+            app:destination="@id/blankFragment" />
+    </fragment>
 </navigation>
