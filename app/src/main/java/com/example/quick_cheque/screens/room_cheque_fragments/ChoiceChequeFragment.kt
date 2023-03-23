@@ -1,8 +1,10 @@
-package com.example.quick_cheque.screens
+package com.example.quick_cheque.screens.room_cheque_fragments
 
 import android.os.Bundle
 import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,7 +19,6 @@ import com.example.quick_cheque.list_items.ListItem
 import com.example.quick_cheque.model.Cheque
 import com.example.quick_cheque.model.User
 import com.jakewharton.rxbinding2.widget.RxTextView
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
@@ -53,16 +54,14 @@ class ChoiceChequeFragment : Fragment() {
         listItems = getChequeList()
 
         setupChequeRecyclerViewList(
-            listOf(ExpandableListDelegate()),
-            listItems
+            delegates = listOf(ExpandableListDelegate()),
+            listItems = listItems
         )
 
         disposeBag.add(
-            RxTextView
-                .textChanges(_binding.searchEditText)
+            RxTextView.textChanges(_binding.searchEditTextInCheque)
                 .debounce(500, TimeUnit.MILLISECONDS)
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     Log.i("MyTag", it.toString())
                     filterSearchingItems(it.toString())
@@ -111,10 +110,6 @@ class ChoiceChequeFragment : Fragment() {
                         User("ZA", R.drawable.cheque),
                         User("ZA", R.drawable.cheque),
                         User("ZA", R.drawable.cheque),
-                        User("ZA", R.drawable.cheque),
-                        User("ZA", R.drawable.cheque),
-                        User("ZA", R.drawable.cheque),
-                        User("ZA", R.drawable.cheque),
                     ),
                 ),
                 isExpanded = true
@@ -129,7 +124,7 @@ class ChoiceChequeFragment : Fragment() {
 
             ChequeListItem(
                 Cheque(
-                    title = "Valera",
+                    title = "Dii",
                     owner = User("Zloi", R.drawable.cheque),
                     sumOfCheque = 30,
                     membersCheque = mutableListOf(
