@@ -1,5 +1,6 @@
 package com.example.quick_cheque.adapters
 
+import android.util.Log
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quick_cheque.delegates.Delegate
@@ -20,4 +21,9 @@ class ListAdapterWithDelegates(
     }
 
     override fun getItemCount(): Int = listItems.size
+
+    fun filterRecyclerViewListItems(filteredListItems: MutableList<ListItem>) {
+        listItems = filteredListItems
+        notifyDataSetChanged()
+    }
 }
