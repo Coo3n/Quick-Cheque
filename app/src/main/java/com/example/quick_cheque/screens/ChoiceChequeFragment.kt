@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quick_cheque.R
@@ -69,6 +70,10 @@ class ChoiceChequeFragment : Fragment() {
                     filterSearchingItems(it.toString())
                 }
         )
+
+        binding.buttonBack.setOnClickListener {
+            findNavController().navigate(R.id.action_choiceChequeFragment_to_mainScreenFragment)
+        }
     }
 
     private fun filterSearchingItems(searchText: String) {

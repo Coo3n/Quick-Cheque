@@ -2,6 +2,7 @@ package com.example.quick_cheque
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
@@ -21,6 +22,15 @@ class MainActivity : AppCompatActivity() {
         val navController = navHost.navController
 
         bottomNav.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.joinScreenFragment -> bottomNav.visibility = View.VISIBLE
+                R.id.profileScreenFragment -> bottomNav.visibility = View.VISIBLE
+                R.id.mainScreenFragment -> bottomNav.visibility = View.VISIBLE
+                else -> bottomNav.visibility = View.GONE
+            }
+        }
 
         setContentView(binding.root)
     }
