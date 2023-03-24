@@ -21,6 +21,7 @@ import com.example.quick_cheque.model.User
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import java.math.BigDecimal
 import java.util.concurrent.TimeUnit
 
 class ChoiceChequeFragment : Fragment() {
@@ -105,7 +106,7 @@ class ChoiceChequeFragment : Fragment() {
                 Cheque(
                     title = "Valera",
                     owner = User("Zloi", R.drawable.cheque),
-                    sumOfCheque = 30,
+                    sumOfCheque = BigDecimal(30),
                     membersCheque = mutableListOf(
                         User("ZA", R.drawable.cheque),
                         User("ZA", R.drawable.cheque),
@@ -126,7 +127,7 @@ class ChoiceChequeFragment : Fragment() {
                 Cheque(
                     title = "Dii",
                     owner = User("Zloi", R.drawable.cheque),
-                    sumOfCheque = 30,
+                    sumOfCheque = BigDecimal(30),
                     membersCheque = mutableListOf(
                         User("ZA", R.drawable.cheque),
                         User("ZA", R.drawable.cheque),
