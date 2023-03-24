@@ -2,18 +2,13 @@ package com.example.quick_cheque
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.quick_cheque.screens.PaymentWindowFragment
-import com.example.quick_cheque.screens.ReceiptWindowFragment
-
+import com.example.quick_cheque.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        supportFragmentManager
-            .beginTransaction()
-            .add(R.id.container, PaymentWindowFragment())
-            .commit()
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 }

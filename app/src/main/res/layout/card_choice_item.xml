@@ -20,7 +20,7 @@
             android:id="@+id/listItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/custom_layer_list"
+            android:background="@drawable/style_cheque_card_expandable"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -41,23 +41,32 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/expandButton"
+                app:layout_constraintRight_toLeftOf="@id/verticalDividingLine"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Закуски" />
 
+
+            <View
+                android:id="@+id/verticalDividingLine"
+                android:layout_width="1dp"
+                android:layout_height="54dp"
+                android:background="@color/gray_black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/expandableButton"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <ImageView
-                android:id="@+id/expandButton"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@color/beige"
+                android:id="@+id/expandableButton"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:background="@drawable/style_beige_expandable_button"
                 android:contentDescription="Expand INFORMATION of cheque"
                 android:scaleType="center"
                 android:src="@drawable/expand_button"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
                 tools:ignore="HardcodedText" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -65,7 +74,7 @@
             android:id="@+id/fullInformationOfCheque"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_info_cheque"
+            android:background="@drawable/background_cheque"
             android:orientation="vertical"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -75,13 +84,10 @@
                 android:id="@+id/firstDividingStripInInfoCheque"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginStart="13dp"
-                android:layout_marginTop="1dp"
-                android:layout_marginEnd="13dp"
-                android:background="@color/black" />
+                android:background="@color/gray_black" />
 
             <TextView
-                android:id="@+id/wrapperText"
+                android:id="@+id/textAdminCheque"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="13dp"
@@ -104,6 +110,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/iconAdminInCheque"
                     android:layout_width="32dp"
                     android:layout_height="30dp"
                     android:background="@drawable/mini_user_icon"
@@ -135,6 +142,7 @@
                 android:scaleType="center" />
 
             <TextView
+                android:id="@+id/membersTextCheque"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="13dp"
@@ -148,16 +156,16 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="19dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="30dp">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/listChequeMembers"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginEnd="10dp"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constrainedWidth="true"
@@ -166,7 +174,7 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toLeftOf="@id/buttonAddNewMembersInCheque"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:listitem="@layout/item_list_members" />
+                    tools:listitem="@layout/list_member_item" />
 
                 <ImageButton
                     android:id="@+id/buttonAddNewMembersInCheque"
@@ -194,6 +202,7 @@
                 tools:ignore="HardcodedText" />
 
             <TextView
+                android:id="@+id/sumOfChequeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="13dp"
@@ -206,13 +215,15 @@
                 android:textSize="19sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/sumOfCheque"
+                android:id="@+id/finalSumOfCheque"
                 android:layout_width="300dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="14dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
-                android:background="@drawable/style_for_toolbar_search"
+                android:background="@drawable/style_toolbar_search_item"
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="1"

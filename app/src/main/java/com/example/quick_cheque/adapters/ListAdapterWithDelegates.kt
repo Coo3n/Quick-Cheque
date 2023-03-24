@@ -1,15 +1,16 @@
 package com.example.quick_cheque.adapters
 
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quick_cheque.delegates.Delegate
+import com.example.quick_cheque.diff_utils.DiffUtilForListDelegates
 import com.example.quick_cheque.list_items.ListItem
 
 class ListAdapterWithDelegates(
     var delegates: List<Delegate>,
-    var listItems: List<ListItem>
+    var listItems: MutableList<ListItem>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
         delegates[viewType].getViewHolder(parent)
 
@@ -21,4 +22,15 @@ class ListAdapterWithDelegates(
     }
 
     override fun getItemCount(): Int = listItems.size
+
+    fun filterRecyclerViewListItems(filteredListItems: MutableList<ListItem>) {
+        val resultDiff = DiffUtil.calculateDiff(
+            DiffUtilForListDelegates(
+                listItems, filteredListItems
+            )
+        )
+
+        listItems = filteredListItems
+        resultDiff.dispatchUpdatesTo(this)
+    }
 }
