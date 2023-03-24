@@ -7,3 +7,4 @@ data class Product(
     var price: BigDecimal,
     var count: Int
 )
+
