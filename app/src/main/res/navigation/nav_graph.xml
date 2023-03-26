@@ -7,20 +7,27 @@
 
     <fragment
         android:id="@+id/blankFragment"
-        android:name="com.example.quick_cheque.screens.BlankFragment"
+        android:name="com.example.quick_cheque.screens.room_cheque_fragments.ChoiceProductFragment"
         android:label="fragment_blank"
-        tools:layout="@layout/fragment_blank" >
+        tools:layout="@layout/fragment_choice_product">
         <action
             android:id="@+id/action_blankFragment_to_choiceChequeFragment"
             app:destination="@id/choiceChequeFragment" />
+        <action
+            android:id="@+id/action_blankFragment_to_distributedChequeFragment"
+            app:destination="@id/distributedChequeFragment" />
     </fragment>
     <fragment
         android:id="@+id/choiceChequeFragment"
-        android:name="com.example.quick_cheque.screens.ChoiceChequeFragment"
+        android:name="com.example.quick_cheque.screens.room_cheque_fragments.ChoiceChequeFragment"
         android:label="fragment_choice_cheque"
-        tools:layout="@layout/fragment_choice_cheque" >
+        tools:layout="@layout/fragment_choice_cheque">
         <action
             android:id="@+id/action_choiceChequeFragment_to_blankFragment"
             app:destination="@id/blankFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/distributedChequeFragment"
+        android:name="com.example.quick_cheque.screens.room_cheque_fragments.DistributedChequeFragment"
+        android:label="DistributedChequeFragment" />
 </navigation>

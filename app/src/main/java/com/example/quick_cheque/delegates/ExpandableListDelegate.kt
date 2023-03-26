@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -29,7 +30,6 @@ class ExpandableListDelegate : Delegate {
 
     override fun forItem(listItem: ListItem): Boolean = listItem is ChequeListItem
 
-
     inner class ExpandableListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val titleListItem: TextView = itemView.findViewById(R.id.titleListItem)
         private val iconAdminInCheque: ImageView = itemView.findViewById(R.id.iconAdminInCheque)
@@ -39,6 +39,9 @@ class ExpandableListDelegate : Delegate {
         private val membersRecyclerViewList: RecyclerView =
             itemView.findViewById(R.id.listChequeMembers)
 
+        private val buttonAddNewMembersInCheque: ImageButton =
+            itemView.findViewById(R.id.buttonAddNewMembersInCheque)
+
         private val expandableButton: ImageView = itemView.findViewById(R.id.expandableButton)
 
         private val previewListItem: ConstraintLayout =
@@ -46,6 +49,7 @@ class ExpandableListDelegate : Delegate {
 
         private val expandableInfoOfCheque: LinearLayout =
             itemView.findViewById(R.id.fullInformationOfCheque)
+        private var cnt = 0;
 
         fun bind(expandableListItem: ChequeListItem) {
             changingStyleExpandableObjectInChequeListItem(expandableListItem.isExpanded)
@@ -59,6 +63,18 @@ class ExpandableListDelegate : Delegate {
                 setupMembersRecyclerViewList(membersCheque)
             }
 
+            buttonAddNewMembersInCheque.setOnClickListener {
+                (membersRecyclerViewList.adapter as InnerListMembersChequeAdapter).addMemberInCheque(
+                    if (cnt % 2 == 0) {
+                        User("Olua", R.drawable.person_filled)
+                    } else {
+                        User("Olua", R.drawable.payment)
+
+                    }
+                )
+                cnt++
+            }
+
             expandableButton.setOnClickListener {
                 expandableListItem.isExpanded = !expandableListItem.isExpanded
                 changingStyleExpandableObjectInChequeListItem(expandableListItem.isExpanded)
@@ -68,19 +84,19 @@ class ExpandableListDelegate : Delegate {
         private fun changingStyleExpandableObjectInChequeListItem(isExpandedListItem: Boolean) {
             if (isExpandedListItem) {
                 previewListItem.setBackgroundResource(R.drawable.style_cheque_card_expandable)
+                expandableButton.rotation = 90f
                 expandableInfoOfCheque.visibility = View.VISIBLE
             } else {
                 previewListItem.setBackgroundResource(R.drawable.style_cheque_card_classic)
+                expandableButton.rotation = 0f
                 expandableInfoOfCheque.visibility = View.GONE
             }
         }
 
         private fun setupMembersRecyclerViewList(membersCheque: MutableList<User>) {
-            membersRecyclerViewList.setHasFixedSize(true)
             membersRecyclerViewList.layoutManager =
                 LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
-            membersRecyclerViewList.adapter =
-                InnerListMembersChequeAdapter(membersCheque)
+            membersRecyclerViewList.adapter = InnerListMembersChequeAdapter(membersCheque)
         }
     }
 }

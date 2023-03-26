@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screens.room_cheque_fragments.ChoiceChequeFragment">
+    tools:context=".screens.room_cheque_fragments.ChoiceProductFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/custom_toll_bar"
@@ -16,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/buttonBack"
+            android:id="@+id/buttonBackToChoiceCheque"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
@@ -32,7 +31,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/searchEditTextInCheque"
+            android:id="@+id/searchEditTextInDistribute"
             android:layout_width="210dp"
             android:layout_height="30dp"
             android:layout_marginStart="30dp"
@@ -48,7 +47,7 @@
             android:textColor="@color/black"
             android:textColorHint="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/buttonBack"
+            app:layout_constraintLeft_toRightOf="@id/buttonBackToChoiceCheque"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -89,7 +88,7 @@
                     android:maxLines="1"
                     android:text="@string/cheque"
                     android:textColor="@color/black"
-                    android:textSize="10sp" />
+                    android:textSize="11sp" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
@@ -110,7 +109,7 @@
                 android:layout_marginEnd="2dp"
                 android:layout_marginBottom="22dp"
                 android:layout_toEndOf="@id/chequeModule"
-                android:background="@drawable/style_black_dividing_line" />
+                android:background="@drawable/style_orange_dividing_line" />
 
             <View
                 android:id="@+id/dividingLine2"
@@ -121,7 +120,7 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="22dp"
                 android:layout_toEndOf="@id/dividingLine1"
-                android:background="@drawable/style_black_dividing_line" />
+                android:background="@drawable/style_orange_dividing_line" />
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -142,7 +141,7 @@
                     android:layout_marginTop="40dp"
                     android:layout_marginEnd="3dp"
                     android:layout_marginBottom="12dp"
-                    android:background="@drawable/style_black_dividing_line"
+                    android:background="@drawable/style_orange_dividing_line"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toLeftOf="@id/dividingLine4" />
@@ -152,7 +151,7 @@
                     android:layout_width="8dp"
                     android:layout_height="2dp"
                     android:layout_marginBottom="12dp"
-                    android:background="@drawable/style_black_dividing_line"
+                    android:background="@drawable/style_orange_dividing_line"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toRightOf="@id/dividingLine3"
                     app:layout_constraintRight_toLeftOf="@id/personImage" />
@@ -164,11 +163,10 @@
                     android:maxLines="1"
                     android:text="@string/distribution"
                     android:textColor="@color/black"
-                    android:textSize="10sp"
+                    android:textSize="11sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="SmallSp" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/personImage"
@@ -178,7 +176,7 @@
                     android:adjustViewBounds="true"
                     android:contentDescription="Payment stage"
                     android:scaleType="center"
-                    android:src="@drawable/person_filled"
+                    android:src="@drawable/icon_orange_person"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toRightOf="@id/dividingLine4"
                     app:layout_constraintRight_toLeftOf="@id/dividingLine5"
@@ -192,7 +190,7 @@
                     android:layout_height="2dp"
                     android:layout_marginStart="13dp"
                     android:layout_marginBottom="12dp"
-                    android:background="@drawable/style_black_dividing_line"
+                    android:background="@drawable/style_orange_dividing_line"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toRightOf="@id/personImage"
                     app:layout_constraintRight_toLeftOf="@id/rectangle_6" />
@@ -203,7 +201,7 @@
                     android:layout_height="2dp"
                     android:layout_marginStart="3dp"
                     android:layout_marginBottom="12dp"
-                    android:background="@drawable/style_black_dividing_line"
+                    android:background="@drawable/style_orange_dividing_line"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toRightOf="@id/dividingLine5"
                     app:layout_constraintRight_toRightOf="parent" />
@@ -219,7 +217,7 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="22dp"
                 android:layout_toEndOf="@id/distributionModule"
-                android:background="@drawable/style_black_dividing_line" />
+                android:background="@drawable/style_orange_dividing_line" />
 
             <View
                 android:id="@+id/dividingLine8"
@@ -231,7 +229,7 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="22dp"
                 android:layout_toEndOf="@id/dividingLine7"
-                android:background="@drawable/style_black_dividing_line" />
+                android:background="@drawable/style_orange_dividing_line" />
 
             <LinearLayout
                 android:id="@+id/paymentModule"
@@ -252,8 +250,7 @@
                     android:maxLines="1"
                     android:text="@string/payment"
                     android:textColor="@color/black"
-                    android:textSize="10sp"
-                    tools:ignore="HardcodedText,SmallSp" />
+                    android:textSize="11sp" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/paymentStageImage"
@@ -263,66 +260,10 @@
                     android:adjustViewBounds="true"
                     android:contentDescription="stage distribution of the receipt"
                     android:scaleType="center"
-                    android:src="@drawable/payment"
+                    android:src="@drawable/icon_orange_payment"
                     tools:ignore="HardcodedText" />
             </LinearLayout>
         </RelativeLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
-        android:id="@+id/firstDividingStrip"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/wrapperStagesMenu" />
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/chequeList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:overScrollMode="never"
-        android:paddingTop="15dp"
-        android:scrollbars="none"
-        app:layout_constrainedHeight="true"
-        app:layout_constraintBottom_toTopOf="@id/secondDividingStrip"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/firstDividingStrip"
-        app:layout_constraintVertical_bias="0.0"
-        app:layout_constraintVertical_chainStyle="packed"
-        tools:listitem="@layout/card_choice_item" />
-
-    <View
-        android:id="@+id/secondDividingStrip"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="10dp"
-        android:background="@color/gray"
-        app:layout_constraintBottom_toTopOf="@id/buttonNextToDistributeCheque"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
-    <Button
-        android:id="@+id/buttonNextToDistributeCheque"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/style_orange_button_next"
-        android:gravity="center"
-        android:minWidth="320dp"
-        android:paddingTop="1dp"
-        android:paddingBottom="4dp"
-        android:text="@string/next"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
