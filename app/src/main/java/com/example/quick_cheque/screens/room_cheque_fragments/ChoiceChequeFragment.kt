@@ -1,8 +1,10 @@
-package com.example.quick_cheque.screens
+package com.example.quick_cheque.screens.room_cheque_fragments
 
 import android.os.Bundle
 import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
@@ -21,6 +23,7 @@ import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import java.math.BigDecimal
 import java.util.concurrent.TimeUnit
 
 class ChoiceChequeFragment : Fragment() {
@@ -55,13 +58,12 @@ class ChoiceChequeFragment : Fragment() {
         listItems = getChequeList()
 
         setupChequeRecyclerViewList(
-            listOf(ExpandableListDelegate()),
-            listItems
+            delegates = listOf(ExpandableListDelegate()),
+            listItems = listItems
         )
 
         disposeBag.add(
-            RxTextView
-                .textChanges(_binding.searchEditText)
+            RxTextView.textChanges(_binding.searchEditTextInCheque)
                 .debounce(500, TimeUnit.MILLISECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -94,7 +96,6 @@ class ChoiceChequeFragment : Fragment() {
     ) {
         chequeRecyclerViewList = _binding.chequeList
 
-        chequeRecyclerViewList.setHasFixedSize(true)
         chequeRecyclerViewList.layoutManager = LinearLayoutManager(requireContext())
 
         chequeRecyclerViewList.adapter = ListAdapterWithDelegates(
@@ -112,12 +113,8 @@ class ChoiceChequeFragment : Fragment() {
                 Cheque(
                     title = "Valera",
                     owner = User("Zloi", R.drawable.cheque),
-                    sumOfCheque = 30,
+                    sumOfCheque = BigDecimal(30),
                     membersCheque = mutableListOf(
-                        User("ZA", R.drawable.cheque),
-                        User("ZA", R.drawable.cheque),
-                        User("ZA", R.drawable.cheque),
-                        User("ZA", R.drawable.cheque),
                         User("ZA", R.drawable.cheque),
                         User("ZA", R.drawable.cheque),
                         User("ZA", R.drawable.cheque),
@@ -135,9 +132,9 @@ class ChoiceChequeFragment : Fragment() {
 
             ChequeListItem(
                 Cheque(
-                    title = "Valera",
+                    title = "Dii",
                     owner = User("Zloi", R.drawable.cheque),
-                    sumOfCheque = 30,
+                    sumOfCheque = BigDecimal(30),
                     membersCheque = mutableListOf(
                         User("ZA", R.drawable.cheque),
                         User("ZA", R.drawable.cheque),
