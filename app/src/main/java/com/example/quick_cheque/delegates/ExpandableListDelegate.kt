@@ -94,7 +94,6 @@ class ExpandableListDelegate : Delegate {
         }
 
         private fun setupMembersRecyclerViewList(membersCheque: MutableList<User>) {
-            membersRecyclerViewList.setHasFixedSize(true)
             membersRecyclerViewList.layoutManager =
                 LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
             membersRecyclerViewList.adapter = InnerListMembersChequeAdapter(membersCheque)
