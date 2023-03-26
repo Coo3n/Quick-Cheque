@@ -19,6 +19,7 @@ import com.example.quick_cheque.list_items.ListItem
 import com.example.quick_cheque.model.Cheque
 import com.example.quick_cheque.model.User
 import com.jakewharton.rxbinding2.widget.RxTextView
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import java.math.BigDecimal
@@ -63,6 +64,7 @@ class ChoiceChequeFragment : Fragment() {
             RxTextView.textChanges(_binding.searchEditTextInCheque)
                 .debounce(500, TimeUnit.MILLISECONDS)
                 .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     Log.i("MyTag", it.toString())
                     filterSearchingItems(it.toString())
@@ -88,7 +90,6 @@ class ChoiceChequeFragment : Fragment() {
     ) {
         chequeRecyclerViewList = _binding.chequeList
 
-        chequeRecyclerViewList.setHasFixedSize(true)
         chequeRecyclerViewList.layoutManager = LinearLayoutManager(requireContext())
 
         chequeRecyclerViewList.adapter = ListAdapterWithDelegates(
