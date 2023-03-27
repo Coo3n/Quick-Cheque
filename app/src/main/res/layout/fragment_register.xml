@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_black"
+    android:background="@color/gray_light"
     tools:context=".screens.RegisterFragment">
 
 
@@ -26,7 +26,7 @@
             android:layout_marginStart="35dp"
             android:layout_marginTop="21dp"
             android:layout_marginEnd="35dp"
-            android:background="@color/gray_black"
+            android:background="@color/gray_light"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -40,20 +40,23 @@
             android:layout_marginBottom="5dp"
             android:text="Email"
             android:textColor="@color/black"
-            app:layout_constraintBottom_toTopOf="@+id/fragment_register_email_field"
-            app:layout_constraintEnd_toEndOf="@+id/fragment_register_email_field"
-            app:layout_constraintStart_toStartOf="@+id/fragment_register_email_field" />
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/fragment_login_email_field"
+            app:layout_constraintEnd_toEndOf="@+id/fragment_login_email_field"
+            app:layout_constraintStart_toStartOf="@+id/fragment_login_email_field" />
 
         <EditText
-            android:id="@+id/fragment_register_email_field"
+            android:id="@+id/fragment_login_email_field"
             android:layout_width="295dp"
             android:layout_height="37dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="119dp"
             android:layout_marginEnd="32dp"
-            android:background="@color/gray_black"
+            android:background="@color/gray_light"
             android:ems="10"
             android:inputType="textPersonName"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -65,21 +68,24 @@
             android:layout_marginBottom="5dp"
             android:text="Password"
             android:textColor="@color/black"
-            app:layout_constraintBottom_toTopOf="@+id/fragment_register_password_1_field"
-            app:layout_constraintEnd_toEndOf="@+id/fragment_register_password_1_field"
-            app:layout_constraintStart_toStartOf="@+id/fragment_register_password_1_field" />
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/fragment_login_password_1_field"
+            app:layout_constraintEnd_toEndOf="@+id/fragment_login_password_1_field"
+            app:layout_constraintStart_toStartOf="@+id/fragment_login_password_1_field" />
 
         <EditText
-            android:id="@+id/fragment_register_password_1_field"
+            android:id="@+id/fragment_login_password_1_field"
             android:layout_width="295dp"
             android:layout_height="37dp"
             android:layout_marginTop="40dp"
-            android:background="@color/gray_black"
+            android:background="@color/gray_light"
             android:ems="10"
             android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="@+id/fragment_register_email_field"
-            app:layout_constraintStart_toStartOf="@+id/fragment_register_email_field"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_register_email_field" />
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/fragment_login_email_field"
+            app:layout_constraintStart_toStartOf="@+id/fragment_login_email_field"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_login_email_field" />
 
         <TextView
             android:id="@+id/textView4"
@@ -88,6 +94,7 @@
             android:layout_marginBottom="5dp"
             android:text="Repeat Password"
             android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/fragment_register_password_2_field"
             app:layout_constraintEnd_toEndOf="@+id/fragment_register_password_2_field"
             app:layout_constraintStart_toStartOf="@+id/fragment_register_password_2_field" />
@@ -97,21 +104,29 @@
             android:layout_width="295dp"
             android:layout_height="37dp"
             android:layout_marginTop="40dp"
-            android:background="@color/gray_black"
+            android:background="@color/gray_light"
             android:ems="10"
             android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="@+id/fragment_register_password_1_field"
-            app:layout_constraintStart_toStartOf="@+id/fragment_register_password_1_field"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_register_password_1_field" />
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/fragment_login_password_1_field"
+            app:layout_constraintStart_toStartOf="@+id/fragment_login_password_1_field"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_login_password_1_field" />
 
         <Button
             android:id="@+id/fragment_register_register_btn"
             android:layout_width="245dp"
             android:layout_height="38dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginBottom="46dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
             android:text="Register"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:cornerRadius="19dp"
+            app:iconPadding="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/fragment_register_password_2_field"
-            app:layout_constraintStart_toStartOf="@+id/fragment_register_password_2_field"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_register_password_2_field" />
+            app:layout_constraintStart_toStartOf="@+id/fragment_register_password_2_field" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

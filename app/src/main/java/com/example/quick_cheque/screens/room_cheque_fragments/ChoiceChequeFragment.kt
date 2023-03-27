@@ -74,7 +74,7 @@ class ChoiceChequeFragment : Fragment() {
         )
 
         binding.buttonBack.setOnClickListener {
-            findNavController().navigate(R.id.action_choiceChequeFragment_to_mainScreenFragment)
+            //findNavController().navigate(R.id.action_choiceChequeFragment_to_mainScreenFragment)
         }
     }
 

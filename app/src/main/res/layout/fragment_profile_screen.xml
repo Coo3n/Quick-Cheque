@@ -7,25 +7,15 @@
     android:background="@color/white"
     tools:context=".screens.ProfileScreenFragment">
 
-
-    <FrameLayout
-        android:id="@+id/fragment_profile_top"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@color/purple_700"
-        app:layout_constraintBottom_toTopOf="@id/fragment_profile_card"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </FrameLayout>
-
     <LinearLayout
         android:id="@+id/fragment_profile_card"
         android:layout_width="match_parent"
         android:layout_height="212dp"
+        android:layout_marginTop="60dp"
         android:background="@color/blue"
-        tools:layout_editor_absoluteY="70dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imageView"
