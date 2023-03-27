@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_black"
+    tools:context=".screens.RegisterFragment">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="320dp"
+        android:layout_height="442dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="119dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="253dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="21dp"
+            android:layout_marginEnd="35dp"
+            android:background="@color/gray_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="295dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Email"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/fragment_register_email_field"
+            app:layout_constraintEnd_toEndOf="@+id/fragment_register_email_field"
+            app:layout_constraintStart_toStartOf="@+id/fragment_register_email_field" />
+
+        <EditText
+            android:id="@+id/fragment_register_email_field"
+            android:layout_width="295dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="119dp"
+            android:layout_marginEnd="32dp"
+            android:background="@color/gray_black"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="295dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Password"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/fragment_register_password_1_field"
+            app:layout_constraintEnd_toEndOf="@+id/fragment_register_password_1_field"
+            app:layout_constraintStart_toStartOf="@+id/fragment_register_password_1_field" />
+
+        <EditText
+            android:id="@+id/fragment_register_password_1_field"
+            android:layout_width="295dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="40dp"
+            android:background="@color/gray_black"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="@+id/fragment_register_email_field"
+            app:layout_constraintStart_toStartOf="@+id/fragment_register_email_field"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_register_email_field" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="295dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Repeat Password"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/fragment_register_password_2_field"
+            app:layout_constraintEnd_toEndOf="@+id/fragment_register_password_2_field"
+            app:layout_constraintStart_toStartOf="@+id/fragment_register_password_2_field" />
+
+        <EditText
+            android:id="@+id/fragment_register_password_2_field"
+            android:layout_width="295dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="40dp"
+            android:background="@color/gray_black"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="@+id/fragment_register_password_1_field"
+            app:layout_constraintStart_toStartOf="@+id/fragment_register_password_1_field"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_register_password_1_field" />
+
+        <Button
+            android:id="@+id/fragment_register_register_btn"
+            android:layout_width="245dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="48dp"
+            android:text="Register"
+            app:layout_constraintEnd_toEndOf="@+id/fragment_register_password_2_field"
+            app:layout_constraintStart_toStartOf="@+id/fragment_register_password_2_field"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_register_password_2_field" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

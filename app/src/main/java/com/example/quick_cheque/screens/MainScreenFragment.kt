@@ -13,7 +13,6 @@ import com.example.quick_cheque.R
 import com.example.quick_cheque.databinding.FragmentChoiceChequeBinding
 import com.example.quick_cheque.databinding.FragmentMainScreenBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.activity_main.view.*
 
 class MainScreenFragment : Fragment() {
     private lateinit var binding: FragmentMainScreenBinding
@@ -31,7 +30,7 @@ class MainScreenFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.rectangle1.setOnClickListener {
-            findNavController().navigate(R.id.action_mainScreenFragment_to_choiceChequeFragment)
+           // findNavController().navigate(R.id.action_mainScreenFragment_to_choiceChequeFragment)
         }
 
         activity?.parent?.findViewById<BottomNavigationView>(R.id.mainBottomNav)?.visibility = View.INVISIBLE

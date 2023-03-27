@@ -9,15 +9,14 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quick_cheque.R
 import com.example.quick_cheque.adapters.ListProductsAdapter
-import com.example.quick_cheque.databinding.FragmentChoiceProductBinding
 import com.example.quick_cheque.model.Product
 import java.math.BigDecimal
 
 
 class ChoiceProductFragment : Fragment() {
-    private var binding: FragmentChoiceProductBinding? = null
+    /*private var binding: Fragment? = null
     private val _binding: FragmentChoiceProductBinding
-        get() = binding!!
+        get() = binding!!*/
 
     private lateinit var recyclerViewListProductsAdapter: ListProductsAdapter
 
@@ -25,18 +24,19 @@ class ChoiceProductFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentChoiceProductBinding.inflate(inflater)
-        return _binding.root
+        /*binding = FragmentChoiceProductBinding.inflate(inflater)
+        return _binding.root*/
+        return inflater.inflate(R.layout.fragment_blank, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupRecyclerViewListProducts()
+        /*setupRecyclerViewListProducts()
 
         _binding.buttonBackToChoiceCheque.setOnClickListener {
             Navigation.findNavController(_binding.root)
                 .navigate(R.id.action_blankFragment_to_choiceChequeFragment)
-        }
+        }*/
 
         recyclerViewListProductsAdapter.submitList(
             mutableListOf(
@@ -59,15 +59,14 @@ class ChoiceProductFragment : Fragment() {
         )
     }
 
-    private fun setupRecyclerViewListProducts() = with(_binding) {
+    /*private fun setupRecyclerViewListProducts() = with(_binding) {
         recyclerViewListProductsAdapter = ListProductsAdapter()
         listProducts.setHasFixedSize(true)
         listProducts.layoutManager = LinearLayoutManager(requireContext())
         listProducts.adapter = recyclerViewListProductsAdapter
-    }
+    }*/
 
     override fun onDestroy() {
-        binding = null
         super.onDestroy()
     }
 }
