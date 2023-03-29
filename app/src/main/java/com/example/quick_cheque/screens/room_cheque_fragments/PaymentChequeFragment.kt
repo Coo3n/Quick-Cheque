@@ -54,6 +54,11 @@ class PaymentChequeFragment : Fragment() {
                     filterSearchingItems(it.toString())
                 }
         )
+
+        val sum = listItems.stream()
+            .map { p -> p.price }
+            .reduce(BigDecimal.ZERO, BigDecimal::add)
+        _binding.sum.text = "К оплате " + sum.toString() + "р."
     }
 
     private fun filterSearchingItems(searchText: String) {
