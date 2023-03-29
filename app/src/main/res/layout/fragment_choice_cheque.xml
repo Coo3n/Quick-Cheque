@@ -278,7 +278,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/wrapperStagesMenu" />
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chequeList"
         android:layout_width="match_parent"

@@ -45,7 +45,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Закуски" />
 
-
             <View
                 android:id="@+id/verticalDividingLine"
                 android:layout_width="1dp"

@@ -5,6 +5,7 @@
     <string name="payment">Оплата</string>
     <string name="search">Поиск</string>
     <string name="next">Продолжить</string>
+    <string name="complete">Завершить</string>
     <string name="admin">Админ</string>
     <string name="participants">Участники</string>
     <string name="sumOfCheque">Сумма чека</string>

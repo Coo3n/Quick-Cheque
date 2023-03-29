@@ -269,6 +269,16 @@
         </RelativeLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <View
+        android:id="@+id/firstDividingStrip"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/gray"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wrapperStagesMenu" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listProducts"
         android:layout_width="match_parent"
