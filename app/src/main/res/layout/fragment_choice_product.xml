@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".screens.room_cheque_fragments.ChoiceProductFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/custom_toll_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:actionBarSize"
+        android:background="@color/blue"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/buttonBackToChoiceCheque"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="17dp"
+            android:background="@color/blue"
+            android:scaleType="centerCrop"
+            android:src="@drawable/button_toolbar_back"
+            android:tint="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/searchEditTextInDistribute"
+            android:layout_width="210dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="84dp"
+            android:layout_marginBottom="13dp"
+            android:background="@drawable/style_toolbar_search_item"
+            android:ellipsize="end"
+            android:hint="@string/search"
+            android:maxLines="1"
+            android:paddingStart="11dp"
+            android:paddingEnd="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/buttonBackToChoiceCheque"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/wrapperStagesMenu"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/custom_toll_bar">
+
+        <RelativeLayout
+            android:id="@+id/stagesMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="@id/wrapperStagesMenu"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/chequeModule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="11dp"
+                android:layout_marginEnd="13dp"
+                android:layout_marginBottom="13dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/cheque"
+                    android:textColor="@color/black"
+                    android:textSize="10sp" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="List Cheque"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/icon_cheque"
+                    tools:ignore="HardcodedText,ImageContrastCheck" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/dividingLine1"
+                android:layout_width="8dp"
+                android:layout_height="2dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="22dp"
+                android:layout_toEndOf="@id/chequeModule"
+                android:background="@drawable/style_orange_dividing_line" />
+
+            <View
+                android:id="@+id/dividingLine2"
+                android:layout_width="8dp"
+                android:layout_height="2dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="22dp"
+                android:layout_toEndOf="@id/dividingLine1"
+                android:background="@drawable/style_orange_dividing_line" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/distributionModule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/dividingLine2"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginBottom="10dp">
+
+                <View
+                    android:id="@+id/dividingLine3"
+                    android:layout_width="8dp"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="3dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/style_orange_dividing_line"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/dividingLine4" />
+
+                <View
+                    android:id="@+id/dividingLine4"
+                    android:layout_width="8dp"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/style_orange_dividing_line"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/dividingLine3"
+                    app:layout_constraintRight_toLeftOf="@id/personImage" />
+
+                <TextView
+                    android:id="@+id/stageOfDistributionInText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="@string/distribution"
+                    android:textColor="@color/black"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="SmallSp" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/personImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="13dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="Payment stage"
+                    android:scaleType="center"
+                    android:src="@drawable/icon_orange_person"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/dividingLine4"
+                    app:layout_constraintRight_toLeftOf="@id/dividingLine5"
+                    app:layout_constraintTop_toBottomOf="@id/stageOfDistributionInText"
+                    app:layout_constraintVertical_bias="0"
+                    tools:ignore="HardcodedText" />
+
+                <View
+                    android:id="@+id/dividingLine5"
+                    android:layout_width="8dp"
+                    android:layout_height="2dp"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/style_black_dividing_line"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/personImage"
+                    app:layout_constraintRight_toLeftOf="@id/rectangle_6" />
+
+                <View
+                    android:id="@+id/rectangle_6"
+                    android:layout_width="8dp"
+                    android:layout_height="2dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/style_black_dividing_line"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/dividingLine5"
+                    app:layout_constraintRight_toRightOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/dividingLine7"
+                android:layout_width="8dp"
+                android:layout_height="2dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="22dp"
+                android:layout_toEndOf="@id/distributionModule"
+                android:background="@drawable/style_black_dividing_line" />
+
+            <View
+                android:id="@+id/dividingLine8"
+                android:layout_width="8dp"
+                android:layout_height="2dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="22dp"
+                android:layout_toEndOf="@id/dividingLine7"
+                android:background="@drawable/style_black_dividing_line" />
+
+            <LinearLayout
+                android:id="@+id/paymentModule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/dividingLine8"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginBottom="13dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/stageOfPaymentInText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="@string/payment"
+                    android:textColor="@color/black"
+                    android:textSize="10sp"
+                    tools:ignore="HardcodedText,SmallSp" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/paymentStageImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="stage distribution of the receipt"
+                    android:scaleType="center"
+                    android:src="@drawable/payment"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listProducts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toTopOf="@id/secondDividingStrip"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/wrapperStagesMenu"
+        app:layout_constraintVertical_bias="0"
+        tools:listitem="@layout/card_choice_product_item" />
+
+    <View
+        android:id="@+id/secondDividingStrip"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/gray"
+        app:layout_constraintBottom_toTopOf="@id/buttonNextToFinalCheque"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:id="@+id/buttonNextToFinalCheque"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/style_orange_button_next"
+        android:gravity="center"
+        android:minWidth="320dp"
+        android:paddingTop="1dp"
+        android:paddingBottom="4dp"
+        android:text="@string/next"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
