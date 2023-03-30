@@ -34,8 +34,8 @@ class ChoiceProductFragment : Fragment() {
         setupRecyclerViewListProducts()
 
         _binding.buttonBackToChoiceCheque.setOnClickListener {
-            //Navigation.findNavController(_binding.root)
-            //    .navigate(R.id.action_blankFragment_to_choiceChequeFragment)
+            Navigation.findNavController(_binding.root)
+                .navigate(R.id.action_choiceProductFragment_to_choiceChequeFragment)
         }
 
         recyclerViewListProductsAdapter.submitList(

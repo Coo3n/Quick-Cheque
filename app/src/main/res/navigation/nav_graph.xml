@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_mainScreenFragment_to_profileScreenFragment"
             app:destination="@id/profileScreenFragment" />
+        <action
+            android:id="@+id/action_mainScreenFragment_to_choiceChequeFragment"
+            app:destination="@id/choiceChequeFragment" />
     </fragment>
     <fragment
         android:id="@+id/joinScreenFragment"
@@ -55,5 +58,23 @@
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/choiceChequeFragment"
+        android:name="com.example.quick_cheque.screens.room_cheque_fragments.ChoiceChequeFragment"
+        android:label="fragment_choice_cheque"
+        tools:layout="@layout/fragment_choice_cheque" >
+        <action
+            android:id="@+id/action_choiceChequeFragment_to_mainScreenFragment"
+            app:destination="@id/mainScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/choiceProductFragment"
+        android:name="com.example.quick_cheque.screens.room_cheque_fragments.ChoiceProductFragment"
+        android:label="fragment_distributed_cheque"
+        tools:layout="@layout/fragment_distributed_cheque" >
+        <action
+            android:id="@+id/action_choiceProductFragment_to_choiceChequeFragment"
+            app:destination="@id/choiceChequeFragment" />
     </fragment>
 </navigation>
