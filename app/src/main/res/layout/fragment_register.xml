@@ -12,7 +12,7 @@
         android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="120dp"
@@ -40,7 +40,7 @@
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="295dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:text="Email"
@@ -54,8 +54,8 @@
                 android:id="@+id/fragment_register_email_field"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
                 android:layout_marginStart="15dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginEnd="15dp"
                 android:background="@color/gray_light"
                 android:inputType="textEmailAddress"
@@ -83,8 +83,8 @@
                 android:id="@+id/fragment_register_password_1_field"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
                 android:layout_marginStart="15dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginEnd="15dp"
                 android:background="@color/gray_light"
                 android:inputType="textPassword"
@@ -112,8 +112,8 @@
                 android:id="@+id/fragment_register_password_2_field"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
                 android:layout_marginStart="15dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginEnd="15dp"
                 android:background="@color/gray_light"
                 android:inputType="textPassword"
