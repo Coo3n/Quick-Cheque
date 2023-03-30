@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
+            android:id="@+id/fragment_register_auth_switch"
             android:layout_width="253dp"
             android:layout_height="37dp"
             android:layout_marginStart="35dp"
