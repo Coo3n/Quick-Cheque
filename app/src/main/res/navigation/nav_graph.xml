@@ -8,6 +8,19 @@
         android:id="@+id/paymentChequeFragment"
         android:name="com.example.quick_cheque.screens.room_cheque_fragments.PaymentChequeFragment"
         android:label="fragment_payment_cheque"
-        tools:layout="@layout/fragment_payment_cheque" />
-    <fragment android:id="@+id/placeholder" />
+        tools:layout="@layout/fragment_payment_cheque">
+        <action
+            android:id="@+id/action_paymentChequeFragment_to_choicePaymentFragment"
+            app:destination="@id/choicePaymentFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/choicePaymentFragment"
+        android:name="com.example.quick_cheque.screens.room_cheque_fragments.ChoicePaymentFragment"
+        android:label="ChoicePaymentFragment" >
+        <action
+            android:id="@+id/action_choicePaymentFragment_pop"
+            app:popUpTo="@id/choicePaymentFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

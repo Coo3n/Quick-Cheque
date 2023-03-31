@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quick_cheque.R
 import com.example.quick_cheque.adapters.ListProductsAdapter
@@ -59,6 +60,11 @@ class PaymentChequeFragment : Fragment() {
             .map { p -> p.price }
             .reduce(BigDecimal.ZERO, BigDecimal::add)
         _binding.sum.text = "К оплате " + sum.toString() + "р."
+
+        _binding.buttonPay.setOnClickListener {
+            Navigation.findNavController(_binding.root)
+                .navigate(R.id.action_paymentChequeFragment_to_choicePaymentFragment)
+        }
     }
 
     private fun filterSearchingItems(searchText: String) {

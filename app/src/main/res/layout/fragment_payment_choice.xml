@@ -267,45 +267,43 @@
             android:id="@+id/buttonPayWebmoney"
             android:layout_width="320dp"
             android:layout_height="48dp"
+
+            android:layout_centerInParent="true"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="10dp"
-
-            app:srcCompat="@drawable/webmoney_logo"
-
             android:background="@drawable/style_payment_sum"
-            android:layout_centerInParent="true"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:srcCompat="@drawable/webmoney_logo" />
 
         <ImageButton
             android:id="@+id/buttonPayQiwi"
             android:layout_width="320dp"
             android:layout_height="48dp"
+            android:layout_above="@+id/buttonPayWebmoney"
+
+            android:layout_centerHorizontal="true"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="10dp"
 
-            app:srcCompat="@drawable/qiwi_logo"
-
+            android:layout_marginBottom="50dp"
             android:background="@drawable/style_payment_sum"
-
-            android:layout_centerInParent="true"
-            android:layout_above="@id/buttonPayWebmoney" />
+            app:srcCompat="@drawable/qiwi_logo" />
 
         <ImageButton
             android:id="@+id/ButtonPaySPB"
             android:layout_width="320dp"
             android:layout_height="48dp"
+            android:layout_below="@+id/buttonPayWebmoney"
+
+            android:layout_centerHorizontal="true"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="10dp"
-
-            app:srcCompat="@drawable/sbp_logo"
-
+            android:layout_marginBottom="15dp"
             android:background="@drawable/style_payment_sum"
-
-            android:layout_centerInParent="true"
-            android:layout_below="@id/buttonPayWebmoney" />
+            app:srcCompat="@drawable/sbp_logo" />
 
     </RelativeLayout>
 
