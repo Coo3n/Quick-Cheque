@@ -14,4 +14,6 @@
     <string name="fragments_auth_password_1">Password</string>
     <string name="fragments_auth_password_2">Repeat Password</string>
     <string name="fragments_auth_btn_register">Register</string>
+    <string name="fragments_auth_switch_login">Login</string>
+    <string name="fragments_auth_switch_register">Register</string>
 </resources>
