@@ -28,6 +28,10 @@ class LoginFragment : Fragment() {
         binding.fragmentLoginLoginBtn.setOnClickListener {
             loginBtnPressed()
         }
+
+        binding.fragmentRegisterSwitchRegister.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        }
     }
 
     private fun loginBtnPressed() {

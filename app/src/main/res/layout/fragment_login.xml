@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,36 +8,75 @@
     tools:context=".screens.LoginFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="320dp"
-        android:layout_height="442dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="119dp"
-        android:background="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="20dp"
+        android:background="@color/gray_light"
+        android:maxWidth="400dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/fragment_register_auth_switch"
-            android:layout_width="253dp"
-            android:layout_height="37dp"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="21dp"
-            android:layout_marginEnd="35dp"
-            android:background="@color/gray_light"
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginVertical="100dp"
+            android:background="@drawable/white_corner_radius_6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="35dp"
+            android:background="@drawable/light_gray_corner_radius_6dp"
+            app:layout_constraintBottom_toBottomOf="@id/fragment_register_switch_register"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/fragment_register_switch_register" />
+
+        <Button
+            android:id="@+id/fragment_register_switch_register"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="125dp"
+            android:layout_marginEnd="40dp"
+            android:backgroundTint="@color/gray_light"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingHorizontal="15dp"
+            android:text="@string/fragments_auth_switch_register"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            app:cornerRadius="6dp"
+            app:layout_constraintEnd_toStartOf="@+id/fragment_register_switch_login"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/fragment_register_switch_login"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="125dp"
+            android:layout_marginEnd="35dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingHorizontal="15dp"
+            android:text="@string/fragments_auth_switch_login"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:cornerRadius="6dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/fragment_register_switch_register"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="295dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="Email"
+            android:text="@string/fragments_auth_email"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/fragment_login_email_field"
@@ -46,26 +85,26 @@
 
         <EditText
             android:id="@+id/fragment_login_email_field"
-            android:layout_width="295dp"
-            android:layout_height="37dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="155dp"
-            android:layout_marginEnd="32dp"
-            android:background="@color/gray_light"
-            android:ems="10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="60dp"
+            android:autofillHints=""
+            android:background="@drawable/light_gray_corner_radius_6dp"
             android:inputType="textEmailAddress"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
+            android:minHeight="48dp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/fragment_register_switch_register" />
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="295dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="Password"
+            android:text="@string/fragments_auth_password_1"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/fragment_login_password_1_field"
@@ -74,44 +113,52 @@
 
         <EditText
             android:id="@+id/fragment_login_password_1_field"
-            android:layout_width="295dp"
-            android:layout_height="37dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
             android:layout_marginTop="40dp"
-            android:background="@color/gray_light"
-            android:ems="10"
+            android:autofillHints=""
+            android:background="@drawable/light_gray_corner_radius_6dp"
             android:inputType="textPassword"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            app:layout_constraintEnd_toEndOf="@+id/fragment_login_email_field"
-            app:layout_constraintStart_toStartOf="@+id/fragment_login_email_field"
+            android:minHeight="48dp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fragment_login_email_field" />
 
         <TextView
             android:id="@+id/fragment_login_forgot_btn"
-            android:layout_width="295dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:text="Forgot password"
+            android:text="@string/fragment_login_forgot_password"
             android:textColor="@color/blue"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/fragment_login_password_1_field"
-            app:layout_constraintStart_toStartOf="@+id/fragment_login_password_1_field"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fragment_login_password_1_field" />
 
         <Button
             android:id="@+id/fragment_login_login_btn"
-            android:layout_width="245dp"
-            android:layout_height="38dp"
-            android:layout_marginBottom="46dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="130dp"
+            android:layout_marginBottom="150dp"
             android:insetTop="0dp"
             android:insetBottom="0dp"
-            android:text="Login"
+            android:maxWidth="120dp"
+            android:minHeight="48dp"
+            android:text="@string/fragment_login_btn_login"
+            android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="16sp"
-            app:cornerRadius="19dp"
-            app:iconPadding="0dp"
+            app:cornerRadius="1000dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/fragment_login_password_1_field"
-            app:layout_constraintStart_toStartOf="@+id/fragment_login_password_1_field" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragment_login_password_1_field" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

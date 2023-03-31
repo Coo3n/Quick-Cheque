@@ -16,4 +16,6 @@
     <string name="fragments_auth_btn_register">Register</string>
     <string name="fragments_auth_switch_login">Login</string>
     <string name="fragments_auth_switch_register">Register</string>
+    <string name="fragment_login_btn_login">Login</string>
+    <string name="fragment_login_forgot_password">Forgot password</string>
 </resources>
