@@ -24,7 +24,7 @@ class ChoiceProductFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentChoiceProductBinding.inflate(inflater)
         return _binding.root
     }

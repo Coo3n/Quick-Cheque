@@ -28,6 +28,7 @@
         <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/drawable/style_cheque_card_expandable.xml" value="0.156" />
         <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/drawable/style_dividing_line.xml" value="0.211" />
         <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/drawable/style_for_toolbar_search.xml" value="0.256" />
+        <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/drawable/style_mini_dividing_line.xml" value="0.1455" />
         <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/drawable/style_orange_button_next.xml" value="0.2345" />
         <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/drawable/style_orange_dividing_line.xml" value="0.211" />
         <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/drawable/style_right_vertical_corner.xml" value="0.205" />
@@ -41,7 +42,7 @@
         <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/layout/choice_cheque_fragment.xml" value="0.4" />
         <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/layout/custom_toolbar_with_search.xml" value="0.264" />
         <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/layout/fragment_blank.xml" value="0.1" />
-        <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/layout/fragment_choice_cheque.xml" value="0.176" />
+        <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/layout/fragment_choice_cheque.xml" value="0.18889745566692367" />
         <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/layout/fragment_choice_product.xml" value="0.2" />
         <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/layout/fragment_distributed_cheque.xml" value="0.264" />
         <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/layout/fragment_item_list.xml" value="0.1" />
