@@ -4,4 +4,7 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class User(val name: String, val icon: Int) : Parcelable;
+class ChequeListItem(
+    var cheque: Cheque,
+    var isExpanded: Boolean = false
+) : Parcelable

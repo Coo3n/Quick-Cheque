@@ -10,6 +10,7 @@
         android:id="@+id/iconUserInMembersChequeList"
         android:layout_width="32dp"
         android:layout_height="30dp"
+        android:layout_gravity="center"
         android:background="@drawable/mini_user_icon"
         android:contentDescription="Icon user"
         android:scaleType="centerCrop"

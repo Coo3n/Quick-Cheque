@@ -1,22 +1,20 @@
 package com.example.quick_cheque.screens.room_cheque_fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quick_cheque.R
-import com.example.quick_cheque.adapters.ListAdapterWithDelegates
+import com.example.quick_cheque.adapters.ListExpandableChoiceChequeAdapter
 import com.example.quick_cheque.databinding.FragmentChoiceChequeBinding
-import com.example.quick_cheque.delegates.Delegate
-import com.example.quick_cheque.delegates.ExpandableListDelegate
-import com.example.quick_cheque.list_items.ChequeListItem
-import com.example.quick_cheque.list_items.ListItem
+import com.example.quick_cheque.model.ChequeListItem
 import com.example.quick_cheque.model.Cheque
+import com.example.quick_cheque.model.Product
 import com.example.quick_cheque.model.User
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -25,16 +23,17 @@ import io.reactivex.schedulers.Schedulers
 import java.math.BigDecimal
 import java.util.concurrent.TimeUnit
 
-class ChoiceChequeFragment : Fragment() {
+class ChoiceChequeFragment : Fragment(), ListExpandableChoiceChequeAdapter.Clickable {
     private var binding: FragmentChoiceChequeBinding? = null
     private val _binding: FragmentChoiceChequeBinding
         get() = binding!!
 
-    private lateinit var chequeRecyclerViewList: RecyclerView
-    private lateinit var chequeRecyclerViewListAdapterWithDelegates: ListAdapterWithDelegates
-    private lateinit var listItems: MutableList<ListItem>
+    private lateinit var chequeExpandableRecyclerViewList: RecyclerView
+    private lateinit var chequeExpandableChequeAdapter: ListExpandableChoiceChequeAdapter
+    private lateinit var listItems: MutableList<ChequeListItem>
 
     private val disposeBag = CompositeDisposable()
+    private var choiceCurrentPosition = 0;
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,18 +46,9 @@ class ChoiceChequeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        _binding.buttonNextToDistributeCheque.setOnClickListener {
-            Navigation.findNavController(_binding.root)
-                .navigate(R.id.action_choiceChequeFragment_to_blankFragment)
-        }
-
         listItems = getChequeList()
 
-        setupChequeRecyclerViewList(
-            delegates = listOf(ExpandableListDelegate()),
-            listItems = listItems
-        )
+        setupChequeRecyclerViewList(listItems)
 
         disposeBag.add(
             RxTextView.textChanges(_binding.searchEditTextInCheque)
@@ -66,48 +56,64 @@ class ChoiceChequeFragment : Fragment() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
-                    Log.i("MyTag", it.toString())
                     filterSearchingItems(it.toString())
                 }
         )
+
+        _binding.buttonNextToDistributeCheque.setOnClickListener {
+            val bundle = Bundle().apply {
+                putParcelable("CHEQUE_TAG", (listItems[choiceCurrentPosition].cheque))
+            }
+
+            Navigation.findNavController(_binding.root)
+                .navigate(R.id.action_choiceChequeFragment_to_blankFragment, bundle)
+        }
+    }
+
+
+    private fun setupChequeRecyclerViewList(listItems: MutableList<ChequeListItem>) {
+        chequeExpandableRecyclerViewList = _binding.chequeList
+        chequeExpandableRecyclerViewList.layoutManager = LinearLayoutManager(requireContext())
+        chequeExpandableChequeAdapter = ListExpandableChoiceChequeAdapter(this)
+        chequeExpandableRecyclerViewList.adapter = chequeExpandableChequeAdapter
+        chequeExpandableChequeAdapter.submitList(listItems)
+    }
+
+    override fun onClick(position: Int) {
+        choiceCurrentPosition = position
     }
 
     private fun filterSearchingItems(searchText: String) {
-        val filteredListItems: MutableList<ListItem> =
-            (listItems as MutableList<ChequeListItem>)
-                .filter { item ->
-                    item.cheque.title.lowercase().trim()
-                        .contains(searchText.lowercase().trim())
-                }
-                .toMutableList()
+        val filteredListItems: MutableList<ChequeListItem> =
+            listItems.filter { item ->
+                val firstChequeTittle = item.cheque.title.lowercase().trim()
+                firstChequeTittle.contains(searchText.lowercase().trim())
+            }.toMutableList()
 
-        chequeRecyclerViewListAdapterWithDelegates.filterRecyclerViewListItems(filteredListItems)
+        chequeExpandableChequeAdapter.submitList(filteredListItems)
     }
 
-    private fun setupChequeRecyclerViewList(
-        delegates: List<Delegate>,
-        listItems: MutableList<ListItem>
-    ) {
-        chequeRecyclerViewList = _binding.chequeList
-
-        chequeRecyclerViewList.layoutManager = LinearLayoutManager(requireContext())
-
-        chequeRecyclerViewList.adapter = ListAdapterWithDelegates(
-            delegates = delegates,
-            listItems = listItems
-        )
-
-        chequeRecyclerViewListAdapterWithDelegates =
-            chequeRecyclerViewList.adapter as ListAdapterWithDelegates
-    }
-
-    private fun getChequeList(): MutableList<ListItem> {
+    private fun getChequeList(): MutableList<ChequeListItem> {
         return mutableListOf(
             ChequeListItem(
                 Cheque(
                     title = "Valera",
                     owner = User("Zloi", R.drawable.cheque),
                     sumOfCheque = BigDecimal(30),
+                    products = mutableListOf(
+                        Product(
+                            titleProduct = "Кола",
+                            price = BigDecimal(35),
+                            count = 1,
+                            membersProduct = mutableListOf(User("Zloi", R.drawable.cheque))
+                        ),
+
+                        Product(
+                            titleProduct = "Кола",
+                            price = BigDecimal(35),
+                            count = 1
+                        )
+                    ),
                     membersCheque = mutableListOf(
                         User("ZA", R.drawable.cheque),
                         User("ZA", R.drawable.cheque),
@@ -121,6 +127,20 @@ class ChoiceChequeFragment : Fragment() {
                 Cheque(
                     title = "Valera",
                     owner = User("Zloi", R.drawable.cheque),
+                    products = mutableListOf(
+                        Product(
+                            titleProduct = "Чипсы",
+                            price = BigDecimal(35),
+                            count = 1,
+                            membersProduct = mutableListOf(User("Zloi", R.drawable.cheque))
+                        ),
+
+                        Product(
+                            titleProduct = "Чипсы",
+                            price = BigDecimal(35),
+                            count = 1
+                        )
+                    ),
                 ),
             ),
 

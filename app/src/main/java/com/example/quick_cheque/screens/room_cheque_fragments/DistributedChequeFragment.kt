@@ -5,30 +5,38 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.quick_cheque.R
-import com.example.quick_cheque.databinding.FragmentChoiceChequeBinding
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.quick_cheque.adapters.ListDistributedProductsAdapter
+import com.example.quick_cheque.databinding.FragmentDistributedChequeBinding
 
 class DistributedChequeFragment : Fragment() {
-    private var binding: FragmentChoiceChequeBinding? = null
-    private val _binding: FragmentChoiceChequeBinding
+    private var binding: FragmentDistributedChequeBinding? = null
+    private val _binding: FragmentDistributedChequeBinding
         get() = binding!!
+
+    private lateinit var distributionProductListAdapter: ListDistributedProductsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentChoiceChequeBinding.inflate(inflater)
+    ): View {
+        binding = FragmentDistributedChequeBinding.inflate(inflater)
         return _binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupRecyclerDistributionProductList()
+    }
 
-
+    private fun setupRecyclerDistributionProductList() = with(_binding) {
+        distributionProductListAdapter = ListDistributedProductsAdapter()
+        listDistributionProducts.layoutManager = LinearLayoutManager(requireContext())
+        listDistributionProducts.adapter = distributionProductListAdapter
     }
 
     override fun onDestroy() {
-        binding = null
         super.onDestroy()
+        binding = null
     }
 }

@@ -1,6 +1,5 @@
 package com.example.quick_cheque.adapters
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -29,13 +28,22 @@ class ListProductsAdapter :
         }
     }
 
-
     class ListProductsViewHolder(
         private val binding: CardChoiceProductItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(product: Product) = with(binding) {
             titleProduct.text = product.titleProduct
-            priceProduct.text = product.price.toString() + " руб /" + product.count.toString() + " шт"
+            priceProduct.text = getPriceProductInString(product)
+        }
+
+        private fun getPriceProductInString(product: Product): String {
+            val stringBuilder = StringBuilder()
+
+            return stringBuilder.append(product.price.toString())
+                .append(" руб / ")
+                .append(product.count)
+                .append(" шт")
+                .toString()
         }
 
         companion object {
@@ -50,5 +58,4 @@ class ListProductsAdapter :
             }
         }
     }
-
 }

@@ -1,5 +1,6 @@
 package com.example.quick_cheque.screens.room_cheque_fragments
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,8 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quick_cheque.R
 import com.example.quick_cheque.adapters.ListProductsAdapter
 import com.example.quick_cheque.databinding.FragmentChoiceProductBinding
-import com.example.quick_cheque.model.Product
-import java.math.BigDecimal
+import com.example.quick_cheque.model.Cheque
 
 
 class ChoiceProductFragment : Fragment() {
@@ -33,35 +33,28 @@ class ChoiceProductFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerViewListProducts()
 
+        val transmittedCheque: Cheque? = if (Build.VERSION.SDK_INT >= 33) {
+            arguments?.getParcelable("CHEQUE_TAG", Cheque::class.java)
+        } else {
+            arguments?.getParcelable("CHEQUE_TAG")
+        }
+
         _binding.buttonBackToChoiceCheque.setOnClickListener {
             Navigation.findNavController(_binding.root)
                 .navigate(R.id.action_blankFragment_to_choiceChequeFragment)
         }
 
-        recyclerViewListProductsAdapter.submitList(
-            mutableListOf(
-                Product(
-                    "Газировка",
-                    BigDecimal(30),
-                    3
-                ),
-                Product(
-                    "Чипсы",
-                    BigDecimal(100),
-                    9
-                ),
-                Product(
-                    "Кола",
-                    BigDecimal(5),
-                    1
-                )
+        _binding.buttonNextToDistributionCheque.setOnClickListener {
+            Navigation.findNavController(_binding.root).navigate(
+                R.id.action_blankFragment_to_distributedChequeFragment
             )
-        )
+        }
+
+        recyclerViewListProductsAdapter.submitList(transmittedCheque?.products)
     }
 
     private fun setupRecyclerViewListProducts() = with(_binding) {
         recyclerViewListProductsAdapter = ListProductsAdapter()
-        listProducts.setHasFixedSize(true)
         listProducts.layoutManager = LinearLayoutManager(requireContext())
         listProducts.adapter = recyclerViewListProductsAdapter
     }

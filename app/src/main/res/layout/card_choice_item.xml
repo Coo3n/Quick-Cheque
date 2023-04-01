@@ -17,7 +17,7 @@
         android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/listItem"
+            android:id="@+id/preview_list_choice_cheque_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/style_cheque_card_expandable"
@@ -27,13 +27,14 @@
 
             <TextView
                 android:id="@+id/titleListItem"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
                 android:ellipsize="end"
-                android:gravity="center"
+                android:gravity="start"
                 android:maxLines="1"
+                android:paddingStart="12dp"
                 android:paddingTop="9dp"
+                android:paddingEnd="2dp"
                 android:paddingBottom="12dp"
                 android:textColor="@color/black"
                 android:textSize="25sp"
@@ -43,12 +44,12 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/verticalDividingLine"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Закуски" />
+                tools:text="Закускиbbbbbbbbbbbbbb" />
 
             <View
                 android:id="@+id/verticalDividingLine"
                 android:layout_width="1dp"
-                android:layout_height="54dp"
+                android:layout_height="0dp"
                 android:background="@color/gray_black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/expandableButton"
@@ -57,7 +58,7 @@
             <ImageView
                 android:id="@+id/expandableButton"
                 android:layout_width="55dp"
-                android:layout_height="55dp"
+                android:layout_height="0dp"
                 android:background="@drawable/style_beige_expandable_button"
                 android:contentDescription="Expand INFORMATION of cheque"
                 android:scaleType="center"
@@ -77,7 +78,7 @@
             android:orientation="vertical"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/listItem">
+            app:layout_constraintTop_toBottomOf="@id/preview_list_choice_cheque_item">
 
             <TextView
                 android:id="@+id/firstDividingStripInInfoCheque"
