@@ -25,8 +25,8 @@ class ChoicePaymentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         _binding.buttonBack.setOnClickListener {
-            Navigation.findNavController(_binding.root)
-                .navigate(R.id.action_choicePaymentFragment_pop)
+            //Navigation.findNavController(_binding.root)
+            //    .navigate(R.id.action_choicePaymentFragment_pop)
         }
 
     }
