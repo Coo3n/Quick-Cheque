@@ -31,7 +31,7 @@
         <item name="android:minHeight">48dp</item>
         <item name="boxStrokeWidth">0dp</item>
         <item name="boxStrokeWidthFocused">0dp</item>
-        <item name="endIconTint">@color/orange</item>
+        <item name="endIconTint">@color/gray_black</item>
     </style>
 
     <style name="auth_field_text_new">
