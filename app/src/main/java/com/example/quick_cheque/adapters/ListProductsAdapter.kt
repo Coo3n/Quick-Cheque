@@ -11,7 +11,7 @@ import com.example.quick_cheque.databinding.CardChoiceProductItemBinding
 import com.example.quick_cheque.model.Product
 import com.example.quick_cheque.model.User
 
-class ListProductsAdapter :
+open class ListProductsAdapter :
     ListAdapter<Product, ListProductsAdapter.ListProductsViewHolder>(ListProductDiffCallBack()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListProductsViewHolder {
         return ListProductsViewHolder.create(parent)

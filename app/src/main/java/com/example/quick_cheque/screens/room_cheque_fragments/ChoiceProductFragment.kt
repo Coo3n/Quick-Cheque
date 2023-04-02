@@ -41,12 +41,13 @@ class ChoiceProductFragment : Fragment() {
 
         _binding.buttonBackToChoiceCheque.setOnClickListener {
             Navigation.findNavController(_binding.root)
-                .navigate(R.id.action_blankFragment_to_choiceChequeFragment)
+                .navigate(R.id.action_choiceProductFragment_to_choiceChequeFragment)
         }
 
+        // TODO
         _binding.buttonNextToDistributionCheque.setOnClickListener {
             Navigation.findNavController(_binding.root).navigate(
-                R.id.action_blankFragment_to_distributedChequeFragment
+                R.id.action_choiceProductFragment_to_choiceChequeFragment
             )
         }
 

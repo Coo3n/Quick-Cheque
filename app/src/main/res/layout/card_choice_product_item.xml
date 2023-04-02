@@ -46,6 +46,7 @@
             tools:text="560 р / 4шт" />
 
         <ImageView
+            android:id="@+id/divideLine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -56,6 +57,7 @@
             tools:ignore="HardcodedText" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/userInfoContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="7dp"
