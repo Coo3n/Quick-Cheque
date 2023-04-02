@@ -3,10 +3,13 @@ package com.example.quick_cheque.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.quick_cheque.R
 import com.example.quick_cheque.databinding.CardChoiceProductItemBinding
 import com.example.quick_cheque.model.Product
+import com.example.quick_cheque.model.User
 
 class ListProductsAdapter :
     ListAdapter<Product, ListProductsAdapter.ListProductsViewHolder>(ListProductDiffCallBack()) {
@@ -36,14 +39,23 @@ class ListProductsAdapter :
             priceProduct.text = getPriceProductInString(product)
         }
 
+        private fun setupRecyclerViewListProducts() = with(binding) {
+            listProductsMembers.adapter = InnerListMembersChequeAdapter()
+            listProductsMembers.layoutManager = LinearLayoutManager(binding.root.context)
+            (listProductsMembers.adapter as InnerListMembersChequeAdapter).submitList(
+                mutableListOf(
+                    User("Zloi", R.drawable.cheque)
+                )
+            )
+        }
+
         private fun getPriceProductInString(product: Product): String {
             val stringBuilder = StringBuilder()
 
             return stringBuilder.append(product.price.toString())
                 .append(" руб / ")
                 .append(product.count)
-                .append(" шт")
-                .toString()
+                .append(" шт").toString()
         }
 
         companion object {
