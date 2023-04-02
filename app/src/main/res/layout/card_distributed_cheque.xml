@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_distributed_cheque"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="15dp"
+    android:layout_marginEnd="15dp"
+    android:background="@color/white"
+    app:cardElevation="0dp"
+    app:cardPreventCornerOverlap="false">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/wrapper_distributed_cheque"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/preview_card_distributed_cheque"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/beige"
+            android:backgroundTint="@color/beige"
+            android:orientation="horizontal"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/icon_state_distribution_cheque"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/icon_admin_in_distributed_cheque"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/mini_user_icon"
+                android:contentDescription="Icon user"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/name_user_in_distributed_cheque"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:gravity="start|center"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                tools:text="Имя" />
+
+            <View
+                android:id="@+id/vertical_dividing_line"
+                android:layout_width="1dp"
+                android:layout_height="54dp"
+                android:background="@color/gray_black" />
+
+            <ImageView
+                android:id="@+id/expandable_button_distributed_cheque"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:contentDescription="Expand INFORMATION of cheque"
+                android:scaleType="center"
+                android:src="@drawable/expand_button"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/icon_state_distribution_cheque"
+            android:layout_width="36dp"
+            android:layout_height="0dp"
+            android:background="@drawable/style_right_vertical_corner"
+            android:backgroundTint="@color/red"
+            android:contentDescription="Состоняние оплаты"
+            android:src="@drawable/icon_process"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="@id/divider_horizontal_in_distributed_cheque"
+            app:layout_constraintLeft_toRightOf="@id/preview_card_distributed_cheque"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
+
+        <View
+            android:id="@+id/divider_horizontal_in_distributed_cheque"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/gray_black"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/icon_state_distribution_cheque"
+            app:layout_constraintTop_toBottomOf="@id/preview_card_distributed_cheque" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/style_bottom_radius_for_cheque"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/icon_state_distribution_cheque"
+            app:layout_constraintTop_toBottomOf="@id/preview_card_distributed_cheque"
+            tools:listitem="@layout/list_products_cheque" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

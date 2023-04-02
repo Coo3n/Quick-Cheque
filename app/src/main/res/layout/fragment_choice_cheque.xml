@@ -89,7 +89,7 @@
                     android:maxLines="1"
                     android:text="@string/cheque"
                     android:textColor="@color/black"
-                    android:textSize="10sp" />
+                    android:textSize="12sp" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
@@ -110,7 +110,8 @@
                 android:layout_marginEnd="2dp"
                 android:layout_marginBottom="22dp"
                 android:layout_toEndOf="@id/chequeModule"
-                android:background="@drawable/style_black_dividing_line" />
+                android:background="@drawable/style_mini_dividing_line"
+                android:backgroundTint="@color/black" />
 
             <View
                 android:id="@+id/dividingLine2"
@@ -142,7 +143,8 @@
                     android:layout_marginTop="40dp"
                     android:layout_marginEnd="3dp"
                     android:layout_marginBottom="12dp"
-                    android:background="@drawable/style_black_dividing_line"
+                    android:background="@drawable/style_mini_dividing_line"
+                    android:backgroundTint="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toLeftOf="@id/dividingLine4" />
@@ -152,7 +154,8 @@
                     android:layout_width="8dp"
                     android:layout_height="2dp"
                     android:layout_marginBottom="12dp"
-                    android:background="@drawable/style_black_dividing_line"
+                    android:background="@drawable/style_mini_dividing_line"
+                    android:backgroundTint="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toRightOf="@id/dividingLine3"
                     app:layout_constraintRight_toLeftOf="@id/personImage" />
@@ -164,11 +167,10 @@
                     android:maxLines="1"
                     android:text="@string/distribution"
                     android:textColor="@color/black"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="SmallSp" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/personImage"
@@ -192,7 +194,8 @@
                     android:layout_height="2dp"
                     android:layout_marginStart="13dp"
                     android:layout_marginBottom="12dp"
-                    android:background="@drawable/style_black_dividing_line"
+                    android:background="@drawable/style_mini_dividing_line"
+                    android:backgroundTint="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toRightOf="@id/personImage"
                     app:layout_constraintRight_toLeftOf="@id/rectangle_6" />
@@ -203,7 +206,8 @@
                     android:layout_height="2dp"
                     android:layout_marginStart="3dp"
                     android:layout_marginBottom="12dp"
-                    android:background="@drawable/style_black_dividing_line"
+                    android:background="@drawable/style_mini_dividing_line"
+                    android:backgroundTint="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toRightOf="@id/dividingLine5"
                     app:layout_constraintRight_toRightOf="parent" />
@@ -219,7 +223,8 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="22dp"
                 android:layout_toEndOf="@id/distributionModule"
-                android:background="@drawable/style_black_dividing_line" />
+                android:background="@drawable/style_mini_dividing_line"
+                android:backgroundTint="@color/black" />
 
             <View
                 android:id="@+id/dividingLine8"
@@ -231,7 +236,8 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="22dp"
                 android:layout_toEndOf="@id/dividingLine7"
-                android:background="@drawable/style_black_dividing_line" />
+                android:background="@drawable/style_mini_dividing_line"
+                android:backgroundTint="@color/black" />
 
             <LinearLayout
                 android:id="@+id/paymentModule"
@@ -250,16 +256,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxLines="1"
+
                     android:text="@string/payment"
                     android:textColor="@color/black"
-                    android:textSize="10sp"
-                    tools:ignore="HardcodedText,SmallSp" />
+                    android:textSize="12sp" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/paymentStageImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
+                    android:layout_gravity="center"
                     android:adjustViewBounds="true"
                     android:contentDescription="stage distribution of the receipt"
                     android:scaleType="center"
@@ -277,7 +283,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/wrapperStagesMenu" />
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chequeList"

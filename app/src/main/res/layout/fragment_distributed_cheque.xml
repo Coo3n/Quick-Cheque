@@ -109,8 +109,8 @@
                 android:layout_marginEnd="2dp"
                 android:layout_marginBottom="22dp"
                 android:layout_toEndOf="@id/chequeModule"
-                android:background="@drawable/style_orange_dividing_line" />
-
+                android:background="@drawable/style_mini_dividing_line"
+                android:backgroundTint="@color/orange"/>
             <View
                 android:id="@+id/dividingLine2"
                 android:layout_width="8dp"
@@ -120,8 +120,8 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="22dp"
                 android:layout_toEndOf="@id/dividingLine1"
-                android:background="@drawable/style_orange_dividing_line" />
-
+                android:background="@drawable/style_mini_dividing_line"
+                android:backgroundTint="@color/orange"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/distributionModule"
@@ -141,8 +141,8 @@
                     android:layout_marginTop="40dp"
                     android:layout_marginEnd="3dp"
                     android:layout_marginBottom="12dp"
-                    android:background="@drawable/style_orange_dividing_line"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:background="@drawable/style_mini_dividing_line"
+                    android:backgroundTint="@color/orange"                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toLeftOf="@id/dividingLine4" />
 
@@ -151,8 +151,8 @@
                     android:layout_width="8dp"
                     android:layout_height="2dp"
                     android:layout_marginBottom="12dp"
-                    android:background="@drawable/style_orange_dividing_line"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:background="@drawable/style_mini_dividing_line"
+                    android:backgroundTint="@color/orange"                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toRightOf="@id/dividingLine3"
                     app:layout_constraintRight_toLeftOf="@id/personImage" />
 
@@ -190,8 +190,8 @@
                     android:layout_height="2dp"
                     android:layout_marginStart="13dp"
                     android:layout_marginBottom="12dp"
-                    android:background="@drawable/style_orange_dividing_line"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:background="@drawable/style_mini_dividing_line"
+                    android:backgroundTint="@color/orange"                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toRightOf="@id/personImage"
                     app:layout_constraintRight_toLeftOf="@id/rectangle_6" />
 
@@ -201,8 +201,8 @@
                     android:layout_height="2dp"
                     android:layout_marginStart="3dp"
                     android:layout_marginBottom="12dp"
-                    android:background="@drawable/style_orange_dividing_line"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:background="@drawable/style_mini_dividing_line"
+                    android:backgroundTint="@color/orange"                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toRightOf="@id/dividingLine5"
                     app:layout_constraintRight_toRightOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -217,8 +217,8 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="22dp"
                 android:layout_toEndOf="@id/distributionModule"
-                android:background="@drawable/style_orange_dividing_line" />
-
+                android:background="@drawable/style_mini_dividing_line"
+                android:backgroundTint="@color/orange"/>
             <View
                 android:id="@+id/dividingLine8"
                 android:layout_width="8dp"
@@ -229,8 +229,8 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="22dp"
                 android:layout_toEndOf="@id/dividingLine7"
-                android:background="@drawable/style_orange_dividing_line" />
-
+                android:background="@drawable/style_mini_dividing_line"
+                android:backgroundTint="@color/orange"/>
             <LinearLayout
                 android:id="@+id/paymentModule"
                 android:layout_width="wrap_content"
@@ -256,7 +256,7 @@
                     android:id="@+id/paymentStageImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
+                    android:layout_gravity="center"
                     android:adjustViewBounds="true"
                     android:contentDescription="stage distribution of the receipt"
                     android:scaleType="center"
@@ -265,5 +265,60 @@
             </LinearLayout>
         </RelativeLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/firstDividingStrip"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/gray"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wrapperStagesMenu" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_distribution_products"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toTopOf="@id/secondDividingStrip"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/wrapperStagesMenu"
+        app:layout_constraintVertical_bias="0"
+        tools:listitem="@layout/card_distributed_cheque" />
+
+    <View
+        android:id="@+id/secondDividingStrip"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/gray"
+        app:layout_constraintBottom_toTopOf="@id/button_сomplete_сheque"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:id="@+id/button_сomplete_сheque"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/style_orange_button_next"
+        android:gravity="center"
+        android:minWidth="320dp"
+        android:paddingTop="1dp"
+        android:paddingBottom="4dp"
+        android:text="@string/complete"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
