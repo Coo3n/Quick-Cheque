@@ -9,6 +9,10 @@
     <string name="admin">Админ</string>
     <string name="participants">Участники</string>
     <string name="sumOfCheque">Сумма чека</string>
+    <string name="pay">Оплатить</string>
+    <string name="paymentChoice">Способ оплаты</string>
+    <string name="data">Данные</string>
+    <string name="ready">Готово</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="fragments_auth_email">Email</string>
