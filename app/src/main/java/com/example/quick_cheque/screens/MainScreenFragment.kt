@@ -30,7 +30,7 @@ class MainScreenFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.rectangle1.setOnClickListener {
-           // findNavController().navigate(R.id.action_mainScreenFragment_to_choiceChequeFragment)
+           findNavController().navigate(R.id.action_mainScreenFragment_to_choiceChequeFragment)
         }
 
         activity?.parent?.findViewById<BottomNavigationView>(R.id.mainBottomNav)?.visibility = View.INVISIBLE

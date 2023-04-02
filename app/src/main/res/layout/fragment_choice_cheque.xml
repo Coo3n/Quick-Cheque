@@ -113,6 +113,7 @@
                 android:background="@drawable/style_mini_dividing_line"
                 android:backgroundTint="@color/black" />
 
+            <!--TODO-->
             <View
                 android:id="@+id/dividingLine2"
                 android:layout_width="8dp"
@@ -121,8 +122,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="22dp"
-                android:layout_toEndOf="@id/dividingLine1"
-                android:background="@drawable/style_black_dividing_line" />
+                android:layout_toEndOf="@id/dividingLine1" />
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
