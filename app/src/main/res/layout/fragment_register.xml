@@ -7,8 +7,7 @@
     android:background="@color/gray_light"
     tools:context=".screens.RegisterFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/auth_container">
+    <androidx.constraintlayout.widget.ConstraintLayout style="@style/auth_container">
 
         <FrameLayout
             android:id="@+id/fragment_register_background"
@@ -98,11 +97,11 @@
             app:layout_constraintTop_toBottomOf="@+id/fragment_register_password_1_field" />
 
         <Button
-            style="@style/auth_bottom_btn"
             android:id="@+id/fragment_register_register_btn"
+            style="@style/auth_bottom_btn"
             android:text="@string/fragments_auth_btn_register"
+            app:layout_constraintBottom_toBottomOf="@id/fragment_register_background"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/fragment_register_background" />
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
