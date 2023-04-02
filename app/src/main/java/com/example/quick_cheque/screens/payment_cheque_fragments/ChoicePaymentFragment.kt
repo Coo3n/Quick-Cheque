@@ -1,4 +1,4 @@
-package com.example.quick_cheque.screens.room_cheque_fragments
+package com.example.quick_cheque.screens.payment_cheque_fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,7 +16,7 @@ class ChoicePaymentFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentPaymentChoiceBinding.inflate(inflater)
         return _binding.root
     }

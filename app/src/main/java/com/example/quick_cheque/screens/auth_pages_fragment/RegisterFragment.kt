@@ -1,4 +1,4 @@
-package com.example.quick_cheque.screens
+package com.example.quick_cheque.screens.auth_pages_fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater

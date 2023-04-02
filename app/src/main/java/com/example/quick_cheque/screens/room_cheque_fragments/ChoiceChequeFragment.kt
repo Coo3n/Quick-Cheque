@@ -66,7 +66,7 @@ class ChoiceChequeFragment : Fragment(), ListExpandableChoiceChequeAdapter.Click
             }
 
             Navigation.findNavController(_binding.root)
-                .navigate(R.id.action_choiceChequeFragment_to_mainScreenFragment, bundle)
+                .navigate(R.id.action_choiceChequeFragment_to_choiceProductFragment, bundle)
         }
     }
 

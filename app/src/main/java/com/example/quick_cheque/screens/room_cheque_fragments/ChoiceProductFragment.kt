@@ -44,10 +44,9 @@ class ChoiceProductFragment : Fragment() {
                 .navigate(R.id.action_choiceProductFragment_to_choiceChequeFragment)
         }
 
-        // TODO
         _binding.buttonNextToDistributionCheque.setOnClickListener {
             Navigation.findNavController(_binding.root).navigate(
-                R.id.action_choiceProductFragment_to_choiceChequeFragment
+                R.id.action_choiceProductFragment_to_distributedChequeFragment
             )
         }
 

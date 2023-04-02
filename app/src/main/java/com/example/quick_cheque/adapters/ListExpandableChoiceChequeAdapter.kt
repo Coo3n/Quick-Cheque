@@ -3,6 +3,8 @@ package com.example.quick_cheque.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
@@ -17,8 +19,26 @@ class ListExpandableChoiceChequeAdapter(private val clickable: Clickable) :
         ListExpandableChoiceChequeDiffCallback()
     ) {
 
+    var previousClickedChequeListItem: PreviousClickedChequeListItem? = null
+
+    data class PreviousClickedChequeListItem(
+        var clickedChequeListItem: ChequeListItem? = null,
+        var clickedPreviewElement: ConstraintLayout? = null,
+        var clickedFullInformationElement: LinearLayout? = null
+    )
+
+    interface Clickable {
+        fun onClick(position: Int)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpandableListViewHolder {
-        return ExpandableListViewHolder.create(parent)
+        return ExpandableListViewHolder(
+            CardChoiceItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: ExpandableListViewHolder, position: Int) {
@@ -35,31 +55,19 @@ class ListExpandableChoiceChequeAdapter(private val clickable: Clickable) :
         }
     }
 
-    interface Clickable {
-        fun onClick(position: Int)
-    }
-
-    class ExpandableListViewHolder(
+    inner class ExpandableListViewHolder(
         private val binding: CardChoiceItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         private lateinit var innerListMembersChequeAdapter: InnerListMembersChequeAdapter
 
-        private var cnt = 0;
-
-        companion object {
-            fun create(parent: ViewGroup): ExpandableListViewHolder {
-                return ExpandableListViewHolder(
-                    CardChoiceItemBinding.inflate(
-                        LayoutInflater.from(parent.context),
-                        parent,
-                        false
-                    )
-                )
-            }
-        }
-
-        fun bind(expandableListItem: ChequeListItem, clickable: Clickable) = with(binding) {
-            changingStyleExpandableObjectInChequeListItem(expandableListItem.isExpanded)
+        fun bind(
+            expandableListItem: ChequeListItem,
+            clickable: Clickable,
+        ) = with(binding) {
+            changingStyleExpandableObjectInChequeListItem(
+                expandableListItem.isExpanded,
+                expandableListItem.isClicked
+            )
 
             with(expandableListItem.cheque) {
                 titleListItem.text = title
@@ -72,39 +80,82 @@ class ListExpandableChoiceChequeAdapter(private val clickable: Clickable) :
 
             buttonAddNewMembersInCheque.setOnClickListener {
                 innerListMembersChequeAdapter.addNewListMemberCheque(
-                    if (cnt % 2 == 0) {
-                        User("Olua", R.drawable.person_filled)
-                    } else {
-                        User("Olua", R.drawable.payment)
-                    }
+                    User("Olua", R.drawable.person_filled)
                 )
-
-                cnt++
             }
 
-            titleListItem.setOnClickListener {
-                clickable.onClick(adapterPosition)
+            titleListItem.setOnClickListener { // Если еще не кликнули на какой-нибудь элемент пройдет мимо
+                if (previousClickedChequeListItem != null) {
+                    previousClickedChequeListItem?.clickedChequeListItem?.isClicked = false
+                    // Меняем стиль у предыдущего элемента на стандартный
+                    changeStyleLastClickedListElement(previousClickedChequeListItem!!)
+                }
+
+                // записываем последний кликнутый элемент
+                previousClickedChequeListItem = PreviousClickedChequeListItem(
+                    expandableListItem,
+                    previewListChoiceChequeItem,
+                    fullInformationOfCheque
+                )
+                expandableListItem.isClicked = true
+
+                changingStyleExpandableObjectInChequeListItem( // меняем стиль у кликнутого элемента
+                    expandableListItem.isExpanded,
+                    expandableListItem.isClicked
+                )
+
+                clickable.onClick(adapterPosition) // отдаем callback во фрагмент с позицией клика
             }
 
             expandableButton.setOnClickListener {
                 expandableListItem.isExpanded = !expandableListItem.isExpanded
-                changingStyleExpandableObjectInChequeListItem(expandableListItem.isExpanded)
+                changingStyleExpandableObjectInChequeListItem(
+                    expandableListItem.isExpanded,
+                    expandableListItem.isClicked
+                )
             }
         }
 
-
-        private fun changingStyleExpandableObjectInChequeListItem(isExpandedListItem: Boolean) {
+        private fun changingStyleExpandableObjectInChequeListItem(
+            isExpandedListItem: Boolean,
+            isClicked: Boolean
+        ) {
             with(binding) {
-                if (isExpandedListItem) {
-                    previewListChoiceChequeItem.setBackgroundResource(R.drawable.style_cheque_card_expandable)
-                    expandableButton.rotation = 90f
-                    fullInformationOfCheque.visibility = View.VISIBLE
-                } else {
-                    previewListChoiceChequeItem.setBackgroundResource(R.drawable.style_cheque_card_classic)
-                    expandableButton.rotation = 0f
-                    fullInformationOfCheque.visibility = View.GONE
-                }
+                expandableButton.rotation = if (isExpandedListItem) 90f else 0f
+                fullInformationOfCheque.visibility =
+                    if (isExpandedListItem) View.VISIBLE else View.GONE
+
+                previewListChoiceChequeItem.setBackgroundResource(
+                    if (isClicked) {
+                        if (isExpandedListItem) {
+                            fullInformationOfCheque.setBackgroundResource(R.drawable.background_cheque_with_border)
+                            R.drawable.style_highlighted_border_expandeble_item
+                        } else {
+                            R.drawable.style_highlighted_border_item
+                        }
+                    } else {
+                        if (isExpandedListItem) {
+                            R.drawable.style_cheque_card_expandable
+                        } else {
+                            R.drawable.style_cheque_card_classic
+                        }
+                    }
+                )
             }
+        }
+
+        private fun changeStyleLastClickedListElement(
+            previousClickedChequeListItem: PreviousClickedChequeListItem?
+        ) = with(previousClickedChequeListItem) {
+            this?.clickedPreviewElement?.setBackgroundResource(
+                if (clickedChequeListItem?.isExpanded == true) {
+                    R.drawable.style_cheque_card_expandable
+                } else {
+                    R.drawable.style_cheque_card_classic
+                }
+            )
+
+            this?.clickedFullInformationElement?.setBackgroundResource(R.drawable.background_cheque)
         }
 
         private fun setupMembersRecyclerList(listMembersCheque: MutableList<User>) = with(binding) {

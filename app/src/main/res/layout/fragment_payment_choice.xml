@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/ChoicePaymentFragment"
-    tools:context=".screens.room_cheque_fragments.PaymentChequeFragment">
+    tools:context=".screens.payment_cheque_fragments.PaymentChequeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/custom_toll_bar"

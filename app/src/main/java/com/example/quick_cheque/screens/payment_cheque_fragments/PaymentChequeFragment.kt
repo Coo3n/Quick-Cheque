@@ -1,5 +1,6 @@
-package com.example.quick_cheque.screens.room_cheque_fragments
+package com.example.quick_cheque.screens.payment_cheque_fragments
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quick_cheque.R
 import com.example.quick_cheque.adapters.ListProductsAdapter
@@ -56,9 +56,14 @@ class PaymentChequeFragment : Fragment() {
                 }
         )
 
-        val sum = listItems.stream()
-            .map { p -> p.price }
-            .reduce(BigDecimal.ZERO, BigDecimal::add)
+        val sum = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            listItems.stream()
+                .map { p -> p.price }
+                .reduce(BigDecimal.ZERO, BigDecimal::add)
+        } else {
+            TODO("VERSION.SDK_INT < N")
+        }
+
         _binding.sum.text = "К оплате " + sum.toString() + "р."
 
         _binding.buttonPay.setOnClickListener {
@@ -86,10 +91,11 @@ class PaymentChequeFragment : Fragment() {
             override fun onBindViewHolder(holder: ListProductsViewHolder, position: Int) {
                 holder.bind(getItem(position))
                 holder.itemView.findViewById<ImageView>(R.id.divideLine).visibility = View.INVISIBLE
-                holder.itemView.findViewById<ConstraintLayout>(R.id.userInfoContainer).visibility = View.GONE
+                holder.itemView.findViewById<ConstraintLayout>(R.id.userInfoContainer).visibility =
+                    View.GONE
             }
         }
-        listProducts.setHasFixedSize(true)
+
         listProducts.layoutManager = LinearLayoutManager(requireContext())
         listProducts.adapter = recyclerViewListProductsAdapter
     }
