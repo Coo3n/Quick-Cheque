@@ -62,6 +62,7 @@ class PaymentChequeFragment : Fragment() {
         _binding.sum.text = "К оплате " + sum.toString() + "р."
 
         _binding.buttonPay.setOnClickListener {
+            // TODO
             //Navigation.findNavController(_binding.root)
             //    .navigate(R.id.action_paymentChequeFragment_to_choicePaymentFragment)
         }
