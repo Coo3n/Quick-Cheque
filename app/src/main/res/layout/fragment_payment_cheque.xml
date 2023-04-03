@@ -103,7 +103,7 @@
         android:maxLines="1"
         android:textColor="@color/black"
         android:textSize="22sp"
-        tools:text="К оплате 135 р."
+        tools:text="@string/payment_default"
         android:background="@drawable/style_payment_sum"
         app:layout_constraintBottom_toTopOf="@id/buttonPay"
         app:layout_constraintBottom_toBottomOf="parent"

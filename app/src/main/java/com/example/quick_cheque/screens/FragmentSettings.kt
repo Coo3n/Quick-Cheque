@@ -1,11 +1,13 @@
 package com.example.quick_cheque.screens
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.quick_cheque.R
 import com.example.quick_cheque.databinding.FragmentSettingsBinding
 import java.util.*
@@ -46,6 +48,19 @@ class FragmentSettings : Fragment() {
                 config,
                 resources.displayMetrics
             ) // обновляем конфигурацию ресурсов
+        }
+
+        binding.radioNight.setOnClickListener {
+            val currentNightMode =
+                resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+            when (currentNightMode) {
+                Configuration.UI_MODE_NIGHT_NO -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                }
+                Configuration.UI_MODE_NIGHT_YES -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                }
+            }
         }
     }
 }
