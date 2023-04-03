@@ -24,8 +24,6 @@
         android:layout_height="140dp"
         android:layout_gravity="center"
         android:background="@drawable/fragment_main_rec"
-
-
         >
 
         <ImageView
