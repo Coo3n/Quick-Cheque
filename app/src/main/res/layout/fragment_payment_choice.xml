@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:clipToPadding="false"
     android:id="@+id/ChoicePaymentFragment"
-    tools:context=".screens.room_cheque_fragments.PaymentChequeFragment">
+    tools:context=".screens.payment_cheque_fragments.PaymentChequeFragment">
 
     <ImageButton
         android:id="@+id/buttonPayQiwi"

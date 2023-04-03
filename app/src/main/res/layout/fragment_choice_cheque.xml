@@ -54,7 +54,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/wrapperStagesMenu"
+        android:id="@+id/wrapper_stages_menu"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -65,7 +65,7 @@
             android:id="@+id/stagesMenu"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="@id/wrapperStagesMenu"
+            app:layout_constraintBottom_toBottomOf="@id/wrapper_stages_menu"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -101,7 +101,7 @@
             </LinearLayout>
 
             <View
-                android:id="@+id/dividingLine1"
+                android:id="@+id/dividing_line1"
                 android:layout_width="8dp"
                 android:layout_height="2dp"
                 android:layout_alignParentTop="true"
@@ -114,22 +114,22 @@
                 android:backgroundTint="@color/black" />
 
             <View
-                android:id="@+id/dividingLine2"
+                android:id="@+id/dividing_line2"
                 android:layout_width="8dp"
                 android:layout_height="2dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="22dp"
-                android:layout_toEndOf="@id/dividingLine1"
-                android:background="@drawable/style_mini_dividing_line"/>
-
+                android:layout_toEndOf="@id/dividing_line1"
+                android:backgroundTint="@color/black"
+                android:background="@drawable/style_mini_dividing_line" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/distributionModule"
+                android:id="@+id/distribution_module"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@id/dividingLine2"
+                android:layout_alignStart="@id/dividing_line2"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="24dp"
@@ -137,7 +137,7 @@
                 android:layout_marginBottom="10dp">
 
                 <View
-                    android:id="@+id/dividingLine3"
+                    android:id="@+id/dividing_line3"
                     android:layout_width="8dp"
                     android:layout_height="2dp"
                     android:layout_marginTop="40dp"
@@ -147,18 +147,18 @@
                     android:backgroundTint="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toLeftOf="@id/dividingLine4" />
+                    app:layout_constraintRight_toLeftOf="@id/dividing_line4" />
 
                 <View
-                    android:id="@+id/dividingLine4"
+                    android:id="@+id/dividing_line4"
                     android:layout_width="8dp"
                     android:layout_height="2dp"
                     android:layout_marginBottom="12dp"
                     android:background="@drawable/style_mini_dividing_line"
                     android:backgroundTint="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/dividingLine3"
-                    app:layout_constraintRight_toLeftOf="@id/personImage" />
+                    app:layout_constraintLeft_toRightOf="@id/dividing_line3"
+                    app:layout_constraintRight_toLeftOf="@id/person_image_icon" />
 
                 <TextView
                     android:id="@+id/stageOfDistributionInText"
@@ -173,7 +173,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/personImage"
+                    android:id="@+id/person_image_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="13dp"
@@ -182,7 +182,7 @@
                     android:scaleType="center"
                     android:src="@drawable/person_filled"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/dividingLine4"
+                    app:layout_constraintLeft_toRightOf="@id/dividing_line4"
                     app:layout_constraintRight_toLeftOf="@id/dividingLine5"
                     app:layout_constraintTop_toBottomOf="@id/stageOfDistributionInText"
                     app:layout_constraintVertical_bias="0"
@@ -197,11 +197,11 @@
                     android:background="@drawable/style_mini_dividing_line"
                     android:backgroundTint="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/personImage"
-                    app:layout_constraintRight_toLeftOf="@id/rectangle_6" />
+                    app:layout_constraintLeft_toRightOf="@id/person_image_icon"
+                    app:layout_constraintRight_toLeftOf="@id/dividing_line6" />
 
                 <View
-                    android:id="@+id/rectangle_6"
+                    android:id="@+id/dividing_line6"
                     android:layout_width="8dp"
                     android:layout_height="2dp"
                     android:layout_marginStart="3dp"
@@ -214,7 +214,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <View
-                android:id="@+id/dividingLine7"
+                android:id="@+id/dividing_line7"
                 android:layout_width="8dp"
                 android:layout_height="2dp"
                 android:layout_alignParentTop="true"
@@ -222,12 +222,12 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="22dp"
-                android:layout_toEndOf="@id/distributionModule"
+                android:layout_toEndOf="@id/distribution_module"
                 android:background="@drawable/style_mini_dividing_line"
                 android:backgroundTint="@color/black" />
 
             <View
-                android:id="@+id/dividingLine8"
+                android:id="@+id/dividing_line8"
                 android:layout_width="8dp"
                 android:layout_height="2dp"
                 android:layout_alignParentTop="true"
@@ -235,7 +235,7 @@
                 android:layout_marginStart="3dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="22dp"
-                android:layout_toEndOf="@id/dividingLine7"
+                android:layout_toEndOf="@id/dividing_line7"
                 android:background="@drawable/style_mini_dividing_line"
                 android:backgroundTint="@color/black" />
 
@@ -243,7 +243,7 @@
                 android:id="@+id/paymentModule"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@id/dividingLine8"
+                android:layout_alignStart="@id/dividing_line8"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="20dp"
@@ -252,17 +252,16 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/stageOfPaymentInText"
+                    android:id="@+id/stage_of_payment_in_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxLines="1"
-
                     android:text="@string/payment"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/paymentStageImage"
+                    android:id="@+id/payment_stage_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -276,16 +275,16 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
-        android:id="@+id/firstDividingStrip"
+        android:id="@+id/first_dividing_strip"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/gray"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/wrapperStagesMenu" />
+        app:layout_constraintTop_toBottomOf="@id/wrapper_stages_menu" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/chequeList"
+        android:id="@+id/cheque_List"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -293,26 +292,26 @@
         android:paddingTop="15dp"
         android:scrollbars="none"
         app:layout_constrainedHeight="true"
-        app:layout_constraintBottom_toTopOf="@id/secondDividingStrip"
+        app:layout_constraintBottom_toTopOf="@id/second_dividing_strip"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/firstDividingStrip"
+        app:layout_constraintTop_toBottomOf="@id/first_dividing_strip"
         app:layout_constraintVertical_bias="0.0"
         app:layout_constraintVertical_chainStyle="packed"
         tools:listitem="@layout/card_choice_item" />
 
     <View
-        android:id="@+id/secondDividingStrip"
+        android:id="@+id/second_dividing_strip"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginBottom="10dp"
         android:background="@color/gray"
-        app:layout_constraintBottom_toTopOf="@id/buttonNextToDistributeCheque"
+        app:layout_constraintBottom_toTopOf="@id/button_next_to_distribute_cheque"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
     <Button
-        android:id="@+id/buttonNextToDistributeCheque"
+        android:id="@+id/button_next_to_distribute_cheque"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginStart="20dp"

@@ -65,8 +65,10 @@ class ChoiceChequeFragment : Fragment(), ListExpandableChoiceChequeAdapter.Click
                 putParcelable("CHEQUE_TAG", (listItems[choiceCurrentPosition].cheque))
             }
 
-            Navigation.findNavController(_binding.root)
-                .navigate(R.id.action_choiceChequeFragment_to_mainScreenFragment, bundle)
+            Navigation.findNavController(_binding.root).navigate(
+                R.id.action_choiceChequeFragment_to_choiceProductFragment,
+                bundle
+            )
         }
     }
 
@@ -98,14 +100,23 @@ class ChoiceChequeFragment : Fragment(), ListExpandableChoiceChequeAdapter.Click
             ChequeListItem(
                 Cheque(
                     title = "Valera",
-                    owner = User("Zloi", R.drawable.cheque),
+                    owner = User("Zloi", R.drawable.person_filled),
                     sumOfCheque = BigDecimal(30),
                     products = mutableListOf(
                         Product(
                             titleProduct = "Кола",
                             price = BigDecimal(35),
                             count = 1,
-                            membersProduct = mutableListOf(User("Zloi", R.drawable.cheque))
+                            membersProduct = mutableListOf(
+                                User("Kolya", R.drawable.person_filled),
+                                User("Olya", R.drawable.person_filled)
+                            )
+                        ),
+
+                        Product(
+                            titleProduct = "Кола",
+                            price = BigDecimal(35),
+                            count = 1
                         ),
 
                         Product(
@@ -115,9 +126,9 @@ class ChoiceChequeFragment : Fragment(), ListExpandableChoiceChequeAdapter.Click
                         )
                     ),
                     membersCheque = mutableListOf(
-                        User("ZA", R.drawable.cheque),
-                        User("ZA", R.drawable.cheque),
-                        User("ZA", R.drawable.cheque),
+                        User("ZA", R.drawable.person_filled),
+                        User("ZA", R.drawable.person_filled),
+                        User("ZA", R.drawable.person_filled),
                     ),
                 ),
                 isExpanded = true
@@ -126,13 +137,13 @@ class ChoiceChequeFragment : Fragment(), ListExpandableChoiceChequeAdapter.Click
             ChequeListItem(
                 Cheque(
                     title = "Valera",
-                    owner = User("Zloi", R.drawable.cheque),
+                    owner = User("Zloi", R.drawable.person_filled),
                     products = mutableListOf(
                         Product(
                             titleProduct = "Чипсы",
                             price = BigDecimal(35),
                             count = 1,
-                            membersProduct = mutableListOf(User("Zloi", R.drawable.cheque))
+                            membersProduct = mutableListOf(User("Zloi", R.drawable.person_filled))
                         ),
 
                         Product(
@@ -147,16 +158,16 @@ class ChoiceChequeFragment : Fragment(), ListExpandableChoiceChequeAdapter.Click
             ChequeListItem(
                 Cheque(
                     title = "Dii",
-                    owner = User("Zloi", R.drawable.cheque),
+                    owner = User("Zloi", R.drawable.person_filled),
                     sumOfCheque = BigDecimal(30),
                     membersCheque = mutableListOf(
-                        User("ZA", R.drawable.cheque),
-                        User("ZA", R.drawable.cheque),
-                        User("ZA", R.drawable.cheque),
-                        User("ZA", R.drawable.cheque),
-                        User("ZA", R.drawable.cheque),
-                        User("ZA", R.drawable.cheque),
-                        User("ZA", R.drawable.cheque),
+                        User("ZA", R.drawable.person_filled),
+                        User("ZA", R.drawable.person_filled),
+                        User("ZA", R.drawable.person_filled),
+                        User("ZA", R.drawable.person_filled),
+                        User("ZA", R.drawable.person_filled),
+                        User("ZA", R.drawable.person_filled),
+                        User("ZA", R.drawable.person_filled),
                     ),
                 ),
             ),

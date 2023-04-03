@@ -1,4 +1,4 @@
-package com.example.quick_cheque.screens
+package com.example.quick_cheque.screens.main_pages_fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
