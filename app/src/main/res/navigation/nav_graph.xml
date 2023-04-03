@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_profileScreenFragment_to_mainScreenFragment"
             app:destination="@id/mainScreenFragment" />
+        <action
+            android:id="@+id/action_profileScreenFragment_to_fragmentSettings"
+            app:destination="@id/fragmentSettings" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -76,5 +79,13 @@
         <action
             android:id="@+id/action_choiceProductFragment_to_choiceChequeFragment"
             app:destination="@id/choiceChequeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentSettings"
+        android:name="com.example.quick_cheque.screens.FragmentSettings"
+        android:label="FragmentSettings" >
+        <action
+            android:id="@+id/action_fragmentSettings_to_profileScreenFragment"
+            app:destination="@id/profileScreenFragment" />
     </fragment>
 </navigation>
