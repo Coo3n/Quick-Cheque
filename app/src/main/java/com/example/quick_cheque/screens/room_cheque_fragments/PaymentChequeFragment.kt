@@ -72,7 +72,7 @@ class PaymentChequeFragment : Fragment() {
     }
 
     private fun showBottomSheetDialog() {
-        var bottomSheetDialog = this.context?.let { BottomSheetDialog(it, R.style.AppBottomSheetDialogTheme) };
+        var bottomSheetDialog = this.context?.let { BottomSheetDialog(it, R.style.bottom_sheet_dialog_theme) };
         bottomSheetDialog?.setContentView(R.layout.fragment_payment_choice);
 
         bottomSheetDialog?.findViewById<ImageButton>(R.id.buttonPaySPB)?.setOnClickListener {

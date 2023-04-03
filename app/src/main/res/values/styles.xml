@@ -77,12 +77,12 @@
     </style>
 
 
-    <style name="AppBottomSheetDialogTheme"
+    <style name="bottom_sheet_dialog_theme"
         parent="Theme.Design.Light.BottomSheetDialog">
-        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+        <item name="bottomSheetStyle">@style/bottom_sheet_dialog_style</item>
     </style>
 
-    <style name="AppModalStyle"
+    <style name="bottom_sheet_dialog_style"
         parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/rounded_dialog</item>
     </style>
