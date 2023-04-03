@@ -34,4 +34,11 @@
     <string name="creator_name">Создатель:</string>
     <string name="create_room">Создать комнату</string>
     <string name="room_name">Название комнаты:</string>
+    <string name="settings">Настройки</string>
+    <string name="choose_language">Выбрать язык:</string>
+    <string name="russian_locale">🇷🇺</string>
+    <string name="english_language">🏳️‍🌈</string>
+    <string name="choose_theme">Выбрать тему:</string>
+    <string name="day_theme">🌝</string>
+    <string name="night_theme">🌚</string>
 </resources>
