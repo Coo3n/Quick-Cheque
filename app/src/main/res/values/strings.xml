@@ -15,6 +15,7 @@
     <string name="ready">Готово</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="create_room_string">Создать комнату</string>
     <string name="fragments_auth_email">Email</string>
     <string name="fragments_auth_password_1">Password</string>
     <string name="fragments_auth_password_2">Repeat Password</string>
@@ -23,6 +24,24 @@
     <string name="fragments_auth_switch_register">Register</string>
     <string name="fragment_login_btn_login">Login</string>
     <string name="fragment_login_forgot_password">Forgot password</string>
+    <string name="join_room_btn">Присоединиться</string>
+    <string name="scan_qr_btn">Отсканировать QR</string>
+    <string name="or">ИЛИ</string>
+    <string name="enter_id_room">Введите id комнаты:</string>
+    <string name="join_room">Присоединиться к комнате</string>
+    <string name="create_roo">Создать</string>
+    <string name="check_count">Кол-во чеков:</string>
+    <string name="users_count">Кол-во участников:</string>
+    <string name="creator_name">Создатель:</string>
+    <string name="create_room">Создать комнату</string>
+    <string name="room_name">Название комнаты:</string>
+    <string name="settings">Настройки</string>
+    <string name="choose_language">Выбрать язык:</string>
+    <string name="russian_locale">🇷🇺</string>
+    <string name="english_language">🏳️‍🌈</string>
+    <string name="choose_theme">Выбрать тему:</string>
+    <string name="day_theme">🌝</string>
+    <string name="night_theme">🌚</string>
     <string name="default_user_name">Владислав</string>
     <string name="fragment_profile_id">id: </string>
     <string name="default_user_id">Vn32gp</string>

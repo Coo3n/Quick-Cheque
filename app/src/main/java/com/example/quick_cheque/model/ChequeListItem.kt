@@ -6,5 +6,6 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 class ChequeListItem(
     var cheque: Cheque,
-    var isExpanded: Boolean = false
+    var isClicked: Boolean = false,
+    var isExpanded: Boolean = false,
 ) : Parcelable

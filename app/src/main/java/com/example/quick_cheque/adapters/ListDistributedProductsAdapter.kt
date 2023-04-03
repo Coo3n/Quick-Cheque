@@ -1,15 +1,13 @@
 package com.example.quick_cheque.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quick_cheque.R
-import com.example.quick_cheque.databinding.CardChoiceProductItemBinding
 import com.example.quick_cheque.databinding.CardDistributedChequeBinding
-import com.example.quick_cheque.databinding.FragmentDistributedChequeBinding
 import com.example.quick_cheque.model.Product
 
 class ListDistributedProductsAdapter :
@@ -21,7 +19,13 @@ class ListDistributedProductsAdapter :
         parent: ViewGroup,
         viewType: Int
     ): DistributedProductsViewHolder {
-        return DistributedProductsViewHolder.create(parent)
+        return DistributedProductsViewHolder(
+            CardDistributedChequeBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: DistributedProductsViewHolder, position: Int) {
@@ -41,20 +45,37 @@ class ListDistributedProductsAdapter :
     class DistributedProductsViewHolder(
         private val binding: CardDistributedChequeBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(product: Product) {
+        private lateinit var innerListDistributedProductAdapter: InnerListDistributedProductAdapter
 
+        fun bind(product: Product) = with(binding) {
+            iconUserInDistributedCheque.setImageResource(R.drawable.person_filled)
+            nameUserInDistributedCheque.text = "Kolya"
+            setupMembersRecyclerList(product)
+
+//            expandableButtonDistributedCheque.setOnClickListener {
+//                expandableListItem.isExpanded = !expandableListItem.isExpanded
+//                changingStyleExpandableObjectInChequeListItem(
+//                    expandableListItem.isExpanded,
+//                    expandableListItem.isClicked
+//                )
+//            }
         }
 
-        companion object {
-            fun create(parent: ViewGroup): DistributedProductsViewHolder {
-                return DistributedProductsViewHolder(
-                    CardDistributedChequeBinding.inflate(
-                        LayoutInflater.from(parent.context),
-                        parent,
-                        false
-                    )
+        private fun setupMembersRecyclerList(listProducts: Product) = with(binding) {
+            innerListDistributedProductAdapter = InnerListDistributedProductAdapter()
+            listProductsByUser.adapter = innerListDistributedProductAdapter
+            listProductsByUser.layoutManager = LinearLayoutManager(
+                itemView.context,
+                LinearLayoutManager.HORIZONTAL,
+                false
+            )
+            innerListDistributedProductAdapter.submitList(
+                mutableListOf(
+                    listProducts,
+                    listProducts,
+                    listProducts
                 )
-            }
+            )
         }
     }
 }

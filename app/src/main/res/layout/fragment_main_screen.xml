@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".screens.MainScreenFragment">
+    tools:context=".screens.main_pages_fragments.MainScreenFragment">
 
     <FrameLayout
         android:id="@+id/fragment_profile_top"
@@ -24,9 +24,7 @@
         android:layout_height="140dp"
         android:layout_gravity="center"
         android:background="@drawable/fragment_main_rec"
-
-
-        >
+        android:layout_marginTop="20dp">
 
         <ImageView
             android:id="@+id/imageView3"

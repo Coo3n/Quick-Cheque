@@ -10,7 +10,7 @@
     android:layout_marginBottom="6dp">
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/title_product"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ellipsize="end"
@@ -21,12 +21,12 @@
         android:textSize="16sp"
         app:layout_constrainedWidth="true"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/priceProduct"
+        app:layout_constraintRight_toLeftOf="@id/price_product"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Мин. вода Эдельвейc" />
 
     <TextView
-        android:id="@+id/priceProduct"
+        android:id="@+id/price_product"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ellipsize="end"
@@ -47,6 +47,6 @@
         android:backgroundTint="@color/black"
         android:contentDescription="dividing_line_with_spaces"
         android:scaleType="center"
-        app:layout_constraintTop_toBottomOf="@id/title" />
+        app:layout_constraintTop_toBottomOf="@id/title_product" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

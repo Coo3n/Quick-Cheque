@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/buttonBackToChoiceCheque"
+            android:id="@+id/button_back_to_choice_cheque"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
@@ -32,7 +32,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/searchEditTextInDistribute"
+            android:id="@+id/search_edit_text_in_products"
             android:layout_width="210dp"
             android:layout_height="30dp"
             android:layout_marginStart="30dp"
@@ -48,7 +48,7 @@
             android:textColor="@color/black"
             android:textColorHint="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/buttonBackToChoiceCheque"
+            app:layout_constraintLeft_toRightOf="@id/button_back_to_choice_cheque"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -284,7 +284,7 @@
         app:layout_constraintTop_toBottomOf="@+id/wrapperStagesMenu" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listProducts"
+        android:id="@+id/list_products"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
