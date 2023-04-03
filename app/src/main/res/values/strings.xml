@@ -23,4 +23,15 @@
     <string name="fragments_auth_switch_register">Register</string>
     <string name="fragment_login_btn_login">Login</string>
     <string name="fragment_login_forgot_password">Forgot password</string>
+    <string name="join_room_btn">Присоединиться</string>
+    <string name="scan_qr_btn">Отсканировать QR</string>
+    <string name="or">ИЛИ</string>
+    <string name="enter_id_room">Введите id комнаты:</string>
+    <string name="join_room">Присоединиться к комнате</string>
+    <string name="create_roo">Создать</string>
+    <string name="check_count">Кол-во чеков:</string>
+    <string name="users_count">Кол-во участников:</string>
+    <string name="creator_name">Создатель:</string>
+    <string name="create_room">Создать комнату</string>
+    <string name="room_name">Название комнаты:</string>
 </resources>
