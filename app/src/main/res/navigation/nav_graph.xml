@@ -111,7 +111,18 @@
         tools:layout="@layout/fragment_distributed_products_cheque_fragments" >>
         <action
             android:id="@+id/action_distributedProductsChequeFragments_to_choiceProductFragment"
-            app:destination="@id/choiceProductFragment"
+            app:destination="@id/PaymentChequeFragment"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_distributedProductsChequeFragments_to_choicePaymentFragment"
+            app:destination="@id/PaymentChequeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/PaymentChequeFragment"
+        android:name="com.example.quick_cheque.screens.payment_cheque_fragments.PaymentChequeFragment"
+        android:label="PaymentChequeFragment" >
+        <action
+            android:id="@+id/action_choicePaymentFragment_to_distributedProductsChequeFragments"
+            app:destination="@id/distributedProductsChequeFragments" />
     </fragment>
 </navigation>

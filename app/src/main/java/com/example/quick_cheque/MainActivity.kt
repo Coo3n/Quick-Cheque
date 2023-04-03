@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.joinScreenFragment -> bottomNav.visibility = View.VISIBLE
                 R.id.profileScreenFragment -> bottomNav.visibility = View.VISIBLE
                 R.id.mainScreenFragment -> bottomNav.visibility = View.VISIBLE
+                R.id.fragmentSettings -> bottomNav.visibility = View.VISIBLE
                 else -> bottomNav.visibility = View.GONE
             }
         }

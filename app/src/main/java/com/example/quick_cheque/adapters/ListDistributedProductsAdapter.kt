@@ -51,6 +51,14 @@ class ListDistributedProductsAdapter :
             iconUserInDistributedCheque.setImageResource(R.drawable.person_filled)
             nameUserInDistributedCheque.text = "Kolya"
             setupMembersRecyclerList(product)
+
+//            expandableButtonDistributedCheque.setOnClickListener {
+//                expandableListItem.isExpanded = !expandableListItem.isExpanded
+//                changingStyleExpandableObjectInChequeListItem(
+//                    expandableListItem.isExpanded,
+//                    expandableListItem.isClicked
+//                )
+//            }
         }
 
         private fun setupMembersRecyclerList(listProducts: Product) = with(binding) {
