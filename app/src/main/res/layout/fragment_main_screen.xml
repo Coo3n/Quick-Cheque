@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@color/purple_700"
-        app:layout_constraintBottom_toTopOf="@id/fragment_profile_card"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
