@@ -41,4 +41,11 @@
     <string name="choose_theme">Выбрать тему:</string>
     <string name="day_theme">🌝</string>
     <string name="night_theme">🌚</string>
+    <string name="default_user_name">Владислав</string>
+    <string name="fragment_profile_id">id: </string>
+    <string name="default_user_id">Vn32gp</string>
+    <string name="profile_opt_friends">Friends</string>
+    <string name="profile_opt_settings">Settings</string>
+    <string name="profile_opt_card">Link card</string>
+    <string name="profile_opt_history">Closed cheques</string>
 </resources>

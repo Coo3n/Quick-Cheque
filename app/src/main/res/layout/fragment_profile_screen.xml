@@ -1,132 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue"
+    android:background="@color/white"
     tools:context=".screens.ProfileScreenFragment">
 
-    <FrameLayout
-        android:id="@+id/fragment_profile_background"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="180dp"
-        android:background="@drawable/fragment_profile_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/fragment_profile_change"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="25dp"
-        android:background="@color/white"
-        android:src="@drawable/baseline_edit_24"
-        app:contentPadding="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+        <FrameLayout
+            android:id="@+id/fragment_profile_top"
+            style="@style/profile_top"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/fragment_profile_user_picture"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/generic_avatar"
-        app:contentPadding="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+        <FrameLayout
+            android:id="@+id/fragment_profile_background"
+            style="@style/profile_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
-        android:text="@string/default_user_name"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        app:layout_constraintStart_toEndOf="@id/fragment_profile_user_picture"
-        app:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/fragment_profile_change"
+            style="@style/profile_change_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/fragment_profile_id"
-        android:textColor="@color/white"
-        android:textSize="13sp"
-        android:layout_marginEnd="5dp"
-        app:layout_constraintBottom_toBottomOf="@id/fragment_profile_user_id"
-        app:layout_constraintEnd_toStartOf="@id/fragment_profile_user_id" />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/fragment_profile_user_picture"
+            style="@style/profile_user_picture"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragment_profile_user_id"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="10dp"
-        android:text="@string/default_user_id"
-        android:textColor="@color/white"
-        android:textSize="13sp"
-        app:layout_constraintBottom_toTopOf="@id/fragment_profile_background"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/profile_user_name"
+            app:layout_constraintStart_toEndOf="@id/fragment_profile_user_picture"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragment_profile_opt_friends"
-        style="@style/profile_option"
-        android:text="@string/profile_opt_friends"
-        app:layout_constraintTop_toTopOf="@id/fragment_profile_background"
-        app:layout_constraintStart_toStartOf="parent" />
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/profile_id"
+            app:layout_constraintBottom_toBottomOf="@id/fragment_profile_user_id"
+            app:layout_constraintEnd_toStartOf="@id/fragment_profile_user_id" />
 
-    <FrameLayout
-        style="@style/profile_black_line"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragment_profile_opt_friends"/>
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/profile_user_id"
+            android:id="@+id/fragment_profile_user_id"
+            app:layout_constraintBottom_toTopOf="@id/fragment_profile_background"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragment_profile_opt_history"
-        style="@style/profile_option"
-        android:text="@string/profile_opt_history"
-        app:layout_constraintTop_toBottomOf="@id/fragment_profile_opt_friends"
-        app:layout_constraintStart_toStartOf="parent" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/fragment_profile_opt_friends"
+            style="@style/profile_option"
+            android:text="@string/profile_opt_friends"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/fragment_profile_background" />
 
-    <FrameLayout
-        style="@style/profile_black_line"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragment_profile_opt_history"/>
+        <FrameLayout
+            style="@style/profile_black_line"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragment_profile_opt_friends" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragment_profile_opt_card"
-        style="@style/profile_option"
-        android:text="@string/profile_opt_card"
-        app:layout_constraintTop_toBottomOf="@id/fragment_profile_opt_history"
-        app:layout_constraintStart_toStartOf="parent" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/fragment_profile_opt_history"
+            style="@style/profile_option"
+            android:text="@string/profile_opt_history"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragment_profile_opt_friends" />
 
-    <FrameLayout
-        style="@style/profile_black_line"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragment_profile_opt_card"/>
+        <FrameLayout
+            style="@style/profile_black_line"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragment_profile_opt_history" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/fragment_profile_opt_settings"
-        style="@style/profile_option"
-        android:text="@string/profile_opt_settings"
-        app:layout_constraintTop_toBottomOf="@id/fragment_profile_opt_card"
-        app:layout_constraintStart_toStartOf="parent" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/fragment_profile_opt_card"
+            style="@style/profile_option"
+            android:text="@string/profile_opt_card"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragment_profile_opt_history" />
 
-    <FrameLayout
-        style="@style/profile_black_line"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragment_profile_opt_settings"/>
+        <FrameLayout
+            style="@style/profile_black_line"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragment_profile_opt_card" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/fragment_profile_opt_settings"
+            style="@style/profile_option"
+            android:text="@string/profile_opt_settings"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragment_profile_opt_card" />
+
+        <FrameLayout
+            style="@style/profile_black_line"
+            android:layout_marginBottom="60dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragment_profile_opt_settings" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
