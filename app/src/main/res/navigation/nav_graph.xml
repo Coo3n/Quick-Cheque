@@ -113,5 +113,16 @@
             android:id="@+id/action_distributedProductsChequeFragments_to_choiceProductFragment"
             app:destination="@id/choiceProductFragment"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_distributedProductsChequeFragments_to_choicePaymentFragment"
+            app:destination="@id/choicePaymentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/choicePaymentFragment"
+        android:name="com.example.quick_cheque.screens.payment_cheque_fragments.ChoicePaymentFragment"
+        android:label="ChoicePaymentFragment" >
+        <action
+            android:id="@+id/action_choicePaymentFragment_to_distributedProductsChequeFragments"
+            app:destination="@id/distributedProductsChequeFragments" />
     </fragment>
 </navigation>

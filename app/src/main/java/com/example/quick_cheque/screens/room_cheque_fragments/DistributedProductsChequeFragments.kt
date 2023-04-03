@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quick_cheque.R
 import com.example.quick_cheque.adapters.ListDistributedProductsAdapter
@@ -43,6 +44,12 @@ class DistributedProductsChequeFragments : Fragment() {
         _binding.buttonBackToChoiceCheque.setOnClickListener {
             Navigation.findNavController(_binding.root).navigate(
                 R.id.action_distributedProductsChequeFragments_to_choiceProductFragment
+            )
+        }
+
+        _binding.buttonOmpleteHeque.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_distributedProductsChequeFragments_to_choicePaymentFragment
             )
         }
     }
