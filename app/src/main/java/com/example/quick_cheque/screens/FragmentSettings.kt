@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import com.example.quick_cheque.R
 import com.example.quick_cheque.databinding.FragmentSettingsBinding
+import java.util.*
 
 class FragmentSettings : Fragment() {
     private lateinit var binding: FragmentSettingsBinding
@@ -23,5 +26,26 @@ class FragmentSettings : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+        binding.radioEnglish.setOnClickListener {
+            val locale = Locale("en") // выбираем язык
+            Locale.setDefault(locale) // устанавливаем его как дефолтный
+            val config = resources.configuration // получаем конфигурацию ресурсов
+            config.setLocale(locale) // устанавливаем локализацию в конфиг
+            resources.updateConfiguration(
+                config,
+                resources.displayMetrics
+            ) // обновляем конфигурацию ресурсов
+        }
+
+        binding.radioRussian.setOnClickListener {
+            val locale = Locale("ru") // выбираем язык
+            Locale.setDefault(locale) // устанавливаем его как дефолтный
+            val config = resources.configuration // получаем конфигурацию ресурсов
+            config.setLocale(locale) // устанавливаем локализацию в конфиг
+            resources.updateConfiguration(
+                config,
+                resources.displayMetrics
+            ) // обновляем конфигурацию ресурсов
+        }
     }
 }
