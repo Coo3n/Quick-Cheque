@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F48FB1"
-    tools:context=".screens.main_pages_fragments.JoinScreenFragment">
+    tools:context=".screens.main_pages_fragments.JoinScreenFragment"
     android:background="@color/white"
     android:id="@+id/join_room_fragment"
     >
