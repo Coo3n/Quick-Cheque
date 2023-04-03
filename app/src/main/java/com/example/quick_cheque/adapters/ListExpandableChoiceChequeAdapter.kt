@@ -74,17 +74,17 @@ class ListExpandableChoiceChequeAdapter(private val clickable: Clickable) :
                 nameOwnerCheque.text = owner.name
                 iconAdminInCheque.setBackgroundResource(owner.icon)
                 finalSumOfCheque.text = sumOfCheque.toString()
-
                 setupMembersRecyclerList(membersCheque)
             }
 
             buttonAddNewMembersInCheque.setOnClickListener {
                 innerListMembersChequeAdapter.addNewListMemberCheque(
-                    User("Olua", R.drawable.person_filled)
+                    User("Olya", R.drawable.person_filled)
                 )
             }
 
-            titleListItem.setOnClickListener { // Если еще не кликнули на какой-нибудь элемент пройдет мимо
+            titleListItem.setOnClickListener {
+                // Если еще не кликнули на какой-нибудь элемент пройдет мимо
                 if (previousClickedChequeListItem != null) {
                     previousClickedChequeListItem?.clickedChequeListItem?.isClicked = false
                     // Меняем стиль у предыдущего элемента на стандартный

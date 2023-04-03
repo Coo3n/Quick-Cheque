@@ -31,7 +31,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/icon_admin_in_distributed_cheque"
+                android:id="@+id/icon_user_in_distributed_cheque"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
@@ -100,6 +100,7 @@
             app:layout_constraintTop_toBottomOf="@id/preview_card_distributed_cheque" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_products_by_user"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"

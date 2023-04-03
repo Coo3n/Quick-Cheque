@@ -6,7 +6,7 @@
     tools:context=".screens.room_cheque_fragments.ChoiceProductFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/custom_toll_bar"
+        android:id="@+id/custom_tool_bar"
         android:layout_width="match_parent"
         android:layout_height="?android:actionBarSize"
         android:background="@color/blue"
@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/buttonBackToChoiceCheque"
+            android:id="@+id/button_back_to_choice_cheque"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
@@ -31,7 +31,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/searchEditTextInDistribute"
+            android:id="@+id/search_edit_text_in_distribute"
             android:layout_width="210dp"
             android:layout_height="30dp"
             android:layout_marginStart="30dp"
@@ -47,7 +47,7 @@
             android:textColor="@color/black"
             android:textColorHint="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/buttonBackToChoiceCheque"
+            app:layout_constraintLeft_toRightOf="@id/button_back_to_choice_cheque"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -58,7 +58,7 @@
         android:layout_height="64dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/custom_toll_bar">
+        app:layout_constraintTop_toBottomOf="@id/custom_tool_bar">
 
         <RelativeLayout
             android:id="@+id/stagesMenu"

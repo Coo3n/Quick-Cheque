@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainScreenFragment"
-        android:name="com.example.quick_cheque.screens.MainScreenFragment"
+        android:name="com.example.quick_cheque.screens.main_pages_fragments.MainScreenFragment"
         android:label="fragment_main_screen"
         tools:layout="@layout/fragment_main_screen" >
         <action
@@ -84,21 +84,23 @@
     <fragment
         android:id="@+id/choiceProductFragment"
         android:name="com.example.quick_cheque.screens.room_cheque_fragments.ChoiceProductFragment"
-        android:label="fragment_distributed_cheque"
-        tools:layout="@layout/fragment_distributed_cheque" >
+        android:label="fragment_distributed_products_cheque_fragments"
+        tools:layout="@layout/fragment_choice_product" >
+        <action
+            android:id="@+id/action_choiceProductFragment_to_distributedProductsChequeFragments"
+            app:destination="@id/distributedProductsChequeFragments" />
         <action
             android:id="@+id/action_choiceProductFragment_to_choiceChequeFragment"
             app:destination="@id/choiceChequeFragment" />
-        <action
-            android:id="@+id/action_choiceProductFragment_to_distributedChequeFragment"
-            app:destination="@id/distributedChequeFragment" />
     </fragment>
     <fragment
-        android:id="@+id/distributedChequeFragment"
-        android:name="com.example.quick_cheque.screens.room_cheque_fragments.DistributedChequeFragment"
-        android:label="DistributedChequeFragment" >
+        android:id="@+id/distributedProductsChequeFragments"
+        android:name="com.example.quick_cheque.screens.room_cheque_fragments.DistributedProductsChequeFragments"
+        android:label="DistributedProductsChequeFragments"
+        tools:layout="@layout/fragment_distributed_products_cheque_fragments" >>
         <action
-            android:id="@+id/action_distributedChequeFragment_to_choiceProductFragment"
-            app:destination="@id/choiceProductFragment" />
+            android:id="@+id/action_distributedProductsChequeFragments_to_choiceProductFragment"
+            app:destination="@id/choiceProductFragment"
+            app:popUpToInclusive="false" />
     </fragment>
 </navigation>

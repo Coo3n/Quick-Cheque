@@ -74,12 +74,12 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/buttonAddNewMembersInProduct"
+                app:layout_constraintRight_toLeftOf="@id/button_add_members_in_product"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:listitem="@layout/list_member_item" />
 
             <ImageButton
-                android:id="@+id/buttonAddNewMembersInProduct"
+                android:id="@+id/button_add_members_in_product"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_add_new_members_cheque"
