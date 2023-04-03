@@ -174,6 +174,16 @@ class ChoiceChequeFragment : Fragment(), ListExpandableChoiceChequeAdapter.Click
         )
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("tag", choiceCurrentPosition)
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        choiceCurrentPosition = savedInstanceState?.getInt("tag") ?: 0
+    }
+
     override fun onDestroy() {
         disposeBag.clear()
         binding = null
