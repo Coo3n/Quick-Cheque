@@ -74,7 +74,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
-            android:id="@+id/fullInformationOfCheque"
+            android:id="@+id/full_information_of_cheque"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/background_cheque"

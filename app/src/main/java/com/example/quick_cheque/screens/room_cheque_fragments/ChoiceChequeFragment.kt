@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
@@ -34,7 +33,7 @@ class ChoiceChequeFragment : Fragment(), ListExpandableChoiceChequeAdapter.Click
     private lateinit var listItems: MutableList<ChequeListItem>
 
     private val disposeBag = CompositeDisposable()
-    private var choiceCurrentPosition = 0;
+    private var choiceCurrentPosition = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,

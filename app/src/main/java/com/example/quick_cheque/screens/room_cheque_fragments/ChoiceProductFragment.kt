@@ -82,10 +82,10 @@ class ChoiceProductFragment : Fragment() {
 
     private fun filterSearchingItems(searchText: String) {
         val filteredListItems: MutableList<Product> =
-            transmittedCheque!!.products.filter { item ->
+            transmittedCheque?.products?.filter { item ->
                 val firstChequeTittle = item.titleProduct.lowercase().trim()
                 firstChequeTittle.contains(searchText.lowercase().trim())
-            }.toMutableList()
+            }?.toMutableList() ?: mutableListOf()
 
         recyclerViewListProductsAdapter.submitList(filteredListItems)
     }
@@ -99,15 +99,15 @@ class ChoiceProductFragment : Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putParcelable("CHEQUE_TAG", transmittedCheque)
+        outState.putParcelable("CHEQUE_TAG_2", transmittedCheque)
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
         transmittedCheque = if (Build.VERSION.SDK_INT >= 33) {
-            arguments?.getParcelable("CHEQUE_TAG", Cheque::class.java) ?: transmittedCheque
+            arguments?.getParcelable("CHEQUE_TAG_2", Cheque::class.java) ?: transmittedCheque
         } else {
-            arguments?.getParcelable("CHEQUE_TAG") ?: transmittedCheque
+            arguments?.getParcelable("CHEQUE_TAG_2") ?: transmittedCheque
         }
     }
 

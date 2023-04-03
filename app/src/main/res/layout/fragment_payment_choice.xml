@@ -2,10 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ChoicePaymentFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipToPadding="false"
-    android:id="@+id/ChoicePaymentFragment"
     tools:context=".screens.payment_cheque_fragments.PaymentChequeFragment">
 
     <ImageButton
@@ -13,10 +13,11 @@
         android:layout_width="320dp"
         android:layout_height="80dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
         android:background="@drawable/style_pay_buttons"
+        android:scaleType="center"
         app:layout_constraintBottom_toTopOf="@+id/buttonPayWebmoney"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,10 +29,11 @@
         android:layout_width="320dp"
         android:layout_height="80dp"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/style_pay_buttons"
+        android:scaleType="center"
         app:layout_constraintBottom_toTopOf="@+id/buttonPaySPB"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,8 +45,9 @@
         android:layout_width="320dp"
         android:layout_height="80dp"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:scaleType="center"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/style_pay_buttons"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -52,5 +55,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonPayWebmoney"
         app:srcCompat="@drawable/sbp_logo" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -107,6 +107,29 @@ class ListExpandableChoiceChequeAdapter(private val clickable: Clickable) :
                 clickable.onClick(adapterPosition) // отдаем callback во фрагмент с позицией клика
             }
 
+            fullInformationOfCheque.setOnClickListener {
+                // Если еще не кликнули на какой-нибудь элемент пройдет мимо
+                if (previousClickedChequeListItem != null) {
+                    previousClickedChequeListItem?.clickedChequeListItem?.isClicked = false
+                    // Меняем стиль у предыдущего элемента на стандартный
+                    changeStyleLastClickedListElement(previousClickedChequeListItem!!)
+                }
+
+                // записываем последний кликнутый элемент
+                previousClickedChequeListItem = PreviousClickedChequeListItem(
+                    expandableListItem,
+                    previewListChoiceChequeItem,
+                    fullInformationOfCheque
+                )
+                expandableListItem.isClicked = true
+
+                changingStyleExpandableObjectInChequeListItem( // меняем стиль у кликнутого элемента
+                    expandableListItem.isExpanded,
+                    expandableListItem.isClicked
+                )
+
+                clickable.onClick(adapterPosition) // отдаем callback во фрагмент с позицией клика
+            }
             expandableButton.setOnClickListener {
                 expandableListItem.isExpanded = !expandableListItem.isExpanded
                 changingStyleExpandableObjectInChequeListItem(
