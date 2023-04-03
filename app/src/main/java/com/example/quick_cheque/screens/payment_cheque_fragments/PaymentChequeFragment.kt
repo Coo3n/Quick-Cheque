@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quick_cheque.R
 import com.example.quick_cheque.adapters.ListProductsAdapter
@@ -73,6 +74,10 @@ class PaymentChequeFragment : Fragment() {
 
         _binding.buttonPay.setOnClickListener {
             showBottomSheetDialog();
+        }
+        _binding.buttonBack.setOnClickListener {
+            Navigation.findNavController(_binding.root)
+                .navigate(R.id.action_PaymentChequeFragment_pop)
         }
     }
 

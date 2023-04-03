@@ -122,7 +122,8 @@
         android:name="com.example.quick_cheque.screens.payment_cheque_fragments.PaymentChequeFragment"
         android:label="PaymentChequeFragment" >
         <action
-            android:id="@+id/action_choicePaymentFragment_to_distributedProductsChequeFragments"
-            app:destination="@id/distributedProductsChequeFragments" />
+            android:id="@+id/action_PaymentChequeFragment_pop"
+            app:popUpTo="@id/PaymentChequeFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
