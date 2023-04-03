@@ -5,7 +5,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
@@ -14,6 +17,8 @@ import com.example.quick_cheque.R
 import com.example.quick_cheque.adapters.ListProductsAdapter
 import com.example.quick_cheque.databinding.FragmentPaymentChequeBinding
 import com.example.quick_cheque.model.Product
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -62,12 +67,27 @@ class PaymentChequeFragment : Fragment() {
         _binding.sum.text = "К оплате " + sum.toString() + "р."
 
         _binding.buttonPay.setOnClickListener {
-            // TODO
-            //Navigation.findNavController(_binding.root)
-            //    .navigate(R.id.action_paymentChequeFragment_to_choicePaymentFragment)
+            showBottomSheetDialog();
         }
     }
 
+    private fun showBottomSheetDialog() {
+        var bottomSheetDialog = this.context?.let { BottomSheetDialog(it, R.style.bottom_sheet_dialog_theme) };
+        bottomSheetDialog?.setContentView(R.layout.fragment_payment_choice);
+
+        bottomSheetDialog?.findViewById<ImageButton>(R.id.buttonPaySPB)?.setOnClickListener {
+            Toast.makeText(this.context, "Paid by SPB", Toast.LENGTH_LONG).show();
+        }
+        bottomSheetDialog?.findViewById<ImageButton>(R.id.buttonPayWebmoney)?.setOnClickListener {
+            Toast.makeText(this.context, "Paid by WebMoney", Toast.LENGTH_LONG).show();
+        }
+        bottomSheetDialog?.findViewById<ImageButton>(R.id.buttonPayQiwi)?.setOnClickListener {
+            Toast.makeText(this.context, "Paid by Qiwi", Toast.LENGTH_LONG).show();
+        }
+
+        bottomSheetDialog?.show();
+
+    }
     private fun filterSearchingItems(searchText: String) {
         val filteredListItems: MutableList<Product> =
             (listItems as MutableList<Product>)

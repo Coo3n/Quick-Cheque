@@ -4,337 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipToPadding="false"
     android:id="@+id/ChoicePaymentFragment"
     tools:context=".screens.room_cheque_fragments.PaymentChequeFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/custom_toll_bar"
-        android:layout_width="match_parent"
-        android:layout_height="?android:actionBarSize"
-        android:background="@color/blue"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/buttonBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="17dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="17dp"
-            android:background="@color/blue"
-            android:scaleType="centerCrop"
-            android:src="@drawable/baseline_arrow_back_24"
-            android:tint="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/wrapperStagesMenu"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/custom_toll_bar">
-
-        <RelativeLayout
-            android:id="@+id/stagesMenu"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="@id/wrapperStagesMenu"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <LinearLayout
-                android:id="@+id/paymentChoiceModule"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginTop="11dp"
-                android:layout_marginEnd="13dp"
-                android:layout_marginBottom="13dp"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:maxLines="1"
-                    android:text="@string/paymentChoice"
-                    android:textColor="@color/black"
-                    android:textSize="11sp" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/baseline_account_balance_wallet_24"
-                    android:tint="@color/orange"
-                    />
-            </LinearLayout>
-
-            <View
-                android:id="@+id/dividingLine1"
-                android:layout_width="8dp"
-                android:layout_height="2dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="2dp"
-                android:layout_marginBottom="22dp"
-                android:layout_toEndOf="@id/paymentChoiceModule"
-                android:background="@color/black" />
-
-            <View
-                android:id="@+id/dividingLine2"
-                android:layout_width="8dp"
-                android:layout_height="2dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="22dp"
-                android:layout_toEndOf="@id/dividingLine1"
-                android:background="@color/black" />
-
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/distributionModule"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@id/dividingLine2"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="11dp"
-                android:layout_marginBottom="10dp">
-
-                <View
-                    android:id="@+id/dividingLine3"
-                    android:layout_width="8dp"
-                    android:layout_height="2dp"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginEnd="3dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@color/black"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toLeftOf="@id/dividingLine4" />
-
-                <View
-                    android:id="@+id/dividingLine4"
-                    android:layout_width="8dp"
-                    android:layout_height="2dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@color/black"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/dividingLine3"
-                    app:layout_constraintRight_toLeftOf="@id/cardImage" />
-
-                <TextView
-                    android:id="@+id/stageOfData"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:maxLines="1"
-                    android:text="@string/data"
-                    android:textColor="@color/black"
-                    android:textSize="11sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/cardImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="13dp"
-                    android:adjustViewBounds="true"
-                    android:scaleType="center"
-                    android:src="@drawable/baseline_credit_card_24"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/dividingLine4"
-                    app:layout_constraintRight_toLeftOf="@id/dividingLine5"
-                    app:layout_constraintTop_toBottomOf="@id/stageOfData"
-                    app:layout_constraintVertical_bias="0" />
-
-                <View
-                    android:id="@+id/dividingLine5"
-                    android:layout_width="8dp"
-                    android:layout_height="2dp"
-                    android:layout_marginStart="13dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@color/black"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/cardImage"
-                    app:layout_constraintRight_toLeftOf="@id/rectangle_6" />
-
-                <View
-                    android:id="@+id/rectangle_6"
-                    android:layout_width="8dp"
-                    android:layout_height="2dp"
-                    android:layout_marginStart="3dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@color/black"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/dividingLine5"
-                    app:layout_constraintRight_toRightOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <View
-                android:id="@+id/dividingLine7"
-                android:layout_width="8dp"
-                android:layout_height="2dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="22dp"
-                android:layout_toEndOf="@id/distributionModule"
-                android:background="@color/black" />
-
-            <View
-                android:id="@+id/dividingLine8"
-                android:layout_width="8dp"
-                android:layout_height="2dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="3dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="22dp"
-                android:layout_toEndOf="@id/dividingLine7"
-                android:background="@color/black" />
-
-            <LinearLayout
-                android:id="@+id/readyModule"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@id/dividingLine8"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="11dp"
-                android:layout_marginBottom="13dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/stageOfReady"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:maxLines="1"
-                    android:text="@string/ready"
-                    android:textColor="@color/black"
-                    android:textSize="11sp" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/readyStageImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:adjustViewBounds="true"
-                    android:scaleType="center"
-                    android:src="@drawable/baseline_check_circle_outline_24"/>
-            </LinearLayout>
-        </RelativeLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <View
-        android:id="@+id/firstDividingStrip"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/wrapperStagesMenu" />
-
-    <RelativeLayout
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical"
-        >
-
-        <ImageButton
-            android:id="@+id/buttonPayWebmoney"
-            android:layout_width="320dp"
-            android:layout_height="48dp"
-
-            android:layout_centerInParent="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/style_payment_sum"
-            android:textStyle="bold"
-            app:srcCompat="@drawable/webmoney_logo" />
-
-        <ImageButton
-            android:id="@+id/buttonPayQiwi"
-            android:layout_width="320dp"
-            android:layout_height="48dp"
-            android:layout_above="@+id/buttonPayWebmoney"
-
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="20dp"
-
-            android:layout_marginBottom="50dp"
-            android:background="@drawable/style_payment_sum"
-            app:srcCompat="@drawable/qiwi_logo" />
-
-        <ImageButton
-            android:id="@+id/ButtonPaySPB"
-            android:layout_width="320dp"
-            android:layout_height="48dp"
-            android:layout_below="@+id/buttonPayWebmoney"
-
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/style_payment_sum"
-            app:srcCompat="@drawable/sbp_logo" />
-
-    </RelativeLayout>
-
-    <View
-        android:id="@+id/secondDividingStrip"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="10dp"
-        android:background="@color/gray"
-        app:layout_constraintBottom_toTopOf="@id/sum"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
-    <TextView
-        android:id="@+id/sum"
+    <ImageButton
+        android:id="@+id/buttonPayQiwi"
         android:layout_width="320dp"
         android:layout_height="48dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
-        android:gravity="center"
-        android:paddingTop="1dp"
-        android:paddingBottom="4dp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textColor="@color/black"
-        android:textSize="22sp"
-        tools:text="К оплате 135 р."
+        android:layout_marginTop="10dp"
+        android:background="@drawable/style_payment_sum"
+        app:layout_constraintBottom_toTopOf="@+id/buttonPayWebmoney"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/qiwi_logo" />
+
+    <ImageButton
+        android:id="@+id/buttonPayWebmoney"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/style_payment_sum"
+        app:layout_constraintBottom_toTopOf="@+id/buttonPaySPB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonPayQiwi"
+        app:srcCompat="@drawable/webmoney_logo" />
+
+    <ImageButton
+        android:id="@+id/buttonPaySPB"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/style_payment_sum"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonPayWebmoney"
+        app:srcCompat="@drawable/sbp_logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
