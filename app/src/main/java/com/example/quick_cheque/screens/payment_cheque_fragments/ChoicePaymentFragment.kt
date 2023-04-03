@@ -24,11 +24,11 @@ class ChoicePaymentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        _binding.buttonBack.setOnClickListener {
+        //_binding.buttonBack.setOnClickListener {
             // TODO
             //Navigation.findNavController(_binding.root)
             //    .navigate(R.id.action_choicePaymentFragment_pop)
-        }
+        //}
 
     }
 

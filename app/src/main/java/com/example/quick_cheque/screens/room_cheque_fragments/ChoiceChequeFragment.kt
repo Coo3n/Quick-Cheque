@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quick_cheque.R
@@ -33,7 +33,7 @@ class ChoiceChequeFragment : Fragment(), ListExpandableChoiceChequeAdapter.Click
     private lateinit var listItems: MutableList<ChequeListItem>
 
     private val disposeBag = CompositeDisposable()
-    private var choiceCurrentPosition = 0;
+    private var choiceCurrentPosition = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,6 +59,10 @@ class ChoiceChequeFragment : Fragment(), ListExpandableChoiceChequeAdapter.Click
                     filterSearchingItems(it.toString())
                 }
         )
+
+        _binding.buttonBack.setOnClickListener {
+            findNavController().navigate(R.id.action_choiceChequeFragment_to_mainScreenFragment)
+        }
 
         _binding.buttonNextToDistributeCheque.setOnClickListener {
             val bundle = Bundle().apply {

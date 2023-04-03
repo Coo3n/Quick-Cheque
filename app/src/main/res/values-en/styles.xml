@@ -97,76 +97,13 @@
         <item name="android:layout_marginHorizontal">20dp</item>
         <item name="android:layout_marginTop">25dp</item>
     </style>
-
-    <style name="bottom_sheet_dialog_theme" parent="Theme.Design.Light.BottomSheetDialog">
+    <style name="bottom_sheet_dialog_theme"
+        parent="Theme.Design.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/bottom_sheet_dialog_style</item>
     </style>
 
-    <style name="bottom_sheet_dialog_style" parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@drawable/rounded_dialog</item>
-    </style>
-
-    <style name="profile_top">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">0dp</item>
-        <item name="android:background">@color/blue</item>
-    </style>
-
-    <style name="profile_background">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">0dp</item>
-        <item name="android:layout_marginTop">180dp</item>
-        <item name="android:background">@drawable/fragment_profile_background</item>
-    </style>
-
-    <style name="profile_change_btn">
-        <item name="android:layout_width">40dp</item>
-        <item name="android:layout_height">40dp</item>
-        <item name="android:layout_marginTop">10dp</item>
-        <item name="android:layout_marginEnd">25dp</item>
-        <item name="android:background">@color/white</item>
-        <item name="android:src">@drawable/baseline_edit_24</item>
-        <item name="contentPadding">5dp</item>
-        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.App.CornerSize50Percent</item>
-    </style>
-
-    <style name="profile_user_picture">
-        <item name="android:layout_width">110dp</item>
-        <item name="android:layout_height">110dp</item>
-        <item name="android:layout_marginStart">20dp</item>
-        <item name="android:layout_marginTop">30dp</item>
-        <item name="android:scaleType">fitXY</item>
-        <item name="android:src">@drawable/generic_avatar</item>
-        <item name="contentPadding">0dp</item>
-        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.App.CornerSize50Percent</item>
-    </style>
-
-    <style name="profile_user_name">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">20dp</item>
-        <item name="android:layout_marginTop">40dp</item>
-        <item name="android:text">@string/default_user_name</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">25sp</item>
-    </style>
-
-    <style name="profile_id">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginEnd">5dp</item>
-        <item name="android:text">@string/fragment_profile_id</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">13sp</item>
-    </style>
-
-    <style name="profile_user_id">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginEnd">40dp</item>
-        <item name="android:layout_marginBottom">10dp</item>
-        <item name="android:text">@string/default_user_id</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">13sp</item>
+    <style name="bottom_sheet_dialog_style"
+        parent="Widget.Design.BottomSheet.Modal">
+    <item name="android:background">@drawable/rounded_dialog</item>
     </style>
 </resources>

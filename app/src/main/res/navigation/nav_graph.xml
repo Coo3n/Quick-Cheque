@@ -42,6 +42,9 @@
         <action
             android:id="@+id/action_profileScreenFragment_to_mainScreenFragment"
             app:destination="@id/mainScreenFragment" />
+        <action
+            android:id="@+id/action_profileScreenFragment_to_fragmentSettings"
+            app:destination="@id/fragmentSettings" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -94,13 +97,33 @@
             app:destination="@id/choiceChequeFragment" />
     </fragment>
     <fragment
+        android:id="@+id/fragmentSettings"
+        android:name="com.example.quick_cheque.screens.FragmentSettings"
+        android:label="FragmentSettings" >
+        <action
+            android:id="@+id/action_fragmentSettings_to_profileScreenFragment"
+            app:destination="@id/profileScreenFragment" />
+    </fragment>
+    <fragment
         android:id="@+id/distributedProductsChequeFragments"
         android:name="com.example.quick_cheque.screens.room_cheque_fragments.DistributedProductsChequeFragments"
         android:label="DistributedProductsChequeFragments"
         tools:layout="@layout/fragment_distributed_products_cheque_fragments" >>
         <action
             android:id="@+id/action_distributedProductsChequeFragments_to_choiceProductFragment"
-            app:destination="@id/choiceProductFragment"
+            app:destination="@id/PaymentChequeFragment"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_distributedProductsChequeFragments_to_choicePaymentFragment"
+            app:destination="@id/PaymentChequeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/PaymentChequeFragment"
+        android:name="com.example.quick_cheque.screens.payment_cheque_fragments.PaymentChequeFragment"
+        android:label="PaymentChequeFragment" >
+        <action
+            android:id="@+id/action_PaymentChequeFragment_pop"
+            app:popUpTo="@id/PaymentChequeFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
