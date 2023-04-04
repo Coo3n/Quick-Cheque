@@ -1,6 +1,5 @@
-package com.example.recviewlesson
+package com.example.quick_cheque.adapters
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,17 +12,10 @@ class ListRoomAdapter(
     private val rooms: ArrayList<Room>
 ) : RecyclerView.Adapter<ListRoomAdapter.ListRooViewHolder>() {
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListRooViewHolder {
         return ListRooViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.list_room_item, parent, false)
         )
-    }
-
-    fun addRoom(room: Room){
-        rooms.add(room)
-        notifyItemInserted(rooms.size - 1)
     }
 
     override fun getItemCount(): Int {
@@ -39,6 +31,7 @@ class ListRoomAdapter(
         private val host: TextView = itemView.findViewById(R.id.room_host_name)
         private val users: TextView = itemView.findViewById(R.id.room_users_count)
         private val cheques: TextView = itemView.findViewById(R.id.room_cheques_count)
+
         fun bind(room: Room){
             title.text = room.title
             host.text = room.host

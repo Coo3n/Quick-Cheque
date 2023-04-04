@@ -14,4 +14,9 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="BaseTheme">
+        <item name="colorControlNormal">@color/white</item>
+        <item name="iconTint">@color/white</item>
+    </style>
+
 </resources>

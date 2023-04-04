@@ -2,8 +2,11 @@ package com.example.quick_cheque
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.widget.Button
+import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
@@ -11,17 +14,17 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.quick_cheque.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
-    lateinit var btn_locale: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
 
         val bottomNav = binding.mainBottomNav
-        val navHost = supportFragmentManager.findFragmentById(binding.fragmentContainerView.id) as NavHostFragment
+        val navHost =
+            supportFragmentManager.findFragmentById(binding.fragmentContainerView.id) as NavHostFragment
         val navController = navHost.navController
 
         bottomNav.setupWithNavController(navController)
@@ -36,11 +39,23 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        setupToolbar()
         setContentView(binding.root)
-
     }
 
-    override fun onPostCreate(savedInstanceState: Bundle?) {
-        super.onPostCreate(savedInstanceState)
+    private fun setupToolbar() {
+        val toolbar: Toolbar = binding.toolbarQuickCheque.root
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_with_search, menu)
+        return true
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+
+        return true
     }
 }

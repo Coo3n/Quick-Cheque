@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quick_cheque.R
@@ -16,14 +16,11 @@ import com.example.quick_cheque.model.ChequeListItem
 import com.example.quick_cheque.model.Cheque
 import com.example.quick_cheque.model.Product
 import com.example.quick_cheque.model.User
-import com.jakewharton.rxbinding2.widget.RxTextView
-import io.reactivex.android.schedulers.AndroidSchedulers
+import com.example.quick_cheque.screens.BaseFragment
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import java.math.BigDecimal
-import java.util.concurrent.TimeUnit
 
-class ChoiceChequeFragment : Fragment(), ListExpandableChoiceChequeAdapter.Clickable {
+class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.Clickable {
     private var binding: FragmentChoiceChequeBinding? = null
     private val _binding: FragmentChoiceChequeBinding
         get() = binding!!
@@ -46,23 +43,29 @@ class ChoiceChequeFragment : Fragment(), ListExpandableChoiceChequeAdapter.Click
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        listItems = getChequeList()
 
-        setupChequeRecyclerViewList(listItems)
-
-        disposeBag.add(
-            RxTextView.textChanges(_binding.searchEditTextInCheque)
-                .debounce(500, TimeUnit.MILLISECONDS)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    filterSearchingItems(it.toString())
-                }
+        updateToolbar(
+            text = "Чек",
+            menu = R.menu.menu_with_search,
         )
 
-        _binding.buttonBack.setOnClickListener {
-            findNavController().navigate(R.id.action_choiceChequeFragment_to_mainScreenFragment)
-        }
+        listItems = getChequeList()
+        setupChequeRecyclerViewList(listItems)
+
+//        disposeBag.add(
+//            RxTextView.textChanges(_binding.searchEditTextInCheque)
+//                .debounce(500, TimeUnit.MILLISECONDS)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe {
+//                    filterSearchingItems(it.toString())
+//                }
+//        )
+//
+//        _binding.buttonBack.setOnClickListener {
+//            findNavController().navigate(R.id.action_choiceChequeFragment_to_mainScreenFragment)
+//        }
+
 
         _binding.buttonNextToDistributeCheque.setOnClickListener {
             val bundle = Bundle().apply {

@@ -13,8 +13,9 @@ import com.example.quick_cheque.R
 import com.example.quick_cheque.adapters.ListDistributedProductsAdapter
 import com.example.quick_cheque.databinding.FragmentDistributedProductsChequeFragmentsBinding
 import com.example.quick_cheque.model.Product
+import com.example.quick_cheque.screens.BaseFragment
 
-class DistributedProductsChequeFragments : Fragment() {
+class DistributedProductsChequeFragments : BaseFragment() {
     private var binding: FragmentDistributedProductsChequeFragmentsBinding? = null
     private val _binding: FragmentDistributedProductsChequeFragmentsBinding
         get() = binding!!
@@ -33,6 +34,8 @@ class DistributedProductsChequeFragments : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        updateToolbar("Чек")
+
         transmittedListProduct = if (Build.VERSION.SDK_INT >= 33) {
             arguments?.getParcelableArrayList("PRODUCT_TAG", Product::class.java)
         } else {
@@ -41,11 +44,11 @@ class DistributedProductsChequeFragments : Fragment() {
 
         setupRecyclerDistributionProductList(transmittedListProduct)
 
-        _binding.buttonBackToChoiceCheque.setOnClickListener {
-            Navigation.findNavController(_binding.root).navigate(
-                R.id.action_distributedProductsChequeFragments_to_choiceProductFragment
-            )
-        }
+//        _binding.buttonBackToChoiceCheque.setOnClickListener {
+//            Navigation.findNavController(_binding.root).navigate(
+//                R.id.action_distributedProductsChequeFragments_to_choiceProductFragment
+//            )
+//        }
 
         _binding.buttonOmpleteHeque.setOnClickListener {
             findNavController().navigate(
