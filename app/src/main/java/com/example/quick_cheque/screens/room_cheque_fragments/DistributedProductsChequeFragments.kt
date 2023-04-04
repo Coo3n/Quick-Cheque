@@ -34,7 +34,10 @@ class DistributedProductsChequeFragments : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        updateToolbar("Чек")
+        val toolbar = updateToolbar("Чек")
+        toolbar.setNavigationOnClickListener {
+            findNavController().navigate(R.id.action_distributedProductsChequeFragments_to_choiceProductFragment)
+        }
 
         transmittedListProduct = if (Build.VERSION.SDK_INT >= 33) {
             arguments?.getParcelableArrayList("PRODUCT_TAG", Product::class.java)
@@ -43,12 +46,6 @@ class DistributedProductsChequeFragments : BaseFragment() {
         }
 
         setupRecyclerDistributionProductList(transmittedListProduct)
-
-//        _binding.buttonBackToChoiceCheque.setOnClickListener {
-//            Navigation.findNavController(_binding.root).navigate(
-//                R.id.action_distributedProductsChequeFragments_to_choiceProductFragment
-//            )
-//        }
 
         _binding.buttonOmpleteHeque.setOnClickListener {
             findNavController().navigate(

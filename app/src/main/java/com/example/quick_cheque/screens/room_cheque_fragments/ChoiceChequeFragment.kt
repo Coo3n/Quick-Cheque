@@ -1,16 +1,11 @@
 package com.example.quick_cheque.screens.room_cheque_fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import androidx.appcompat.widget.Toolbar
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,7 +17,6 @@ import com.example.quick_cheque.model.Cheque
 import com.example.quick_cheque.model.Product
 import com.example.quick_cheque.model.User
 import com.example.quick_cheque.screens.BaseFragment
-import io.reactivex.disposables.CompositeDisposable
 import java.math.BigDecimal
 
 class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.Clickable {
@@ -66,10 +60,7 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
                         Toast.makeText(requireContext(), "Добавить", Toast.LENGTH_SHORT).show()
                         true
                     }
-                    else -> {
-                        Log.i("MyTag", item.itemId.toString())
-                        true
-                    }
+                    else -> true
                 }
             }
 
@@ -84,8 +75,18 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
                 }
             })
         }
-    }
 
+        _binding.buttonNextToDistributeCheque.setOnClickListener {
+            val bundle = Bundle().apply {
+                putParcelable("CHEQUE_TAG", (listItems[choiceCurrentPosition].cheque))
+            }
+
+            findNavController().navigate(
+                R.id.action_choiceChequeFragment_to_choiceProductFragment,
+                bundle
+            )
+        }
+    }
 
     private fun setupChequeRecyclerViewList(listItems: MutableList<ChequeListItem>) {
         chequeExpandableRecyclerViewList = _binding.chequeList

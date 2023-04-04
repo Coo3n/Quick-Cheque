@@ -116,6 +116,9 @@
         <action
             android:id="@+id/action_distributedProductsChequeFragments_to_choicePaymentFragment"
             app:destination="@id/PaymentChequeFragment" />
+        <action
+            android:id="@+id/action_distributedProductsChequeFragments_to_choiceProductFragment2"
+            app:destination="@id/choiceProductFragment" />
     </fragment>
     <fragment
         android:id="@+id/PaymentChequeFragment"
