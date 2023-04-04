@@ -23,8 +23,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
 
         val bottomNav = binding.mainBottomNav
-        val navHost =
-            supportFragmentManager.findFragmentById(binding.fragmentContainerView.id) as NavHostFragment
+        val navHost = supportFragmentManager.findFragmentById(
+            binding.fragmentContainerView.id
+        ) as NavHostFragment
         val navController = navHost.navController
 
         bottomNav.setupWithNavController(navController)
@@ -51,11 +52,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_with_search, menu)
-        return true
-    }
-
-    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-
         return true
     }
 }

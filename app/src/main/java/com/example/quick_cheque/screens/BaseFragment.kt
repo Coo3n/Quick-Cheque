@@ -1,6 +1,7 @@
 package com.example.quick_cheque.screens
 
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -12,7 +13,7 @@ open class BaseFragment : Fragment() {
         setDisplayHome: Boolean = true, // button back
         backgroundColor: Int = 2131034147, // Blue
         menu: Int = 0 // Menu exist
-    ) {
+    ): Toolbar {
         val mainActivity = (activity as AppCompatActivity)
         mainActivity.supportActionBar?.setDisplayHomeAsUpEnabled(setDisplayHome)
 
@@ -22,8 +23,11 @@ open class BaseFragment : Fragment() {
         toolbar.menu.clear()
         if (menu != 0) {
             toolbar.inflateMenu(menu)
+            val mSearchView = toolbar.menu.getItem(0).actionView as SearchView
+            mSearchView.queryHint = "Поиск"
         }
 
         toolbar.setBackgroundColor(ContextCompat.getColor(mainActivity, backgroundColor))
+        return toolbar
     }
 }

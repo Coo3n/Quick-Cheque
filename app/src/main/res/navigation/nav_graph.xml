@@ -98,7 +98,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentSettings"
-        android:name="com.example.quick_cheque.screens.FragmentSettings"
+        android:name="com.example.quick_cheque.screens.main_pages_fragments.FragmentSettings"
         android:label="FragmentSettings" >
         <action
             android:id="@+id/action_fragmentSettings_to_profileScreenFragment"
