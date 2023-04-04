@@ -47,54 +47,42 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        listItems = getChequeList()
+        setupChequeRecyclerViewList(listItems)
 
         val toolbar = updateToolbar(
             text = "Чек",
             menu = R.menu.menu_with_search,
         )
 
-        toolbar.setNavigationOnClickListener {
-            findNavController().navigate(R.id.action_choiceChequeFragment_to_mainScreenFragment)
-        }
+        toolbar.apply {
+            setNavigationOnClickListener {
+                findNavController().navigate(R.id.action_choiceChequeFragment_to_mainScreenFragment)
+            }
 
-        toolbar.setOnMenuItemClickListener { item ->
-            when (item.itemId) {
-                R.id.add_button -> {
-                    Toast.makeText(requireContext(), "Добавить", Toast.LENGTH_SHORT).show()
-                    true
+            setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.add_button -> {
+                        Toast.makeText(requireContext(), "Добавить", Toast.LENGTH_SHORT).show()
+                        true
+                    }
+                    else -> {
+                        Log.i("MyTag", item.itemId.toString())
+                        true
+                    }
                 }
-                else -> {
-                    Log.i("MyTag", item.itemId.toString())
-                    true
+            }
+
+            val mSearchView = menu.findItem(R.id.search_button)?.actionView as SearchView
+            mSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?) = handleText(query)
+                override fun onQueryTextChange(newText: String?) = handleText(newText)
+
+                private fun handleText(text: String?): Boolean {
+                    text?.let { filterSearchingItems(it) }
+                    return true
                 }
-            }
-        }
-
-        val mSearchView = toolbar.menu.getItem(0).actionView as SearchView
-        mSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?) = handleText(query)
-
-            override fun onQueryTextChange(newText: String?) = handleText(newText)
-
-            private fun handleText(text: String?): Boolean {
-                text?.let { filterSearchingItems(it) }
-                return true
-            }
-        })
-
-
-        listItems = getChequeList()
-        setupChequeRecyclerViewList(listItems)
-
-        _binding.buttonNextToDistributeCheque.setOnClickListener {
-            val bundle = Bundle().apply {
-                putParcelable("CHEQUE_TAG", (listItems[choiceCurrentPosition].cheque))
-            }
-
-            Navigation.findNavController(_binding.root).navigate(
-                R.id.action_choiceChequeFragment_to_choiceProductFragment,
-                bundle
-            )
+            })
         }
     }
 
