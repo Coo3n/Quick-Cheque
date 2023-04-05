@@ -70,8 +70,11 @@ class PaymentChequeFragment : Fragment() {
             TODO("VERSION.SDK_INT < N")
         }
 
-        _binding.sum.text = "К оплате " + sum.toString() + "р."
-
+        if (sum.equals(1)) {
+            _binding.buttonPay.text = getString(R.string.payment_one_ruble).replace("%", sum.toString())
+        } else {
+            _binding.buttonPay.text = getString(R.string.payment_many_rubles).replace("%", sum.toString())
+        }
         _binding.buttonPay.setOnClickListener {
             showBottomSheetDialog();
         }
