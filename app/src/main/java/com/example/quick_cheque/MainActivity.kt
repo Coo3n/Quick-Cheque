@@ -14,6 +14,10 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.quick_cheque.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.yandex.mobile.ads.banner.AdSize
+import com.yandex.mobile.ads.banner.BannerAdView
+import com.yandex.mobile.ads.common.AdRequest
+import com.yandex.mobile.ads.common.MobileAds
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding

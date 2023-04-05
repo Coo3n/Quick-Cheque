@@ -64,16 +64,9 @@ class ListDistributedProductsAdapter :
         private fun setupMembersRecyclerList(listProducts: Product) = with(binding) {
             innerListDistributedProductAdapter = InnerListDistributedProductAdapter()
             listProductsByUser.adapter = innerListDistributedProductAdapter
-            listProductsByUser.layoutManager = LinearLayoutManager(
-                itemView.context,
-                LinearLayoutManager.HORIZONTAL,
-                false
-            )
+            listProductsByUser.layoutManager = LinearLayoutManager(itemView.context)
             innerListDistributedProductAdapter.submitList(
                 mutableListOf(
-                    listProducts,
-                    listProducts,
-                    listProducts
                 )
             )
         }

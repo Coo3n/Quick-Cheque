@@ -17,6 +17,9 @@ import com.example.quick_cheque.model.Cheque
 import com.example.quick_cheque.model.Product
 import com.example.quick_cheque.model.User
 import com.example.quick_cheque.screens.BaseFragment
+import com.yandex.mobile.ads.banner.AdSize
+import com.yandex.mobile.ads.banner.BannerAdView
+import com.yandex.mobile.ads.common.AdRequest
 import java.math.BigDecimal
 
 class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.Clickable {
@@ -126,18 +129,6 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
                                 User("Kolya", R.drawable.person_filled),
                                 User("Olya", R.drawable.person_filled)
                             )
-                        ),
-
-                        Product(
-                            titleProduct = "Кола",
-                            price = BigDecimal(35),
-                            count = 1
-                        ),
-
-                        Product(
-                            titleProduct = "Кола",
-                            price = BigDecimal(35),
-                            count = 1
                         )
                     ),
                     membersCheque = mutableListOf(

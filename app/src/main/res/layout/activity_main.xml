@@ -24,16 +24,16 @@
         app:navGraph="@navigation/nav_graph" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        app:itemIconSize="40dp"
-        app:itemPaddingTop="0dp"
-        app:itemPaddingBottom="0dp"
         android:id="@+id/mainBottomNav"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:paddingHorizontal="60dp"
+        android:paddingVertical="6dp"
+        app:itemIconSize="40dp"
+        app:itemPaddingBottom="0dp"
+        app:itemPaddingTop="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/main_bottom_nav"
-        android:paddingVertical="6dp"
-        android:paddingHorizontal="60dp"/>
+        app:menu="@menu/main_bottom_nav" />
 </androidx.constraintlayout.widget.ConstraintLayout>

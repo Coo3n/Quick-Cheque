@@ -41,11 +41,11 @@
         <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/drawable/style_right_vertical_corner.xml" value="0.205" />
         <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/drawable/style_toolbar_search_item.xml" value="0.2345" />
         <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/drawable/webmoney_logo.xml" value="0.165" />
-        <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/layout/activity_main.xml" value="0.136" />
         <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/layout/blue_toolbar.xml" value="0.2131578947368421" />
         <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/layout/card_choice_item.xml" value="0.136" />
         <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/layout/card_choice_product_item.xml" value="0.4" />
-        <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/layout/card_distributed_cheque.xml" value="0.152" />
+        <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/layout/card_distributed_cheque.xml" value="0.2" />
         <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/layout/card_view_cheque.xml" value="0.2" />
         <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/layout/card_view_payment.xml" value="0.1" />
         <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/layout/choice_cheque_fragment.xml" value="0.4" />
@@ -59,7 +59,7 @@
         <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/layout/fragment_item_list.xml" value="0.1" />
         <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/layout/fragment_login.xml" value="0.1" />
         <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/layout/fragment_main_screen.xml" value="0.176" />
-        <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/layout/fragment_payment_cheque.xml" value="0.6" />
+        <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/layout/fragment_payment_cheque.xml" value="0.22592592592592592" />
         <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/layout/fragment_payment_choice.xml" value="0.2" />
         <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/layout/fragment_payment_window.xml" value="0.1" />
         <entry key="..\:/Users/Khlam/AndroidStudioProjects/Quick_Cheque/app/src/main/res/layout/fragment_receipt_window.xml" value="0.4547996272134203" />
