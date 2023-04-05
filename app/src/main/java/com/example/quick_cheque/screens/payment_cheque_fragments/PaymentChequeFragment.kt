@@ -91,7 +91,7 @@ class PaymentChequeFragment : Fragment() {
         bottomSheetDialog?.findViewById<ImageButton>(R.id.buttonPaySPB)?.setOnClickListener {
             Toast.makeText(this.context, "Paid by SPB", Toast.LENGTH_LONG).show();
         }
-        bottomSheetDialog?.findViewById<ImageButton>(R.id.buttonPayWebmoney)?.setOnClickListener {
+        bottomSheetDialog?.findViewById<ImageButton>(R.id.buttonPayUmoney)?.setOnClickListener {
             Toast.makeText(this.context, "Paid by WebMoney", Toast.LENGTH_LONG).show();
         }
         bottomSheetDialog?.findViewById<ImageButton>(R.id.buttonPayQiwi)?.setOnClickListener {

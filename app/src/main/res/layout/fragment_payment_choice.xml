@@ -10,42 +10,42 @@
 
     <ImageButton
         android:id="@+id/buttonPayQiwi"
-        android:layout_width="320dp"
-        android:layout_height="80dp"
+        android:layout_width="334dp"
+        android:layout_height="156dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/style_pay_buttons"
-        android:scaleType="center"
-        app:layout_constraintBottom_toTopOf="@+id/buttonPayWebmoney"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/buttonUmoney"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/qiwi_logo" />
+        app:srcCompat="@drawable/pay_sbp" />
 
     <ImageButton
-        android:id="@+id/buttonPayWebmoney"
-        android:layout_width="320dp"
-        android:layout_height="80dp"
+        android:id="@+id/buttonPayUmoney"
+        android:layout_width="334dp"
+        android:layout_height="156dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/style_pay_buttons"
-        android:scaleType="center"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toTopOf="@+id/buttonPaySPB"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonPayQiwi"
-        app:srcCompat="@drawable/webmoney_logo" />
+        app:srcCompat="@drawable/pay_qiwi" />
 
     <ImageButton
         android:id="@+id/buttonPaySPB"
-        android:layout_width="320dp"
-        android:layout_height="80dp"
+        android:layout_width="334dp"
+        android:layout_height="156dp"
         android:layout_marginStart="20dp"
-        android:scaleType="center"
+        android:scaleType="fitXY"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
@@ -53,6 +53,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonPayWebmoney"
-        app:srcCompat="@drawable/sbp_logo" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonUmoney"
+        app:srcCompat="@drawable/pay_umoney"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
