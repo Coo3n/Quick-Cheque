@@ -28,7 +28,7 @@ class FragmentSettings : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        binding.radioEnglish.setOnClickListener {
+        binding.languageRadiogroupEn.setOnClickListener {
             val locale = Locale("en") // выбираем язык
             Locale.setDefault(locale) // устанавливаем его как дефолтный
             val config = resources.configuration // получаем конфигурацию ресурсов
@@ -39,7 +39,7 @@ class FragmentSettings : Fragment() {
             ) // обновляем конфигурацию ресурсов
         }
 
-        binding.radioRussian.setOnClickListener {
+        binding.languageRadiogroupRu.setOnClickListener {
             val locale = Locale("ru") // выбираем язык
             Locale.setDefault(locale) // устанавливаем его как дефолтный
             val config = resources.configuration // получаем конфигурацию ресурсов
@@ -50,7 +50,7 @@ class FragmentSettings : Fragment() {
             ) // обновляем конфигурацию ресурсов
         }
 
-        binding.radioNight.setOnClickListener {
+        binding.themeRadiogroupNight.setOnClickListener {
             val currentNightMode =
                 resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
             when (currentNightMode) {

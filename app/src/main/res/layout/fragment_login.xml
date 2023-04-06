@@ -101,6 +101,7 @@
             app:layout_constraintTop_toBottomOf="@+id/fragment_login_password_1_field" />
 
         <Button
+            android:id="@+id/fragment_login_login_btn"
             style="@style/auth_bottom_btn"
             android:text="@string/fragment_login_btn_login"
             app:layout_constraintBottom_toBottomOf="@id/fragment_login_background"

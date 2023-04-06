@@ -75,11 +75,13 @@
             app:layout_constraintEnd_toEndOf="parent">
 
             <RadioButton
+                android:id="@+id/language_radiogroup_ru"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/russian_locale" />
 
             <RadioButton
+                android:id="@+id/language_radiogroup_en"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/english_language" />
@@ -108,11 +110,13 @@
             >
 
             <RadioButton
+                android:id="@+id/theme_radiogroup_day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/day_theme" />
 
             <RadioButton
+                android:id="@+id/theme_radiogroup_night"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/night_theme" />

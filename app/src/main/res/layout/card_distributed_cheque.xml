@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_distributed_cheque"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="20dp"
@@ -12,6 +13,7 @@
     app:cardPreventCornerOverlap="false">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/wrapper_distributed_cheque"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white">
@@ -63,6 +65,7 @@
                 android:background="@color/gray_black" />
 
             <ImageView
+                android:id="@+id/expandable_button_distributed_cheque"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:contentDescription="Expand INFORMATION of cheque"
@@ -103,6 +106,7 @@
             app:layout_constraintTop_toBottomOf="@id/preview_card_distributed_cheque" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_products_by_user"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"

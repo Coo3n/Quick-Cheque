@@ -121,8 +121,8 @@ class PaymentChequeFragment : Fragment() {
             }
         }
 
-        listProducts.layoutManager = LinearLayoutManager(requireContext())
-        listProducts.adapter = recyclerViewListProductsAdapter
+        //listProducts.layoutManager = LinearLayoutManager(requireContext())
+        //listProducts.adapter = recyclerViewListProductsAdapter
     }
 
     private fun getProductList(): MutableList<Product> {

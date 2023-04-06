@@ -114,6 +114,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
+            android:id="@+id/fragment_register_register_btn"
             style="@style/auth_bottom_btn"
             android:text="@string/fragments_auth_btn_register"
             app:layout_constraintBottom_toBottomOf="@id/fragment_register_background"

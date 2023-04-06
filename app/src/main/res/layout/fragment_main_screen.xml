@@ -19,6 +19,7 @@
     </FrameLayout>
 
     <FrameLayout
+        android:id="@+id/rectangle1"
         android:layout_width="320dp"
         android:layout_height="140dp"
         android:layout_gravity="center"
