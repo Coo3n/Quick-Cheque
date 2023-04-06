@@ -44,6 +44,7 @@
                 tools:ignore="HardcodedText" />
 
             <TextView
+                android:id="@+id/name_user_in_distributed_cheque"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="12dp"
