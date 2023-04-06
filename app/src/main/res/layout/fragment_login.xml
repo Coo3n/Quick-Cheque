@@ -62,7 +62,6 @@
             app:layout_constraintTop_toBottomOf="@+id/fragment_register_switch_register">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/fragment_login_email_text"
                 style="@style/auth_field_text_new"
                 android:inputType="textEmailAddress" />
 
@@ -87,14 +86,12 @@
             app:layout_constraintTop_toBottomOf="@+id/fragment_login_email_field">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/fragment_register_password_1_text"
                 style="@style/auth_field_text_new"
                 android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/fragment_login_forgot_btn"
             style="@style/auth_field_text"
             android:layout_marginTop="6dp"
             android:text="@string/fragment_login_forgot_password"
@@ -104,7 +101,6 @@
             app:layout_constraintTop_toBottomOf="@+id/fragment_login_password_1_field" />
 
         <Button
-            android:id="@+id/fragment_login_login_btn"
             style="@style/auth_bottom_btn"
             android:text="@string/fragment_login_btn_login"
             app:layout_constraintBottom_toBottomOf="@id/fragment_login_background"

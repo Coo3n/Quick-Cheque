@@ -28,7 +28,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/fragment_profile_change"
             style="@style/profile_change_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

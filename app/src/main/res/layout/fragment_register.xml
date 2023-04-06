@@ -62,7 +62,6 @@
             app:layout_constraintTop_toBottomOf="@+id/fragment_register_switch_register">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/fragment_register_email_text"
                 style="@style/auth_field_text_new"
                 android:inputType="textEmailAddress" />
 
@@ -87,7 +86,6 @@
             app:layout_constraintTop_toBottomOf="@+id/fragment_register_email_field">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/fragment_register_password_1_text"
                 style="@style/auth_field_text_new"
                 android:inputType="textPassword" />
 
@@ -110,14 +108,12 @@
             app:layout_constraintTop_toBottomOf="@+id/fragment_register_password_1_field">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/fragment_register_password_2_text"
                 style="@style/auth_field_text_new"
                 android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/fragment_register_register_btn"
             style="@style/auth_bottom_btn"
             android:text="@string/fragments_auth_btn_register"
             app:layout_constraintBottom_toBottomOf="@id/fragment_register_background"

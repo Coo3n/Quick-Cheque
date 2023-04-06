@@ -3,19 +3,13 @@
     <string name="cheque">Чек</string>
     <string name="distribution">Распределение</string>
     <string name="payment">Оплата</string>
-    <string name="search">Поиск</string>
     <string name="next">Продолжить</string>
     <string name="complete">Завершить</string>
     <string name="admin">Админ</string>
     <string name="participants">Участники</string>
     <string name="sumOfCheque">Сумма чека</string>
     <string name="pay">Оплатить</string>
-    <string name="paymentChoice">Способ оплаты</string>
-    <string name="data">Данные</string>
-    <string name="ready">Готово</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="create_room_string">Создать комнату</string>
     <string name="fragments_auth_email">Email</string>
     <string name="fragments_auth_password_1">Пароль</string>
     <string name="fragments_auth_password_2">Повторите пароль</string>
@@ -29,13 +23,9 @@
     <string name="or">ИЛИ</string>
     <string name="enter_id_room">Введите id комнаты:</string>
     <string name="join_room">Присоединиться к комнате</string>
-    <string name="create_roo">Создать</string>
     <string name="check_count">Кол-во чеков:</string>
     <string name="users_count">Кол-во участников:</string>
     <string name="creator_name">Создатель:</string>
-    <string name="create_room">Создать комнату</string>
-    <string name="room_name">Название комнаты:</string>
-    <string name="settings">Настройки</string>
     <string name="choose_language">Выбрать язык:</string>
     <string name="russian_locale">🇷🇺</string>
     <string name="english_language">🏳️‍🌈</string>

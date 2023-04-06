@@ -2,7 +2,6 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
     app:startDestination="@id/loginFragment">
 
     <fragment
@@ -108,7 +107,7 @@
         android:id="@+id/distributedProductsChequeFragments"
         android:name="com.example.quick_cheque.screens.room_cheque_fragments.DistributedProductsChequeFragments"
         android:label="DistributedProductsChequeFragments"
-        tools:layout="@layout/fragment_distributed_products_cheque_fragments" >>
+        tools:layout="@layout/fragment_distributed_products_cheque_fragments" >
         <action
             android:id="@+id/action_distributedProductsChequeFragments_to_choiceProductFragment"
             app:destination="@id/PaymentChequeFragment"

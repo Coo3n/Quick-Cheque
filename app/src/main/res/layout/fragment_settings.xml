@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".screens.ProfileScreenFragment">
+    tools:context=".screens.main_pages_fragments.ProfileScreenFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -28,7 +28,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/fragment_profile_change"
             style="@style/profile_change_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -76,13 +75,11 @@
             app:layout_constraintEnd_toEndOf="parent">
 
             <RadioButton
-                android:id="@+id/radio_russian"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/russian_locale" />
 
             <RadioButton
-                android:id="@+id/radio_english"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/english_language" />
@@ -111,13 +108,11 @@
             >
 
             <RadioButton
-                android:id="@+id/radio_day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/day_theme" />
 
             <RadioButton
-                android:id="@+id/radio_night"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/night_theme" />

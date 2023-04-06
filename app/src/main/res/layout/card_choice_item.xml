@@ -2,7 +2,6 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/itemViewCheque"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="20dp"
@@ -12,7 +11,6 @@
     app:cardPreventCornerOverlap="false">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/wrapper_list_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -74,7 +72,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
-            android:id="@+id/full_information_of_cheque"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/style_bottom_radius_for_cheque"
@@ -84,13 +81,11 @@
             app:layout_constraintTop_toBottomOf="@id/preview_list_choice_cheque_item">
 
             <TextView
-                android:id="@+id/first_dividing_strip_info_cheque"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/gray_black" />
 
             <TextView
-                android:id="@+id/textAdminCheque"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="13dp"
@@ -113,7 +108,6 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/icon_admin_in_cheque"
                     android:layout_width="32dp"
                     android:layout_height="30dp"
                     android:background="@drawable/mini_user_icon"
@@ -122,7 +116,6 @@
                     tools:ignore="HardcodedText" />
 
                 <TextView
-                    android:id="@+id/name_owner_cheque"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="30dp"
@@ -146,7 +139,6 @@
                 android:scaleType="center" />
 
             <TextView
-                android:id="@+id/membersTextCheque"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="13dp"
@@ -166,7 +158,6 @@
                 android:layout_marginEnd="30dp">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/listChequeMembers"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
@@ -206,7 +197,6 @@
                 tools:ignore="HardcodedText" />
 
             <TextView
-                android:id="@+id/sumOfChequeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="13dp"
@@ -219,7 +209,6 @@
                 android:textSize="19sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/finalSumOfCheque"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
