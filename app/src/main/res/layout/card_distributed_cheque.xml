@@ -74,7 +74,7 @@
             android:layout_width="36dp"
             android:layout_height="0dp"
             android:background="@drawable/style_right_vertical_corner"
-            android:backgroundTint="@color/red"
+            android:backgroundTint="@color/light_yellow"
             android:contentDescription="Состоняние оплаты"
             android:src="@drawable/icon_process"
             app:layout_constrainedWidth="true"
@@ -83,6 +83,12 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="HardcodedText" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id ="@+id/full_information_of_user_products"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="divider_horizontal_in_distributed_cheque, list_products_by_user" />
 
         <View
             android:id="@+id/divider_horizontal_in_distributed_cheque"

@@ -115,8 +115,8 @@ class PaymentChequeFragment : Fragment() {
             @Override
             override fun onBindViewHolder(holder: ListProductsViewHolder, position: Int) {
                 holder.bind(getItem(position))
-                holder.itemView.findViewById<ImageView>(R.id.divideLine).visibility = View.INVISIBLE
-                holder.itemView.findViewById<ConstraintLayout>(R.id.userInfoContainer).visibility =
+                holder.itemView.findViewById<ImageView>(R.id.divider_line).visibility = View.INVISIBLE
+                holder.itemView.findViewById<ConstraintLayout>(R.id.user_info_container).visibility =
                     View.GONE
             }
         }
