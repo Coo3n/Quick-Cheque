@@ -1,5 +1,6 @@
 package com.example.quick_cheque.screens.payment_cheque_fragments
 
+import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -34,6 +35,7 @@ class PaymentChequeFragment : Fragment() {
 
     private lateinit var recyclerViewListProductsAdapter: ListProductsAdapter
     private lateinit var listItems: MutableList<Product>
+    private lateinit var sumOfCheque : BigDecimal
 
     private val disposeBag = CompositeDisposable()
 
@@ -62,7 +64,7 @@ class PaymentChequeFragment : Fragment() {
                 }
         )
 
-        val sum = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        sumOfCheque = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             listItems.stream()
                 .map { p -> p.price }
                 .reduce(BigDecimal.ZERO, BigDecimal::add)
@@ -70,10 +72,10 @@ class PaymentChequeFragment : Fragment() {
             TODO("VERSION.SDK_INT < N")
         }
 
-        if (sum.equals(1)) {
-            _binding.buttonPay.text = getString(R.string.payment_one_ruble).replace("%", sum.toString())
+        if (sumOfCheque.equals(1)) {
+            _binding.buttonPay.text = getString(R.string.payment_one_ruble).replace("%", sumOfCheque.toString())
         } else {
-            _binding.buttonPay.text = getString(R.string.payment_many_rubles).replace("%", sum.toString())
+            _binding.buttonPay.text = getString(R.string.payment_many_rubles).replace("%", sumOfCheque.toString())
         }
         _binding.buttonPay.setOnClickListener {
             showBottomSheetDialog();
@@ -88,14 +90,17 @@ class PaymentChequeFragment : Fragment() {
         var bottomSheetDialog = this.context?.let { BottomSheetDialog(it, R.style.bottom_sheet_dialog_theme) };
         bottomSheetDialog?.setContentView(R.layout.fragment_payment_choice);
 
-        bottomSheetDialog?.findViewById<ImageButton>(R.id.buttonPaySPB)?.setOnClickListener {
-            Toast.makeText(this.context, "Paid by SPB", Toast.LENGTH_LONG).show();
+        if (sumOfCheque.equals(1)) {
+            _binding.buttonPay.text = getString(R.string.payment_one_ruble).replace("%", sumOfCheque.toString())
+        } else {
+            _binding.buttonPay.text = getString(R.string.payment_many_rubles).replace("%", sumOfCheque.toString())
         }
-        bottomSheetDialog?.findViewById<ImageButton>(R.id.buttonPayUmoney)?.setOnClickListener {
-            Toast.makeText(this.context, "Paid by WebMoney", Toast.LENGTH_LONG).show();
-        }
-        bottomSheetDialog?.findViewById<ImageButton>(R.id.buttonPayQiwi)?.setOnClickListener {
-            Toast.makeText(this.context, "Paid by Qiwi", Toast.LENGTH_LONG).show();
+        if (bottomSheetDialog != null) {
+            if (sumOfCheque.equals(1)) {
+                bottomSheetDialog.findViewById<Button>(R.id.buttonPay)?.text = getString(R.string.payment_one_ruble).replace("%", sumOfCheque.toString())
+            } else {
+                bottomSheetDialog.findViewById<Button>(R.id.buttonPay)?.text = getString(R.string.payment_many_rubles).replace("%", sumOfCheque.toString())
+            }
         }
 
         bottomSheetDialog?.show();

@@ -96,7 +96,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/style_orange_button_next"
+        android:background="@drawable/style_pay_button"
         android:gravity="center"
         android:paddingTop="1dp"
         android:paddingBottom="4dp"
