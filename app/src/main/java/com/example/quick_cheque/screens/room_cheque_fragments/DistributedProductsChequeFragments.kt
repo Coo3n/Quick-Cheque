@@ -2,25 +2,25 @@ package com.example.quick_cheque.screens.room_cheque_fragments
 
 import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quick_cheque.R
 import com.example.quick_cheque.adapters.ListDistributedProductsAdapter
 import com.example.quick_cheque.databinding.FragmentDistributedProductsChequeFragmentsBinding
+import com.example.quick_cheque.model.DistributedChequeUserItem
 import com.example.quick_cheque.model.Product
+import com.example.quick_cheque.model.User
 import com.example.quick_cheque.screens.BaseFragment
+import java.math.BigDecimal
 
 class DistributedProductsChequeFragments : BaseFragment() {
     private var binding: FragmentDistributedProductsChequeFragmentsBinding? = null
     private val _binding: FragmentDistributedProductsChequeFragmentsBinding
         get() = binding!!
 
-    private var transmittedListProduct: MutableList<Product>? = null
     private lateinit var distributionProductListAdapter: ListDistributedProductsAdapter
 
     override fun onCreateView(
@@ -39,28 +39,50 @@ class DistributedProductsChequeFragments : BaseFragment() {
             findNavController().navigate(R.id.action_distributedProductsChequeFragments_to_choiceProductFragment)
         }
 
-        transmittedListProduct = if (Build.VERSION.SDK_INT >= 33) {
-            arguments?.getParcelableArrayList("PRODUCT_TAG", Product::class.java)
-        } else {
-            arguments?.getParcelableArrayList("PRODUCT_TAG")
-        }
+        val distributedChequeUserItem = mutableListOf(
+            DistributedChequeUserItem(
+                user = User("Zloi", R.drawable.person_filled),
+                listProductsUser = mutableListOf(
+                    Product(
+                        titleProduct = "Кола",
+                        price = BigDecimal(35),
+                        count = 1,
+                        membersProduct = mutableListOf(
+                            User("Kolya", R.drawable.person_filled),
+                            User("Olya", R.drawable.person_filled)
+                        )
+                    ),
 
-        setupRecyclerDistributionProductList(transmittedListProduct)
+                    Product(
+                        titleProduct = "Мошня",
+                        price = BigDecimal(35),
+                        count = 1,
+                        membersProduct = mutableListOf(
+                            User("Kolya", R.drawable.person_filled),
+                            User("Olya", R.drawable.person_filled)
+                        )
+                    )
+                )
+            )
+        )
 
-        _binding.buttonOmpleteHeque.setOnClickListener {
+        setupRecyclerDistributionProductList(distributedChequeUserItem)
+
+        _binding.buttonCompleteCheque.setOnClickListener {
             findNavController().navigate(
                 R.id.action_distributedProductsChequeFragments_to_choicePaymentFragment
             )
         }
+
     }
 
 
-    private fun setupRecyclerDistributionProductList(transmittedCheque: MutableList<Product>?) =
+    private fun setupRecyclerDistributionProductList(distributedChequeUserItem: MutableList<DistributedChequeUserItem>) =
         with(_binding) {
             distributionProductListAdapter = ListDistributedProductsAdapter()
             listDistributionProducts.layoutManager = LinearLayoutManager(requireContext())
             listDistributionProducts.adapter = distributionProductListAdapter
-            distributionProductListAdapter.submitList(transmittedCheque)
+            distributionProductListAdapter.submitList(distributedChequeUserItem)
         }
 
     override fun onDestroy() {
