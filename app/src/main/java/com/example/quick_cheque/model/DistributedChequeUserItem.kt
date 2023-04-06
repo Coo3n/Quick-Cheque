@@ -6,6 +6,5 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class DistributedChequeUserItem(
     var user: User,
-    var listProductsUser: MutableList<Product>,
-    var isExpanded: Boolean = false
+    var listProductsUser: MutableList<Product>
 ) : Parcelable

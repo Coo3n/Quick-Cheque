@@ -22,7 +22,7 @@
             android:id="@+id/preview_card_distributed_cheque"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="@color/beige"
+            android:background="@drawable/style_only_top_corner_radius_cheque"
             android:backgroundTint="@color/beige"
             android:orientation="horizontal"
             app:layout_constrainedWidth="true"
@@ -89,8 +89,9 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="HardcodedText" />
 
+
         <androidx.constraintlayout.widget.Group
-            android:id ="@+id/full_information_of_user_products"
+            android:id="@+id/full_information_of_user_products"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:constraint_referenced_ids="divider_horizontal_in_distributed_cheque, list_products_by_user" />

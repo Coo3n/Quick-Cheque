@@ -137,10 +137,6 @@ class ListExpandableChoiceChequeAdapter(private val clickable: Clickable) :
             isExpandedListItem: Boolean,
             isClicked: Boolean
         ) = with(binding) {
-            expandableButton.rotation = if (isExpandedListItem) -90f else 90f
-            fullInformationOfCheque.visibility =
-                if (isExpandedListItem) View.VISIBLE else View.GONE
-
             previewListChoiceChequeItem.setBackgroundResource(
                 if (isClicked) {
                     if (isExpandedListItem) {
@@ -157,6 +153,9 @@ class ListExpandableChoiceChequeAdapter(private val clickable: Clickable) :
                     }
                 }
             )
+
+            expandableButton.rotation = if (isExpandedListItem) -90f else 90f
+            fullInformationOfCheque.visibility = if (isExpandedListItem) View.VISIBLE else View.GONE
         }
 
 

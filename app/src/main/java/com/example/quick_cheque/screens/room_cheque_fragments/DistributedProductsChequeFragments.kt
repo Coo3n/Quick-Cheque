@@ -1,6 +1,5 @@
 package com.example.quick_cheque.screens.room_cheque_fragments
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -62,7 +61,14 @@ class DistributedProductsChequeFragments : BaseFragment() {
                             User("Olya", R.drawable.person_filled)
                         )
                     )
-                )
+                ),
+            ),
+
+            DistributedChequeUserItem(
+                user = User("Zloi", R.drawable.person_filled),
+                listProductsUser = mutableListOf(
+
+                ),
             )
         )
 
