@@ -15,6 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
+            android:id="@+id/stagesMenu"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="@id/wrapperStagesMenu"
@@ -185,6 +186,7 @@
                 android:background="@drawable/style_mini_dividing_line"
                 android:backgroundTint="@color/orange"/>
             <LinearLayout
+                android:id="@+id/paymentModule"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@id/dividingLine8"
@@ -196,6 +198,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/stageOfPaymentInText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxLines="1"
@@ -204,6 +207,7 @@
                     android:textSize="11sp" />
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/paymentStageImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -227,6 +231,7 @@
         app:layout_constraintTop_toBottomOf="@+id/wrapperStagesMenu" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_distribution_products"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
