@@ -68,7 +68,7 @@
             app:layout_constraintTop_toBottomOf="@+id/buttonPayUmoney" />
 
         <Button
-            android:id="@+id/buttonPay"
+            android:id="@+id/buttonPayDialog"
             android:layout_width="320dp"
             android:layout_height="48dp"
             android:layout_marginStart="20dp"
