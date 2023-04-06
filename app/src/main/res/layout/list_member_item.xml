@@ -6,6 +6,7 @@
     android:layout_marginStart="16dp">
 
     <ImageView
+        android:id="@+id/iconUserInMembersChequeList"
         android:layout_width="32dp"
         android:layout_height="30dp"
         android:layout_gravity="center"
