@@ -36,10 +36,7 @@ class MainScreenFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val toolbar = updateToolbar(
-            text = "Чек",
-            menu = R.menu.menu_with_search,
-        )
+        updateToolbar(setDisplayHome = false)
 
         binding.rectangle1.setOnClickListener {
             findNavController().navigate(R.id.action_mainScreenFragment_to_choiceChequeFragment)

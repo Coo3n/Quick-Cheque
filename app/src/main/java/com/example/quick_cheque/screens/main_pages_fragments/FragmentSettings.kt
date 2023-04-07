@@ -28,6 +28,7 @@ class FragmentSettings : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        updateToolbar(setDisplayHome = false)
 
         binding.languageRadiogroupEn.setOnClickListener {
             val locale = Locale("en") // выбираем язык
