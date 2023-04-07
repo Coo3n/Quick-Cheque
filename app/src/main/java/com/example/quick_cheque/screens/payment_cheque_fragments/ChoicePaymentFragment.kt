@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.quick_cheque.R
 import com.example.quick_cheque.databinding.FragmentPaymentChoiceBinding
+import com.example.quick_cheque.screens.BaseFragment
 
 class ChoicePaymentFragment : BaseFragment() {
     private var binding: FragmentPaymentChoiceBinding? = null
