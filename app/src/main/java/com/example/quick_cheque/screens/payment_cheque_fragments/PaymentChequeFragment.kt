@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
@@ -17,6 +18,7 @@ import com.example.quick_cheque.R
 import com.example.quick_cheque.adapters.ListProductsAdapter
 import com.example.quick_cheque.databinding.FragmentPaymentChequeBinding
 import com.example.quick_cheque.model.Product
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -69,11 +71,7 @@ class PaymentChequeFragment : Fragment() {
             TODO("VERSION.SDK_INT < N")
         }
 
-        if (sumOfCheque.equals(1)) {
-            _binding.buttonPay.text = getString(R.string.payment_one_ruble).replace("%", sumOfCheque.toString())
-        } else {
-            _binding.buttonPay.text = getString(R.string.payment_many_rubles).replace("%", sumOfCheque.toString())
-        }
+
         _binding.buttonPay.setOnClickListener {
             showBottomSheetDialog();
         }
@@ -86,15 +84,12 @@ class PaymentChequeFragment : Fragment() {
     private fun showBottomSheetDialog() {
         val bottomSheetDialog = this.context?.let { BottomSheetDialog(it, R.style.bottom_sheet_dialog_theme) }
         bottomSheetDialog?.setContentView(R.layout.fragment_payment_choice)
+        bottomSheetDialog?.behavior?.state = BottomSheetBehavior.STATE_EXPANDED
 
-        val buttonPayDialog = bottomSheetDialog?.findViewById<Button>(R.id.buttonPayDialog)
-        if (bottomSheetDialog != null) {
-            if (sumOfCheque.equals(1)) {
-                buttonPayDialog?.text = getString(R.string.payment_one_ruble).replace("%", sumOfCheque.toString())
-            } else {
-                buttonPayDialog?.text = getString(R.string.payment_many_rubles).replace("%", sumOfCheque.toString())
-            }
-        }
+        val chequeSum = bottomSheetDialog?.findViewById<TextView>(R.id.cheque_sum)
+        chequeSum?.text = getString(R.string.payment_sum).replace("%", sumOfCheque.toString())
+
+        val buttonPayDialog = bottomSheetDialog?.findViewById<Button>(R.id.button_pay_dialog)
         buttonPayDialog?.setOnClickListener {
             showCompletedChequeCard()
             bottomSheetDialog.dismiss()

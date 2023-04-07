@@ -49,7 +49,6 @@
     <string name="profile_opt_settings">Настройки</string>
     <string name="profile_opt_card">Обратная связь</string>
     <string name="profile_opt_history">Закрытые чеки</string>
-    <string name="payment_one_ruble">Оплатить % рубль</string>
-    <string name="payment_many_rubles">Оплатить % рублей</string>
+    <string name="payment_sum">Итого % р</string>
     <string name="cheque_is_closed">Чек закрыт</string>
 </resources>

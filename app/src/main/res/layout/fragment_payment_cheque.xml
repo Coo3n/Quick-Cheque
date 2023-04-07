@@ -100,7 +100,7 @@
         android:gravity="center"
         android:paddingTop="1dp"
         android:paddingBottom="4dp"
-        android:text="@string/pay"
+        android:text="@string/next"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="22sp"
