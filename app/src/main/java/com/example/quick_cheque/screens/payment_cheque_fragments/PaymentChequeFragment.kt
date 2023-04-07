@@ -10,14 +10,18 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quick_cheque.R
 import com.example.quick_cheque.adapters.ListProductsAdapter
 import com.example.quick_cheque.databinding.FragmentPaymentChequeBinding
 import com.example.quick_cheque.model.Product
+import com.example.quick_cheque.screens.BaseFragment
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.jakewharton.rxbinding2.widget.RxTextView
@@ -27,7 +31,7 @@ import io.reactivex.schedulers.Schedulers
 import java.math.BigDecimal
 import java.util.concurrent.TimeUnit
 
-class PaymentChequeFragment : Fragment() {
+class PaymentChequeFragment : BaseFragment() {
     private var binding: FragmentPaymentChequeBinding? = null
     private val _binding: FragmentPaymentChequeBinding
         get() = binding!!
@@ -39,7 +43,8 @@ class PaymentChequeFragment : Fragment() {
     private val disposeBag = CompositeDisposable()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPaymentChequeBinding.inflate(inflater)
@@ -52,32 +57,35 @@ class PaymentChequeFragment : Fragment() {
         setupRecyclerViewListProducts()
         recyclerViewListProductsAdapter.submitList(listItems)
 
-        disposeBag.add(
-            RxTextView.textChanges(_binding.searchField)
-                .debounce(500, TimeUnit.MILLISECONDS)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    Log.i("MyTag", it.toString())
-                    filterSearchingItems(it.toString())
-                }
+        val toolbar = updateToolbar(
+            text = getString(R.string.payment),
+            menu = R.menu.menu_with_search,
         )
 
-        sumOfCheque = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        toolbar.apply {
+            setNavigationOnClickListener {
+                findNavController().navigate(R.id.action_PaymentChequeFragment_to_distributedProductsChequeFragments)
+            }
+
+            val mSearchView = menu.findItem(R.id.search_button)?.actionView as SearchView
+            mSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?) = handleText(query)
+                override fun onQueryTextChange(newText: String?) = handleText(newText)
+
+                private fun handleText(text: String?): Boolean {
+                    text?.let { filterSearchingItems(it) }
+                    return true
+                }
+            })
+        }
+
+        sumOfCheque =
             listItems.stream()
                 .map { p -> p.price }
                 .reduce(BigDecimal.ZERO, BigDecimal::add)
-        } else {
-            TODO("VERSION.SDK_INT < N")
-        }
-
 
         _binding.buttonPay.setOnClickListener {
             showBottomSheetDialog();
-        }
-        _binding.buttonBack.setOnClickListener {
-            Navigation.findNavController(_binding.root)
-                .navigate(R.id.action_PaymentChequeFragment_pop)
         }
     }
 
@@ -153,7 +161,6 @@ class PaymentChequeFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        disposeBag.clear()
         binding = null
         super.onDestroy()
     }

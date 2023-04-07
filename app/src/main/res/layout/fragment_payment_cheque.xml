@@ -4,56 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="?attr/actionBarSize"
     android:fitsSystemWindows="true"
     android:id="@+id/PaymentChequeFragment"
     tools:context=".screens.payment_cheque_fragments.PaymentChequeFragment">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/custom_toll_bar"
-        android:layout_width="match_parent"
-        android:layout_height="?android:actionBarSize"
-        android:background="@color/blue"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/buttonBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="17dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="17dp"
-            android:background="@color/blue"
-            android:scaleType="centerCrop"
-            android:src="@drawable/baseline_arrow_back_24"
-            android:tint="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/searchField"
-            android:layout_width="210dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="84dp"
-            android:layout_marginBottom="13dp"
-            android:background="@drawable/style_toolbar_search_item"
-            android:ellipsize="end"
-            android:hint="Поиск"
-            android:maxLines="1"
-            android:paddingStart="11dp"
-            android:paddingEnd="10dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/buttonBack"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
         android:id="@+id/firstDividingStrip"
@@ -62,7 +16,7 @@
         android:background="@color/gray"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/custom_toll_bar" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listProducts"
