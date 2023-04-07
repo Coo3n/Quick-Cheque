@@ -12,6 +12,7 @@ import com.example.quick_cheque.MainActivity
 import com.example.quick_cheque.R
 import com.example.quick_cheque.databinding.FragmentChoiceChequeBinding
 import com.example.quick_cheque.databinding.FragmentMainScreenBinding
+import com.example.quick_cheque.screens.BaseFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.yandex.mobile.ads.banner.AdSize
 import com.yandex.mobile.ads.banner.BannerAdEventListener
@@ -20,7 +21,7 @@ import com.yandex.mobile.ads.common.AdRequest
 import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.common.ImpressionData
 
-class MainScreenFragment : Fragment() {
+class MainScreenFragment : BaseFragment() {
     private lateinit var binding: FragmentMainScreenBinding
 
     override fun onCreateView(
@@ -34,6 +35,11 @@ class MainScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val toolbar = updateToolbar(
+            text = "Чек",
+            menu = R.menu.menu_with_search,
+        )
 
         binding.rectangle1.setOnClickListener {
             findNavController().navigate(R.id.action_mainScreenFragment_to_choiceChequeFragment)

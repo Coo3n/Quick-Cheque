@@ -8,7 +8,9 @@
 
     <include
         android:id="@+id/toolbar_quick_cheque"
-        layout="@layout/toolbar_quick_cheque" />
+        layout="@layout/toolbar_quick_cheque"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/fragmentContainerView"/>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
@@ -19,7 +21,7 @@
         app:layout_constraintBottom_toTopOf="@id/mainBottomNav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_quick_cheque"
         app:navGraph="@navigation/nav_graph" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

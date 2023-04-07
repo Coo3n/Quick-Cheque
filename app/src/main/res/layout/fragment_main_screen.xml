@@ -4,19 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="?attr/actionBarSize"
     android:background="@color/white"
     tools:context=".screens.main_pages_fragments.MainScreenFragment">
-
-    <FrameLayout
-        android:id="@+id/fragment_profile_top"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@color/purple_700"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/rectangle1"
