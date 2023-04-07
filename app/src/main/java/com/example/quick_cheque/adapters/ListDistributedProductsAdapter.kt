@@ -73,7 +73,7 @@ class ListDistributedProductsAdapter :
 
         private fun changingStyleExpandableDistributionChequeItem() = with(binding) {
             previewCardDistributedCheque.setBackgroundResource(
-                if (isExpanded  && countProductsUser != 0) {
+                if (isExpanded && countProductsUser != 0) {
                     R.drawable.style_only_top_corner_radius_cheque
                 } else {
                     R.drawable.style_left_vertical_corner

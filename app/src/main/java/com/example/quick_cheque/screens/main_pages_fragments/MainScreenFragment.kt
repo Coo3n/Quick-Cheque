@@ -28,7 +28,6 @@ class MainScreenFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentMainScreenBinding.inflate(inflater)
         return binding.root
     }
@@ -41,7 +40,6 @@ class MainScreenFragment : BaseFragment() {
         binding.rectangle1.setOnClickListener {
             findNavController().navigate(R.id.action_mainScreenFragment_to_choiceChequeFragment)
         }
-
 
         activity?.parent?.findViewById<BottomNavigationView>(R.id.mainBottomNav)?.visibility =
             View.INVISIBLE
