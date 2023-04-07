@@ -23,6 +23,6 @@ class JoinScreenFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        updateToolbar(setDisplayHome = false)
+        updateToolbar(setDisplayHome = false, setDisplaySearch = false)
     }
 }

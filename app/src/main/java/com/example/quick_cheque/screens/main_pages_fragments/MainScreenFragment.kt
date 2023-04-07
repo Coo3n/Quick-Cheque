@@ -36,7 +36,7 @@ class MainScreenFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        updateToolbar(setDisplayHome = false)
+        updateToolbar(setDisplayHome = false, setDisplaySearch = false)
 
         binding.rectangle1.setOnClickListener {
             findNavController().navigate(R.id.action_mainScreenFragment_to_choiceChequeFragment)

@@ -1,8 +1,12 @@
 package com.example.quick_cheque.screens
 
+import android.content.ClipData
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
@@ -13,6 +17,7 @@ open class BaseFragment : Fragment() {
     fun updateToolbar(
         text: String = "", // title
         setDisplayHome: Boolean = true, // button back
+        setDisplaySearch: Boolean = true,
         backgroundColor: Int = 2131034147, // Blue
         menu: Int = 0, // Menu exist
         isVisible: Boolean = true
@@ -28,6 +33,9 @@ open class BaseFragment : Fragment() {
             return toolbar
         }
         toolbar.visibility = View.VISIBLE
+
+        val searchBtn = toolbar.menu.findItem(R.id.search_button)
+        //searchBtn.isVisible = setDisplaySearch
 
         toolbar.menu.clear()
         if (menu != 0) {
