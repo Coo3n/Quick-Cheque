@@ -10,9 +10,10 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.quick_cheque.R
 import com.example.quick_cheque.databinding.FragmentSettingsBinding
+import com.example.quick_cheque.screens.BaseFragment
 import java.util.*
 
-class FragmentSettings : Fragment() {
+class FragmentSettings : BaseFragment() {
     private lateinit var binding: FragmentSettingsBinding
 
     override fun onCreateView(

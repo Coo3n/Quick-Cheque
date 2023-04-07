@@ -18,6 +18,7 @@ import com.example.quick_cheque.R
 import com.example.quick_cheque.adapters.ListProductsAdapter
 import com.example.quick_cheque.databinding.FragmentPaymentChequeBinding
 import com.example.quick_cheque.model.Product
+import com.example.quick_cheque.screens.BaseFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.jakewharton.rxbinding2.widget.RxTextView
@@ -27,7 +28,7 @@ import io.reactivex.schedulers.Schedulers
 import java.math.BigDecimal
 import java.util.concurrent.TimeUnit
 
-class PaymentChequeFragment : Fragment() {
+class PaymentChequeFragment : BaseFragment() {
     private var binding: FragmentPaymentChequeBinding? = null
     private val _binding: FragmentPaymentChequeBinding
         get() = binding!!

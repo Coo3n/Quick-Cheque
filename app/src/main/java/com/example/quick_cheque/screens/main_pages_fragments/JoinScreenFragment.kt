@@ -7,8 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.quick_cheque.R
 import com.example.quick_cheque.databinding.FragmentJoinScreenBinding
+import com.example.quick_cheque.screens.BaseFragment
 
-class JoinScreenFragment : Fragment() {
+class JoinScreenFragment : BaseFragment() {
     private lateinit var binding: FragmentJoinScreenBinding
 
     override fun onCreateView(

@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.quick_cheque.R
 import com.example.quick_cheque.databinding.FragmentProfileScreenBinding
+import com.example.quick_cheque.screens.BaseFragment
 
-class ProfileScreenFragment : Fragment() {
+class ProfileScreenFragment : BaseFragment() {
     private lateinit var binding: FragmentProfileScreenBinding
 
     override fun onCreateView(

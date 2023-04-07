@@ -1,5 +1,6 @@
 package com.example.quick_cheque.screens
 
+import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -37,5 +38,10 @@ open class BaseFragment : Fragment() {
 
         toolbar.setBackgroundColor(ContextCompat.getColor(mainActivity, backgroundColor))
         return toolbar
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        this.updateToolbar()
     }
 }

@@ -8,8 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.quick_cheque.R
 import com.example.quick_cheque.databinding.FragmentRegisterBinding
+import com.example.quick_cheque.screens.BaseFragment
 
-class RegisterFragment : Fragment() {
+class RegisterFragment : BaseFragment() {
     private lateinit var binding: FragmentRegisterBinding
 
     override fun onCreateView(

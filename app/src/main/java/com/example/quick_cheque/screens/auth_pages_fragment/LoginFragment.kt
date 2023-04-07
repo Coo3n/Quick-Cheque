@@ -9,8 +9,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.quick_cheque.R
 import com.example.quick_cheque.databinding.FragmentLoginBinding
 import com.example.quick_cheque.databinding.FragmentRegisterBinding
+import com.example.quick_cheque.screens.BaseFragment
 
-class LoginFragment : Fragment() {
+class LoginFragment : BaseFragment() {
     private lateinit var binding: FragmentLoginBinding
 
     override fun onCreateView(
