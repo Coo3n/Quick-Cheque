@@ -36,6 +36,7 @@ open class BaseFragment : Fragment() {
 
         val searchBtn = toolbar.menu.findItem(R.id.search_button)
         //searchBtn.isVisible = setDisplaySearch
+        // TODO menuHost, provider
 
         toolbar.menu.clear()
         if (menu != 0) {
