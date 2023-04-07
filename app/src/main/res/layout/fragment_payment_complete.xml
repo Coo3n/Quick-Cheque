@@ -40,7 +40,7 @@
                 android:layout_gravity="center"
                 android:text="@string/cheque_is_closed"
                 android:textColor="@color/black"
-                android:textSize="32dp"
+                android:textSize="32sp"
 
                 app:layout_constraintLeft_toLeftOf="@id/ok_drawable"
                 app:layout_constraintRight_toRightOf="@id/ok_drawable"

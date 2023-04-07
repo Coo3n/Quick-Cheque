@@ -108,25 +108,34 @@
         android:id="@+id/distributedProductsChequeFragments"
         android:name="com.example.quick_cheque.screens.room_cheque_fragments.DistributedProductsChequeFragments"
         android:label="DistributedProductsChequeFragments"
-        tools:layout="@layout/fragment_distributed_products_cheque_fragments" >>
-        <action
-            android:id="@+id/action_distributedProductsChequeFragments_to_choiceProductFragment"
-            app:destination="@id/PaymentChequeFragment"
-            app:popUpToInclusive="false" />
-        <action
-            android:id="@+id/action_distributedProductsChequeFragments_to_choicePaymentFragment"
-            app:destination="@id/PaymentChequeFragment" />
+        tools:layout="@layout/fragment_distributed_products_cheque_fragments" >
         <action
             android:id="@+id/action_distributedProductsChequeFragments_to_choiceProductFragment2"
             app:destination="@id/choiceProductFragment" />
+        <action
+            android:id="@+id/action_distributedProductsChequeFragments_to_waitPaymentFragment"
+            app:destination="@id/waitPaymentFragment" />
     </fragment>
     <fragment
-        android:id="@+id/PaymentChequeFragment"
-        android:name="com.example.quick_cheque.screens.payment_cheque_fragments.PaymentChequeFragment"
-        android:label="PaymentChequeFragment" >
+        android:id="@+id/waitPaymentFragment"
+        android:name="com.example.quick_cheque.screens.payment_cheque_fragments.WaitPaymentFragment"
+        android:label="fragment_wait_payment"
+        tools:layout="@layout/fragment_wait_payment" >
         <action
-            android:id="@+id/action_PaymentChequeFragment_to_distributedProductsChequeFragments"
-            app:destination="@id/distributedProductsChequeFragments"
-        />
+            android:id="@+id/action_waitPaymentFragment_to_paymentChequeFragment"
+            app:destination="@id/paymentChequeFragment" />
+        <action
+            android:id="@+id/action_waitPaymentFragment_to_distributedProductsChequeFragments"
+            app:destination="@id/distributedProductsChequeFragments" />
     </fragment>
+    <fragment
+        android:id="@+id/paymentChequeFragment"
+        android:name="com.example.quick_cheque.screens.payment_cheque_fragments.PaymentChequeFragment"
+        android:label="fragment_payment_cheque"
+        tools:layout="@layout/fragment_payment_cheque" >
+        <action
+            android:id="@+id/action_paymentChequeFragment_to_waitPaymentFragment"
+            app:destination="@id/waitPaymentFragment" />
+    </fragment>
+
 </navigation>

@@ -38,9 +38,7 @@ class PaymentChequeFragment : BaseFragment() {
 
     private lateinit var recyclerViewListProductsAdapter: ListProductsAdapter
     private lateinit var listItems: MutableList<Product>
-    private lateinit var sumOfCheque : BigDecimal
-
-    private val disposeBag = CompositeDisposable()
+    private lateinit var sumOfCheque: BigDecimal
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -64,7 +62,7 @@ class PaymentChequeFragment : BaseFragment() {
 
         toolbar.apply {
             setNavigationOnClickListener {
-                findNavController().navigate(R.id.action_PaymentChequeFragment_to_distributedProductsChequeFragments)
+                findNavController().navigate(R.id.action_paymentChequeFragment_to_waitPaymentFragment)
             }
 
             val mSearchView = menu.findItem(R.id.search_button)?.actionView as SearchView
@@ -90,7 +88,8 @@ class PaymentChequeFragment : BaseFragment() {
     }
 
     private fun showBottomSheetDialog() {
-        val bottomSheetDialog = this.context?.let { BottomSheetDialog(it, R.style.bottom_sheet_dialog_theme) }
+        val bottomSheetDialog =
+            this.context?.let { BottomSheetDialog(it, R.style.bottom_sheet_dialog_theme) }
         bottomSheetDialog?.setContentView(R.layout.fragment_payment_choice)
         bottomSheetDialog?.behavior?.state = BottomSheetBehavior.STATE_EXPANDED
 
@@ -130,7 +129,8 @@ class PaymentChequeFragment : BaseFragment() {
             @Override
             override fun onBindViewHolder(holder: ListProductsViewHolder, position: Int) {
                 holder.bind(getItem(position))
-                holder.itemView.findViewById<ImageView>(R.id.divider_line).visibility = View.INVISIBLE
+                holder.itemView.findViewById<ImageView>(R.id.divider_line).visibility =
+                    View.INVISIBLE
                 holder.itemView.findViewById<ConstraintLayout>(R.id.user_info_container).visibility =
                     View.GONE
             }
