@@ -39,5 +39,7 @@
     <string name="profile_opt_settings">Настройки</string>
     <string name="profile_opt_card">Обратная связь</string>
     <string name="profile_opt_history">Закрытые чеки</string>
-    <string name="payment_default">К оплате 135 р.</string>
+    <string name="payment_sum">Итого % р</string>
+    <string name="cheque_is_closed">Чек закрыт</string>
+    <string name="wait_for_cheque">Ожидайте окончания распределения чека</string>
 </resources>

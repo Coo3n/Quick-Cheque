@@ -4,124 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="?attr/actionBarSize"
     android:fitsSystemWindows="true"
     android:id="@+id/PaymentChequeFragment"
     tools:context=".screens.payment_cheque_fragments.PaymentChequeFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/custom_toll_bar"
-        android:layout_width="match_parent"
-        android:layout_height="?android:actionBarSize"
-        android:background="@color/blue"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/buttonBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="17dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="17dp"
-            android:background="@color/blue"
-            android:scaleType="centerCrop"
-            android:src="@drawable/baseline_arrow_back_24"
-            android:tint="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/searchField"
-            android:layout_width="210dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="84dp"
-            android:layout_marginBottom="13dp"
-            android:background="@drawable/style_toolbar_search_item"
-            android:ellipsize="end"
-            android:hint="Поиск"
-            android:maxLines="1"
-            android:paddingStart="11dp"
-            android:paddingEnd="10dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/buttonBack"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <View
-        android:id="@+id/firstDividingStrip"
+        android:id="@+id/first_dividing_strip"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/gray"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/custom_toll_bar" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_products"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:overScrollMode="never"
         android:scrollbars="none"
         app:layout_constrainedHeight="true"
-        app:layout_constraintBottom_toTopOf="@id/secondDividingStrip"
+        app:layout_constraintBottom_toTopOf="@id/second_dividing_strip"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/firstDividingStrip"
+        app:layout_constraintTop_toBottomOf="@id/first_dividing_strip"
         app:layout_constraintVertical_bias="0"
         tools:listitem="@layout/card_choice_product_item" />
 
     <View
-        android:id="@+id/secondDividingStrip"
+        android:id="@+id/second_dividing_strip"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginBottom="10dp"
         android:background="@color/gray"
-        app:layout_constraintBottom_toTopOf="@id/sum"
+        app:layout_constraintBottom_toTopOf="@id/button_pay"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
-
-    <TextView
-        android:id="@+id/sum"
-        android:layout_width="320dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="10dp"
-        android:gravity="center"
-        android:paddingTop="1dp"
-        android:paddingBottom="4dp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textColor="@color/black"
-        android:textSize="22sp"
-        tools:text="@string/payment_default"
-        android:background="@drawable/style_payment_sum"
-        app:layout_constraintBottom_toTopOf="@id/buttonPay"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
 
     <Button
-        android:id="@+id/buttonPay"
+        android:id="@+id/button_pay"
         android:layout_width="320dp"
         android:layout_height="48dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/style_orange_button_next"
+        android:background="@drawable/style_pay_button"
         android:gravity="center"
         android:paddingTop="1dp"
         android:paddingBottom="4dp"
-        android:text="@string/pay"
+        android:text="@string/next"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="22sp"

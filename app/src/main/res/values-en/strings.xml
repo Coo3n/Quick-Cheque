@@ -39,5 +39,7 @@
     <string name="profile_opt_settings">Settings</string>
     <string name="profile_opt_card">Link card</string>
     <string name="profile_opt_history">Closed cheques</string>
-    <string name="payment_default">To pay 135 rub</string>
+    <string name="payment_sum">Total sum % r</string>
+    <string name="cheque_is_closed">Cheque is closed</string>
+    <string name="wait_for_cheque">Wait for cheque distribution</string>
 </resources>

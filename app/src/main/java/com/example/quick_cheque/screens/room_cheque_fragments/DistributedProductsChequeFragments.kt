@@ -35,7 +35,7 @@ class DistributedProductsChequeFragments : BaseFragment() {
 
         val toolbar = updateToolbar("Чек")
         toolbar.setNavigationOnClickListener {
-            findNavController().navigate(R.id.action_distributedProductsChequeFragments_to_choiceProductFragment)
+            findNavController().navigate(R.id.action_distributedProductsChequeFragments_to_waitPaymentFragment)
         }
 
         val distributedChequeUserItem = mutableListOf(
@@ -76,7 +76,7 @@ class DistributedProductsChequeFragments : BaseFragment() {
 
         _binding.buttonCompleteCheque.setOnClickListener {
             findNavController().navigate(
-                R.id.action_distributedProductsChequeFragments_to_choicePaymentFragment
+                R.id.action_distributedProductsChequeFragments_to_waitPaymentFragment
             )
         }
 
