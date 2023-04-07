@@ -42,7 +42,7 @@ class ListExpandableChoiceChequeAdapter(private val clickable: Clickable) :
     }
 
     override fun onBindViewHolder(holder: ExpandableListViewHolder, position: Int) {
-        holder.bind(getItem(position), clickable)
+        holder.bind(getItem(position))
     }
 
     class ListExpandableChoiceChequeDiffCallback : DiffUtil.ItemCallback<ChequeListItem>() {
@@ -60,10 +60,7 @@ class ListExpandableChoiceChequeAdapter(private val clickable: Clickable) :
     ) : RecyclerView.ViewHolder(binding.root) {
         private lateinit var innerListMembersChequeAdapter: InnerListMembersChequeAdapter
 
-        fun bind(
-            expandableListItem: ChequeListItem,
-            clickable: Clickable,
-        ) = with(binding) {
+        fun bind(expandableListItem: ChequeListItem) = with(binding) {
             changingStyleExpandableObjectInChequeListItem(
                 expandableListItem.isExpanded,
                 expandableListItem.isClicked
@@ -84,52 +81,21 @@ class ListExpandableChoiceChequeAdapter(private val clickable: Clickable) :
             }
 
             titleListItem.setOnClickListener {
-                // Если еще не кликнули на какой-нибудь элемент пройдет мимо
-                if (previousClickedChequeListItem != null) {
-                    previousClickedChequeListItem?.clickedChequeListItem?.isClicked = false
-                    // Меняем стиль у предыдущего элемента на стандартный
-                    changeStyleLastClickedListElement(previousClickedChequeListItem!!)
-                }
-
-                // записываем последний кликнутый элемент
-                previousClickedChequeListItem = PreviousClickedChequeListItem(
+                handleChequeListItemClick(
                     expandableListItem,
                     previewListChoiceChequeItem,
                     fullInformationOfCheque
                 )
-                expandableListItem.isClicked = true
-
-                changingStyleExpandableObjectInChequeListItem( // меняем стиль у кликнутого элемента
-                    expandableListItem.isExpanded,
-                    expandableListItem.isClicked
-                )
-
-                clickable.onClick(adapterPosition) // отдаем callback во фрагмент с позицией клика
             }
 
             fullInformationOfCheque.setOnClickListener {
-                // Если еще не кликнули на какой-нибудь элемент пройдет мимо
-                if (previousClickedChequeListItem != null) {
-                    previousClickedChequeListItem?.clickedChequeListItem?.isClicked = false
-                    // Меняем стиль у предыдущего элемента на стандартный
-                    changeStyleLastClickedListElement(previousClickedChequeListItem!!)
-                }
-
-                // записываем последний кликнутый элемент
-                previousClickedChequeListItem = PreviousClickedChequeListItem(
+                handleChequeListItemClick(
                     expandableListItem,
                     previewListChoiceChequeItem,
                     fullInformationOfCheque
                 )
-                expandableListItem.isClicked = true
-
-                changingStyleExpandableObjectInChequeListItem( // меняем стиль у кликнутого элемента
-                    expandableListItem.isExpanded,
-                    expandableListItem.isClicked
-                )
-
-                clickable.onClick(adapterPosition) // отдаем callback во фрагмент с позицией клика
             }
+
             expandableButton.setOnClickListener {
                 expandableListItem.isExpanded = !expandableListItem.isExpanded
                 changingStyleExpandableObjectInChequeListItem(
@@ -139,33 +105,59 @@ class ListExpandableChoiceChequeAdapter(private val clickable: Clickable) :
             }
         }
 
+        private fun handleChequeListItemClick(
+            expandableListItem: ChequeListItem,
+            previewListChoiceChequeItem: ConstraintLayout?,
+            fullInformationOfCheque: LinearLayout?
+        ) {
+            // Если еще не кликнули на какой-нибудь элемент пройдет мимо
+            if (previousClickedChequeListItem != null) {
+                previousClickedChequeListItem?.clickedChequeListItem?.isClicked = false
+                // Меняем стиль у предыдущего элемента на стандартный
+                changeStyleLastClickedListElement(previousClickedChequeListItem!!)
+            }
+
+            // записываем последний кликнутый элемент
+            previousClickedChequeListItem = PreviousClickedChequeListItem(
+                expandableListItem,
+                previewListChoiceChequeItem,
+                fullInformationOfCheque
+            )
+            expandableListItem.isClicked = true
+
+            changingStyleExpandableObjectInChequeListItem( // меняем стиль у кликнутого элемента
+                expandableListItem.isExpanded,
+                expandableListItem.isClicked
+            )
+
+            clickable.onClick(adapterPosition) // отдаем callback во фрагмент с позицией клика
+        }
+
         private fun changingStyleExpandableObjectInChequeListItem(
             isExpandedListItem: Boolean,
             isClicked: Boolean
-        ) {
-            with(binding) {
-                expandableButton.rotation = if (isExpandedListItem) 90f else 0f
-                fullInformationOfCheque.visibility =
-                    if (isExpandedListItem) View.VISIBLE else View.GONE
-
-                previewListChoiceChequeItem.setBackgroundResource(
-                    if (isClicked) {
-                        if (isExpandedListItem) {
-                            fullInformationOfCheque.setBackgroundResource(R.drawable.background_cheque_with_border)
-                            R.drawable.style_highlighted_border_expandeble_item
-                        } else {
-                            R.drawable.style_highlighted_border_item
-                        }
+        ) = with(binding) {
+            previewListChoiceChequeItem.setBackgroundResource(
+                if (isClicked) {
+                    if (isExpandedListItem) {
+                        fullInformationOfCheque.setBackgroundResource(R.drawable.style_bottom_highlighted_full_information)
+                        R.drawable.style_highlighted_border_expandable_preview
                     } else {
-                        if (isExpandedListItem) {
-                            R.drawable.style_cheque_card_expandable
-                        } else {
-                            R.drawable.style_cheque_card_classic
-                        }
+                        R.drawable.style_highlighted_border_preview
                     }
-                )
-            }
+                } else {
+                    if (isExpandedListItem) {
+                        R.drawable.style_cheque_card_expandable
+                    } else {
+                        R.drawable.style_cheque_card_classic
+                    }
+                }
+            )
+
+            expandableButton.rotation = if (isExpandedListItem) -90f else 90f
+            fullInformationOfCheque.visibility = if (isExpandedListItem) View.VISIBLE else View.GONE
         }
+
 
         private fun changeStyleLastClickedListElement(
             previousClickedChequeListItem: PreviousClickedChequeListItem?

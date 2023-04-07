@@ -37,4 +37,18 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="240 р / 4шт" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/dividing_line_with_spaces"
+        android:backgroundTint="@color/black"
+        android:contentDescription="dividing_line_with_spaces"
+        android:scaleType="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_product" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

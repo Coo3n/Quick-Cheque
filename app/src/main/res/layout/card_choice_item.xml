@@ -2,13 +2,14 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/itemViewCheque"
+    android:id="@+id/item_view_cheque"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="20dp"
     android:layout_marginEnd="20dp"
     android:layout_marginBottom="15dp"
     app:cardElevation="0dp"
+    android:elevation="3dp"
     app:cardPreventCornerOverlap="false">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -77,7 +78,7 @@
             android:id="@+id/full_information_of_cheque"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_cheque"
+            android:background="@drawable/style_bottom_radius_for_cheque"
             android:orientation="vertical"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -90,7 +91,7 @@
                 android:background="@color/gray_black" />
 
             <TextView
-                android:id="@+id/textAdminCheque"
+                android:id="@+id/text_admin_cheque"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="13dp"
@@ -146,7 +147,7 @@
                 android:scaleType="center" />
 
             <TextView
-                android:id="@+id/membersTextCheque"
+                android:id="@+id/members_text_cheque"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="13dp"
@@ -163,25 +164,26 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="19dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="30dp">
+                android:layout_marginEnd="13dp">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/listChequeMembers"
+                    android:id="@+id/list_cheque_members"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
                     android:orientation="horizontal"
+                    android:paddingStart="-16dp"
+                    android:paddingEnd="10dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constrainedWidth="true"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toLeftOf="@id/buttonAddNewMembersInCheque"
+                    app:layout_constraintRight_toLeftOf="@id/button_add_new_members_in_cheque"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:listitem="@layout/list_member_item" />
 
                 <ImageButton
-                    android:id="@+id/buttonAddNewMembersInCheque"
+                    android:id="@+id/button_add_new_members_in_cheque"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/button_add_new_members_cheque"
@@ -206,7 +208,7 @@
                 tools:ignore="HardcodedText" />
 
             <TextView
-                android:id="@+id/sumOfChequeText"
+                android:id="@+id/sum_of_cheque_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="13dp"
@@ -219,7 +221,7 @@
                 android:textSize="19sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/finalSumOfCheque"
+                android:id="@+id/final_sum_of_cheque"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

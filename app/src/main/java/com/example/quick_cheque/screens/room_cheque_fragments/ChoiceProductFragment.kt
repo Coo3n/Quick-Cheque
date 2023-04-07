@@ -7,13 +7,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quick_cheque.R
 import com.example.quick_cheque.adapters.ListProductsAdapter
 import com.example.quick_cheque.databinding.FragmentChoiceProductBinding
 import com.example.quick_cheque.model.Cheque
 import com.example.quick_cheque.model.Product
+import com.example.quick_cheque.screens.BaseFragment
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -21,12 +26,11 @@ import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
 
-class ChoiceProductFragment : Fragment() {
+class ChoiceProductFragment : BaseFragment() {
     private var binding: FragmentChoiceProductBinding? = null
     private val _binding: FragmentChoiceProductBinding
         get() = binding!!
 
-    private val disposeBag = CompositeDisposable()
     private var transmittedCheque: Cheque? = null
     private lateinit var recyclerViewListProductsAdapter: ListProductsAdapter
 
@@ -40,6 +44,37 @@ class ChoiceProductFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val toolbar = updateToolbar(
+            text = "Чек",
+            menu = R.menu.menu_with_search,
+        )
+
+        toolbar.apply {
+            setNavigationOnClickListener {
+                findNavController().navigate(R.id.action_choiceProductFragment_to_choiceChequeFragment)
+            }
+
+            setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.add_button -> {
+                        Toast.makeText(requireContext(), "Добавить", Toast.LENGTH_SHORT).show()
+                        true
+                    }
+                    else -> true
+                }
+            }
+
+            val mSearchView = menu.findItem(R.id.search_button)?.actionView as SearchView
+            mSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?) = handleText(query)
+                override fun onQueryTextChange(newText: String?) = handleText(newText)
+
+                private fun handleText(text: String?): Boolean {
+                    text?.let { filterSearchingItems(it) }
+                    return true
+                }
+            })
+        }
 
         transmittedCheque = if (Build.VERSION.SDK_INT >= 33) {
             arguments?.getParcelable("CHEQUE_TAG", Cheque::class.java) ?: transmittedCheque
@@ -48,21 +83,6 @@ class ChoiceProductFragment : Fragment() {
         }
 
         setupRecyclerViewListProducts(transmittedCheque)
-
-        _binding.buttonBackToChoiceCheque.setOnClickListener {
-            Navigation.findNavController(_binding.root)
-                .navigate(R.id.action_choiceProductFragment_to_choiceChequeFragment)
-        }
-
-        disposeBag.add(
-            RxTextView.textChanges(_binding.searchEditTextInProducts)
-                .debounce(500, TimeUnit.MILLISECONDS)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    filterSearchingItems(it.toString())
-                }
-        )
 
         _binding.buttonNextToDistributionCheque.setOnClickListener {
             val bundle = Bundle().apply {
@@ -113,7 +133,6 @@ class ChoiceProductFragment : Fragment() {
 
     override fun onDestroy() {
         binding = null
-        disposeBag.clear()
         super.onDestroy()
     }
 }

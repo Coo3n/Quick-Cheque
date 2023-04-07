@@ -1,6 +1,7 @@
 package com.example.quick_cheque.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,10 +9,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quick_cheque.R
 import com.example.quick_cheque.databinding.CardDistributedChequeBinding
+import com.example.quick_cheque.model.DistributedChequeUserItem
 import com.example.quick_cheque.model.Product
 
 class ListDistributedProductsAdapter :
-    ListAdapter<Product, ListDistributedProductsAdapter.DistributedProductsViewHolder>(
+    ListAdapter<DistributedChequeUserItem, ListDistributedProductsAdapter.DistributedProductsViewHolder>(
         ListDistributedProductsDiffCallback()
     ) {
 
@@ -32,50 +34,62 @@ class ListDistributedProductsAdapter :
         holder.bind(getItem(position))
     }
 
-    class ListDistributedProductsDiffCallback : DiffUtil.ItemCallback<Product>() {
-        override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {
+    class ListDistributedProductsDiffCallback : DiffUtil.ItemCallback<DistributedChequeUserItem>() {
+        override fun areItemsTheSame(
+            oldItem: DistributedChequeUserItem,
+            newItem: DistributedChequeUserItem
+        ): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: Product, newItem: Product): Boolean {
+        override fun areContentsTheSame(
+            oldItem: DistributedChequeUserItem,
+            newItem: DistributedChequeUserItem
+        ): Boolean {
             return oldItem == newItem
         }
     }
 
-    class DistributedProductsViewHolder(
+    inner class DistributedProductsViewHolder(
         private val binding: CardDistributedChequeBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         private lateinit var innerListDistributedProductAdapter: InnerListDistributedProductAdapter
+        private var countProductsUser: Int = 0
+        private var isExpanded: Boolean = false
 
-        fun bind(product: Product) = with(binding) {
-            iconUserInDistributedCheque.setImageResource(R.drawable.person_filled)
-            nameUserInDistributedCheque.text = "Kolya"
-            setupMembersRecyclerList(product)
+        fun bind(distributedChequeUserItem: DistributedChequeUserItem) = with(binding) {
+            iconUserInDistributedCheque.setImageResource(distributedChequeUserItem.user.icon)
+            nameUserInDistributedCheque.text = distributedChequeUserItem.user.name
+            countProductsUser = distributedChequeUserItem.listProductsUser.size
 
-//            expandableButtonDistributedCheque.setOnClickListener {
-//                expandableListItem.isExpanded = !expandableListItem.isExpanded
-//                changingStyleExpandableObjectInChequeListItem(
-//                    expandableListItem.isExpanded,
-//                    expandableListItem.isClicked
-//                )
-//            }
+            setupDistributedProductList(distributedChequeUserItem.listProductsUser)
+            changingStyleExpandableDistributionChequeItem()
+
+            expandableButtonDistributedCheque.setOnClickListener {
+                isExpanded = !isExpanded
+                changingStyleExpandableDistributionChequeItem()
+            }
         }
 
-        private fun setupMembersRecyclerList(listProducts: Product) = with(binding) {
-            innerListDistributedProductAdapter = InnerListDistributedProductAdapter()
-            listProductsByUser.adapter = innerListDistributedProductAdapter
-            listProductsByUser.layoutManager = LinearLayoutManager(
-                itemView.context,
-                LinearLayoutManager.HORIZONTAL,
-                false
+        private fun changingStyleExpandableDistributionChequeItem() = with(binding) {
+            previewCardDistributedCheque.setBackgroundResource(
+                if (isExpanded  && countProductsUser != 0) {
+                    R.drawable.style_only_top_corner_radius_cheque
+                } else {
+                    R.drawable.style_left_vertical_corner
+                }
             )
-            innerListDistributedProductAdapter.submitList(
-                mutableListOf(
-                    listProducts,
-                    listProducts,
-                    listProducts
-                )
-            )
+            expandableButtonDistributedCheque.rotation = if (isExpanded) -90f else 90f
+            fullInformationOfUserProducts.visibility =
+                if (isExpanded && countProductsUser != 0) View.VISIBLE else View.GONE
         }
+
+        private fun setupDistributedProductList(listProducts: MutableList<Product>) =
+            with(binding) {
+                innerListDistributedProductAdapter = InnerListDistributedProductAdapter()
+                listProductsByUser.adapter = innerListDistributedProductAdapter
+                listProductsByUser.layoutManager = LinearLayoutManager(itemView.context)
+                innerListDistributedProductAdapter.submitList(listProducts)
+            }
     }
 }

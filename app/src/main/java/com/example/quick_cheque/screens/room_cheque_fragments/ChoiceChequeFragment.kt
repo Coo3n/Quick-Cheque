@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
+import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,14 +16,13 @@ import com.example.quick_cheque.model.ChequeListItem
 import com.example.quick_cheque.model.Cheque
 import com.example.quick_cheque.model.Product
 import com.example.quick_cheque.model.User
-import com.jakewharton.rxbinding2.widget.RxTextView
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
+import com.example.quick_cheque.screens.BaseFragment
+import com.yandex.mobile.ads.banner.AdSize
+import com.yandex.mobile.ads.banner.BannerAdView
+import com.yandex.mobile.ads.common.AdRequest
 import java.math.BigDecimal
-import java.util.concurrent.TimeUnit
 
-class ChoiceChequeFragment : Fragment(), ListExpandableChoiceChequeAdapter.Clickable {
+class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.Clickable {
     private var binding: FragmentChoiceChequeBinding? = null
     private val _binding: FragmentChoiceChequeBinding
         get() = binding!!
@@ -32,7 +31,6 @@ class ChoiceChequeFragment : Fragment(), ListExpandableChoiceChequeAdapter.Click
     private lateinit var chequeExpandableChequeAdapter: ListExpandableChoiceChequeAdapter
     private lateinit var listItems: MutableList<ChequeListItem>
 
-    private val disposeBag = CompositeDisposable()
     private var choiceCurrentPosition = 0
 
     override fun onCreateView(
@@ -47,21 +45,38 @@ class ChoiceChequeFragment : Fragment(), ListExpandableChoiceChequeAdapter.Click
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         listItems = getChequeList()
-
         setupChequeRecyclerViewList(listItems)
 
-        disposeBag.add(
-            RxTextView.textChanges(_binding.searchEditTextInCheque)
-                .debounce(500, TimeUnit.MILLISECONDS)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    filterSearchingItems(it.toString())
-                }
+        val toolbar = updateToolbar(
+            text = "Чек",
+            menu = R.menu.menu_with_search,
         )
 
-        _binding.buttonBack.setOnClickListener {
-            findNavController().navigate(R.id.action_choiceChequeFragment_to_mainScreenFragment)
+        toolbar.apply {
+            setNavigationOnClickListener {
+                findNavController().navigate(R.id.action_choiceChequeFragment_to_mainScreenFragment)
+            }
+
+            setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.add_button -> {
+                        Toast.makeText(requireContext(), "Добавить", Toast.LENGTH_SHORT).show()
+                        true
+                    }
+                    else -> true
+                }
+            }
+
+            val mSearchView = menu.findItem(R.id.search_button)?.actionView as SearchView
+            mSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?) = handleText(query)
+                override fun onQueryTextChange(newText: String?) = handleText(newText)
+
+                private fun handleText(text: String?): Boolean {
+                    text?.let { filterSearchingItems(it) }
+                    return true
+                }
+            })
         }
 
         _binding.buttonNextToDistributeCheque.setOnClickListener {
@@ -69,13 +84,12 @@ class ChoiceChequeFragment : Fragment(), ListExpandableChoiceChequeAdapter.Click
                 putParcelable("CHEQUE_TAG", (listItems[choiceCurrentPosition].cheque))
             }
 
-            Navigation.findNavController(_binding.root).navigate(
+            findNavController().navigate(
                 R.id.action_choiceChequeFragment_to_choiceProductFragment,
                 bundle
             )
         }
     }
-
 
     private fun setupChequeRecyclerViewList(listItems: MutableList<ChequeListItem>) {
         chequeExpandableRecyclerViewList = _binding.chequeList
@@ -115,18 +129,6 @@ class ChoiceChequeFragment : Fragment(), ListExpandableChoiceChequeAdapter.Click
                                 User("Kolya", R.drawable.person_filled),
                                 User("Olya", R.drawable.person_filled)
                             )
-                        ),
-
-                        Product(
-                            titleProduct = "Кола",
-                            price = BigDecimal(35),
-                            count = 1
-                        ),
-
-                        Product(
-                            titleProduct = "Кола",
-                            price = BigDecimal(35),
-                            count = 1
                         )
                     ),
                     membersCheque = mutableListOf(
@@ -179,7 +181,6 @@ class ChoiceChequeFragment : Fragment(), ListExpandableChoiceChequeAdapter.Click
     }
 
     override fun onDestroy() {
-        disposeBag.clear()
         binding = null
         super.onDestroy()
     }
