@@ -170,7 +170,7 @@ class ListExpandableChoiceChequeAdapter(private val clickable: Clickable) :
                 }
             )
 
-            this?.clickedFullInformationElement?.setBackgroundResource(R.drawable.background_cheque)
+            this?.clickedFullInformationElement?.setBackgroundResource(R.drawable.style_bottom_radius_for_cheque)
         }
 
         private fun setupMembersRecyclerList(listMembersCheque: MutableList<User>) = with(binding) {
