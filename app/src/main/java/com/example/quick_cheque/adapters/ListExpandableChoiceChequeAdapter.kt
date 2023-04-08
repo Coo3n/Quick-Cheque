@@ -1,5 +1,6 @@
 package com.example.quick_cheque.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -66,6 +67,11 @@ class ListExpandableChoiceChequeAdapter(private val clickable: Clickable) :
                 expandableListItem.isClicked
             )
 
+            Log.i(
+                "MyTag",
+                adapterPosition.toString() + "expanded:" + expandableListItem.isExpanded + " clicked: " + expandableListItem.isClicked
+            )
+
             with(expandableListItem.cheque) {
                 titleListItem.text = title
                 nameOwnerCheque.text = owner.name
@@ -114,7 +120,7 @@ class ListExpandableChoiceChequeAdapter(private val clickable: Clickable) :
             if (previousClickedChequeListItem != null) {
                 previousClickedChequeListItem?.clickedChequeListItem?.isClicked = false
                 // Меняем стиль у предыдущего элемента на стандартный
-                changeStyleLastClickedListElement(previousClickedChequeListItem!!)
+                changeStyleLastClickedListElement(previousClickedChequeListItem)
             }
 
             // записываем последний кликнутый элемент
@@ -147,6 +153,7 @@ class ListExpandableChoiceChequeAdapter(private val clickable: Clickable) :
                     }
                 } else {
                     if (isExpandedListItem) {
+                        fullInformationOfCheque.setBackgroundResource(R.drawable.style_bottom_radius_for_cheque)
                         R.drawable.style_cheque_card_expandable
                     } else {
                         R.drawable.style_cheque_card_classic
