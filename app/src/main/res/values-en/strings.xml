@@ -42,4 +42,5 @@
     <string name="payment_sum">Total sum % r</string>
     <string name="cheque_is_closed">Cheque is closed</string>
     <string name="wait_for_cheque">Wait for cheque distribution</string>
+    <string name="payment_choice">Payment method</string>
 </resources>

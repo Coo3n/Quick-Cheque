@@ -42,4 +42,5 @@
     <string name="payment_sum">Итого % р</string>
     <string name="cheque_is_closed">Чек закрыт</string>
     <string name="wait_for_cheque">Ожидайте окончания распределения чека</string>
+    <string name="payment_choice">Способ оплаты</string>
 </resources>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/ChoicePaymentFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,115 +10,85 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <RadioGroup
-            android:id="@+id/buttons_pay_radio_group"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+        <TextView
+            android:id="@+id/payment_choice"
+            android:layout_width="320dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
             android:gravity="center"
-            android:orientation="vertical">
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="@string/payment_choice"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            app:backgroundTint="@null"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/second_dividing_strip"
+            />
 
-            <RadioButton
-                android:id="@+id/button_pay_qiwi"
-                android:layout_width="334dp"
-                android:layout_height="156dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/style_pay_buttons_selector"
-                android:button="@drawable/pay_qiwi_selector"
-                android:checked="true"
-                app:layout_constraintBottom_toTopOf="@id/button_pay_umoney"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <View
+            android:id="@+id/second_dividing_strip"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/gray"
+            app:layout_constraintBottom_toTopOf="@id/buttonPayQiwi"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
-            <RadioButton
-                android:id="@+id/button_pay_umoney"
-                android:layout_width="334dp"
-                android:layout_height="156dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/style_pay_buttons_selector"
-                android:button="@drawable/pay_umoney_selector"
-                app:layout_constraintBottom_toTopOf="@id/button_pay_SPB"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/button_pay_qiwi" />
+        <ImageButton
+            android:id="@+id/buttonPayQiwi"
+            android:layout_width="320dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/style_cheque_sum"
+            app:layout_constraintBottom_toTopOf="@+id/buttonPayUmoney"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/payment_choice"
+            app:srcCompat="@drawable/qiwi_logo" />
 
-            <RadioButton
-                android:id="@+id/button_pay_SPB"
-                android:layout_width="334dp"
-                android:layout_height="156dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/style_pay_buttons_selector"
-                android:button="@drawable/pay_sbp_selector"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/button_pay_umoney" />
+        <ImageButton
+            android:id="@+id/buttonPayUmoney"
+            android:layout_width="320dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/style_cheque_sum"
+            app:layout_constraintBottom_toTopOf="@+id/buttonPaySPB"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonPayQiwi"
+            app:srcCompat="@drawable/umoney_logo" />
 
-            <TextView
-                android:id="@+id/cheque_sum"
-                android:layout_width="320dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/style_cheque_sum"
-                android:gravity="center"
-                android:paddingTop="1dp"
-                android:paddingBottom="4dp"
-                android:text="@string/sumOfCheque"
-                android:textAllCaps="false"
-                android:textColor="@color/black"
-                android:textSize="22sp"
-                app:backgroundTint="@null"
-                app:layout_constraintBottom_toBottomOf="@id/dividing_strip"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/buttons_pay_radio_group" />
+        <ImageButton
+            android:id="@+id/buttonPaySPB"
+            android:layout_width="320dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/style_cheque_sum"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonPayUmoney"
+            app:srcCompat="@drawable/sbp_logo" />
 
-            <View
-                android:id="@+id/dividing_strip"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginBottom="10dp"
-                android:background="@color/gray"
-                app:layout_constraintBottom_toTopOf="@id/button_pay_SPB"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent" />
-
-            <Button
-                android:id="@+id/button_pay_dialog"
-                android:layout_width="320dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/style_pay_button"
-                android:paddingTop="1dp"
-                android:paddingBottom="4dp"
-                android:text="@string/pay"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="22sp"
-                app:backgroundTint="@null"
-                app:layout_constraintBottom_toBottomOf="@id/dividing_strip"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent" />
-        </RadioGroup>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
