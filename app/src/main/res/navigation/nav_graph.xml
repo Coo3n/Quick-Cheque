@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_mainScreenFragment_to_joinScreenFragment"
             app:destination="@id/joinScreenFragment" />
+        <action
+            android:id="@+id/action_mainScreenFragment_to_createScreenFragment"
+            app:destination="@id/createScreenFragment" />
     </fragment>
     <fragment
         android:id="@+id/joinScreenFragment"

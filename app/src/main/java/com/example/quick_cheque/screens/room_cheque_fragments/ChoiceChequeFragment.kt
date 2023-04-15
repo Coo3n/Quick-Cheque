@@ -2,6 +2,8 @@ package com.example.quick_cheque.screens.room_cheque_fragments
 
 import android.os.Bundle
 import android.view.*
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,18 +22,18 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
     private val _binding: FragmentChoiceChequeBinding
         get() = binding!!
 
+    private lateinit var viewModel: ChoiceChequeViewModel
+
     private lateinit var chequeExpandableRecyclerViewList: RecyclerView
     private lateinit var chequeExpandableChequeAdapter: ListExpandableChoiceChequeAdapter
     private lateinit var listItems: MutableList<ChequeListItem>
-
-    private var choiceCurrentPosition = 0
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        viewModel = ViewModelProvider(this)[ChoiceChequeViewModel::class.java]
         binding = FragmentChoiceChequeBinding.inflate(inflater)
         return _binding.root
     }
@@ -46,7 +48,9 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
 
         _binding.buttonNextToDistributeCheque.setOnClickListener {
             val bundle = Bundle().apply {
-                putParcelable("CHEQUE_TAG", (listItems[choiceCurrentPosition].cheque))
+                putParcelable(
+                    "CHEQUE_TAG", (listItems[viewModel.choiceCurrentPosition.value].cheque)
+                )
             }
 
             findNavController().navigate(
@@ -65,7 +69,7 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
     }
 
     override fun onClick(position: Int) {
-        choiceCurrentPosition = position
+        viewModel.setChoiceCurrentPosition(position)
     }
 
     override fun filterSearchingItems(query: String) {

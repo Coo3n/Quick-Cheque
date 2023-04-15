@@ -6,8 +6,11 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class ChoiceChequeViewModel : ViewModel() {
-    //private var _listItems: MutableList<ChequeListItem>
 
     private var _choiceCurrentPosition = MutableStateFlow(0)
     val choiceCurrentPosition: StateFlow<Int> = _choiceCurrentPosition.asStateFlow()
+
+    fun setChoiceCurrentPosition(choiceCurrentPosition: Int) {
+        _choiceCurrentPosition.value = choiceCurrentPosition
+    }
 }
