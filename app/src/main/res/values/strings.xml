@@ -42,5 +42,10 @@
     <string name="payment_sum">Итого % р</string>
     <string name="cheque_is_closed">Чек закрыт</string>
     <string name="wait_for_cheque">Ожидайте окончания распределения чека</string>
+    <string name="cheque_count_in_room">Количество Чеков:</string>
+    <string name="room_members_str">Участники:</string>
+    <string name="create_room">Создать Комнату</string>
+    <string name="room_name">Название Комнаты</string>
+    <string name="create_roo">Создать</string>
     <string name="payment_choice">Способ оплаты</string>
 </resources>

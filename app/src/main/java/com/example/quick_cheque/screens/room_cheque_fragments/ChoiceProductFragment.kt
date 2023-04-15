@@ -44,37 +44,37 @@ class ChoiceProductFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val toolbar = updateToolbar(
-            text = "Чек",
-            menu = R.menu.menu_with_search,
-        )
-
-        toolbar.apply {
-            setNavigationOnClickListener {
-                findNavController().navigate(R.id.action_choiceProductFragment_to_choiceChequeFragment)
-            }
-
-            setOnMenuItemClickListener { item ->
-                when (item.itemId) {
-                    R.id.add_button -> {
-                        Toast.makeText(requireContext(), "Добавить", Toast.LENGTH_SHORT).show()
-                        true
-                    }
-                    else -> true
-                }
-            }
-
-            val mSearchView = menu.findItem(R.id.search_button)?.actionView as SearchView
-            mSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String?) = handleText(query)
-                override fun onQueryTextChange(newText: String?) = handleText(newText)
-
-                private fun handleText(text: String?): Boolean {
-                    text?.let { filterSearchingItems(it) }
-                    return true
-                }
-            })
-        }
+//        val toolbar = updateToolbar(
+//            text = "Чек",
+//            menu = R.menu.menu_with_search,
+//        )
+//
+//        toolbar.apply {
+//            setNavigationOnClickListener {
+//                findNavController().navigate(R.id.action_choiceProductFragment_to_choiceChequeFragment)
+//            }
+//
+//            setOnMenuItemClickListener { item ->
+//                when (item.itemId) {
+//                    R.id.add_button -> {
+//                        Toast.makeText(requireContext(), "Добавить", Toast.LENGTH_SHORT).show()
+//                        true
+//                    }
+//                    else -> true
+//                }
+//            }
+//
+//            val mSearchView = menu.findItem(R.id.search_button)?.actionView as SearchView
+//            mSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+//                override fun onQueryTextSubmit(query: String?) = handleText(query)
+//                override fun onQueryTextChange(newText: String?) = handleText(newText)
+//
+//                private fun handleText(text: String?): Boolean {
+//                    text?.let { filterSearchingItems(it) }
+//                    return true
+//                }
+//            })
+//        }
 
         transmittedCheque = if (Build.VERSION.SDK_INT >= 33) {
             arguments?.getParcelable("CHEQUE_TAG", Cheque::class.java) ?: transmittedCheque
@@ -100,11 +100,11 @@ class ChoiceProductFragment : BaseFragment() {
         }
     }
 
-    private fun filterSearchingItems(searchText: String) {
+    override fun filterSearchingItems(query: String) {
         val filteredListItems: MutableList<Product> =
             transmittedCheque?.products?.filter { item ->
                 val firstChequeTittle = item.titleProduct.lowercase().trim()
-                firstChequeTittle.contains(searchText.lowercase().trim())
+                firstChequeTittle.contains(query.lowercase().trim())
             }?.toMutableList() ?: mutableListOf()
 
         recyclerViewListProductsAdapter.submitList(filteredListItems)

@@ -6,9 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.appcompat.widget.SearchView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quick_cheque.R
 import com.example.quick_cheque.adapters.ListProductsAdapter
@@ -42,34 +40,34 @@ class PaymentChequeFragment : BaseFragment() {
         setupRecyclerViewListProducts()
         recyclerViewListProductsAdapter.submitList(listItems)
 
-        val toolbar = updateToolbar(
-            text = getString(R.string.payment),
-            menu = R.menu.menu_with_search,
-        )
+//        val toolbar = updateToolbar(
+//            text = getString(R.string.payment),
+//            menu = R.menu.menu_with_search,
+//        )
+//
+//        toolbar.apply {
+//            setNavigationOnClickListener {
+//                findNavController().navigate(R.id.action_paymentChequeFragment_to_waitPaymentFragment)
+//            }
+//
+//            val mSearchView = menu.findItem(R.id.search_button)?.actionView as SearchView
+//            mSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+//                override fun onQueryTextSubmit(query: String?) = handleText(query)
+//                override fun onQueryTextChange(newText: String?) = handleText(newText)
+//
+//                private fun handleText(text: String?): Boolean {
+//                    text?.let { filterSearchingItems(it) }
+//                    return true
+//                }
+//            })
+//        }
 
-        toolbar.apply {
-            setNavigationOnClickListener {
-                findNavController().navigate(R.id.action_paymentChequeFragment_to_waitPaymentFragment)
-            }
+        val sumOfCheque = listItems.stream()
+            .map { p -> p.price }
+            .reduce(BigDecimal.ZERO, BigDecimal::add)
 
-            val mSearchView = menu.findItem(R.id.search_button)?.actionView as SearchView
-            mSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String?) = handleText(query)
-                override fun onQueryTextChange(newText: String?) = handleText(newText)
-
-                private fun handleText(text: String?): Boolean {
-                    text?.let { filterSearchingItems(it) }
-                    return true
-                }
-            })
-        }
-
-        val sumOfCheque =
-            listItems.stream()
-                .map { p -> p.price }
-                .reduce(BigDecimal.ZERO, BigDecimal::add)
-
-        _binding.chequeSum.text = getString(R.string.payment_sum).replace("%", sumOfCheque.toString())
+        _binding.chequeSum.text =
+            getString(R.string.payment_sum).replace("%", sumOfCheque.toString())
 
         _binding.buttonPay.setOnClickListener {
             showBottomSheetDialog()
@@ -104,16 +102,16 @@ class PaymentChequeFragment : BaseFragment() {
     private fun showCompletedChequeCard() {
         val alertDialog = this.context?.let { Dialog(it, R.style.bottom_sheet_dialog_theme) }
         alertDialog?.setContentView(R.layout.fragment_payment_complete)
-
         alertDialog?.show()
     }
 
-    private fun filterSearchingItems(searchText: String) {
+
+    override fun filterSearchingItems(query: String) {
         val filteredListItems: MutableList<Product> =
             (listItems as MutableList<Product>)
                 .filter { item ->
                     item.titleProduct.lowercase().trim()
-                        .contains(searchText.lowercase().trim())
+                        .contains(query.lowercase().trim())
                 }
                 .toMutableList()
 

@@ -19,16 +19,15 @@ class FragmentSettings : BaseFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    ): View {
         binding = FragmentSettingsBinding.inflate(inflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        updateToolbar(setDisplayHome = false, setDisplaySearch = false)
+        setVisibleToolBar()
+        setVisibleHomeButton(false)
 
         binding.languageRadiogroupEn.setOnClickListener {
             val locale = Locale("en") // выбираем язык
@@ -53,9 +52,7 @@ class FragmentSettings : BaseFragment() {
         }
 
         binding.themeRadiogroupNight.setOnClickListener {
-            val currentNightMode =
-                resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
-            when (currentNightMode) {
+            when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
                 Configuration.UI_MODE_NIGHT_NO -> {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 }

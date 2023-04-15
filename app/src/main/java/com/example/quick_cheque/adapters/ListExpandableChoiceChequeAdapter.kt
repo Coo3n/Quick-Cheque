@@ -67,11 +67,6 @@ class ListExpandableChoiceChequeAdapter(private val clickable: Clickable) :
                 expandableListItem.isClicked
             )
 
-            Log.i(
-                "MyTag",
-                adapterPosition.toString() + "expanded:" + expandableListItem.isExpanded + " clicked: " + expandableListItem.isClicked
-            )
-
             with(expandableListItem.cheque) {
                 titleListItem.text = title
                 nameOwnerCheque.text = owner.name

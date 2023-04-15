@@ -16,16 +16,15 @@ class ProfileScreenFragment : BaseFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    ): View {
         binding = FragmentProfileScreenBinding.inflate(inflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        updateToolbar(setDisplayHome = false, setDisplaySearch = false)
+        setVisibleToolBar()
+        setVisibleHomeButton(false)
 
         binding.fragmentProfileOptSettings.setOnClickListener {
             findNavController().navigate(R.id.action_profileScreenFragment_to_fragmentSettings)

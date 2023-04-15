@@ -33,11 +33,6 @@ class DistributedProductsChequeFragments : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val toolbar = updateToolbar("Чек")
-        toolbar.setNavigationOnClickListener {
-            findNavController().navigate(R.id.action_distributedProductsChequeFragments_to_waitPaymentFragment)
-        }
-
         val distributedChequeUserItem = mutableListOf(
             DistributedChequeUserItem(
                 user = User("Zloi", R.drawable.person_filled),
@@ -79,17 +74,16 @@ class DistributedProductsChequeFragments : BaseFragment() {
                 R.id.action_distributedProductsChequeFragments_to_waitPaymentFragment
             )
         }
-
     }
 
-
-    private fun setupRecyclerDistributionProductList(distributedChequeUserItem: MutableList<DistributedChequeUserItem>) =
-        with(_binding) {
-            distributionProductListAdapter = ListDistributedProductsAdapter()
-            listDistributionProducts.layoutManager = LinearLayoutManager(requireContext())
-            listDistributionProducts.adapter = distributionProductListAdapter
-            distributionProductListAdapter.submitList(distributedChequeUserItem)
-        }
+    private fun setupRecyclerDistributionProductList(
+        distributedChequeUserItem: MutableList<DistributedChequeUserItem>
+    ) = with(_binding) {
+        distributionProductListAdapter = ListDistributedProductsAdapter()
+        listDistributionProducts.layoutManager = LinearLayoutManager(requireContext())
+        listDistributionProducts.adapter = distributionProductListAdapter
+        distributionProductListAdapter.submitList(distributedChequeUserItem)
+    }
 
     override fun onDestroy() {
         super.onDestroy()

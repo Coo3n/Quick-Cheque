@@ -1,25 +1,18 @@
 package com.example.quick_cheque.screens.room_cheque_fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
-import androidx.appcompat.widget.SearchView
+import android.view.*
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quick_cheque.R
 import com.example.quick_cheque.adapters.ListExpandableChoiceChequeAdapter
 import com.example.quick_cheque.databinding.FragmentChoiceChequeBinding
-import com.example.quick_cheque.model.ChequeListItem
 import com.example.quick_cheque.model.Cheque
+import com.example.quick_cheque.model.ChequeListItem
 import com.example.quick_cheque.model.Product
 import com.example.quick_cheque.model.User
 import com.example.quick_cheque.screens.BaseFragment
-import com.yandex.mobile.ads.banner.AdSize
-import com.yandex.mobile.ads.banner.BannerAdView
-import com.yandex.mobile.ads.common.AdRequest
 import java.math.BigDecimal
 
 class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.Clickable {
@@ -33,6 +26,7 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
 
     private var choiceCurrentPosition = 0
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -44,40 +38,11 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setupToolBar(R.menu.menu_with_search)
+
         listItems = getChequeList()
         setupChequeRecyclerViewList(listItems)
-
-        val toolbar = updateToolbar(
-            text = "Чек",
-            menu = R.menu.menu_with_search,
-        )
-
-        toolbar.apply {
-            setNavigationOnClickListener {
-                findNavController().navigate(R.id.action_choiceChequeFragment_to_mainScreenFragment)
-            }
-
-            setOnMenuItemClickListener { item ->
-                when (item.itemId) {
-                    R.id.add_button -> {
-                        Toast.makeText(requireContext(), "Добавить", Toast.LENGTH_SHORT).show()
-                        true
-                    }
-                    else -> true
-                }
-            }
-
-            val mSearchView = menu.findItem(R.id.search_button)?.actionView as SearchView
-            mSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String?) = handleText(query)
-                override fun onQueryTextChange(newText: String?) = handleText(newText)
-
-                private fun handleText(text: String?): Boolean {
-                    text?.let { filterSearchingItems(it) }
-                    return true
-                }
-            })
-        }
 
         _binding.buttonNextToDistributeCheque.setOnClickListener {
             val bundle = Bundle().apply {
@@ -103,11 +68,11 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
         choiceCurrentPosition = position
     }
 
-    private fun filterSearchingItems(searchText: String) {
+    override fun filterSearchingItems(query: String) {
         val filteredListItems: MutableList<ChequeListItem> =
             listItems.filter { item ->
                 val firstChequeTittle = item.cheque.title.lowercase().trim()
-                firstChequeTittle.contains(searchText.lowercase().trim())
+                firstChequeTittle.contains(query.lowercase().trim())
             }.toMutableList()
 
         chequeExpandableChequeAdapter.submitList(filteredListItems)
