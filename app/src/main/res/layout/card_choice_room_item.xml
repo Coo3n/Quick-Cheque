@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_view_room"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="13dp"
+    android:layout_marginEnd="20dp"
+    app:cardBackgroundColor="@color/beige"
+    app:cardCornerRadius="6dp">
+
+    <LinearLayout
+        android:id="@+id/roomInfoContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/preview_list_choice_cheque_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/style_cheque_card_expandable"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/room_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="start"
+                android:maxLines="1"
+                android:paddingStart="12dp"
+                android:paddingTop="9dp"
+                android:paddingEnd="2dp"
+                android:paddingBottom="12dp"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/vertical_dividing_line"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Quick Cheque Comp." />
+
+            <View
+                android:id="@+id/vertical_dividing_line"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/gray_black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/expandable_button"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/expandable_button"
+                android:layout_width="55dp"
+                android:layout_height="0dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="Expand INFORMATION of cheque"
+                android:padding="10dp"
+                android:rotation="-90"
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_expandable_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/room_title"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="HardcodedText" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/first_dividing_strip_info_cheque"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_black" />
+
+        <LinearLayout
+            android:id="@+id/full_information_of_room"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/style_bottom_radius_for_cheque"
+            android:orientation="vertical"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/preview_list_choice_cheque_item">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/userInRoomInfoContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="7dp">
+
+                <TextView
+                    android:id="@+id/members_str"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="2dp"
+                    android:paddingEnd="2dp"
+                    android:text="@string/room_members_str"
+                    android:textColor="@color/black"
+                    android:textSize="23sp"
+                    app:layout_constraintBottom_toTopOf="@id/listRoomMembers"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/listRoomMembers"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="6dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/buttonAddNewMembersInRoom"
+                    app:layout_constraintTop_toBottomOf="@id/members_str"
+                    tools:listitem="@layout/list_member_item" />
+
+                <ImageButton
+                    android:id="@+id/buttonAddNewMembersInRoom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_add_new_members_cheque"
+                    android:contentDescription="TODO"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/members_str"
+                    tools:ignore="ContentDescription,HardcodedText" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/divideLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/dividing_line_with_spaces"
+                android:backgroundTint="@color/black"
+                android:contentDescription="dividing_line_with_spaces"
+                android:scaleType="center"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/cheque_count_str"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
+                android:text="@string/cheque_count_in_room"
+                android:textColor="@color/black"
+                android:textSize="23sp" />
+
+            <TextView
+                android:id="@+id/cheque_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textSize="23sp"
+                tools:text="2" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

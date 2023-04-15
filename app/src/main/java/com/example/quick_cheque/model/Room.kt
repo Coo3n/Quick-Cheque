@@ -8,6 +8,6 @@ data class Room(
     val id: Int,
     val title: String,
     val host: String,
-    val users: Int,
-    val cheques: Int,
+    var membersRoom: MutableList<User>,
+    val cheques: MutableList<Cheque>,
 ) : Parcelable

@@ -35,10 +35,25 @@ class MainScreenFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        updateToolbar(setDisplayHome = false, setDisplaySearch = false)
+        val toolbar = updateToolbar(
+            text = "Комнаты",
+            menu = R.menu.menu_with_search,
+        )
+
+        toolbar.apply {
+            setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.add_button -> {
+                        findNavController().navigate(R.id.action_mainScreenFragment_to_createScreenFragment)
+                        true
+                    }
+                    else -> true
+                }
+            }
+        }
 
         binding.rectangle1.setOnClickListener {
-            findNavController().navigate(R.id.action_mainScreenFragment_to_choiceChequeFragment)
+            findNavController().navigate(R.id.action_mainScreenFragment_to_choiceRoomFragment)
         }
 
         activity?.parent?.findViewById<BottomNavigationView>(R.id.mainBottomNav)?.visibility =

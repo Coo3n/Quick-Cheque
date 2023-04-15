@@ -1,42 +1,116 @@
 package com.example.quick_cheque.adapters
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quick_cheque.R
+import com.example.quick_cheque.databinding.CardChoiceProductItemBinding
+import com.example.quick_cheque.databinding.CardChoiceRoomItemBinding
+import com.example.quick_cheque.model.Product
 import com.example.quick_cheque.model.Room
+import com.example.quick_cheque.model.RoomListItem
+import com.example.quick_cheque.model.User
+import androidx.navigation.fragment.findNavController
 
-class ListRoomAdapter(
-    private val rooms: ArrayList<Room>
-) : RecyclerView.Adapter<ListRoomAdapter.ListRooViewHolder>() {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListRooViewHolder {
-        return ListRooViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.list_room_item, parent, false)
+open class ListRoomAdapter(private val clickable: Clickable) :
+    ListAdapter<RoomListItem, ListRoomAdapter.ListRoomViewHolder>(
+        ListRoomDiffCallBack()
+    ) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListRoomViewHolder {
+        return ListRoomViewHolder(
+            CardChoiceRoomItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         )
     }
 
-    override fun getItemCount(): Int {
-        return rooms.size
+    interface Clickable {
+        fun onClick(position: Int)
     }
 
-    override fun onBindViewHolder(holder: ListRooViewHolder, position: Int) {
-        holder.bind(rooms[position])
+    override fun onBindViewHolder(holder: ListRoomViewHolder, position: Int) {
+        holder.bind(getItem(position))
     }
 
-    class ListRooViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        private val title: TextView = itemView.findViewById(R.id.room_title)
-        private val host: TextView = itemView.findViewById(R.id.room_host_name)
-        private val users: TextView = itemView.findViewById(R.id.room_users_count)
-        private val cheques: TextView = itemView.findViewById(R.id.room_cheques_count)
+    class ListRoomDiffCallBack : DiffUtil.ItemCallback<RoomListItem>() {
+        override fun areItemsTheSame(oldItem: RoomListItem, newItem: RoomListItem): Boolean {
+            return oldItem == newItem
+        }
 
-        fun bind(room: Room){
-            title.text = room.title
-            host.text = room.host
-            users.text = room.users.toString()
-            cheques.text = room.cheques.toString()
+        override fun areContentsTheSame(oldItem: RoomListItem, newItem: RoomListItem): Boolean {
+            return oldItem.room == newItem.room && oldItem.isExpanded == newItem.isExpanded
         }
     }
+
+
+    inner class ListRoomViewHolder(
+        private val binding: CardChoiceRoomItemBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+        private lateinit var innerListMembersChequeAdapter: InnerListMembersChequeAdapter
+        fun bind(room: RoomListItem) = with(binding) {
+            changeExpandencity(
+                room.isExpanded
+            )
+
+            with(room.room) {
+                roomTitle.text = title
+                chequeCount.text = cheques.size.toString()
+                setupMembersRecyclerList(membersRoom)
+            }
+
+            with(binding.root) {
+                roomTitle.setOnClickListener {
+                    val bundle = Bundle().apply {
+                        putParcelable("ROOM_TAG", (room.room))
+                    }
+
+                    findNavController().navigate(
+                        R.id.action_choiceRoomFragment_to_choiceChequeFragment,
+                        bundle
+                    )
+                }
+            }
+
+            expandableButton.setOnClickListener {
+                room.isExpanded = !room.isExpanded
+                changeExpandencity(
+                    room.isExpanded
+                )
+            }
+
+            buttonAddNewMembersInRoom.setOnClickListener {
+                innerListMembersChequeAdapter.addNewListMemberCheque(
+                    User("Olya", R.drawable.person_filled)
+                )
+            }
+
+            clickable.onClick(adapterPosition)
+        }
+
+        private fun setupMembersRecyclerList(membersRoom: MutableList<User>) = with(binding) {
+            listRoomMembers.layoutManager =
+                LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
+            innerListMembersChequeAdapter = InnerListMembersChequeAdapter()
+            listRoomMembers.adapter = innerListMembersChequeAdapter
+            innerListMembersChequeAdapter.submitList(membersRoom)
+        }
+
+        private fun changeExpandencity(expanded: Boolean) = with(binding) {
+            expandableButton.rotation = if (expanded) -90f else 90f
+            fullInformationOfRoom.visibility = if (expanded) View.VISIBLE else View.GONE
+        }
+    }
+
+
 }

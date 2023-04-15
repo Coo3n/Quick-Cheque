@@ -19,8 +19,11 @@
             android:id="@+id/action_mainScreenFragment_to_profileScreenFragment"
             app:destination="@id/profileScreenFragment" />
         <action
-            android:id="@+id/action_mainScreenFragment_to_choiceChequeFragment"
-            app:destination="@id/choiceChequeFragment" />
+            android:id="@+id/action_mainScreenFragment_to_choiceRoomFragment"
+            app:destination="@id/choiceRoomFragment" />
+        <action
+            android:id="@+id/action_mainScreenFragment_to_createScreenFragment"
+            app:destination="@id/createScreenFragment" />
     </fragment>
     <fragment
         android:id="@+id/joinScreenFragment"
@@ -137,5 +140,21 @@
             android:id="@+id/action_paymentChequeFragment_to_waitPaymentFragment"
             app:destination="@id/waitPaymentFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/choiceRoomFragment"
+        android:name="com.example.quick_cheque.screens.rooms_fragment.ChoiceRoomFragment"
+        android:label="fragment_choice_room"
+        tools:layout="@layout/fragment_choice_room" >
+        <action
+            android:id="@+id/action_choiceRoomFragment_to_choiceChequeFragment"
+            app:destination="@id/choiceChequeFragment" />
+        <action
+            android:id="@+id/action_choiceRoomFragment_to_createScreenFragment"
+            app:destination="@id/createScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createScreenFragment"
+        android:name="com.example.quick_cheque.screens.main_pages_fragments.CreateScreenFragment"
+        android:label="CreateScreenFragment" />
 
 </navigation>
