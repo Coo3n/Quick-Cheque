@@ -56,7 +56,7 @@ class MainScreenFragment : BaseFragment() {
             findNavController().navigate(R.id.action_mainScreenFragment_to_choiceRoomFragment)
         }
 
-        activity?.parent?.findViewById<BottomNavigationView>(R.id.mainBottomNav)?.visibility =
+        activity?.parent?.findViewById<BottomNavigationView>(R.id.main_bottom_nav)?.visibility =
             View.INVISIBLE
     }
 

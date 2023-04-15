@@ -1,20 +1,13 @@
 package com.example.quick_cheque.screens.payment_cheque_fragments
 
 import android.app.Dialog
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.widget.SearchView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quick_cheque.R
@@ -24,12 +17,7 @@ import com.example.quick_cheque.model.Product
 import com.example.quick_cheque.screens.BaseFragment
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.jakewharton.rxbinding2.widget.RxTextView
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import java.math.BigDecimal
-import java.util.concurrent.TimeUnit
 
 class PaymentChequeFragment : BaseFragment() {
     private var binding: FragmentPaymentChequeBinding? = null
@@ -38,7 +26,6 @@ class PaymentChequeFragment : BaseFragment() {
 
     private lateinit var recyclerViewListProductsAdapter: ListProductsAdapter
     private lateinit var listItems: MutableList<Product>
-    private lateinit var sumOfCheque: BigDecimal
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -77,13 +64,15 @@ class PaymentChequeFragment : BaseFragment() {
             })
         }
 
-        sumOfCheque =
+        val sumOfCheque =
             listItems.stream()
                 .map { p -> p.price }
                 .reduce(BigDecimal.ZERO, BigDecimal::add)
 
+        _binding.chequeSum.text = getString(R.string.payment_sum).replace("%", sumOfCheque.toString())
+
         _binding.buttonPay.setOnClickListener {
-            showBottomSheetDialog();
+            showBottomSheetDialog()
         }
     }
 
@@ -93,11 +82,18 @@ class PaymentChequeFragment : BaseFragment() {
         bottomSheetDialog?.setContentView(R.layout.fragment_payment_choice)
         bottomSheetDialog?.behavior?.state = BottomSheetBehavior.STATE_EXPANDED
 
-        val chequeSum = bottomSheetDialog?.findViewById<TextView>(R.id.cheque_sum)
-        chequeSum?.text = getString(R.string.payment_sum).replace("%", sumOfCheque.toString())
-
-        val buttonPayDialog = bottomSheetDialog?.findViewById<Button>(R.id.button_pay_dialog)
-        buttonPayDialog?.setOnClickListener {
+        bottomSheetDialog?.findViewById<ImageButton>(R.id.buttonPaySPB)?.setOnClickListener {
+            Toast.makeText(this.context, "Paid by SPB", Toast.LENGTH_LONG).show()
+            showCompletedChequeCard()
+            bottomSheetDialog.dismiss()
+        }
+        bottomSheetDialog?.findViewById<ImageButton>(R.id.buttonPayUmoney)?.setOnClickListener {
+            Toast.makeText(this.context, "Paid by Umoney", Toast.LENGTH_LONG).show()
+            showCompletedChequeCard()
+            bottomSheetDialog.dismiss()
+        }
+        bottomSheetDialog?.findViewById<ImageButton>(R.id.buttonPayQiwi)?.setOnClickListener {
+            Toast.makeText(this.context, "Paid by Qiwi", Toast.LENGTH_LONG).show()
             showCompletedChequeCard()
             bottomSheetDialog.dismiss()
         }
