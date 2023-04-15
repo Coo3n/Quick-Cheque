@@ -31,7 +31,7 @@ class MainScreenFragment : BaseFragment() {
         setVisibleHomeButton(false)
 
         binding.rectangle1.setOnClickListener {
-            findNavController().navigate(R.id.action_mainScreenFragment_to_choiceChequeFragment)
+            findNavController().navigate(R.id.action_mainScreenFragment_to_choiceRoomFragment)
         }
 
         activity?.parent?.findViewById<BottomNavigationView>(

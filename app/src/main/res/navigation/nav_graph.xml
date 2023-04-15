@@ -11,16 +11,14 @@
         android:label="Комнаты"
         tools:layout="@layout/fragment_main_screen">
         <action
-            android:id="@+id/action_mainScreenFragment_to_joinScreenFragment"
-            app:destination="@id/joinScreenFragment"
-            app:popUpTo="@id/loginFragment"
-            app:popUpToInclusive="true" />
+            android:id="@+id/action_mainScreenFragment_to_choiceRoomFragment"
+            app:destination="@id/choiceRoomFragment" />
         <action
             android:id="@+id/action_mainScreenFragment_to_profileScreenFragment"
             app:destination="@id/profileScreenFragment" />
         <action
-            android:id="@+id/action_mainScreenFragment_to_choiceChequeFragment"
-            app:destination="@id/choiceChequeFragment" />
+            android:id="@+id/action_mainScreenFragment_to_joinScreenFragment"
+            app:destination="@id/joinScreenFragment" />
     </fragment>
     <fragment
         android:id="@+id/joinScreenFragment"
@@ -114,5 +112,18 @@
         android:id="@+id/fragmentSettings"
         android:name="com.example.quick_cheque.screens.main_pages_fragments.FragmentSettings"
         android:label="Настройки"/>
+    <fragment
+        android:id="@+id/choiceRoomFragment"
+        android:name="com.example.quick_cheque.screens.room_cheque_fragments.ChoiceRoomFragment"
+        android:label="Комнаты"
+        tools:layout="@layout/fragment_choice_room" >
+        <action
+            android:id="@+id/action_choiceRoomFragment_to_choiceChequeFragment"
+            app:destination="@id/choiceChequeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createScreenFragment"
+        android:name="com.example.quick_cheque.screens.main_pages_fragments.CreateScreenFragment"
+        android:label="CreateScreenFragment" />
 
 </navigation>
