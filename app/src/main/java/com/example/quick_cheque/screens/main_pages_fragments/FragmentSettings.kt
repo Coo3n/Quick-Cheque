@@ -14,13 +14,15 @@ import com.example.quick_cheque.screens.BaseFragment
 import java.util.*
 
 class FragmentSettings : BaseFragment() {
-    private lateinit var binding: FragmentSettingsBinding
+    private var _binding: FragmentSettingsBinding? = null
+    val binding: FragmentSettingsBinding
+        get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentSettingsBinding.inflate(inflater)
+        _binding = FragmentSettingsBinding.inflate(inflater)
         return binding.root
     }
 
@@ -61,5 +63,10 @@ class FragmentSettings : BaseFragment() {
                 }
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

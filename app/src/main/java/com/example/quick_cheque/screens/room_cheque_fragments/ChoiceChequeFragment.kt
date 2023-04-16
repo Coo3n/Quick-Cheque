@@ -2,7 +2,6 @@ package com.example.quick_cheque.screens.room_cheque_fragments
 
 import android.os.Bundle
 import android.view.*
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,7 +10,6 @@ import com.example.quick_cheque.R
 import com.example.quick_cheque.adapters.ListExpandableChoiceChequeAdapter
 import com.example.quick_cheque.databinding.FragmentChoiceChequeBinding
 import com.example.quick_cheque.model.Cheque
-import com.example.quick_cheque.model.ChequeListItem
 import com.example.quick_cheque.model.Product
 import com.example.quick_cheque.model.User
 import com.example.quick_cheque.screens.BaseFragment
@@ -26,7 +24,7 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
 
     private lateinit var chequeExpandableRecyclerViewList: RecyclerView
     private lateinit var chequeExpandableChequeAdapter: ListExpandableChoiceChequeAdapter
-    private lateinit var listItems: MutableList<ChequeListItem>
+    private lateinit var listItems: MutableList<Cheque>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,7 +47,7 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
         _binding.buttonNextToDistributeCheque.setOnClickListener {
             val bundle = Bundle().apply {
                 putParcelable(
-                    "CHEQUE_TAG", (listItems[viewModel.choiceCurrentPosition.value].cheque)
+                    "CHEQUE_TAG", (listItems[viewModel.choiceCurrentPosition.value])
                 )
             }
 
@@ -60,7 +58,7 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
         }
     }
 
-    private fun setupChequeRecyclerViewList(listItems: MutableList<ChequeListItem>) {
+    private fun setupChequeRecyclerViewList(listItems: MutableList<Cheque>) {
         chequeExpandableRecyclerViewList = _binding.chequeList
         chequeExpandableRecyclerViewList.layoutManager = LinearLayoutManager(requireContext())
         chequeExpandableChequeAdapter = ListExpandableChoiceChequeAdapter(this)
@@ -73,77 +71,72 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
     }
 
     override fun filterSearchingItems(query: String) {
-        val filteredListItems: MutableList<ChequeListItem> =
+        val filteredListItems: MutableList<Cheque> =
             listItems.filter { item ->
-                val firstChequeTittle = item.cheque.title.lowercase().trim()
+                val firstChequeTittle = item.title.lowercase().trim()
                 firstChequeTittle.contains(query.lowercase().trim())
             }.toMutableList()
 
         chequeExpandableChequeAdapter.submitList(filteredListItems)
     }
 
-    private fun getChequeList(): MutableList<ChequeListItem> {
+    private fun getChequeList(): MutableList<Cheque> {
         return mutableListOf(
-            ChequeListItem(
-                Cheque(
-                    title = "Valera",
-                    owner = User("Zloi", R.drawable.person_filled),
-                    sumOfCheque = BigDecimal(30),
-                    products = mutableListOf(
-                        Product(
-                            titleProduct = "Кола",
-                            price = BigDecimal(35),
-                            count = 1,
-                            membersProduct = mutableListOf(
-                                User("Kolya", R.drawable.person_filled),
-                                User("Olya", R.drawable.person_filled)
-                            )
+            Cheque(
+                title = "Valera",
+                owner = User("Zloi", R.drawable.person_filled),
+                sumOfCheque = BigDecimal(30),
+                products = mutableListOf(
+                    Product(
+                        titleProduct = "Кола",
+                        price = BigDecimal(35),
+                        count = 1,
+                        membersProduct = mutableListOf(
+                            User("Kolya", R.drawable.person_filled),
+                            User("Olya", R.drawable.person_filled)
                         )
-                    ),
-                    membersCheque = mutableListOf(
-                        User("ZA", R.drawable.person_filled),
-                        User("ZA", R.drawable.person_filled),
-                        User("ZA", R.drawable.person_filled),
-                    ),
+                    )
                 ),
-                isExpanded = true
-            ),
-
-            ChequeListItem(
-                Cheque(
-                    title = "Valera",
-                    owner = User("Zloi", R.drawable.person_filled),
-                    products = mutableListOf(
-                        Product(
-                            titleProduct = "Чипсы",
-                            price = BigDecimal(35),
-                            count = 1,
-                            membersProduct = mutableListOf(User("Zloi", R.drawable.person_filled))
-                        ),
-
-                        Product(
-                            titleProduct = "Чипсы",
-                            price = BigDecimal(35),
-                            count = 1
-                        )
-                    ),
+                membersCheque = mutableListOf(
+                    User("ZA", R.drawable.person_filled),
+                    User("ZA", R.drawable.person_filled),
+                    User("ZA", R.drawable.person_filled),
                 ),
             ),
 
-            ChequeListItem(
-                Cheque(
-                    title = "Dii",
-                    owner = User("Zloi", R.drawable.person_filled),
-                    sumOfCheque = BigDecimal(30),
-                    membersCheque = mutableListOf(
-                        User("ZA", R.drawable.person_filled),
-                        User("ZA", R.drawable.person_filled),
-                        User("ZA", R.drawable.person_filled),
-                        User("ZA", R.drawable.person_filled),
-                        User("ZA", R.drawable.person_filled),
-                        User("ZA", R.drawable.person_filled),
-                        User("ZA", R.drawable.person_filled),
+
+            Cheque(
+                title = "Valera",
+                owner = User("Zloi", R.drawable.person_filled),
+                products = mutableListOf(
+                    Product(
+                        titleProduct = "Чипсы",
+                        price = BigDecimal(35),
+                        count = 1,
+                        membersProduct = mutableListOf(User("Zloi", R.drawable.person_filled))
                     ),
+
+                    Product(
+                        titleProduct = "Чипсы",
+                        price = BigDecimal(35),
+                        count = 1
+                    )
+                ),
+            ),
+
+
+            Cheque(
+                title = "Dii",
+                owner = User("Zloi", R.drawable.person_filled),
+                sumOfCheque = BigDecimal(30),
+                membersCheque = mutableListOf(
+                    User("ZA", R.drawable.person_filled),
+                    User("ZA", R.drawable.person_filled),
+                    User("ZA", R.drawable.person_filled),
+                    User("ZA", R.drawable.person_filled),
+                    User("ZA", R.drawable.person_filled),
+                    User("ZA", R.drawable.person_filled),
+                    User("ZA", R.drawable.person_filled),
                 ),
             ),
         )
