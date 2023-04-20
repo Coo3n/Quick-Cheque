@@ -44,33 +44,33 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
         listItems = getChequeList()
         setupRoomRecyclerViewList(listItems)
 
-        val toolbar = updateToolbar(
-            text = "Комнаты",
-            menu = R.menu.menu_with_search,
-        )
-
-        toolbar.apply {
-            setOnMenuItemClickListener { item ->
-                when (item.itemId) {
-                    R.id.add_button -> {
-                        findNavController().navigate(R.id.action_choiceRoomFragment_to_createScreenFragment)
-                        true
-                    }
-                    else -> true
-                }
-            }
-
-            val mSearchView = menu.findItem(R.id.search_button)?.actionView as SearchView
-            mSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String?) = handleText(query)
-                override fun onQueryTextChange(newText: String?) = handleText(newText)
-
-                private fun handleText(text: String?): Boolean {
-                    text?.let { filterSearchingItems(it) }
-                    return true
-                }
-            })
-        }
+//        val toolbar = updateToolbar(
+//            text = "Комнаты",
+//            menu = R.menu.menu_with_search,
+//        )
+//
+//        toolbar.apply {
+//            setOnMenuItemClickListener { item ->
+//                when (item.itemId) {
+//                    R.id.add_button -> {
+//                        findNavController().navigate(R.id.action_choiceRoomFragment_to_createScreenFragment)
+//                        true
+//                    }
+//                    else -> true
+//                }
+//            }
+//
+//            val mSearchView = menu.findItem(R.id.search_button)?.actionView as SearchView
+//            mSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+//                override fun onQueryTextSubmit(query: String?) = handleText(query)
+//                override fun onQueryTextChange(newText: String?) = handleText(newText)
+//
+//                private fun handleText(text: String?): Boolean {
+//                    text?.let { filterSearchingItems(it) }
+//                    return true
+//                }
+//            })
+//        }
     }
 
     private fun setupRoomRecyclerViewList(listItems: MutableList<RoomListItem>) {
@@ -85,15 +85,15 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
         choiceCurrentPosition = position
     }
 
-    private fun filterSearchingItems(searchText: String) {
-        val filteredListItems: MutableList<RoomListItem> =
-            listItems.filter { item ->
-                val firstRoomTittle = item.room.title.lowercase().trim()
-                firstRoomTittle.contains(searchText.lowercase().trim())
-            }.toMutableList()
-
-        roomChequeAdapter.submitList(filteredListItems)
-    }
+//    private fun filterSearchingItems(searchText: String) {
+//        val filteredListItems: MutableList<RoomListItem> =
+//            listItems.filter { item ->
+//                val firstRoomTittle = item.room.title.lowercase().trim()
+//                firstRoomTittle.contains(searchText.lowercase().trim())
+//            }.toMutableList()
+//
+//        roomChequeAdapter.submitList(filteredListItems)
+//    }
 
     private fun getChequeList(): MutableList<RoomListItem> {
         return mutableListOf(
