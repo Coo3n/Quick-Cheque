@@ -31,7 +31,7 @@ class LoginFragment : BaseFragment() {
             )
         }
 
-        binding.fragmentRegisterSwitchRegister.setOnClickListener {
+        binding.switchButtonRegister.setOnClickListener {
             findNavController().navigate(
                 R.id.action_loginFragment_to_registerFragment
             )

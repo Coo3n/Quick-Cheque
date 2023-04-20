@@ -1,21 +1,25 @@
 package com.example.quick_cheque
 
 
-import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.ext.junit.rules.ActivityScenarioRule
+import androidx.test.filters.LargeTest
 import androidx.test.runner.AndroidJUnit4
-
+import com.example.quick_cheque.pages.AuthPage
+import org.junit.Assert.*
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-import org.junit.Assert.*
-import org.junit.Before
-
 @RunWith(AndroidJUnit4::class)
+@LargeTest
 class AuthTests {
-    @Before
+    @get:Rule
+    val activityScenario = ActivityScenarioRule(MainActivity::class.java)
 
     @Test
     fun correctAuthTest() {
-
+        val authPage = AuthPage()
+        authPage.checkoutLoginPage()
+        authPage.inputLogin("sdsd")
     }
 }
