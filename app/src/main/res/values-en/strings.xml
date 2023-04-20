@@ -44,7 +44,9 @@
     <string name="wait_for_cheque">Wait for cheque distribution</string>
     <string name="cheque_count_in_room">Cheques count:</string>
     <string name="room_members_str">Members:</string>
-    <string name="create_room">Создать Комнату</string>
-    <string name="create_roo">Создать</string>
-
+    <string name="create_room">Create Room</string>
+    <string name="create_roo">Create</string>
+    <string name="payment_choice">Choose Payment</string>
+    <string name="members_count_in_room">Members count</string>
+    <string name="room_name">Room name</string>
 </resources>

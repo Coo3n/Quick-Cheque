@@ -47,4 +47,6 @@
     <string name="create_room">Создать Комнату</string>
     <string name="room_name">Название Комнаты</string>
     <string name="create_roo">Создать</string>
+    <string name="payment_choice">Выбрать способ оплаты</string>
+    <string name="members_count_in_room">Количество участников:</string>
 </resources>

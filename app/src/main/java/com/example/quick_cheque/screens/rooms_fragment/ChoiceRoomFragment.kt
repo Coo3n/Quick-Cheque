@@ -434,52 +434,6 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
                                 ),
 
                                 Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1
-                                )
-                            ),
-                        ),
-                        Cheque(
-                            title = "Valera",
-                            owner = User("Zloi", R.drawable.person_filled),
-                            products = mutableListOf(
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1,
-                                    membersProduct = mutableListOf(
-                                        User(
-                                            "Zloi",
-                                            R.drawable.person_filled
-                                        )
-                                    )
-                                ),
-
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1
-                                )
-                            ),
-                        ),
-                        Cheque(
-                            title = "Valera",
-                            owner = User("Zloi", R.drawable.person_filled),
-                            products = mutableListOf(
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1,
-                                    membersProduct = mutableListOf(
-                                        User(
-                                            "Zloi",
-                                            R.drawable.person_filled
-                                        )
-                                    )
-                                ),
-
-                                Product(
                                     titleProduct = "Кока",
                                     price = BigDecimal(35),
                                     count = 1
