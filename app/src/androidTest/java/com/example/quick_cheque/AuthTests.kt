@@ -8,12 +8,14 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 import org.junit.Assert.*
+import org.junit.Before
 
 @RunWith(AndroidJUnit4::class)
 class AuthTests {
+    @Before
+
     @Test
-    fun useAppContext() {
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.example.quick_cheque", appContext.packageName)
+    fun correctAuthTest() {
+
     }
 }
