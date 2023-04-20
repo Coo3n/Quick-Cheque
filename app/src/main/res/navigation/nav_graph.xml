@@ -14,12 +14,6 @@
             android:id="@+id/action_mainScreenFragment_to_choiceRoomFragment"
             app:destination="@id/choiceRoomFragment" />
         <action
-            android:id="@+id/action_mainScreenFragment_to_profileScreenFragment"
-            app:destination="@id/profileScreenFragment" />
-        <action
-            android:id="@+id/action_mainScreenFragment_to_joinScreenFragment"
-            app:destination="@id/joinScreenFragment" />
-        <action
             android:id="@+id/action_mainScreenFragment_to_createScreenFragment"
             app:destination="@id/createScreenFragment" />
     </fragment>
@@ -57,10 +51,6 @@
         android:name="com.example.quick_cheque.screens.auth_pages_fragment.RegisterFragment"
         android:label="Регистрация"
         tools:layout="@layout/fragment_register">
-        <action
-            android:id="@+id/action_registerFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
-            app:popUpTo="@id/loginFragment" />
         <action
             android:id="@+id/action_registerFragment_to_mainScreenFragment"
             app:destination="@id/mainScreenFragment"
