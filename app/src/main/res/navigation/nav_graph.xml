@@ -52,6 +52,10 @@
         android:label="Регистрация"
         tools:layout="@layout/fragment_register">
         <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment" />
+        <action
             android:id="@+id/action_registerFragment_to_mainScreenFragment"
             app:destination="@id/mainScreenFragment"
             app:popUpTo="@id/loginFragment"
