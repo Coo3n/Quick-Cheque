@@ -3,6 +3,7 @@ package com.example.quick_cheque.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
@@ -29,7 +30,7 @@ class ListExpandableChoiceChequeAdapter(private val clickable: Clickable) :
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            )
+            ),
         )
     }
 
@@ -48,7 +49,7 @@ class ListExpandableChoiceChequeAdapter(private val clickable: Clickable) :
     }
 
     inner class ExpandableListViewHolder(
-        private val binding: CardChoiceItemBinding
+        private val binding: CardChoiceItemBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
         private lateinit var innerListMembersChequeAdapter: InnerListMembersChequeAdapter
         private var isClicked: Boolean = false
@@ -148,6 +149,7 @@ class ListExpandableChoiceChequeAdapter(private val clickable: Clickable) :
             listChequeMembers.adapter = innerListMembersChequeAdapter
             innerListMembersChequeAdapter.submitList(listMembersCheque)
         }
+
     }
 }
 

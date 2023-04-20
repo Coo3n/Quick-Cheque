@@ -1,41 +1,38 @@
 package com.example.quick_cheque.screens
 
-import android.content.ClipData
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.View
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.appcompat.widget.SearchView
-import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.quick_cheque.R
+import com.example.quick_cheque.screens.viewmodels.ChoiceChequeViewModel
 
 open class BaseFragment : Fragment() {
-    private var actionBar: ActionBar? = null
+    private val viewModel: ChoiceChequeViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        actionBar = (requireActivity() as AppCompatActivity).supportActionBar
+        (requireActivity() as AppCompatActivity).supportActionBar?.let { viewModel.setActionBar(it) }
     }
 
     fun setVisibleToolBar(isVisible: Boolean = true) {
         if (isVisible) {
-            actionBar?.show()
+            viewModel.actionBar.value?.show()
         } else {
-            actionBar?.hide()
+            viewModel.actionBar.value?.hide()
         }
     }
 
     fun setVisibleHomeButton(isVisible: Boolean = true) {
-        actionBar?.setDisplayHomeAsUpEnabled(isVisible)
+        viewModel.actionBar.value?.setDisplayHomeAsUpEnabled(isVisible)
     }
 
     fun setupToolBar(toolbarMenu: Int) {
@@ -45,6 +42,7 @@ open class BaseFragment : Fragment() {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menuInflater.inflate(toolbarMenu, menu)
                 val mSearchView = menu.findItem(R.id.search_button)?.actionView as SearchView
+
                 mSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                     override fun onQueryTextSubmit(query: String?) = handleText(query)
                     override fun onQueryTextChange(newText: String?) = handleText(newText)
@@ -69,7 +67,7 @@ open class BaseFragment : Fragment() {
                 }
             }
 
-        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+        }, viewLifecycleOwner, Lifecycle.State.STARTED)
     }
 
     protected open fun handleAddButtonClicked() {}
