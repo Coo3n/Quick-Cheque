@@ -4,9 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
-import com.example.quick_cheque.R
 import com.example.quick_cheque.databinding.FragmentPaymentChoiceBinding
 import com.example.quick_cheque.screens.BaseFragment
 
@@ -24,15 +21,7 @@ class ChoicePaymentFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        //_binding.buttonBack.setOnClickListener {
-            // TODO
-            //Navigation.findNavController(_binding.root)
-            //    .navigate(R.id.action_choicePaymentFragment_pop)
-        //}
-
     }
-
     override fun onDestroy() {
         binding = null
         super.onDestroy()

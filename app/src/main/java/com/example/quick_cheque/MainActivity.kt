@@ -1,61 +1,55 @@
 package com.example.quick_cheque
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
-import android.widget.Button
-import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.NavHost
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.quick_cheque.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.yandex.mobile.ads.banner.AdSize
-import com.yandex.mobile.ads.banner.BannerAdView
-import com.yandex.mobile.ads.common.AdRequest
-import com.yandex.mobile.ads.common.MobileAds
 
 class MainActivity : AppCompatActivity() {
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
+
+    private lateinit var navController: NavController
+    private lateinit var bottomNavController: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val bottomNav = binding.mainBottomNav
-        val navHost = supportFragmentManager.findFragmentById(
-            binding.fragmentContainerView.id
-        ) as NavHostFragment
-        val navController = navHost.navController
+        bottomNavController = binding.mainBottomNav
 
-        bottomNav.setupWithNavController(navController)
+        val nav = supportFragmentManager.findFragmentById(
+            R.id.fragment_container_view
+        ) as NavHost
+
+        navController = nav.navController
+
+        setupActionBarWithNavController(navController)
+        supportActionBar?.hide()
+
+        setupBottomNavController()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
+    private fun setupBottomNavController() {
+        bottomNavController.setupWithNavController(navController)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.joinScreenFragment -> bottomNav.visibility = View.VISIBLE
-                R.id.profileScreenFragment -> bottomNav.visibility = View.VISIBLE
-                R.id.mainScreenFragment -> bottomNav.visibility = View.VISIBLE
-                R.id.fragmentSettings -> bottomNav.visibility = View.VISIBLE
-                else -> bottomNav.visibility = View.GONE
+                R.id.joinScreenFragment -> bottomNavController.visibility = View.VISIBLE
+                R.id.profileScreenFragment -> bottomNavController.visibility = View.VISIBLE
+                R.id.mainScreenFragment -> bottomNavController.visibility = View.VISIBLE
+                R.id.fragmentSettings -> bottomNavController.visibility = View.VISIBLE
+                else -> bottomNavController.visibility = View.GONE
             }
         }
-
-        setupToolbar()
-        setContentView(binding.root)
-    }
-
-    private fun setupToolbar() {
-        val toolbar: Toolbar = binding.toolbarQuickCheque.root
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_with_search, menu)
-        return true
     }
 }

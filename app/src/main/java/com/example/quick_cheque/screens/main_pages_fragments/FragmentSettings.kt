@@ -14,21 +14,22 @@ import com.example.quick_cheque.screens.BaseFragment
 import java.util.*
 
 class FragmentSettings : BaseFragment() {
-    private lateinit var binding: FragmentSettingsBinding
+    private var _binding: FragmentSettingsBinding? = null
+    val binding: FragmentSettingsBinding
+        get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        binding = FragmentSettingsBinding.inflate(inflater)
+    ): View {
+        _binding = FragmentSettingsBinding.inflate(inflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        updateToolbar(setDisplayHome = false, setDisplaySearch = false)
+        setVisibleToolBar()
+        setVisibleHomeButton(false)
 
         binding.languageRadiogroupEn.setOnClickListener {
             val locale = Locale("en") // выбираем язык
@@ -53,9 +54,7 @@ class FragmentSettings : BaseFragment() {
         }
 
         binding.themeRadiogroupNight.setOnClickListener {
-            val currentNightMode =
-                resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
-            when (currentNightMode) {
+            when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
                 Configuration.UI_MODE_NIGHT_NO -> {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 }
@@ -64,5 +63,10 @@ class FragmentSettings : BaseFragment() {
                 }
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

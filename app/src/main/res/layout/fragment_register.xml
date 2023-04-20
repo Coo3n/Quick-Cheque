@@ -18,32 +18,33 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <FrameLayout
+            android:id="@+id/switch_auth_menu"
             style="@style/auth_switch_background"
-            app:layout_constraintBottom_toBottomOf="@id/fragment_register_switch_register"
+            app:layout_constraintBottom_toBottomOf="@id/switch_button_register"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/fragment_register_switch_register" />
+            app:layout_constraintTop_toTopOf="@+id/switch_button_login" />
 
         <Button
-            android:id="@+id/fragment_register_switch_register"
+            android:id="@+id/switch_button_register"
             style="@style/auth_switch_btn"
             android:layout_marginStart="35dp"
             android:layout_marginEnd="40dp"
             android:text="@string/fragments_auth_switch_register"
             android:textColor="@color/white"
-            app:layout_constraintEnd_toStartOf="@+id/fragment_register_switch_login"
+            app:layout_constraintEnd_toStartOf="@+id/switch_button_login"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/fragment_register_switch_login"
+            android:id="@+id/switch_button_login"
             style="@style/auth_switch_btn"
             android:layout_marginEnd="35dp"
             android:backgroundTint="@color/gray_light"
             android:text="@string/fragments_auth_switch_login"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/fragment_register_switch_register"
+            app:layout_constraintStart_toEndOf="@id/switch_button_register"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -59,9 +60,10 @@
             android:layout_marginTop="60dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_register_switch_register">
+            app:layout_constraintTop_toBottomOf="@+id/switch_button_register">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_login"
                 style="@style/auth_field_text_new"
                 android:inputType="textEmailAddress" />
 
@@ -86,6 +88,7 @@
             app:layout_constraintTop_toBottomOf="@+id/fragment_register_email_field">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_password"
                 style="@style/auth_field_text_new"
                 android:inputType="textPassword" />
 
@@ -108,6 +111,7 @@
             app:layout_constraintTop_toBottomOf="@+id/fragment_register_password_1_field">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/repeated_input_password"
                 style="@style/auth_field_text_new"
                 android:inputType="textPassword" />
 

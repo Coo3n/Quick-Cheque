@@ -18,17 +18,13 @@ class WaitPaymentFragment : BaseFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentWaitPaymentBinding.inflate(inflater)
         return _binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val toolbar = updateToolbar(getString(R.string.payment))
-        toolbar.setNavigationOnClickListener {
-            findNavController().navigate(R.id.action_waitPaymentFragment_to_distributedProductsChequeFragments)
-        }
 
         _binding.buttonNext.setOnClickListener {
             findNavController().navigate(R.id.action_waitPaymentFragment_to_paymentChequeFragment)

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.quick_cheque.R
@@ -12,12 +13,10 @@ import com.example.quick_cheque.screens.BaseFragment
 
 class RegisterFragment : BaseFragment() {
     private lateinit var binding: FragmentRegisterBinding
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    ): View {
         binding = FragmentRegisterBinding.inflate(inflater)
         return binding.root
     }
@@ -26,15 +25,15 @@ class RegisterFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.fragmentRegisterRegisterBtn.setOnClickListener {
-            registerBtnPressed()
+            findNavController().navigate(
+                R.id.action_registerFragment_to_loginFragment
+            )
         }
 
         binding.fragmentRegisterSwitchLogin.setOnClickListener {
-            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+            findNavController().navigate(
+                R.id.action_registerFragment_to_loginFragment
+            )
         }
-    }
-
-    private fun registerBtnPressed() {
-        findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
     }
 }
