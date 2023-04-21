@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quick_cheque.R
@@ -11,6 +12,7 @@ import com.example.quick_cheque.adapters.ListRoomAdapter
 import com.example.quick_cheque.databinding.FragmentChoiceRoomBinding
 import com.example.quick_cheque.model.*
 import com.example.quick_cheque.screens.BaseFragment
+import com.example.quick_cheque.screens.viewmodels.ChoiceItemViewModel
 import java.math.BigDecimal
 
 class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
@@ -18,11 +20,10 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
     private val _binding: FragmentChoiceRoomBinding
         get() = binding!!
 
+    private val choiceItemViewModel: ChoiceItemViewModel by viewModels()
+
     private lateinit var roomRecyclerViewList: RecyclerView
     private lateinit var roomChequeAdapter: ListRoomAdapter
-    private lateinit var listItems: MutableList<RoomListItem>
-
-    private var choiceCurrentPosition = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,37 +36,41 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        listItems = getChequeList()
-        setupRoomRecyclerViewList(listItems)
+        setVisibleToolBar()
+        setupToolBar(R.menu.menu_with_search)
 
+        choiceItemViewModel.setListItems(getChequeList())
+        if (isEmptyLastQuerySearch()) {
+            choiceItemViewModel.setFilteredListItems(getChequeList())
+        }
 
-
-
+        setupRoomRecyclerViewList()
     }
 
-    private fun setupRoomRecyclerViewList(listItems: MutableList<RoomListItem>) {
+    private fun setupRoomRecyclerViewList() {
         roomRecyclerViewList = _binding.chequeList
         roomRecyclerViewList.layoutManager = LinearLayoutManager(requireContext())
         roomChequeAdapter = ListRoomAdapter(this)
         roomRecyclerViewList.adapter = roomChequeAdapter
-        roomChequeAdapter.submitList(listItems)
+        roomChequeAdapter.submitList(choiceItemViewModel.filteredListItems.value as List<RoomListItem>)
     }
 
     override fun onClick(position: Int) {
-        choiceCurrentPosition = position
+        choiceItemViewModel.setChoiceCurrentPosition(position)
     }
 
     override fun filterSearchingItems(query: String) {
-        val filteredListItems: MutableList<RoomListItem> =
-            listItems.filter { item ->
-                val firstRoomTittle = item.room.title.lowercase().trim()
-                firstRoomTittle.contains(query.lowercase().trim())
+        choiceItemViewModel.setFilteredListItems(
+            choiceItemViewModel.listItems.value.filter { item ->
+                val firstChequeTittle = item.getTitleItem().lowercase().trim()
+                firstChequeTittle.contains(query.lowercase().trim())
             }.toMutableList()
+        )
 
-        roomChequeAdapter.submitList(filteredListItems)
+        roomChequeAdapter.submitList(choiceItemViewModel.filteredListItems.value as List<RoomListItem>)
     }
 
-    private fun getChequeList(): MutableList<RoomListItem> {
+    private fun getChequeList(): MutableList<ChoiceItem> {
         return mutableListOf(
             RoomListItem(
                 room = Room(

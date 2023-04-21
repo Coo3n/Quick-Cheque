@@ -7,4 +7,8 @@ import kotlinx.parcelize.Parcelize
 class RoomListItem(
     var room: Room,
     var isExpanded: Boolean = false,
-) : Parcelable
+) : Parcelable, ChoiceItem {
+    override fun getTitleItem(): String {
+        return room.title
+    }
+}

@@ -10,4 +10,8 @@ data class Room(
     val host: String,
     var membersRoom: MutableList<User>,
     val cheques: MutableList<Cheque>,
-) : Parcelable
+) : Parcelable, ChoiceItem {
+    override fun getTitleItem(): String {
+        return title
+    }
+}

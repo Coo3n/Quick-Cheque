@@ -10,10 +10,11 @@ import com.example.quick_cheque.R
 import com.example.quick_cheque.adapters.ListExpandableChoiceChequeAdapter
 import com.example.quick_cheque.databinding.FragmentChoiceChequeBinding
 import com.example.quick_cheque.model.Cheque
+import com.example.quick_cheque.model.ChoiceItem
 import com.example.quick_cheque.model.Product
 import com.example.quick_cheque.model.User
 import com.example.quick_cheque.screens.BaseFragment
-import com.example.quick_cheque.screens.viewmodels.ChoiceChequeViewModel
+import com.example.quick_cheque.screens.viewmodels.ChoiceItemViewModel
 import java.math.BigDecimal
 
 class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.Clickable {
@@ -21,7 +22,7 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
     private val _binding: FragmentChoiceChequeBinding
         get() = binding!!
 
-    private val viewModel: ChoiceChequeViewModel by viewModels()
+    private val choiceItemViewModel: ChoiceItemViewModel by viewModels()
 
     private lateinit var chequeExpandableRecyclerViewList: RecyclerView
     private lateinit var chequeExpandableChequeAdapter: ListExpandableChoiceChequeAdapter
@@ -37,28 +38,21 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        setupToolBar(R.menu.menu_with_search)
         setVisibleToolBar()
-        viewModel.setListItems(getChequeList())
-        if (viewModel.lastQuerySearch.value.isEmpty()) {
-            viewModel.setFilteredListItems(getChequeList())
-        }
+        setupToolBar(R.menu.menu_with_search)
 
-//        viewLifecycleOwner.lifecycleScope.launch {
-//            repeatOnLifecycle(Lifecycle.State.STARTED) {
-//                viewModel.filteredListItems.collect {
-//
-//                }
-//            }
-//        }
+        choiceItemViewModel.setListItems(getChequeList())
+        if (isEmptyLastQuerySearch()) {
+            choiceItemViewModel.setFilteredListItems(getChequeList())
+        }
 
         setupChequeRecyclerViewList()
 
         _binding.buttonNextToDistributeCheque.setOnClickListener {
             val bundle = Bundle().apply {
                 putParcelable(
-                    "CHEQUE_TAG", (viewModel.listItems.value[viewModel.choiceCurrentPosition.value])
+                    "CHEQUE_TAG",
+                    (choiceItemViewModel.listItems.value[choiceItemViewModel.choiceCurrentPosition.value] as Cheque)
                 )
             }
 
@@ -74,26 +68,25 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
         chequeExpandableRecyclerViewList.layoutManager = LinearLayoutManager(requireContext())
         chequeExpandableChequeAdapter = ListExpandableChoiceChequeAdapter(this)
         chequeExpandableRecyclerViewList.adapter = chequeExpandableChequeAdapter
-        chequeExpandableChequeAdapter.submitList(viewModel.filteredListItems.value)
+        chequeExpandableChequeAdapter.submitList(choiceItemViewModel.filteredListItems.value as List<Cheque>)
     }
 
     override fun onClick(position: Int) {
-        viewModel.setChoiceCurrentPosition(position)
+        choiceItemViewModel.setChoiceCurrentPosition(position)
     }
 
     override fun filterSearchingItems(query: String) {
-        viewModel.setFilteredListItems(
-            viewModel.listItems.value.filter { item ->
-                val firstChequeTittle = item.title.lowercase().trim()
+        choiceItemViewModel.setFilteredListItems(
+            choiceItemViewModel.listItems.value.filter { item ->
+                val firstChequeTittle = item.getTitleItem().lowercase().trim()
                 firstChequeTittle.contains(query.lowercase().trim())
             }.toMutableList()
         )
 
-        viewModel.setLastQuerySearch(query)
-        chequeExpandableChequeAdapter.submitList(viewModel.filteredListItems.value)
+        chequeExpandableChequeAdapter.submitList(choiceItemViewModel.filteredListItems.value as List<Cheque>)
     }
 
-    private fun getChequeList(): MutableList<Cheque> {
+    private fun getChequeList(): MutableList<ChoiceItem> {
         return mutableListOf(
             Cheque(
                 title = "Valera",
@@ -130,7 +123,7 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
                     ),
 
                     Product(
-                        titleProduct = "Чипсы",
+                        titleProduct = "Бутер",
                         price = BigDecimal(35),
                         count = 1
                     )

@@ -11,4 +11,8 @@ data class Cheque(
     var sumOfCheque: BigDecimal = BigDecimal(0),
     var products: MutableList<Product> = mutableListOf(),
     var membersCheque: MutableList<User> = mutableListOf(),
-) : Parcelable
+) : Parcelable, ChoiceItem {
+    override fun getTitleItem(): String {
+        return title
+    }
+}

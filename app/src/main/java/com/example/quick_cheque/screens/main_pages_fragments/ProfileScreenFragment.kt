@@ -22,6 +22,8 @@ class ProfileScreenFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setVisibleHomeButton(false)
+        setVisibleToolBar()
 
         binding.fragmentProfileOptSettings.setOnClickListener {
             findNavController().navigate(R.id.action_profileScreenFragment_to_fragmentSettings)

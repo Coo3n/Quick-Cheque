@@ -26,7 +26,8 @@ class MainScreenFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setVisibleHomeButton(false)
+        setVisibleToolBar()
 
         binding.rectangle1.setOnClickListener {
             findNavController().navigate(R.id.action_mainScreenFragment_to_choiceRoomFragment)

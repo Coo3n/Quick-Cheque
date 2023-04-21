@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quick_cheque.R
@@ -13,6 +14,7 @@ import com.example.quick_cheque.model.DistributedChequeUserItem
 import com.example.quick_cheque.model.Product
 import com.example.quick_cheque.model.User
 import com.example.quick_cheque.screens.BaseFragment
+import com.example.quick_cheque.screens.viewmodels.ChoiceItemViewModel
 import java.math.BigDecimal
 
 class DistributedProductsChequeFragments : BaseFragment() {
@@ -20,6 +22,7 @@ class DistributedProductsChequeFragments : BaseFragment() {
     private val _binding: FragmentDistributedProductsChequeFragmentsBinding
         get() = binding!!
 
+    private val choiceItemViewModel: ChoiceItemViewModel by viewModels()
     private lateinit var distributionProductListAdapter: ListDistributedProductsAdapter
 
     override fun onCreateView(
@@ -32,6 +35,9 @@ class DistributedProductsChequeFragments : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setVisibleToolBar()
+        setupToolBar(R.menu.menu_with_search)
+
 
         val distributedChequeUserItem = mutableListOf(
             DistributedChequeUserItem(
