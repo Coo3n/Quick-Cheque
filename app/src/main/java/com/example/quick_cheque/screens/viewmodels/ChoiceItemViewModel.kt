@@ -1,11 +1,12 @@
 package com.example.quick_cheque.screens.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.quick_cheque.model.ChoiceItem
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class ChoiceItemViewModel: ViewModel() {
+class ChoiceItemViewModel : ViewModel() {
     private var _choiceCurrentPosition = MutableStateFlow(0)
     val choiceCurrentPosition = _choiceCurrentPosition.asStateFlow()
 

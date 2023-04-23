@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuHost
@@ -20,21 +21,24 @@ import kotlinx.coroutines.launch
 
 open class BaseFragment : Fragment() {
     private val toolBarViewModel: ToolBarViewModel by viewModels()
+    private var actionBar: ActionBar? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (requireActivity() as AppCompatActivity).supportActionBar?.let {
-            toolBarViewModel.setActionBar(it)
-        }
+        actionBar = (requireActivity() as AppCompatActivity).supportActionBar
     }
 
     fun isEmptyLastQuerySearch(): Boolean = toolBarViewModel.isLastQuerySearchEmpty()
 
     fun setVisibleToolBar(isVisible: Boolean = true) {
-        toolBarViewModel.setVisibleToolbar(isVisible)
+        if (isVisible) {
+            actionBar?.show()
+        } else {
+            actionBar?.hide()
+        }
     }
 
     fun setVisibleHomeButton(isVisible: Boolean = true) {
-        toolBarViewModel.setVisibleHomeButton(isVisible)
+        actionBar?.setDisplayHomeAsUpEnabled(isVisible)
     }
 
     fun setupToolBar(toolbarMenu: Int) {
@@ -45,6 +49,7 @@ open class BaseFragment : Fragment() {
                 menuInflater.inflate(toolbarMenu, menu)
                 val searchMenuItem = menu.findItem(R.id.search_button)
                 val searchView = searchMenuItem?.actionView as SearchView
+                searchView.maxWidth = Integer.MAX_VALUE
 
                 viewLifecycleOwner.lifecycleScope.launch {
                     repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -70,8 +75,10 @@ open class BaseFragment : Fragment() {
                     override fun onQueryTextChange(newText: String?) = handleText(newText)
 
                     private fun handleText(text: String?): Boolean {
-                        text?.let { toolBarViewModel.setLastQuerySearch(it) }
-                        text?.let { filterSearchingItems(it) }
+                        if (toolBarViewModel.lastQuerySearch.value != text) {
+                            text?.let { toolBarViewModel.setLastQuerySearch(it) }
+                            text?.let { filterSearchingItems(it) }
+                        }
                         return true
                     }
                 })

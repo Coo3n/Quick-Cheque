@@ -15,6 +15,6 @@
         android:background="@color/white"
         android:icon="@drawable/icon_plus"
         android:title="ADD"
-        app:showAsAction="ifRoom|collapseActionView"
+        app:showAsAction="ifRoom"
         tools:ignore="HardcodedText" />
 </menu>

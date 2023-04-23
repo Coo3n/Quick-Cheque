@@ -14,7 +14,6 @@ class CreateScreenFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentCreateRoomBinding.inflate(inflater)
         return binding.root
     }
