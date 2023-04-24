@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray_light"
-    tools:context=".screens.auth_pages_fragment.LoginFragment">
+    tools:context=".presentation.screen.auth_pages_fragment.LoginFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout style="@style/auth_container">
 

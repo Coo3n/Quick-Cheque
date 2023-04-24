@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".screens.payment_cheque_fragments.PaymentChequeFragment">
+    tools:context=".presentation.screen.payment_cheque_fragments.PaymentChequeFragment">
 
     <View
         android:id="@+id/first_dividing_strip"

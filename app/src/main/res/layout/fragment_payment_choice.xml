@@ -5,7 +5,7 @@
     android:id="@+id/ChoicePaymentFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screens.payment_cheque_fragments.PaymentChequeFragment">
+    tools:context=".presentation.screen.payment_cheque_fragments.PaymentChequeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

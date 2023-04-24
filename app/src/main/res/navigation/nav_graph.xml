@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainScreenFragment"
-        android:name="com.example.quick_cheque.screens.main_pages_fragments.MainScreenFragment"
+        android:name="com.example.quick_cheque.presentation.screen.main_pages_fragments.MainScreenFragment"
         android:label="Комнаты"
         tools:layout="@layout/fragment_main_screen">
         <action
@@ -41,12 +41,12 @@
     </fragment>
     <fragment
         android:id="@+id/joinScreenFragment"
-        android:name="com.example.quick_cheque.screens.main_pages_fragments.JoinScreenFragment"
+        android:name="com.example.quick_cheque.presentation.screen.main_pages_fragments.JoinScreenFragment"
         android:label=" "
         tools:layout="@layout/fragment_join_screen" />
     <fragment
         android:id="@+id/profileScreenFragment"
-        android:name="com.example.quick_cheque.screens.main_pages_fragments.ProfileScreenFragment"
+        android:name="com.example.quick_cheque.presentation.screen.main_pages_fragments.ProfileScreenFragment"
         android:label=" "
         tools:layout="@layout/fragment_profile_screen">
         <action
@@ -59,7 +59,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.quick_cheque.screens.auth_pages_fragment.LoginFragment"
+        android:name="com.example.quick_cheque.presentation.screen.auth_pages_fragment.LoginFragment"
         android:label="Регистрация"
         tools:layout="@layout/fragment_login">
         <action
@@ -82,7 +82,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.quick_cheque.screens.auth_pages_fragment.RegisterFragment"
+        android:name="com.example.quick_cheque.presentation.screen.auth_pages_fragment.RegisterFragment"
         android:label="Регистрация"
         tools:layout="@layout/fragment_register">
         <action
@@ -106,7 +106,7 @@
     </fragment>
     <fragment
         android:id="@+id/choiceChequeFragment"
-        android:name="com.example.quick_cheque.screens.room_cheque_fragments.ChoiceChequeFragment"
+        android:name="com.example.quick_cheque.presentation.screen.room_cheque_fragments.ChoiceChequeFragment"
         android:label="Чек"
         tools:layout="@layout/fragment_choice_cheque">
         <action
@@ -119,7 +119,7 @@
     </fragment>
     <fragment
         android:id="@+id/choiceProductFragment"
-        android:name="com.example.quick_cheque.screens.room_cheque_fragments.ChoiceProductFragment"
+        android:name="com.example.quick_cheque.presentation.screen.room_cheque_fragments.ChoiceProductFragment"
         android:label="Чек"
         tools:layout="@layout/fragment_choice_product">
         <action
@@ -132,7 +132,7 @@
     </fragment>
     <fragment
         android:id="@+id/distributedProductsChequeFragments"
-        android:name="com.example.quick_cheque.screens.room_cheque_fragments.DistributedProductsChequeFragments"
+        android:name="com.example.quick_cheque.presentation.screen.room_cheque_fragments.DistributedProductsChequeFragments"
         android:label="Чек"
         tools:layout="@layout/fragment_distributed_products_cheque_fragments">
         <action
@@ -145,7 +145,7 @@
     </fragment>
     <fragment
         android:id="@+id/waitPaymentFragment"
-        android:name="com.example.quick_cheque.screens.payment_cheque_fragments.WaitPaymentFragment"
+        android:name="com.example.quick_cheque.presentation.screen.payment_cheque_fragments.WaitPaymentFragment"
         android:label="Оплата"
         tools:layout="@layout/fragment_wait_payment">
         <action
@@ -165,16 +165,16 @@
     </fragment>
     <fragment
         android:id="@+id/paymentChequeFragment"
-        android:name="com.example.quick_cheque.screens.payment_cheque_fragments.PaymentChequeFragment"
+        android:name="com.example.quick_cheque.presentation.screen.payment_cheque_fragments.PaymentChequeFragment"
         android:label="Оплата"
         tools:layout="@layout/fragment_payment_cheque" />
     <fragment
         android:id="@+id/fragmentSettings"
-        android:name="com.example.quick_cheque.screens.main_pages_fragments.FragmentSettings"
+        android:name="com.example.quick_cheque.presentation.screen.main_pages_fragments.FragmentSettings"
         android:label="Настройки" />
     <fragment
         android:id="@+id/choiceRoomFragment"
-        android:name="com.example.quick_cheque.screens.room_cheque_fragments.ChoiceRoomFragment"
+        android:name="com.example.quick_cheque.presentation.screen.room_cheque_fragments.ChoiceRoomFragment"
         android:label="Комнаты"
         tools:layout="@layout/fragment_choice_room">
         <action
@@ -187,6 +187,6 @@
     </fragment>
     <fragment
         android:id="@+id/createScreenFragment"
-        android:name="com.example.quick_cheque.screens.main_pages_fragments.CreateScreenFragment"
+        android:name="com.example.quick_cheque.presentation.screen.main_pages_fragments.CreateScreenFragment"
         android:label="CreateScreenFragment" />
 </navigation>
