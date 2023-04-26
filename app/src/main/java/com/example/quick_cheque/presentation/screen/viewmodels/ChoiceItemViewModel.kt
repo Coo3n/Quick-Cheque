@@ -1,6 +1,5 @@
 package com.example.quick_cheque.presentation.screen.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.quick_cheque.domain.model.ChoiceItem
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -70,55 +70,88 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
+            android:id="@+id/email_error"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/design_default_color_error"
+            app:layout_constraintEnd_toEndOf="@+id/fragment_register_email_field"
+            app:layout_constraintStart_toStartOf="@+id/fragment_register_email_field"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_register_email_field"
+            tools:text="Это неверный формат почты!" />
+
+        <TextView
+            android:id="@+id/password_text"
             style="@style/auth_field_text"
+            android:layout_marginTop="5dp"
             android:text="@string/fragments_auth_password_1"
             app:layout_constraintBottom_toTopOf="@+id/fragment_register_password_1_field"
             app:layout_constraintEnd_toEndOf="@+id/fragment_register_password_1_field"
-            app:layout_constraintStart_toStartOf="@+id/fragment_register_password_1_field" />
+            app:layout_constraintStart_toStartOf="@+id/fragment_register_password_1_field"
+            app:layout_constraintTop_toBottomOf="@+id/email_error" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/fragment_register_password_1_field"
             style="@style/auth_field_new"
-            app:endIconMode="password_toggle"
             android:layout_marginTop="40dp"
             android:layout_marginBottom="335dp"
+            app:endIconMode="password_toggle"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fragment_register_email_field">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/input_password"
                 style="@style/auth_field_text_new"
                 android:inputType="textPassword" />
-
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
+            android:id="@+id/password_error"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/design_default_color_error"
+            app:layout_constraintEnd_toEndOf="@+id/fragment_register_email_field"
+            app:layout_constraintStart_toStartOf="@+id/fragment_register_email_field"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_register_password_1_field"
+            tools:text="Это неверный формат пароля!" />
+
+        <TextView
+            android:id="@+id/repeated_text_input"
             style="@style/auth_field_text"
+            android:layout_marginTop="5dp"
             android:text="@string/fragments_auth_password_2"
             app:layout_constraintBottom_toTopOf="@+id/fragment_register_password_2_field"
             app:layout_constraintEnd_toEndOf="@+id/fragment_register_password_2_field"
-            app:layout_constraintStart_toStartOf="@+id/fragment_register_password_2_field" />
+            app:layout_constraintStart_toStartOf="@+id/fragment_register_password_2_field"
+            app:layout_constraintTop_toBottomOf="@+id/password_error" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/fragment_register_password_2_field"
             style="@style/auth_field_new"
             app:endIconMode="password_toggle"
-            android:layout_marginTop="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_register_password_1_field">
+            app:layout_constraintTop_toBottomOf="@+id/repeated_text_input">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/repeated_input_password"
                 style="@style/auth_field_text_new"
                 android:inputType="textPassword" />
-
         </com.google.android.material.textfield.TextInputLayout>
 
+        <TextView
+            android:id="@+id/repeated_password_error"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/design_default_color_error"
+            app:layout_constraintEnd_toEndOf="@+id/fragment_register_email_field"
+            app:layout_constraintStart_toStartOf="@+id/fragment_register_email_field"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_register_password_2_field"
+            tools:text="Пароли не сходятся!" />
+
         <Button
-            android:id="@+id/fragment_register_register_btn"
+            android:id="@+id/register_btn"
             style="@style/auth_bottom_btn"
             android:text="@string/fragments_auth_btn_register"
             app:layout_constraintBottom_toBottomOf="@id/fragment_register_background"
