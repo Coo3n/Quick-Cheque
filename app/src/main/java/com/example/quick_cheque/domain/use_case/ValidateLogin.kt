@@ -11,7 +11,7 @@ class ValidateLogin {
             )
         }
 
-        if (Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             return ValidationResult(
                 successful = false,
                 errorMessage = "Это неверный формат почты!"
