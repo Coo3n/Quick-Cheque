@@ -46,6 +46,9 @@ class RegisterFragment : BaseFragment() {
 
 
         binding.registerBtn.setOnClickListener {
+            registerViewModel.onEvent(RegisterFormEvent.EmailOnChanged(binding.fragmentRegisterEmailField.editText?.text.toString()))
+            registerViewModel.onEvent(RegisterFormEvent.PasswordOnChanged(binding.fragmentRegisterPassword1Field.editText?.text.toString()))
+            registerViewModel.onEvent(RegisterFormEvent.RepeatedPasswordChanged(binding.fragmentRegisterPassword2Field.editText?.text.toString()))
             registerViewModel.onEvent(RegisterFormEvent.Submit)
 
             if (!registerViewModel.hasErrorInput()) {

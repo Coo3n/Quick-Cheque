@@ -46,7 +46,7 @@ class LoginFragment : BaseFragment() {
 
         binding.fragmentLoginEmailField.editText?.let {
             RxTextView.textChanges(it)
-                .debounce(500, TimeUnit.MILLISECONDS)
+                .debounce(200, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ text ->
                     val processedText = text.trim().toString().lowercase()
