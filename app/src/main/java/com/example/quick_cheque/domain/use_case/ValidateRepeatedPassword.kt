@@ -9,6 +9,13 @@ class ValidateRepeatedPassword {
             )
         }
 
+        if (repeatedPassword.isBlank()) {
+            return ValidationResult(
+                successful = false,
+                errorMessage  = "Пароль не может быть пустым!"
+            )
+        }
+
         return ValidationResult(
             successful = true
         )

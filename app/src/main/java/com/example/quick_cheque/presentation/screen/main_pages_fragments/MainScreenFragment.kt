@@ -1,9 +1,11 @@
 package com.example.quick_cheque.presentation.screen.main_pages_fragments
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.fragment.findNavController
 import com.example.quick_cheque.R
 import com.example.quick_cheque.databinding.FragmentMainScreenBinding
@@ -28,13 +30,25 @@ class MainScreenFragment : BaseFragment() {
         setVisibleHomeButton(false)
         setVisibleToolBar()
 
-        binding.rectangle1.setOnClickListener {
-            findNavController().navigate(R.id.action_mainScreenFragment_to_choiceRoomFragment)
-        }
+//        val pickImage = registerForActivityResult(
+//            ActivityResultContracts.GetContent()
+//        ) { uri: Uri? ->
+//            uri?.port?.let { binding.tempImage.setImageResource(it) }
+//        }
+//
+//        binding.rectangle1.setOnClickListener { pickImage.launch("image/*") }
 
-        activity?.parent?.findViewById<BottomNavigationView>(R.id.main_bottom_nav)?.visibility =
-            View.INVISIBLE
+        findNavController().navigate(R.id.action_mainScreenFragment_to_choiceRoomFragment)
+
+        activity?.parent?.findViewById<BottomNavigationView>(
+            R.id.main_bottom_nav
+        )?.visibility = View.INVISIBLE
     }
+
+    private fun takePicture() {
+
+    }
+
 
     //secret function Tsss...
     private fun initYandexADS() {

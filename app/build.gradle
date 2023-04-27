@@ -68,7 +68,9 @@ dependencies {
 
     //Dagger2
     implementation 'com.google.dagger:dagger:2.38'
-    annotationProcessor  'com.google.dagger:dagger-compiler:2.38'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.38'
+    implementation 'com.google.dagger:dagger-android:2.11'
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.11'
 
     // Tests
     testImplementation 'junit:junit:4.13.2'

@@ -24,26 +24,16 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-        <action
-            android:id="@+id/action_mainScreenFragment_to_profileScreenFragment"
-            app:destination="@id/profileScreenFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-        <action
-            android:id="@+id/action_mainScreenFragment_to_joinScreenFragment"
-            app:destination="@id/joinScreenFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/joinScreenFragment"
         android:name="com.example.quick_cheque.presentation.screen.main_pages_fragments.JoinScreenFragment"
         android:label=" "
-        tools:layout="@layout/fragment_join_screen" />
+        tools:layout="@layout/fragment_join_screen" >
+        <action
+            android:id="@+id/action_joinScreenFragment_to_createScreenFragment"
+            app:destination="@id/createScreenFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileScreenFragment"
         android:name="com.example.quick_cheque.presentation.screen.main_pages_fragments.ProfileScreenFragment"
@@ -56,6 +46,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_profileScreenFragment_to_createScreenFragment"
+            app:destination="@id/createScreenFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -188,5 +181,12 @@
     <fragment
         android:id="@+id/createScreenFragment"
         android:name="com.example.quick_cheque.presentation.screen.main_pages_fragments.CreateScreenFragment"
-        android:label="CreateScreenFragment" />
+        android:label="CreateScreenFragment" >
+        <action
+            android:id="@+id/action_createScreenFragment_to_joinScreenFragment"
+            app:destination="@id/joinScreenFragment" />
+        <action
+            android:id="@+id/action_createScreenFragment_to_profileScreenFragment"
+            app:destination="@id/profileScreenFragment" />
+    </fragment>
 </navigation>

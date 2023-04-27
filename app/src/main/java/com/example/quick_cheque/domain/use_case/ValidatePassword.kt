@@ -9,7 +9,7 @@ class ValidatePassword {
             )
         }
 
-        if (password.length > 8) {
+        if (password.length < 8) {
             return ValidationResult(
                 successful = false,
                 errorMessage = "Пароль должен быть больше 8 символов!"

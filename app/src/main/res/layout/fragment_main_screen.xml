@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="?attr/actionBarSize"
     android:background="@color/white"
+    android:paddingTop="?attr/actionBarSize"
     tools:context=".presentation.screen.main_pages_fragments.MainScreenFragment">
 
     <FrameLayout
@@ -22,6 +21,12 @@
             android:layout_gravity="center"
             android:src="@drawable/icon_plus" />
     </FrameLayout>
+
+    <ImageView
+        android:id="@+id/temp_image"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:scaleType="centerCrop" />
 
     <com.yandex.mobile.ads.banner.BannerAdView
         android:id="@+id/ads"

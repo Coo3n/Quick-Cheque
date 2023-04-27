@@ -742,5 +742,4 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
         binding = null
         super.onDestroy()
     }
-
 }

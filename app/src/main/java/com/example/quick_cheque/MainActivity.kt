@@ -2,9 +2,11 @@ package com.example.quick_cheque
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.NavHost
+import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.quick_cheque.databinding.ActivityMainBinding
@@ -44,10 +46,22 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.joinScreenFragment -> bottomNavController.visibility = View.VISIBLE
-                R.id.profileScreenFragment -> bottomNavController.visibility = View.VISIBLE
-                R.id.mainScreenFragment -> bottomNavController.visibility = View.VISIBLE
-                R.id.fragmentSettings -> bottomNavController.visibility = View.VISIBLE
+                R.id.joinScreenFragment -> {
+                    navController.popBackStack(R.id.joinScreenFragment, false)
+                    bottomNavController.visibility = View.VISIBLE
+                }
+                R.id.profileScreenFragment -> {
+                    navController.popBackStack(R.id.profileScreenFragment, false)
+                    bottomNavController.visibility = View.VISIBLE
+                }
+                R.id.mainScreenFragment -> {
+                    navController.popBackStack(R.id.mainScreenFragment, false)
+                    bottomNavController.visibility = View.VISIBLE
+                }
+                R.id.fragmentSettings -> {
+                    navController.popBackStack(R.id.fragmentSettings, false)
+                    bottomNavController.visibility = View.VISIBLE
+                }
                 else -> bottomNavController.visibility = View.GONE
             }
         }
