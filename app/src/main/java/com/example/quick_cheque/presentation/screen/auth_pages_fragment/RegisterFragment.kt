@@ -63,9 +63,9 @@ class RegisterFragment : BaseFragment() {
         }
 
         binding.switchButtonLogin.setOnClickListener {
-            findNavController().navigate(
-                R.id.action_registerFragment_to_loginFragment
-            )
+//            findNavController().navigate(
+//                R.id.action_registerFragment_to_loginFragment
+//            )
         }
 
         binding.fragmentRegisterEmailField.editText?.textChanges(
