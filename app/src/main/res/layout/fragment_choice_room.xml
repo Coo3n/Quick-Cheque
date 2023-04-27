@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.screen.rooms_fragment.ChoiceRoomFragment">
-    >
+    tools:context=".presentation.screen.room_cheque_fragments.ChoiceRoomFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cheque_List"
