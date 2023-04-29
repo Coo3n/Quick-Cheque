@@ -13,6 +13,7 @@ import com.example.quick_cheque.databinding.FragmentChoiceRoomBinding
 import com.example.quick_cheque.domain.model.*
 import com.example.quick_cheque.presentation.screen.BaseFragment
 import com.example.quick_cheque.presentation.screen.viewmodels.ChoiceItemViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.math.BigDecimal
 
 class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
@@ -36,15 +37,25 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setVisibleHomeButton(false)
         setVisibleToolBar()
         setupToolBar(R.menu.menu_with_search)
 
-        choiceItemViewModel.setListItems(getChequeList())
+        choiceItemViewModel.setListItems(mutableListOf())
+
+        if (choiceItemViewModel.listItems.value.size != 0){
+            binding?.rectangle1?.visibility = View.GONE
+        }
+
         if (isEmptyLastQuerySearch()) {
-            choiceItemViewModel.setFilteredListItems(getChequeList())
+            choiceItemViewModel.setFilteredListItems(mutableListOf())
         }
 
         setupRoomRecyclerViewList()
+
+        activity?.findViewById<BottomNavigationView>(
+            R.id.main_bottom_nav
+        )?.visibility = View.VISIBLE
     }
 
     private fun setupRoomRecyclerViewList() {
@@ -75,7 +86,7 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
             RoomListItem(
                 room = Room(
                     id = 1,
-                    title = "Крутецкая компания",
+                    title = "Крутецкая",
                     host = "Никитос",
                     membersRoom = mutableListOf(
                         User("Kolya", R.drawable.person_filled),

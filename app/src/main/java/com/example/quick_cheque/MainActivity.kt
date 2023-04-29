@@ -54,8 +54,12 @@ class MainActivity : AppCompatActivity() {
                     navController.popBackStack(R.id.profileScreenFragment, false)
                     bottomNavController.visibility = View.VISIBLE
                 }
-                R.id.mainScreenFragment -> {
-                    navController.popBackStack(R.id.mainScreenFragment, false)
+                R.id.choiceRoomFragment -> {
+                    navController.popBackStack(R.id.choiceRoomFragment, false)
+                    bottomNavController.visibility = View.VISIBLE
+                }
+                R.id.createScreenFragment -> {
+                    navController.popBackStack(R.id.createScreenFragment, false)
                     bottomNavController.visibility = View.VISIBLE
                 }
                 R.id.fragmentSettings -> {
