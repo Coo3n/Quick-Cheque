@@ -2,17 +2,18 @@ package com.example.quick_cheque.presentation.screen.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.quick_cheque.domain.use_case.ValidateLogin
-import com.example.quick_cheque.domain.use_case.ValidatePassword
-import com.example.quick_cheque.domain.use_case.ValidateRepeatedPassword
+import com.example.quick_cheque.domain.use_case.ValidateLoginUseCase
+import com.example.quick_cheque.domain.use_case.ValidatePasswordUseCase
+import com.example.quick_cheque.domain.use_case.ValidateRepeatedPasswordUseCase
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class RegisterViewModel(
-    private val validateEmail: ValidateLogin = ValidateLogin(),
-    private val validatePassword: ValidatePassword = ValidatePassword(),
-    private val validateRepeatedPassword: ValidateRepeatedPassword = ValidateRepeatedPassword(),
+class RegisterViewModel @Inject constructor(
+    private val validateEmail: ValidateLoginUseCase,
+    private val validatePassword: ValidatePasswordUseCase,
+    private val validateRepeatedPassword: ValidateRepeatedPasswordUseCase,
 ) : ViewModel() {
     var state = RegisterState()
 
