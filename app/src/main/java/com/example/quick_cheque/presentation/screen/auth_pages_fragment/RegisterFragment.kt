@@ -69,7 +69,7 @@ class RegisterFragment : BaseFragment() {
 
             if (!registerViewModel.hasErrorInput()) {
                 findNavController().navigate(
-                    R.id.action_registerFragment_to_mainScreenFragment
+                    R.id.action_registerFragment_to_choiceRoomFragment
                 )
             }
 

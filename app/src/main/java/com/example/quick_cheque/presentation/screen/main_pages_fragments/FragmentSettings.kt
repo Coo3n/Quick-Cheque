@@ -28,6 +28,7 @@ class FragmentSettings : BaseFragment() {
         setVisibleToolBar()
         setVisibleHomeButton(false)
 
+
         binding.languageRadiogroupEn.setOnClickListener {
             val locale = Locale("en") // выбираем язык
             Locale.setDefault(locale) // устанавливаем его как дефолтный

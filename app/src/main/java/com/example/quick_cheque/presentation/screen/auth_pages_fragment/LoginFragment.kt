@@ -34,7 +34,7 @@ class LoginFragment : BaseFragment() {
 
         binding.loginBtn.setOnClickListener {
             findNavController().navigate(
-                R.id.action_loginFragment_to_mainScreenFragment
+                R.id.action_loginFragment_to_choiceRoomFragment
             )
         }
 
