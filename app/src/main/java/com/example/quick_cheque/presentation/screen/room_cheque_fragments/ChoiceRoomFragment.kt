@@ -51,14 +51,14 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
         setVisibleToolBar()
         setupToolBar(R.menu.menu_with_search)
 
-        choiceItemViewModel.setListItems(mutableListOf())
+        choiceItemViewModel.setListItems(getChequeList())
 
         if (choiceItemViewModel.listItems.value.size != 0){
             binding?.rectangle1?.visibility = View.GONE
         }
 
         if (isEmptyLastQuerySearch()) {
-            choiceItemViewModel.setFilteredListItems(mutableListOf())
+            choiceItemViewModel.setFilteredListItems(getChequeList())
         }
 
         setupRoomRecyclerViewList()

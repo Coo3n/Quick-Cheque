@@ -1,9 +1,12 @@
 package com.example.quick_cheque
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavController
 import androidx.navigation.NavHost
 import androidx.navigation.findNavController
@@ -12,6 +15,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.quick_cheque.databinding.ActivityMainBinding
 import com.example.quick_cheque.di.AppComponent
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -20,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
