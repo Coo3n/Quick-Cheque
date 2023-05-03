@@ -14,7 +14,6 @@ import com.example.quick_cheque.domain.model.DistributedChequeUserItem
 import com.example.quick_cheque.domain.model.Product
 import com.example.quick_cheque.domain.model.User
 import com.example.quick_cheque.presentation.screen.BaseFragment
-import com.example.quick_cheque.presentation.screen.viewmodels.ChoiceItemViewModel
 import java.math.BigDecimal
 
 class DistributedProductsChequeFragments : BaseFragment() {

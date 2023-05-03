@@ -16,7 +16,6 @@ import com.example.quick_cheque.domain.model.Cheque
 import com.example.quick_cheque.domain.model.ChoiceItem
 import com.example.quick_cheque.domain.model.Product
 import com.example.quick_cheque.presentation.screen.BaseFragment
-import com.example.quick_cheque.presentation.screen.viewmodels.ChoiceItemViewModel
 
 
 class ChoiceProductFragment : BaseFragment() {

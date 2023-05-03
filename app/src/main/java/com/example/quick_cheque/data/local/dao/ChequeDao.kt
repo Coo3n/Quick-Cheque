@@ -1,20 +1,21 @@
 package com.example.quick_cheque.data.local.dao
 
 import androidx.room.*
+import com.example.quick_cheque.data.local.entity.ChequeEntity
 import com.example.quick_cheque.domain.model.Cheque
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ChequeDao {
     @Query("SELECT * FROM cheque")
-    suspend fun getCheques(): Flow<List<Cheque>>?
+    fun getCheques(): List<ChequeEntity>
 
     @Query("SELECT * FROM cheque WHERE id = :id")
-    suspend fun getChequeById(id: Int): Cheque?
+    fun getChequeById(id: Int): ChequeEntity?
 
-    @Insert(entity = Cheque::class, onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCheque(cheque: Cheque)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertCheque(cheque: ChequeEntity)
 
-    @Delete(entity = Cheque::class)
-    suspend fun deleteCheque(cheque: Cheque)
+    @Delete
+    fun deleteCheque(cheque: ChequeEntity)
 }

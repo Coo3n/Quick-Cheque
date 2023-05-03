@@ -29,7 +29,7 @@ class MainScreenFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         setVisibleHomeButton(false)
         setVisibleToolBar()
-
+//        requireContext().contentResolver.
 //        val pickImage = registerForActivityResult(
 //            ActivityResultContracts.GetContent()
 //        ) { uri: Uri? ->
@@ -38,7 +38,7 @@ class MainScreenFragment : BaseFragment() {
 //
 //        binding.rectangle1.setOnClickListener { pickImage.launch("image/*") }
 
-        findNavController().navigate(R.id.action_mainScreenFragment_to_choiceRoomFragment)
+
 
         activity?.parent?.findViewById<BottomNavigationView>(
             R.id.main_bottom_nav
@@ -48,7 +48,6 @@ class MainScreenFragment : BaseFragment() {
     private fun takePicture() {
 
     }
-
 
     //secret function Tsss...
     private fun initYandexADS() {

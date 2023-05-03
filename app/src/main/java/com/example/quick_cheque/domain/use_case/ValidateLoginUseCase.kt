@@ -2,7 +2,7 @@ package com.example.quick_cheque.domain.use_case
 
 import android.util.Patterns
 
-class ValidateLogin {
+class ValidateLoginUseCase {
     fun execute(email: String): ValidationResult {
         if (email.isBlank()) {
             return ValidationResult(

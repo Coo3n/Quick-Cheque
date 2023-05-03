@@ -7,22 +7,27 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.quick_cheque.MyApp
 import com.example.quick_cheque.R
 import com.example.quick_cheque.databinding.FragmentRegisterBinding
+import com.example.quick_cheque.di.AppComponent
 import com.example.quick_cheque.presentation.screen.BaseFragment
-import com.example.quick_cheque.presentation.screen.viewmodels.RegisterFormEvent
-import com.example.quick_cheque.presentation.screen.viewmodels.RegisterViewModel
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 class RegisterFragment : BaseFragment() {
     private lateinit var binding: FragmentRegisterBinding
-    private val registerViewModel: RegisterViewModel by viewModels()
+
+    @Inject
+    lateinit var registerViewModelFactory: RegisterViewModelFactory
+    private lateinit var registerViewModel: RegisterViewModel
+
     private val disposeBag = CompositeDisposable()
 
     companion object {
@@ -31,6 +36,15 @@ class RegisterFragment : BaseFragment() {
             PASSWORD_CHANGED,
             REPEATED_PASSWORD_CHANGED
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (requireActivity().application as MyApp).appComponent.injectRegisterFragment(this)
+        registerViewModel = ViewModelProvider(
+            this,
+            registerViewModelFactory
+        )[RegisterViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -43,14 +57,14 @@ class RegisterFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        initLastDataInTextField()
 
         binding.registerBtn.setOnClickListener {
             registerViewModel.onEvent(RegisterFormEvent.Submit)
 
             if (!registerViewModel.hasErrorInput()) {
                 findNavController().navigate(
-                    R.id.action_registerFragment_to_mainScreenFragment
+                    R.id.action_registerFragment_to_choiceRoomFragment
                 )
             }
 
@@ -79,6 +93,15 @@ class RegisterFragment : BaseFragment() {
         binding.fragmentRegisterPassword2Field.editText?.textChanges(
             typeEvent = RegisterEvent.REPEATED_PASSWORD_CHANGED
         )?.addTo(disposeBag)
+    }
+
+    private fun initLastDataInTextField() = with(binding) {
+        fragmentRegisterEmailField.editText?.setText(registerViewModel.getLastEmailText())
+        fragmentRegisterPassword1Field.editText?.setText(registerViewModel.getLastPassword())
+        fragmentRegisterPassword2Field.editText?.setText(registerViewModel.getLastRepeatedPassword())
+        emailError.text = registerViewModel.getLastEmailErrorText()
+        passwordError.text = registerViewModel.getLastPasswordErrorText()
+        repeatedPasswordError.text = registerViewModel.getLastRepeatedPasswordErrorText()
     }
 
     private fun updateErrorMessage(errorView: TextView, error: String?) {

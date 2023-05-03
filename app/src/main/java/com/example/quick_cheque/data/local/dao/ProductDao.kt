@@ -1,20 +1,21 @@
 package com.example.quick_cheque.data.local.dao
 
 import androidx.room.*
+import com.example.quick_cheque.data.local.entity.ProductEntity
 import com.example.quick_cheque.domain.model.Product
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ProductDao {
     @Query("SELECT * FROM product")
-    suspend fun getProducts(): Flow<List<Product>>?
+    fun getProducts(): List<ProductEntity>
 
     @Query("SELECT * FROM product WHERE id = :id")
-    suspend fun getProductById(id: Int): Product?
+    fun getProductById(id: Int): ProductEntity?
 
-    @Insert(entity = Product::class, onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertProduct(product: Product)
+    @Insert(entity = ProductEntity::class, onConflict = OnConflictStrategy.REPLACE)
+    fun insertProduct(product: ProductEntity)
 
-    @Delete(entity = Product::class)
-    suspend fun deleteProduct(product: Product)
+    @Delete(entity = ProductEntity::class)
+    fun deleteProduct(product: ProductEntity)
 }
