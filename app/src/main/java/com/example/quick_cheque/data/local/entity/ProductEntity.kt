@@ -5,12 +5,10 @@ import androidx.room.PrimaryKey
 import com.example.quick_cheque.domain.model.User
 import java.math.BigDecimal
 
-@Entity
+@Entity(tableName = "product")
 data class ProductEntity(
+    @PrimaryKey(autoGenerate = true) val id: Int? = null,
     var titleProduct: String,
-    var price: BigDecimal,
+    var price: Double,
     var count: Int,
-    var membersProduct: MutableList<User> = mutableListOf(),
-    @PrimaryKey
-    val id: Int? = null
 )

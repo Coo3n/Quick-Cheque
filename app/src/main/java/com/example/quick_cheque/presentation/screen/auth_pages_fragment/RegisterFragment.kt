@@ -1,28 +1,39 @@
 package com.example.quick_cheque.presentation.screen.auth_pages_fragment
 
+import android.app.Application
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.RadioButton
 import android.widget.TextView
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.quick_cheque.MyApp
 import com.example.quick_cheque.R
 import com.example.quick_cheque.databinding.FragmentRegisterBinding
+import com.example.quick_cheque.di.AppComponent
 import com.example.quick_cheque.presentation.screen.BaseFragment
 import com.example.quick_cheque.presentation.screen.viewmodels.RegisterFormEvent
 import com.example.quick_cheque.presentation.screen.viewmodels.RegisterViewModel
+import com.example.quick_cheque.presentation.screen.viewmodels.RegisterViewModelFactory
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 class RegisterFragment : BaseFragment() {
     private lateinit var binding: FragmentRegisterBinding
-    private val registerViewModel: RegisterViewModel by viewModels()
+
+    @Inject
+    lateinit var registerViewModelFactory: RegisterViewModelFactory
+    private lateinit var registerViewModel: RegisterViewModel
+
     private val disposeBag = CompositeDisposable()
 
     companion object {
@@ -31,6 +42,15 @@ class RegisterFragment : BaseFragment() {
             PASSWORD_CHANGED,
             REPEATED_PASSWORD_CHANGED
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (requireActivity().application as MyApp).appComponent.injectRegisterFragment(this)
+        registerViewModel = ViewModelProvider(
+            this,
+            registerViewModelFactory
+        )[RegisterViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -43,7 +63,6 @@ class RegisterFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         binding.registerBtn.setOnClickListener {
             registerViewModel.onEvent(RegisterFormEvent.Submit)
@@ -107,6 +126,9 @@ class RegisterFragment : BaseFragment() {
                 Log.e("MyTag", "Error: $error")
             })
     }
+
+    fun RegisterFragment.getAppComponent(): AppComponent =
+        (requireContext() as MyApp).appComponent
 
     private fun Disposable.addTo(disposeBag: CompositeDisposable): Disposable {
         disposeBag.add(this)

@@ -4,10 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.quick_cheque.MyApp
 import com.example.quick_cheque.R
+import com.example.quick_cheque.data.local.QuickChequeDataBase
+import com.example.quick_cheque.data.local.dao.RoomDao
+import com.example.quick_cheque.data.local.entity.RoomEntity
 import com.example.quick_cheque.presentation.adapter.ListRoomAdapter
 import com.example.quick_cheque.databinding.FragmentChoiceRoomBinding
 import com.example.quick_cheque.domain.model.*
@@ -15,6 +20,7 @@ import com.example.quick_cheque.presentation.screen.BaseFragment
 import com.example.quick_cheque.presentation.screen.viewmodels.ChoiceItemViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.math.BigDecimal
+import javax.inject.Inject
 
 class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
     private var binding: FragmentChoiceRoomBinding? = null
@@ -26,11 +32,15 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
     private lateinit var roomRecyclerViewList: RecyclerView
     private lateinit var roomChequeAdapter: ListRoomAdapter
 
+    @Inject
+    lateinit var quickChequeDataBase: QuickChequeDataBase
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        (requireActivity().application as MyApp).appComponent.injectChoiceRoomFragment(this)
         binding = FragmentChoiceRoomBinding.inflate(inflater)
         return _binding.root
     }
@@ -56,6 +66,17 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
         activity?.findViewById<BottomNavigationView>(
             R.id.main_bottom_nav
         )?.visibility = View.VISIBLE
+    }
+
+    override fun handleAddButtonClicked() {
+        Toast.makeText(requireContext(), "sdsd", Toast.LENGTH_SHORT).show()
+
+        quickChequeDataBase.roomDao().insertRoom(
+            RoomEntity(
+                titleRoom = "ilya",
+                ownerId = 123
+            )
+        )
     }
 
     private fun setupRoomRecyclerViewList() {

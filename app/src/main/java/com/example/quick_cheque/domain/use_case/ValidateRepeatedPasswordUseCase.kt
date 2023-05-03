@@ -1,6 +1,6 @@
 package com.example.quick_cheque.domain.use_case
 
-class ValidateRepeatedPassword {
+class ValidateRepeatedPasswordUseCase {
     fun execute(password: String, repeatedPassword: String): ValidationResult {
         if (password != repeatedPassword) {
             return ValidationResult(

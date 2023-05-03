@@ -1,11 +1,11 @@
 package com.example.quick_cheque.domain.use_case
 
-class ValidatePassword {
+class ValidatePasswordUseCase {
     fun execute(password: String): ValidationResult {
         if (password.isBlank()) {
             return ValidationResult(
                 successful = false,
-                errorMessage  = "Пароль не может быть пустым!"
+                errorMessage = "Пароль не может быть пустым!"
             )
         }
 

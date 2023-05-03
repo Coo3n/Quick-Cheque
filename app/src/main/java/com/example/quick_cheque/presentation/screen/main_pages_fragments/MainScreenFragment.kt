@@ -29,7 +29,7 @@ class MainScreenFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         setVisibleHomeButton(false)
         setVisibleToolBar()
-
+//        requireContext().contentResolver.
 //        val pickImage = registerForActivityResult(
 //            ActivityResultContracts.GetContent()
 //        ) { uri: Uri? ->

@@ -10,11 +10,11 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.quick_cheque.databinding.ActivityMainBinding
+import com.example.quick_cheque.di.AppComponent
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-
     private lateinit var navController: NavController
     private lateinit var bottomNavController: BottomNavigationView
 
@@ -22,6 +22,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        (application as MyApp).appComponent.injectMainActivity(this)
 
         bottomNavController = binding.mainBottomNav
 
