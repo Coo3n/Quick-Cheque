@@ -10,11 +10,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.quick_cheque.R
 import com.example.quick_cheque.databinding.FragmentLoginBinding
 import com.example.quick_cheque.presentation.screen.BaseFragment
-import com.example.quick_cheque.presentation.screen.viewmodels.RegisterFormEvent
-import com.example.quick_cheque.presentation.screen.viewmodels.RegisterViewModel
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
 class LoginFragment : BaseFragment() {

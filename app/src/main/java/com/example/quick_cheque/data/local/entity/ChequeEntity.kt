@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "cheque")
 data class ChequeEntity(
-    @PrimaryKey(autoGenerate = true) val id: Int? = null,
+    @PrimaryKey val id: Int? = null,
     val roomId: Int,
     val ownerId: Int,
     val titleCheque: String

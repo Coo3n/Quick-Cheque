@@ -1,15 +1,12 @@
 package com.example.quick_cheque.presentation.screen.auth_pages_fragment
 
-import android.app.Application
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.RadioButton
 import android.widget.TextView
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.quick_cheque.MyApp
@@ -17,9 +14,6 @@ import com.example.quick_cheque.R
 import com.example.quick_cheque.databinding.FragmentRegisterBinding
 import com.example.quick_cheque.di.AppComponent
 import com.example.quick_cheque.presentation.screen.BaseFragment
-import com.example.quick_cheque.presentation.screen.viewmodels.RegisterFormEvent
-import com.example.quick_cheque.presentation.screen.viewmodels.RegisterViewModel
-import com.example.quick_cheque.presentation.screen.viewmodels.RegisterViewModelFactory
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -63,6 +57,7 @@ class RegisterFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initLastDataInTextField()
 
         binding.registerBtn.setOnClickListener {
             registerViewModel.onEvent(RegisterFormEvent.Submit)
@@ -100,6 +95,15 @@ class RegisterFragment : BaseFragment() {
         )?.addTo(disposeBag)
     }
 
+    private fun initLastDataInTextField() = with(binding) {
+        fragmentRegisterEmailField.editText?.setText(registerViewModel.getLastEmailText())
+        fragmentRegisterPassword1Field.editText?.setText(registerViewModel.getLastPassword())
+        fragmentRegisterPassword2Field.editText?.setText(registerViewModel.getLastRepeatedPassword())
+        emailError.text = registerViewModel.getLastEmailErrorText()
+        passwordError.text = registerViewModel.getLastPasswordErrorText()
+        repeatedPasswordError.text = registerViewModel.getLastRepeatedPasswordErrorText()
+    }
+
     private fun updateErrorMessage(errorView: TextView, error: String?) {
         errorView.visibility = if (error != null) View.VISIBLE else View.INVISIBLE
         errorView.text = error
@@ -126,9 +130,6 @@ class RegisterFragment : BaseFragment() {
                 Log.e("MyTag", "Error: $error")
             })
     }
-
-    fun RegisterFragment.getAppComponent(): AppComponent =
-        (requireContext() as MyApp).appComponent
 
     private fun Disposable.addTo(disposeBag: CompositeDisposable): Disposable {
         disposeBag.add(this)

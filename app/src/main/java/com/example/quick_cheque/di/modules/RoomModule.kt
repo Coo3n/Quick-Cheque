@@ -6,6 +6,7 @@ import com.example.quick_cheque.data.local.QuickChequeDataBase
 import com.example.quick_cheque.data.local.dao.ChequeDao
 import com.example.quick_cheque.data.local.dao.ProductDao
 import com.example.quick_cheque.data.local.dao.RoomDao
+import com.example.quick_cheque.data.repository.RoomRepositoryImpl
 import dagger.Module
 import dagger.Provides
 
@@ -15,7 +16,6 @@ class RoomModule {
     fun provideRoomDao(quickChequeDataBase: QuickChequeDataBase): RoomDao {
         return quickChequeDataBase.roomDao()
     }
-
     @Provides
     fun provideProductDao(quickChequeDataBase: QuickChequeDataBase): ProductDao {
         return quickChequeDataBase.productDao()
@@ -27,11 +27,12 @@ class RoomModule {
     }
 
     @Provides
+    fun provideRoomRepositoryImpl(roomDao: RoomDao): RoomRepositoryImpl {
+        return RoomRepositoryImpl(roomDao)
+    }
+
+    @Provides
     fun provideQuickChequeDataBase(context: Context): QuickChequeDataBase {
-        return Room.databaseBuilder(
-            context,
-            QuickChequeDataBase::class.java,
-            "QuickChequeDataBase"
-        ).allowMainThreadQueries().build()
+        return QuickChequeDataBase.getQuickChequeDataBaseInstance(context)
     }
 }

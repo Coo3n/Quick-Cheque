@@ -14,7 +14,6 @@ import com.example.quick_cheque.presentation.adapter.ListExpandableChoiceChequeA
 import com.example.quick_cheque.databinding.FragmentChoiceChequeBinding
 import com.example.quick_cheque.domain.model.*
 import com.example.quick_cheque.presentation.screen.BaseFragment
-import com.example.quick_cheque.presentation.screen.viewmodels.ChoiceItemViewModel
 import kotlinx.coroutines.launch
 import java.math.BigDecimal
 

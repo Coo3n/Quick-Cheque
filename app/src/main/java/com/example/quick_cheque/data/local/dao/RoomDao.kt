@@ -14,9 +14,9 @@ interface RoomDao {
     @Query("SELECT * FROM room WHERE id = :id")
     fun getRoomById(id: Int): RoomEntity?
 
-//    @Transaction
-//    @Query("SELECT* FROM room WHERE id = :id")
-//    fun getRoomWithCheques(id: Int): List<RoomEntityWithCheques>
+    @Transaction
+    @Query("SELECT* FROM room WHERE id = :id")
+    fun getRoomWithCheques(id: Int): List<RoomEntityWithCheques>
 
     @Insert(entity = RoomEntity::class, onConflict = OnConflictStrategy.REPLACE)
     fun insertRoom(room: RoomEntity)

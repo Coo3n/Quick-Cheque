@@ -52,9 +52,7 @@ open class ListRoomAdapter(private val clickable: Clickable) :
     ) : RecyclerView.ViewHolder(binding.root) {
         private lateinit var innerListMembersChequeAdapter: InnerListMembersChequeAdapter
         fun bind(room: RoomListItem) = with(binding) {
-            changeExpandencity(
-                room.isExpanded
-            )
+            changeExpandencity(room.isExpanded)
 
             with(room.room) {
                 roomTitle.text = title

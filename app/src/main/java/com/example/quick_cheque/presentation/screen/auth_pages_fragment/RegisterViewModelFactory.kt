@@ -1,4 +1,4 @@
-package com.example.quick_cheque.presentation.screen.viewmodels
+package com.example.quick_cheque.presentation.screen.auth_pages_fragment
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

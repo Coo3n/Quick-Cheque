@@ -1,4 +1,4 @@
-package com.example.quick_cheque.presentation.screen.viewmodels
+package com.example.quick_cheque.presentation.screen.room_cheque_fragments
 
 import androidx.lifecycle.ViewModel
 import com.example.quick_cheque.domain.model.ChoiceItem

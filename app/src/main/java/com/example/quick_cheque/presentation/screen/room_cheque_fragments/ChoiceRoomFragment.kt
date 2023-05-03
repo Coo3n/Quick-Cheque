@@ -4,20 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.PopupMenu
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quick_cheque.MyApp
 import com.example.quick_cheque.R
-import com.example.quick_cheque.data.local.QuickChequeDataBase
-import com.example.quick_cheque.data.local.dao.RoomDao
-import com.example.quick_cheque.data.local.entity.RoomEntity
+import com.example.quick_cheque.data.mapper.toRoom
+import com.example.quick_cheque.data.mapper.toRoomListItem
+import com.example.quick_cheque.data.repository.RoomRepositoryImpl
 import com.example.quick_cheque.presentation.adapter.ListRoomAdapter
 import com.example.quick_cheque.databinding.FragmentChoiceRoomBinding
 import com.example.quick_cheque.domain.model.*
 import com.example.quick_cheque.presentation.screen.BaseFragment
-import com.example.quick_cheque.presentation.screen.viewmodels.ChoiceItemViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.math.BigDecimal
 import javax.inject.Inject
@@ -33,7 +32,7 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
     private lateinit var roomChequeAdapter: ListRoomAdapter
 
     @Inject
-    lateinit var quickChequeDataBase: QuickChequeDataBase
+    lateinit var roomRepositoryImpl: RoomRepositoryImpl
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,14 +50,18 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
         setVisibleToolBar()
         setupToolBar(R.menu.menu_with_search)
 
-        choiceItemViewModel.setListItems(mutableListOf())
+        val list = roomRepositoryImpl.getRooms().map {
+            it.toRoom().toRoomListItem()
+        }.toMutableList()
 
-        if (choiceItemViewModel.listItems.value.size != 0){
+        choiceItemViewModel.setListItems(list as MutableList<ChoiceItem>)
+
+        if (choiceItemViewModel.listItems.value.size != 0) {
             binding?.rectangle1?.visibility = View.GONE
         }
 
         if (isEmptyLastQuerySearch()) {
-            choiceItemViewModel.setFilteredListItems(mutableListOf())
+            choiceItemViewModel.setFilteredListItems(list as MutableList<ChoiceItem>)
         }
 
         setupRoomRecyclerViewList()
@@ -69,14 +72,30 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
     }
 
     override fun handleAddButtonClicked() {
-        Toast.makeText(requireContext(), "sdsd", Toast.LENGTH_SHORT).show()
+        val v = requireActivity().findViewById<View>(R.id.add_button)
+        val popup = PopupMenu(v.context, v)
+        popup.inflate(R.menu.menu_popup_add)
+        popup.show()
 
-        quickChequeDataBase.roomDao().insertRoom(
-            RoomEntity(
-                titleRoom = "ilya",
-                ownerId = 123
-            )
-        )
+//        val dialogBinding = layoutInflater.inflate(R.layout.add_cheque_alert_dialog, null)
+//        val myDialog = Dialog(requireContext()).apply {
+//            setContentView(dialogBinding)
+//            setCancelable(true)
+//            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+//            show()
+//        }
+//
+//        myDialog.findViewById<Button>(R.id.alert_button_add_cheque).setOnClickListener {
+//
+//        }
+
+
+//        roomRepositoryImpl.insertRoom(
+//            RoomEntity(
+//                titleRoom = "ilya",
+//                ownerId = 123
+//            )
+//        )
     }
 
     private fun setupRoomRecyclerViewList() {
@@ -84,7 +103,7 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
         roomRecyclerViewList.layoutManager = LinearLayoutManager(requireContext())
         roomChequeAdapter = ListRoomAdapter(this)
         roomRecyclerViewList.adapter = roomChequeAdapter
-        roomChequeAdapter.submitList(choiceItemViewModel.filteredListItems.value as List<RoomListItem>)
+        roomChequeAdapter.submitList(choiceItemViewModel.filteredListItems.value as MutableList<RoomListItem>)
     }
 
     override fun onClick(position: Int) {
@@ -99,7 +118,7 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
             }.toMutableList()
         )
 
-        roomChequeAdapter.submitList(choiceItemViewModel.filteredListItems.value as List<RoomListItem>)
+        roomChequeAdapter.submitList(choiceItemViewModel.filteredListItems.value as MutableList<RoomListItem>)
     }
 
     private fun getChequeList(): MutableList<ChoiceItem> {

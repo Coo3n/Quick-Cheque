@@ -1,4 +1,4 @@
-package com.example.quick_cheque.presentation.screen.viewmodels
+package com.example.quick_cheque.presentation.screen.auth_pages_fragment
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -19,6 +19,30 @@ class RegisterViewModel @Inject constructor(
 
     private val _validationEventChannel = Channel<ValidationEvent>()
     val validationEventChannel = _validationEventChannel.receiveAsFlow()
+
+    fun getLastEmailText(): String {
+        return state.email
+    }
+
+    fun getLastEmailErrorText(): String? {
+        return state.emailError
+    }
+
+    fun getLastPassword(): String {
+        return state.password
+    }
+
+    fun getLastPasswordErrorText(): String? {
+        return state.passwordError
+    }
+
+    fun getLastRepeatedPassword(): String {
+        return state.repeatedPassword
+    }
+
+    fun getLastRepeatedPasswordErrorText(): String? {
+        return state.repeatedPasswordError
+    }
 
     fun onEvent(event: RegisterFormEvent) {
         when (event) {
