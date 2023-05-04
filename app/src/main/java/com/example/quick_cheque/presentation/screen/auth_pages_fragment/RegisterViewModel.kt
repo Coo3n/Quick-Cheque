@@ -1,59 +1,42 @@
 package com.example.quick_cheque.presentation.screen.auth_pages_fragment
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.util.Log
+import androidx.lifecycle.*
+import com.example.quick_cheque.data.remote.dto.AuthenticationRequestDto
+import com.example.quick_cheque.domain.use_case.AuthUseCase
 import com.example.quick_cheque.domain.use_case.ValidateLoginUseCase
 import com.example.quick_cheque.domain.use_case.ValidatePasswordUseCase
 import com.example.quick_cheque.domain.use_case.ValidateRepeatedPasswordUseCase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class RegisterViewModel @Inject constructor(
     private val validateEmail: ValidateLoginUseCase,
     private val validatePassword: ValidatePasswordUseCase,
     private val validateRepeatedPassword: ValidateRepeatedPasswordUseCase,
+    private val authUseCase: AuthUseCase
 ) : ViewModel() {
-    var state = RegisterState()
-
     private val _validationEventChannel = Channel<ValidationEvent>()
     val validationEventChannel = _validationEventChannel.receiveAsFlow()
 
-    fun getLastEmailText(): String {
-        return state.email
-    }
-
-    fun getLastEmailErrorText(): String? {
-        return state.emailError
-    }
-
-    fun getLastPassword(): String {
-        return state.password
-    }
-
-    fun getLastPasswordErrorText(): String? {
-        return state.passwordError
-    }
-
-    fun getLastRepeatedPassword(): String {
-        return state.repeatedPassword
-    }
-
-    fun getLastRepeatedPasswordErrorText(): String? {
-        return state.repeatedPasswordError
-    }
+    private var _state = MutableStateFlow(RegisterState())
+    val state = _state.asStateFlow()
 
     fun onEvent(event: RegisterFormEvent) {
         when (event) {
             is RegisterFormEvent.EmailOnChanged -> {
-                state = state.copy(email = event.email)
+                _state.value = _state.value.copy(email = event.email)
             }
             is RegisterFormEvent.PasswordOnChanged -> {
-                state = state.copy(password = event.password)
+                _state.value = _state.value.copy(password = event.password)
             }
             is RegisterFormEvent.RepeatedPasswordChanged -> {
-                state = state.copy(repeatedPassword = event.repeatedPassword)
+                _state.value = _state.value.copy(repeatedPassword = event.repeatedPassword)
             }
             is RegisterFormEvent.Submit -> {
                 submitData()
@@ -61,42 +44,62 @@ class RegisterViewModel @Inject constructor(
         }
     }
 
-    fun hasErrorInput(): Boolean {
-        val email = validateEmail.execute(state.email)
-        val password = validatePassword.execute(state.password)
-        val repeatedPassword = validateRepeatedPassword.execute(
-            state.password,
-            state.repeatedPassword
-        )
+    private suspend fun register(passwordError: String?, repeatedPasswordError: String?): Boolean {
+        val result = authUseCase.registration(
+            AuthenticationRequestDto(
+                email = _state.value.email,
+                username = "ilya",
+                password = _state.value.password,
+            )
+        ).first()
 
-        return listOf(email, password, repeatedPassword).any { !it.successful }
+        return if (result.status == "failure") {
+            _state.value = _state.value.copy(
+                emailError = result.message,
+                passwordError = passwordError,
+                repeatedPasswordError = repeatedPasswordError
+            )
+            false
+        } else {
+            _state.value = _state.value.copy(
+                emailError = null,
+                passwordError = null,
+                repeatedPasswordError = null
+            )
+            true
+        }
     }
 
     private fun submitData() {
-        val email = validateEmail.execute(state.email)
-        val password = validatePassword.execute(state.password)
-        val repeatedPassword = validateRepeatedPassword.execute(
-            state.password,
-            state.repeatedPassword
-        )
+        viewModelScope.launch {
+            val email = validateEmail.execute(_state.value.email)
+            val password = validatePassword.execute(_state.value.password)
+            val repeatedPassword = validateRepeatedPassword.execute(
+                _state.value.password,
+                _state.value.repeatedPassword
+            )
 
-        val hasError = listOf(email, password, repeatedPassword).any { !it.successful }
+            val hasError = listOf(email, password, repeatedPassword).any { !it.successful }
 
-        if (hasError) {
-            state = state.copy(
+            _state.value = _state.value.copy(
                 emailError = email.errorMessage,
                 passwordError = password.errorMessage,
                 repeatedPasswordError = repeatedPassword.errorMessage
             )
 
-            return
-        }
+            if (!hasError) {
+                val success = withContext(Dispatchers.IO) {
+                    register(password.errorMessage, repeatedPassword.errorMessage)
+                }
 
-        viewModelScope.launch {
-            _validationEventChannel.send(ValidationEvent.Success)
+                _validationEventChannel.send(
+                    if (success) {
+                        ValidationEvent.Success
+                    } else {
+                        ValidationEvent.Failure
+                    }
+                )
+            }
         }
     }
 }
-
-
-

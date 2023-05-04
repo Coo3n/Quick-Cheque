@@ -7,7 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.quick_cheque.MyApp
 import com.example.quick_cheque.R
@@ -18,6 +22,8 @@ import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -57,23 +63,27 @@ class RegisterFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initLastDataInTextField()
+        initLastValuesInTextFields()
 
         binding.registerBtn.setOnClickListener {
             registerViewModel.onEvent(RegisterFormEvent.Submit)
 
-            if (!registerViewModel.hasErrorInput()) {
-                findNavController().navigate(
-                    R.id.action_registerFragment_to_choiceRoomFragment
-                )
-            }
+            lifecycleScope.launchWhenStarted {
+                registerViewModel.validationEventChannel.collect { event ->
+                    when (event) {
+                        is ValidationEvent.Success -> {
+                            findNavController().navigate(
+                                R.id.action_registerFragment_to_choiceRoomFragment
+                            )
+                            Toast.makeText(requireContext(), "Success", Toast.LENGTH_SHORT).show()
 
-            updateErrorMessage(binding.emailError, registerViewModel.state.emailError)
-            updateErrorMessage(binding.passwordError, registerViewModel.state.passwordError)
-            updateErrorMessage(
-                binding.repeatedPasswordError,
-                registerViewModel.state.repeatedPasswordError
-            )
+                        }
+                        is ValidationEvent.Failure -> {
+                            Toast.makeText(requireContext(), "Failure", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
         }
 
         binding.switchButtonLogin.setOnClickListener {
@@ -95,18 +105,20 @@ class RegisterFragment : BaseFragment() {
         )?.addTo(disposeBag)
     }
 
-    private fun initLastDataInTextField() = with(binding) {
-        fragmentRegisterEmailField.editText?.setText(registerViewModel.getLastEmailText())
-        fragmentRegisterPassword1Field.editText?.setText(registerViewModel.getLastPassword())
-        fragmentRegisterPassword2Field.editText?.setText(registerViewModel.getLastRepeatedPassword())
-        emailError.text = registerViewModel.getLastEmailErrorText()
-        passwordError.text = registerViewModel.getLastPasswordErrorText()
-        repeatedPasswordError.text = registerViewModel.getLastRepeatedPasswordErrorText()
-    }
-
-    private fun updateErrorMessage(errorView: TextView, error: String?) {
-        errorView.visibility = if (error != null) View.VISIBLE else View.INVISIBLE
-        errorView.text = error
+    private fun initLastValuesInTextFields() = with(binding) {
+        fragmentRegisterEmailField.editText?.setText(registerViewModel.state.value.email)
+        fragmentRegisterPassword1Field.editText?.setText(registerViewModel.state.value.password)
+        fragmentRegisterPassword2Field.editText?.setText(registerViewModel.state.value.repeatedPassword)
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                registerViewModel.state.collect {
+                    emailError.text = registerViewModel.state.value.emailError
+                    passwordError.text = registerViewModel.state.value.passwordError
+                    repeatedPasswordError.text =
+                        registerViewModel.state.value.repeatedPasswordError
+                }
+            }
+        }
     }
 
     private fun EditText.textChanges(typeEvent: RegisterEvent): Disposable {
@@ -125,7 +137,6 @@ class RegisterFragment : BaseFragment() {
                         registerViewModel.onEvent(RegisterFormEvent.RepeatedPasswordChanged(text.toString()))
                     }
                 }
-
             }, { error ->
                 Log.e("MyTag", "Error: $error")
             })
