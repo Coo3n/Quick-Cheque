@@ -44,8 +44,8 @@
     <style name="auth_field_text_new">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingTop">20dp</item>
-        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:paddingBottom">15dp</item>
         <item name="android:background">@drawable/light_gray_corner_radius_6dp</item>
     </style>
 
