@@ -32,10 +32,12 @@ class CreateScreenFragment : BaseFragment() {
         setVisibleToolBar()
 
         binding.buttonCreateRoom.setOnClickListener {
-            roomRepositoryImpl.insertRoom(RoomEntity(
-                titleRoom = binding.editTextRoomName.text.toString(),
-                ownerId = 101
-            ))
+            roomRepositoryImpl.insertRoom(
+                RoomEntity(
+                    titleRoom = binding.editTextRoomName.text.toString(),
+                    ownerId = 101
+                )
+            )
         }
     }
 

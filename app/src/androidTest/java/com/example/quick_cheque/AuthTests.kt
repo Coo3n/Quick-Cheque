@@ -1,5 +1,8 @@
 package com.example.quick_cheque
 
+import androidx.test.ext.junit.rules.ActivityScenarioRule
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.filters.LargeTest
 import com.example.quick_cheque.pages.AuthPage
 import org.junit.Assert.*
 import org.junit.Rule
@@ -11,7 +14,7 @@ import org.junit.runner.RunWith
 class AuthTests {
     @get:Rule
     val activityScenario = ActivityScenarioRule(MainActivity::class.java)
-    val 
+
     @Test
     fun correctAuthTest() {
         val authPage = AuthPage()
