@@ -78,11 +78,9 @@
             android:id="@+id/fragment_login_password_1_field"
             style="@style/auth_field_new"
             app:endIconMode="password_toggle"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="335dp"
+            android:layout_marginTop="52dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fragment_login_email_field">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -103,7 +101,9 @@
         <Button
             android:id="@+id/login_btn"
             style="@style/auth_bottom_btn"
+            android:layout_marginTop="60dp"
             android:text="@string/fragment_login_btn_login"
+            app:layout_constraintTop_toBottomOf="@id/fragment_login_password_1_field"
             app:layout_constraintBottom_toBottomOf="@id/fragment_login_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

@@ -11,6 +11,7 @@
         <item name="android:layout_marginStart">40dp</item>
         <item name="android:layout_marginEnd">40dp</item>
         <item name="android:layout_marginBottom">45dp</item>
+        <item name="android:layout_marginTop">45dp</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
         <item name="android:maxWidth">120dp</item>
@@ -52,7 +53,7 @@
     <style name="auth_switch_btn">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">125dp</item>
+        <item name="android:layout_marginTop">75dp</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
         <item name="android:paddingStart">15dp</item>
@@ -64,8 +65,8 @@
     <style name="auth_background">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">0dp</item>
-        <item name="android:layout_marginTop">100dp</item>
-        <item name="android:layout_marginBottom">100dp</item>
+        <item name="android:layout_marginTop">30dp</item>
+        <item name="android:layout_marginBottom">30dp</item>
         <item name="android:background">@drawable/white_corner_radius_6dp</item>
     </style>
 
