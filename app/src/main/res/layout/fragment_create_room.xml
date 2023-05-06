@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -97,23 +97,29 @@
                 app:layout_constraintTop_toBottomOf="@id/members_str"
                 tools:ignore="ContentDescription,HardcodedText" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            app:layout_constraintTop_toBottomOf="@id/userInRoomInfoContainer"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/buttonCreateRoom"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="45dp"
+            android:layout_marginBottom="45dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/style_orange_button_next"
+            android:gravity="center"
+            android:paddingTop="1dp"
+            android:paddingBottom="4dp"
+            android:text="@string/create_roo"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:layout_gravity="bottom"
+            android:textSize="22sp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/buttonCreateRoom"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/style_orange_button_next"
-        android:gravity="center"
-        android:paddingTop="1dp"
-        android:paddingBottom="4dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/create_roo"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:layout_gravity="bottom"
-        android:textSize="22sp" />
 
-</FrameLayout>
+</ScrollView>
