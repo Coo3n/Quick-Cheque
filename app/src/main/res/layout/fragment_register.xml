@@ -182,7 +182,8 @@
             android:id="@+id/register_btn"
             style="@style/auth_bottom_btn"
             android:text="@string/fragments_auth_btn_register"
-            app:layout_constraintTop_toBottomOf="@id/fragment_register_password_2_field"
+            android:layout_marginTop="30dp"
+            app:layout_constraintTop_toBottomOf="@id/repeated_password_error"
             app:layout_constraintBottom_toBottomOf="@id/fragment_register_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

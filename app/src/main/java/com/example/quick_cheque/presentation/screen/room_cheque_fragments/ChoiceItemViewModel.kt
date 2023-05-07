@@ -1,6 +1,7 @@
 package com.example.quick_cheque.presentation.screen.room_cheque_fragments
 
 import androidx.lifecycle.ViewModel
+import com.example.quick_cheque.domain.model.ChequeListItem
 import com.example.quick_cheque.domain.model.ChoiceItem
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -25,5 +26,24 @@ class ChoiceItemViewModel : ViewModel() {
 
     fun setFilteredListItems(filteredListItems: MutableList<ChoiceItem>) {
         _filteredListItems.value = filteredListItems
+    }
+
+    fun sett(choiceCurrentPosition: Int) {
+        val items = _filteredListItems.value.toMutableList()
+
+        val prevItem = (items[
+                _choiceCurrentPosition.value
+        ] as ChequeListItem).copy(
+            isClicked = false
+        )
+        (items[_choiceCurrentPosition.value]) = prevItem
+
+        val newItem = (_filteredListItems.value[choiceCurrentPosition] as ChequeListItem).copy(
+            isClicked = true
+        )
+
+        (items[choiceCurrentPosition]) = newItem
+
+        _filteredListItems.value = items
     }
 }

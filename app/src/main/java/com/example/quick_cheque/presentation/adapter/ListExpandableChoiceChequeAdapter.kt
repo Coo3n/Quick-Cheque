@@ -71,11 +71,11 @@ class ListExpandableChoiceChequeAdapter(private val clickable: Clickable) :
             }
 
             titleListItem.setOnClickListener {
-                handleChequeListItemClick(chequeListItem)
+                clickable.onClick(adapterPosition)
             }
 
             fullInformationOfCheque.setOnClickListener {
-                handleChequeListItemClick(chequeListItem)
+                clickable.onClick(adapterPosition)
             }
 
             expandableButton.setOnClickListener {
@@ -89,7 +89,6 @@ class ListExpandableChoiceChequeAdapter(private val clickable: Clickable) :
                 item?.isClicked = false
                 lastClickedItemPosition?.let { notifyItemChanged(it) }
             }
-
 
             chequeListItem.isClicked = true
             changingStyleExpandableObjectInChequeListItem(chequeListItem)// меняем стиль у кликнутого элемента

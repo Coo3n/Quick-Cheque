@@ -6,10 +6,12 @@ import com.example.quick_cheque.domain.repository.AuthenticationRepository
 import com.example.quick_cheque.domain.use_case.ValidateLoginUseCase
 import com.example.quick_cheque.domain.use_case.ValidatePasswordUseCase
 import com.example.quick_cheque.domain.use_case.ValidateRepeatedPasswordUseCase
+import com.example.quick_cheque.domain.use_case.ValidateUsername
 import javax.inject.Inject
 
 class AuthorizationViewModelFactory @Inject constructor(
     private val authenticationRepository: AuthenticationRepository,
+    private val validateUsername: ValidateUsername,
     private val validateEmail: ValidateLoginUseCase,
     private val validatePassword: ValidatePasswordUseCase,
     private val validateRepeatedPassword: ValidateRepeatedPasswordUseCase,
@@ -19,6 +21,7 @@ class AuthorizationViewModelFactory @Inject constructor(
         if (modelClass.isAssignableFrom(AuthorizationViewModel::class.java)) {
             return AuthorizationViewModel(
                 authenticationRepository,
+                validateUsername,
                 validateEmail,
                 validatePassword,
                 validateRepeatedPassword,

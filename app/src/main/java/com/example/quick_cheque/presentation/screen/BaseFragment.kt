@@ -109,7 +109,6 @@ open class BaseFragment : Fragment() {
         }, viewLifecycleOwner, Lifecycle.State.STARTED)
     }
 
-
     protected open fun handleAddButtonClicked() {}
     protected open fun filterSearchingItems(query: String) {}
 }

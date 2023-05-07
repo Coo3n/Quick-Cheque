@@ -38,6 +38,7 @@ class RegisterFragment : BaseFragment() {
 
     companion object {
         enum class RegisterEvent {
+            USERNAME_CHANGED,
             EMAIL_CHANGED,
             PASSWORD_CHANGED,
             REPEATED_PASSWORD_CHANGED
@@ -101,6 +102,10 @@ class RegisterFragment : BaseFragment() {
             )
         }
 
+        _binding.fragmentRegisterUsernameField.editText?.textChanges(
+            typeEvent = RegisterEvent.USERNAME_CHANGED
+        )?.addTo(disposeBag)
+
         _binding.fragmentRegisterEmailField.editText?.textChanges(
             typeEvent = RegisterEvent.EMAIL_CHANGED
         )?.addTo(disposeBag)
@@ -121,6 +126,7 @@ class RegisterFragment : BaseFragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 authorizationViewModel.state.collect {
+                    usernameError.text = authorizationViewModel.state.value.usernameError
                     emailError.text = authorizationViewModel.state.value.emailError
                     passwordError.text = authorizationViewModel.state.value.passwordError
                     repeatedPasswordError.text =
@@ -136,6 +142,9 @@ class RegisterFragment : BaseFragment() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ text ->
                 when (typeEvent) {
+                    RegisterEvent.USERNAME_CHANGED -> {
+                        authorizationViewModel.onEvent(AuthFormEvent.UsernameOnChanged(text.toString()))
+                    }
                     RegisterEvent.EMAIL_CHANGED -> {
                         authorizationViewModel.onEvent(AuthFormEvent.EmailOnChanged(text.toString()))
                     }

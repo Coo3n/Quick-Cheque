@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(navController)
         supportActionBar?.hide()
-
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
         setupBottomNavController()
     }
 

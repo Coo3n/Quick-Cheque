@@ -79,6 +79,7 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
     }
 
     override fun onClick(position: Int) {
+        choiceItemViewModel.sett(position)
         choiceItemViewModel.setChoiceCurrentPosition(position)
     }
 

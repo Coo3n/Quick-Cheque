@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import com.example.quick_cheque.R
 import com.example.quick_cheque.databinding.FragmentJoinScreenBinding
 import com.example.quick_cheque.presentation.screen.BaseFragment
 
@@ -24,5 +26,9 @@ class JoinScreenFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         setVisibleHomeButton(false)
         setVisibleToolBar()
+
+        binding.joinButton.setOnClickListener {
+            findNavController().navigate(R.id.action_joinScreenFragment_to_choiceChequeFragment)
+        }
     }
 }
