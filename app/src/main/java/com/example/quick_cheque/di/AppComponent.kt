@@ -10,8 +10,10 @@ import com.example.quick_cheque.presentation.screen.auth_pages_fragment.LoginFra
 import com.example.quick_cheque.presentation.screen.auth_pages_fragment.RegisterFragment
 import com.example.quick_cheque.presentation.screen.room_cheque_fragments.ChoiceRoomFragment
 import dagger.Component
+import javax.inject.Singleton
 
 @Component(modules = [AppModule::class, DomainModule::class, RoomModule::class, RemoteModule::class])
+@Singleton
 interface AppComponent {
     fun injectMainActivity(mainActivity: MainActivity)
     fun injectRegisterFragment(registerFragment: RegisterFragment)

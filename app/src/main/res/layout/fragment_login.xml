@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_light"
+    style="@style/BackGroundColorAuth"
     tools:context=".presentation.screen.auth_pages_fragment.LoginFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout style="@style/auth_container">
@@ -26,12 +26,10 @@
 
         <Button
             android:id="@+id/switch_button_register"
-            style="@style/auth_switch_btn"
+            style="@style/SwitchButtonAuth"
             android:layout_marginStart="35dp"
             android:layout_marginEnd="40dp"
-            android:backgroundTint="@color/gray_light"
             android:text="@string/fragments_auth_switch_register"
-            android:textColor="@color/black"
             app:layout_constraintEnd_toStartOf="@+id/switch_button_login"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

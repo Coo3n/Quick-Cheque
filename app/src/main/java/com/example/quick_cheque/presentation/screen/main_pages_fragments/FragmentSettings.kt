@@ -38,8 +38,8 @@ class FragmentSettings : BaseFragment() {
         val config = resources.configuration
         val radioru = binding.languageRadiogroupRu
         val radioen = binding.languageRadiogroupEn
-        val theme_day = binding.themeRadiogroupDay
-        val theme_night = binding.themeRadiogroupNight
+        val themeDay = binding.themeRadiogroupDay
+        val themeNight = binding.themeRadiogroupNight
 
         if (getSavedLocale()?.contains("ru") == true) {
             radioru.isChecked = true
@@ -47,9 +47,11 @@ class FragmentSettings : BaseFragment() {
             radioen.isChecked = true
         }
 
+        Log.d("MyTag", getSavedTheme().toString())
+
         when (getSavedTheme()) {
-            AppCompatDelegate.MODE_NIGHT_YES -> theme_night.isChecked = true
-            AppCompatDelegate.MODE_NIGHT_NO -> theme_day.isChecked = true
+            AppCompatDelegate.MODE_NIGHT_YES -> themeNight.isChecked = true
+            AppCompatDelegate.MODE_NIGHT_NO -> themeDay.isChecked = true
         }
 
         radioen.setOnClickListener {
@@ -63,8 +65,6 @@ class FragmentSettings : BaseFragment() {
             saveLocale("en")
         }
 
-
-
         radioru.setOnClickListener {
             val locale = Locale("ru")
             Locale.setDefault(locale)
@@ -77,20 +77,21 @@ class FragmentSettings : BaseFragment() {
 
         }
 
-
-
-        theme_day.setOnClickListener {
-            if (getSavedTheme() != AppCompatDelegate.MODE_NIGHT_YES) {
+        themeDay.setOnClickListener {
+            //if (getSavedTheme() == AppCompatDelegate.MODE_NIGHT_YES) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 saveTheme(AppCompatDelegate.MODE_NIGHT_NO)
-            }
+                Log.d("MyTag", getSavedTheme().toString() + "1")
+            //}
         }
 
-        theme_night.setOnClickListener {
-            if (getSavedTheme() != AppCompatDelegate.MODE_NIGHT_NO) {
+        themeNight.setOnClickListener {
+            //if (getSavedTheme() == AppCompatDelegate.MODE_NIGHT_NO) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 saveTheme(AppCompatDelegate.MODE_NIGHT_YES)
-            }
+                Log.d("MyTag", getSavedTheme().toString() + "2")
+
+            //}
         }
     }
 

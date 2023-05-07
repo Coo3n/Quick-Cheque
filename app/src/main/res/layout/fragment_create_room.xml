@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    style="@style/LayoutBackgroundColor"
     tools:context=".presentation.screen.main_pages_fragments.CreateScreenFragment"
     >
 
@@ -23,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:text="@string/create_room"
-            android:textColor="@color/black"
+            style="@style/TextColorPrimary"
             android:textSize="25sp" />
 
         <TextView
@@ -35,7 +35,7 @@
             app:layout_constraintTop_toBottomOf="@id/create_room_string"
             app:layout_constraintStart_toStartOf="parent"
             android:text="@string/room_name"
-            android:textColor="@color/black"
+            style="@style/TextColorPrimary"
             android:textSize="16sp" />
 
         <com.google.android.material.textfield.TextInputEditText
@@ -64,7 +64,7 @@
                 android:paddingStart="2dp"
                 android:paddingEnd="2dp"
                 android:text="@string/room_members_str"
-                android:textColor="@color/black"
+                style="@style/TextColorPrimary"
                 android:textSize="23sp"
                 app:layout_constraintBottom_toTopOf="@id/listRoomMembers"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -97,29 +97,24 @@
                 app:layout_constraintTop_toBottomOf="@id/members_str"
                 tools:ignore="ContentDescription,HardcodedText" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <Button
-            app:layout_constraintTop_toBottomOf="@id/userInRoomInfoContainer"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:id="@+id/buttonCreateRoom"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="45dp"
-            android:layout_marginBottom="45dp"
-            android:layout_marginEnd="30dp"
-            android:background="@drawable/style_orange_button_next"
-            android:gravity="center"
-            android:paddingTop="1dp"
-            android:paddingBottom="4dp"
-            android:text="@string/create_roo"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:layout_gravity="bottom"
-            android:textSize="22sp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <Button
+        android:id="@+id/buttonCreateRoom"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        style="@style/ButtonColor"
+        android:radius="24dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:paddingTop="1dp"
+        android:paddingBottom="4dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/create_roo"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:layout_gravity="bottom"
+        android:textSize="22sp" />
 
-</ScrollView>
+</FrameLayout>
