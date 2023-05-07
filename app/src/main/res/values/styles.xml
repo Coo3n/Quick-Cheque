@@ -11,7 +11,6 @@
         <item name="android:layout_marginStart">40dp</item>
         <item name="android:layout_marginEnd">40dp</item>
         <item name="android:layout_marginBottom">45dp</item>
-        <item name="android:layout_marginTop">45dp</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
         <item name="android:maxWidth">120dp</item>
@@ -22,11 +21,10 @@
         <item name="cornerRadius">1000dp</item>
     </style>
 
-    <style name="auth_field_text">
+    <style name="auth_field_text" parent="TextColorPrimary">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginBottom">5dp</item>
-        <item name="android:textColor">@color/black</item>
         <item name="android:textSize">16sp</item>
     </style>
 
@@ -42,18 +40,19 @@
         <item name="endIconTint">@color/gray_black</item>
     </style>
 
-    <style name="auth_field_text_new">
+    <style name="auth_field_text_new" parent="AuthInputTint">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingTop">15dp</item>
-        <item name="android:paddingBottom">15dp</item>
+        <item name="android:paddingTop">20dp</item>
+        <item name="android:paddingBottom">10dp</item>
+
         <item name="android:background">@drawable/light_gray_corner_radius_6dp</item>
     </style>
 
     <style name="auth_switch_btn">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">75dp</item>
+        <item name="android:layout_marginTop">125dp</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
         <item name="android:paddingStart">15dp</item>
@@ -62,15 +61,14 @@
         <item name="cornerRadius">6dp</item>
     </style>
 
-    <style name="auth_background">
+    <style name="auth_background" parent="LayoutBackgroundColor">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">0dp</item>
-        <item name="android:layout_marginTop">30dp</item>
-        <item name="android:layout_marginBottom">30dp</item>
-        <item name="android:background">@drawable/white_corner_radius_6dp</item>
+        <item name="android:layout_marginTop">100dp</item>
+        <item name="android:layout_marginBottom">100dp</item>
     </style>
 
-    <style name="auth_switch_background">
+    <style name="auth_switch_background" parent="AuthInputTint">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_marginStart">35dp</item>
@@ -84,7 +82,7 @@
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:layout_marginStart">20dp</item>
         <item name="android:layout_marginEnd">20dp</item>
-        <item name="android:background">@color/gray_light</item>
+        style="@style/BackGroundColorAuth"
         <item name="android:maxWidth">400dp</item>
     </style>
 

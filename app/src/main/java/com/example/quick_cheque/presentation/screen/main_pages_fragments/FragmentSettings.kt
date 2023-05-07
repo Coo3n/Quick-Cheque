@@ -80,14 +80,14 @@ class FragmentSettings : BaseFragment() {
 
 
         theme_day.setOnClickListener {
-            if (getSavedTheme() != AppCompatDelegate.MODE_NIGHT_YES) {
+            if (getSavedTheme() == AppCompatDelegate.MODE_NIGHT_YES) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 saveTheme(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
 
         theme_night.setOnClickListener {
-            if (getSavedTheme() != AppCompatDelegate.MODE_NIGHT_NO) {
+            if (getSavedTheme() == AppCompatDelegate.MODE_NIGHT_NO) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 saveTheme(AppCompatDelegate.MODE_NIGHT_YES)
             }
