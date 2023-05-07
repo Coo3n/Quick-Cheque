@@ -137,16 +137,19 @@ class PaymentChequeFragment : BaseFragment() {
     private fun getProductList(): MutableList<Product> {
         return mutableListOf(
             Product(
+                id = 1,
                 "Газировка",
                 BigDecimal(30),
                 3
             ),
             Product(
+                id = 2,
                 "Чипсы",
                 BigDecimal(100),
                 9
             ),
             Product(
+                id = 3,
                 "Кола",
                 BigDecimal(5),
                 1

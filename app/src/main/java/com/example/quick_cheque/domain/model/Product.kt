@@ -6,6 +6,7 @@ import java.math.BigDecimal
 
 @Parcelize
 data class Product(
+    val id: Int,
     var titleProduct: String,
     var price: BigDecimal,
     var count: Int,

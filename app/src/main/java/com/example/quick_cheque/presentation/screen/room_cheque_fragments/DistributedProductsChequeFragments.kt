@@ -43,6 +43,7 @@ class DistributedProductsChequeFragments : BaseFragment() {
                 user = User("Zloi", R.drawable.person_filled),
                 listProductsUser = mutableListOf(
                     Product(
+                        id = 1,
                         titleProduct = "Кола",
                         price = BigDecimal(35),
                         count = 1,
@@ -53,6 +54,7 @@ class DistributedProductsChequeFragments : BaseFragment() {
                     ),
 
                     Product(
+                        id = 2,
                         titleProduct = "Мошня",
                         price = BigDecimal(35),
                         count = 1,

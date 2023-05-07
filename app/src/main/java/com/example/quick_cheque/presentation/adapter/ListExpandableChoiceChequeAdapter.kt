@@ -40,7 +40,7 @@ class ListExpandableChoiceChequeAdapter(private val clickable: Clickable) :
 
     class ListExpandableChoiceChequeDiffCallback : DiffUtil.ItemCallback<ChequeListItem>() {
         override fun areItemsTheSame(oldItem: ChequeListItem, newItem: ChequeListItem): Boolean {
-            return oldItem == newItem
+            return oldItem.cheque.id == newItem.cheque.id
         }
 
         override fun areContentsTheSame(oldItem: ChequeListItem, newItem: ChequeListItem): Boolean {
@@ -84,20 +84,6 @@ class ListExpandableChoiceChequeAdapter(private val clickable: Clickable) :
             }
         }
 
-        private fun handleChequeListItemClick(chequeListItem: ChequeListItem) {
-            lastClickedItem.let { item ->
-                item?.isClicked = false
-                lastClickedItemPosition?.let { notifyItemChanged(it) }
-            }
-
-            chequeListItem.isClicked = true
-            changingStyleExpandableObjectInChequeListItem(chequeListItem)// меняем стиль у кликнутого элемента
-
-            lastClickedItem = chequeListItem
-            lastClickedItemPosition = adapterPosition
-            clickable.onClick(adapterPosition) // отдаем callback во фрагмент с позицией клика
-        }
-
         private fun changingStyleExpandableObjectInChequeListItem(chequeListItem: ChequeListItem) =
             with(binding) {
                 previewListChoiceChequeItem.setBackgroundResource(
@@ -119,6 +105,7 @@ class ListExpandableChoiceChequeAdapter(private val clickable: Clickable) :
                 )
 
                 expandableButton.rotation = if (chequeListItem.isExpanded) -90f else 90f
+
                 fullInformationOfCheque.visibility = if (chequeListItem.isExpanded) {
                     View.VISIBLE
                 } else {

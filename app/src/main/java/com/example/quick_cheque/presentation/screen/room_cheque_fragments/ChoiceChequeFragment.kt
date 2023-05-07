@@ -43,7 +43,7 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
 
         choiceItemViewModel.setListItems(getChequeList())
         if (isEmptyLastQuerySearch()) {
-            choiceItemViewModel.setFilteredListItems(getChequeList())
+            choiceItemViewModel.setFilteredListItems(choiceItemViewModel.listItems.value)
         }
 
         setupChequeRecyclerViewList()
@@ -52,7 +52,9 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
             val bundle = Bundle().apply {
                 putParcelable(
                     "CHEQUE_TAG",
-                    (choiceItemViewModel.listItems.value[choiceItemViewModel.choiceCurrentPosition.value] as ChequeListItem).cheque
+                    (choiceItemViewModel.getChoiceItemOnPosition(
+                        choiceItemViewModel.choiceLastPosition.value
+                    ) as ChequeListItem).cheque
                 )
             }
 
@@ -69,17 +71,40 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
         chequeExpandableChequeAdapter = ListExpandableChoiceChequeAdapter(this)
         chequeExpandableRecyclerViewList.adapter = chequeExpandableChequeAdapter
 
+        (choiceItemViewModel.getChoiceItemOnPosition(
+            choiceItemViewModel.choiceLastPosition.value
+        ) as ChequeListItem).isClicked = true
+
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                choiceItemViewModel.filteredListItems.collect {
-                    chequeExpandableChequeAdapter.submitList(it as List<ChequeListItem>)
+                choiceItemViewModel.filteredListItems.collect { choiceItemList ->
+                    chequeExpandableChequeAdapter.submitList(choiceItemList as List<ChequeListItem>)
                 }
             }
         }
     }
 
     override fun onClick(position: Int) {
-        choiceItemViewModel.sett(position)
+        val prevItemChanged = (choiceItemViewModel.getChoiceItemOnPosition(
+            choiceItemViewModel.choiceLastPosition.value
+        ) as ChequeListItem)
+
+        val currentClickedItem = (choiceItemViewModel.getChoiceItemOnPosition(
+            position
+        ) as ChequeListItem)
+
+        choiceItemViewModel.changeChoiceItemState(
+            position,
+            prevItemChanged.copy(
+                isClicked = false,
+                isExpanded = prevItemChanged.isExpanded
+            ),
+            currentClickedItem.copy(
+                isClicked = true,
+                isExpanded = currentClickedItem.isExpanded
+            ),
+        )
+
         choiceItemViewModel.setChoiceCurrentPosition(position)
     }
 
@@ -104,11 +129,13 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
         return mutableListOf(
             ChequeListItem(
                 Cheque(
+                    id = 1,
                     title = "Valera",
                     owner = User("Zloi", R.drawable.person_filled),
                     sumOfCheque = BigDecimal(30),
                     products = mutableListOf(
                         Product(
+                            id = 11,
                             titleProduct = "Кола",
                             price = BigDecimal(35),
                             count = 1,
@@ -128,10 +155,12 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
 
             ChequeListItem(
                 Cheque(
+                    id = 2,
                     title = "Valera",
                     owner = User("Zloi", R.drawable.person_filled),
                     products = mutableListOf(
                         Product(
+                            id = 21,
                             titleProduct = "Чипсы",
                             price = BigDecimal(35),
                             count = 1,
@@ -139,6 +168,7 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
                         ),
 
                         Product(
+                            id = 23,
                             titleProduct = "Бутер",
                             price = BigDecimal(35),
                             count = 1
@@ -149,6 +179,43 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
 
             ChequeListItem(
                 Cheque(
+                    id = 3,
+                    title = "Dii",
+                    owner = User("Zloi", R.drawable.person_filled),
+                    sumOfCheque = BigDecimal(30),
+                    membersCheque = mutableListOf(
+                        User("ZA", R.drawable.person_filled),
+                        User("ZA", R.drawable.person_filled),
+                        User("ZA", R.drawable.person_filled),
+                        User("ZA", R.drawable.person_filled),
+                        User("ZA", R.drawable.person_filled),
+                        User("ZA", R.drawable.person_filled),
+                        User("ZA", R.drawable.person_filled),
+                    ),
+                ),
+            ),
+
+            ChequeListItem(
+                Cheque(
+                    id = 3,
+                    title = "Dii",
+                    owner = User("Zloi", R.drawable.person_filled),
+                    sumOfCheque = BigDecimal(30),
+                    membersCheque = mutableListOf(
+                        User("ZA", R.drawable.person_filled),
+                        User("ZA", R.drawable.person_filled),
+                        User("ZA", R.drawable.person_filled),
+                        User("ZA", R.drawable.person_filled),
+                        User("ZA", R.drawable.person_filled),
+                        User("ZA", R.drawable.person_filled),
+                        User("ZA", R.drawable.person_filled),
+                    ),
+                ),
+            ),
+
+            ChequeListItem(
+                Cheque(
+                    id = 3,
                     title = "Dii",
                     owner = User("Zloi", R.drawable.person_filled),
                     sumOfCheque = BigDecimal(30),

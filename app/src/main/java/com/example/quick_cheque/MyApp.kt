@@ -15,11 +15,12 @@ class MyApp : Application() {
 
     private fun getSavedTheme() = settings.getInt("theme", -1)
     private fun getSavedLocale() = settings.getString("locale", "")
-    private fun setSavedSettings(){
+    private fun setSavedSettings() {
         settings = getSharedPreferences("ui_settings", Context.MODE_PRIVATE)
 
         val locale = Locale(getSavedLocale())
         Locale.setDefault(locale)
+
         resources.configuration.setLocale(locale)
         resources.updateConfiguration(
             resources.configuration,
@@ -28,6 +29,7 @@ class MyApp : Application() {
 
         AppCompatDelegate.setDefaultNightMode(getSavedTheme())
     }
+
     override fun onCreate() {
         super.onCreate()
         setSavedSettings()

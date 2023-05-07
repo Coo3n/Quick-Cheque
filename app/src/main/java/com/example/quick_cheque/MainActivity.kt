@@ -15,6 +15,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.quick_cheque.databinding.ActivityMainBinding
 import com.example.quick_cheque.di.AppComponent
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 import java.util.*
 
 class MainActivity : AppCompatActivity() {

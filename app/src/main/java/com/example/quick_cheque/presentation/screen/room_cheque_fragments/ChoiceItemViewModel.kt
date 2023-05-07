@@ -1,14 +1,13 @@
 package com.example.quick_cheque.presentation.screen.room_cheque_fragments
 
 import androidx.lifecycle.ViewModel
-import com.example.quick_cheque.domain.model.ChequeListItem
 import com.example.quick_cheque.domain.model.ChoiceItem
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class ChoiceItemViewModel : ViewModel() {
-    private var _choiceCurrentPosition = MutableStateFlow(0)
-    val choiceCurrentPosition = _choiceCurrentPosition.asStateFlow()
+    private var _choiceLastPosition = MutableStateFlow(0)
+    val choiceLastPosition = _choiceLastPosition.asStateFlow()
 
     private var _listItems = MutableStateFlow<MutableList<ChoiceItem>>(mutableListOf())
     val listItems = _listItems.asStateFlow()
@@ -17,7 +16,7 @@ class ChoiceItemViewModel : ViewModel() {
     val filteredListItems = _filteredListItems.asStateFlow()
 
     fun setChoiceCurrentPosition(choiceCurrentPosition: Int) {
-        _choiceCurrentPosition.value = choiceCurrentPosition
+        _choiceLastPosition.value = choiceCurrentPosition
     }
 
     fun setListItems(listItems: MutableList<ChoiceItem>) {
@@ -28,22 +27,22 @@ class ChoiceItemViewModel : ViewModel() {
         _filteredListItems.value = filteredListItems
     }
 
-    fun sett(choiceCurrentPosition: Int) {
+    fun setChoiceLastPosition(position: Int) {
+        _choiceLastPosition.value = position
+    }
+
+    fun getChoiceItemOnPosition(position: Int): ChoiceItem = _filteredListItems.value[position]
+
+    fun getFilteredListItems() = _filteredListItems.value
+
+    fun changeChoiceItemState(
+        currentClickedChoiceItem: Int,
+        prevChoiceItem: ChoiceItem,
+        currentChoiceItem: ChoiceItem
+    ) {
         val items = _filteredListItems.value.toMutableList()
-
-        val prevItem = (items[
-                _choiceCurrentPosition.value
-        ] as ChequeListItem).copy(
-            isClicked = false
-        )
-        (items[_choiceCurrentPosition.value]) = prevItem
-
-        val newItem = (_filteredListItems.value[choiceCurrentPosition] as ChequeListItem).copy(
-            isClicked = true
-        )
-
-        (items[choiceCurrentPosition]) = newItem
-
-        _filteredListItems.value = items
+        items[_choiceLastPosition.value] = prevChoiceItem
+        items[currentClickedChoiceItem] = currentChoiceItem
+        setFilteredListItems(items)
     }
 }

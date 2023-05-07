@@ -6,6 +6,7 @@ import java.math.BigDecimal
 
 @Parcelize
 data class Cheque(
+    val id: Int,
     var title: String,
     var owner: User,
     var sumOfCheque: BigDecimal = BigDecimal(0),

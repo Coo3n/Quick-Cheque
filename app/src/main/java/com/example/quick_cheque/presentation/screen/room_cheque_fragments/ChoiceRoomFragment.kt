@@ -134,11 +134,13 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
                     ),
                     cheques = mutableListOf(
                         Cheque(
+                            id = 1,
                             title = "Valera",
                             owner = User("Zloi", R.drawable.person_filled),
                             sumOfCheque = BigDecimal(30),
                             products = mutableListOf(
                                 Product(
+                                    id = 1,
                                     titleProduct = "Кола",
                                     price = BigDecimal(35),
                                     count = 1,
@@ -155,10 +157,12 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
                             )
                         ),
                         Cheque(
+                            id = 2,
                             title = "Valera",
                             owner = User("Zloi", R.drawable.person_filled),
                             products = mutableListOf(
                                 Product(
+                                    id = 21,
                                     titleProduct = "Чипсы",
                                     price = BigDecimal(35),
                                     count = 1,
@@ -171,6 +175,7 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
                                 ),
 
                                 Product(
+                                    id = 22,
                                     titleProduct = "Чипсы",
                                     price = BigDecimal(35),
                                     count = 1
@@ -178,10 +183,12 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
                             ),
                         ),
                         Cheque(
+                            id = 3,
                             title = "Valera",
                             owner = User("Zloi", R.drawable.person_filled),
                             products = mutableListOf(
                                 Product(
+                                    id = 31,
                                     titleProduct = "Чипсы",
                                     price = BigDecimal(35),
                                     count = 1,
@@ -194,6 +201,7 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
                                 ),
 
                                 Product(
+                                    id = 32,
                                     titleProduct = "Чипсы",
                                     price = BigDecimal(35),
                                     count = 1
@@ -201,10 +209,12 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
                             ),
                         ),
                         Cheque(
+                            id = 1,
                             title = "Valera",
                             owner = User("Zloi", R.drawable.person_filled),
                             products = mutableListOf(
                                 Product(
+                                    id = 1,
                                     titleProduct = "Чипсы",
                                     price = BigDecimal(35),
                                     count = 1,
@@ -217,574 +227,15 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
                                 ),
 
                                 Product(
+                                    id = 1,
                                     titleProduct = "Чипсы",
                                     price = BigDecimal(35),
                                     count = 1
                                 )
                             ),
                         ),
-                        Cheque(
-                            title = "Valera",
-                            owner = User("Zloi", R.drawable.person_filled),
-                            products = mutableListOf(
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1,
-                                    membersProduct = mutableListOf(
-                                        User(
-                                            "Zloi",
-                                            R.drawable.person_filled
-                                        )
-                                    )
-                                ),
-
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1
-                                )
-                            ),
-                        ),
-                        Cheque(
-                            title = "Valera",
-                            owner = User("Zloi", R.drawable.person_filled),
-                            products = mutableListOf(
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1,
-                                    membersProduct = mutableListOf(
-                                        User(
-                                            "Zloi",
-                                            R.drawable.person_filled
-                                        )
-                                    )
-                                ),
-
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1
-                                )
-                            ),
-                        ),
-                        Cheque(
-                            title = "Valera",
-                            owner = User("Zloi", R.drawable.person_filled),
-                            products = mutableListOf(
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1,
-                                    membersProduct = mutableListOf(
-                                        User(
-                                            "Zloi",
-                                            R.drawable.person_filled
-                                        )
-                                    )
-                                ),
-
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1
-                                )
-                            ),
-                        ),
-                        Cheque(
-                            title = "Valera",
-                            owner = User("Zloi", R.drawable.person_filled),
-                            products = mutableListOf(
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1,
-                                    membersProduct = mutableListOf(
-                                        User(
-                                            "Zloi",
-                                            R.drawable.person_filled
-                                        )
-                                    )
-                                ),
-
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1
-                                )
-                            ),
-                        ),
-                        Cheque(
-                            title = "Valera",
-                            owner = User("Zloi", R.drawable.person_filled),
-                            products = mutableListOf(
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1,
-                                    membersProduct = mutableListOf(
-                                        User(
-                                            "Zloi",
-                                            R.drawable.person_filled
-                                        )
-                                    )
-                                ),
-
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1
-                                )
-                            ),
-                        ),
-                    ),
+                    )
                 )
-            ),
-            RoomListItem(
-                room = Room(
-                    id = 2,
-                    title = "Каша малаша",
-                    host = "Ну я хостом буду",
-                    membersRoom = mutableListOf(
-                        User("Kolya", R.drawable.person_filled),
-                        User("Olya", R.drawable.person_filled),
-                        User("Ibragym", R.drawable.person_filled),
-                        User("Svyat", R.drawable.person_filled)
-                    ),
-                    cheques = mutableListOf(
-                        Cheque(
-                            title = "Valera",
-                            owner = User("Zloi", R.drawable.person_filled),
-                            sumOfCheque = BigDecimal(30),
-                            products = mutableListOf(
-                                Product(
-                                    titleProduct = "Кола",
-                                    price = BigDecimal(35),
-                                    count = 1,
-                                    membersProduct = mutableListOf(
-                                        User("Kolya", R.drawable.person_filled),
-                                        User("Olya", R.drawable.person_filled)
-                                    )
-                                )
-                            ),
-                            membersCheque = mutableListOf(
-                                User("ZA", R.drawable.person_filled),
-                                User("ZA", R.drawable.person_filled),
-                                User("ZA", R.drawable.person_filled),
-                            )
-                        ),
-                        Cheque(
-                            title = "Valera",
-                            owner = User("Zloi", R.drawable.person_filled),
-                            products = mutableListOf(
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1,
-                                    membersProduct = mutableListOf(
-                                        User(
-                                            "Zloi",
-                                            R.drawable.person_filled
-                                        )
-                                    )
-                                ),
-
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1
-                                )
-                            ),
-                        ),
-                        Cheque(
-                            title = "Valera",
-                            owner = User("Zloi", R.drawable.person_filled),
-                            products = mutableListOf(
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1,
-                                    membersProduct = mutableListOf(
-                                        User(
-                                            "Zloi",
-                                            R.drawable.person_filled
-                                        )
-                                    )
-                                ),
-
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1
-                                )
-                            ),
-                        ),
-                        Cheque(
-                            title = "Valera",
-                            owner = User("Zloi", R.drawable.person_filled),
-                            products = mutableListOf(
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1,
-                                    membersProduct = mutableListOf(
-                                        User(
-                                            "Zloi",
-                                            R.drawable.person_filled
-                                        )
-                                    )
-                                ),
-
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1
-                                )
-                            ),
-                        ),
-                        Cheque(
-                            title = "Valera",
-                            owner = User("Zloi", R.drawable.person_filled),
-                            products = mutableListOf(
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1,
-                                    membersProduct = mutableListOf(
-                                        User(
-                                            "Zloi",
-                                            R.drawable.person_filled
-                                        )
-                                    )
-                                ),
-
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1
-                                )
-                            ),
-                        ),
-                        Cheque(
-                            title = "Valera",
-                            owner = User("Zloi", R.drawable.person_filled),
-                            products = mutableListOf(
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1,
-                                    membersProduct = mutableListOf(
-                                        User(
-                                            "Zloi",
-                                            R.drawable.person_filled
-                                        )
-                                    )
-                                ),
-
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1
-                                )
-                            ),
-                        ),
-                        Cheque(
-                            title = "Valera",
-                            owner = User("Zloi", R.drawable.person_filled),
-                            products = mutableListOf(
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1,
-                                    membersProduct = mutableListOf(
-                                        User(
-                                            "Zloi",
-                                            R.drawable.person_filled
-                                        )
-                                    )
-                                ),
-
-                                Product(
-                                    titleProduct = "Кока",
-                                    price = BigDecimal(35),
-                                    count = 1
-                                )
-                            ),
-                        ),
-                        Cheque(
-                            title = "Valera",
-                            owner = User("Zloi", R.drawable.person_filled),
-                            products = mutableListOf(
-                                Product(
-                                    titleProduct = "Кока",
-                                    price = BigDecimal(35),
-                                    count = 1,
-                                    membersProduct = mutableListOf(
-                                        User(
-                                            "Zloi",
-                                            R.drawable.person_filled
-                                        )
-                                    )
-                                ),
-
-                                Product(
-                                    titleProduct = "Кока",
-                                    price = BigDecimal(35),
-                                    count = 1
-                                )
-                            ),
-                        ),
-                        Cheque(
-                            title = "Valera",
-                            owner = User("Zloi", R.drawable.person_filled),
-                            products = mutableListOf(
-                                Product(
-                                    titleProduct = "Кока",
-                                    price = BigDecimal(35),
-                                    count = 1,
-                                    membersProduct = mutableListOf(
-                                        User(
-                                            "Zloi",
-                                            R.drawable.person_filled
-                                        )
-                                    )
-                                ),
-
-                                Product(
-                                    titleProduct = "Кока",
-                                    price = BigDecimal(35),
-                                    count = 1
-                                )
-                            ),
-                        ),
-                    ),
-                ),
-                isExpanded = false
-            ),
-            RoomListItem(
-                room = Room(
-                    id = 3,
-                    title = "А я опять затуплю...",
-                    host = "Самый лысый",
-                    membersRoom = mutableListOf(
-                        User("Ignat", R.drawable.person_filled),
-                        User("Ignat", R.drawable.person_filled),
-                        User("Ignat", R.drawable.person_filled),
-                        User("Ignat", R.drawable.person_filled),
-                        User("Ignat", R.drawable.person_filled),
-                        User("Ignat", R.drawable.person_filled),
-                        User("Ignat", R.drawable.person_filled),
-                    ),
-                    cheques = mutableListOf(
-                        Cheque(
-                            title = "Valera",
-                            owner = User("Zloi", R.drawable.person_filled),
-                            sumOfCheque = BigDecimal(30),
-                            products = mutableListOf(
-                                Product(
-                                    titleProduct = "Кола",
-                                    price = BigDecimal(35),
-                                    count = 1,
-                                    membersProduct = mutableListOf(
-                                        User("Kolya", R.drawable.person_filled),
-                                        User("Olya", R.drawable.person_filled)
-                                    )
-                                )
-                            ),
-                            membersCheque = mutableListOf(
-                                User("ZA", R.drawable.person_filled),
-                                User("ZA", R.drawable.person_filled),
-                                User("ZA", R.drawable.person_filled),
-                            )
-                        ),
-                        Cheque(
-                            title = "Valera",
-                            owner = User("Zloi", R.drawable.person_filled),
-                            products = mutableListOf(
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1,
-                                    membersProduct = mutableListOf(
-                                        User(
-                                            "Zloi",
-                                            R.drawable.person_filled
-                                        )
-                                    )
-                                ),
-
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1
-                                )
-                            ),
-                        ),
-                        Cheque(
-                            title = "Valera",
-                            owner = User("Zloi", R.drawable.person_filled),
-                            products = mutableListOf(
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1,
-                                    membersProduct = mutableListOf(
-                                        User(
-                                            "Zloi",
-                                            R.drawable.person_filled
-                                        )
-                                    )
-                                ),
-
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1
-                                )
-                            ),
-                        ),
-                        Cheque(
-                            title = "Valera",
-                            owner = User("Zloi", R.drawable.person_filled),
-                            products = mutableListOf(
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1,
-                                    membersProduct = mutableListOf(
-                                        User(
-                                            "Zloi",
-                                            R.drawable.person_filled
-                                        )
-                                    )
-                                ),
-
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1
-                                )
-                            ),
-                        ),
-                        Cheque(
-                            title = "Valera",
-                            owner = User("Zloi", R.drawable.person_filled),
-                            products = mutableListOf(
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1,
-                                    membersProduct = mutableListOf(
-                                        User(
-                                            "Zloi",
-                                            R.drawable.person_filled
-                                        )
-                                    )
-                                ),
-
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1
-                                )
-                            ),
-                        ),
-                        Cheque(
-                            title = "Valera",
-                            owner = User("Zloi", R.drawable.person_filled),
-                            products = mutableListOf(
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1,
-                                    membersProduct = mutableListOf(
-                                        User(
-                                            "Zloi",
-                                            R.drawable.person_filled
-                                        )
-                                    )
-                                ),
-
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1
-                                )
-                            ),
-                        ),
-                        Cheque(
-                            title = "Valera",
-                            owner = User("Zloi", R.drawable.person_filled),
-                            products = mutableListOf(
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1,
-                                    membersProduct = mutableListOf(
-                                        User(
-                                            "Zloi",
-                                            R.drawable.person_filled
-                                        )
-                                    )
-                                ),
-
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1
-                                )
-                            ),
-                        ),
-                        Cheque(
-                            title = "Valera",
-                            owner = User("Zloi", R.drawable.person_filled),
-                            products = mutableListOf(
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1,
-                                    membersProduct = mutableListOf(
-                                        User(
-                                            "Zloi",
-                                            R.drawable.person_filled
-                                        )
-                                    )
-                                ),
-
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1
-                                )
-                            ),
-                        ),
-                        Cheque(
-                            title = "Valera",
-                            owner = User("Zloi", R.drawable.person_filled),
-                            products = mutableListOf(
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1,
-                                    membersProduct = mutableListOf(
-                                        User(
-                                            "Zloi",
-                                            R.drawable.person_filled
-                                        )
-                                    )
-                                ),
-
-                                Product(
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1
-                                )
-                            ),
-                        ),
-                    ),
-                ),
-                isExpanded = false
             )
         )
     }
