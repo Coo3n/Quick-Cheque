@@ -8,7 +8,7 @@
     android:layout_marginStart="20dp"
     android:layout_marginTop="15dp"
     android:layout_marginEnd="15dp"
-    android:background="@color/white"
+    android:background="@color/LayoutBackgroundColor"
     app:cardElevation="0dp"
     app:cardPreventCornerOverlap="false">
 
@@ -16,14 +16,14 @@
         android:id="@+id/wrapper_distributed_cheque"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:background="@color/LayoutBackgroundColor">
 
         <LinearLayout
             android:id="@+id/preview_card_distributed_cheque"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:background="@drawable/style_only_top_corner_radius_cheque"
-            android:backgroundTint="@color/beige"
+            android:backgroundTint="@color/CardBackgroundColor"
             android:orientation="horizontal"
             app:layout_constrainedWidth="true"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -54,7 +54,7 @@
                 android:ellipsize="end"
                 android:gravity="start|center"
                 android:maxLines="1"
-                android:textColor="@color/black"
+                android:textColor="@color/TextColorPrimary"
                 android:textSize="20sp"
                 tools:text="Имя" />
 
@@ -70,7 +70,7 @@
                 android:layout_height="match_parent"
                 android:contentDescription="Expand INFORMATION of cheque"
                 android:scaleType="center"
-                android:src="@drawable/expand_button"
+                android:src="@drawable/icon_expandable_button"
                 tools:ignore="HardcodedText" />
         </LinearLayout>
 
@@ -79,7 +79,7 @@
             android:layout_width="36dp"
             android:layout_height="0dp"
             android:background="@drawable/style_right_vertical_corner"
-            android:backgroundTint="@color/light_yellow"
+            android:backgroundTint="@color/InProgressProductStatusColor"
             android:contentDescription="Состоняние оплаты"
             android:src="@drawable/icon_process"
             app:layout_constrainedWidth="true"

@@ -5,6 +5,7 @@
     android:id="@+id/ChoicePaymentFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/PaymentBackground"
     tools:context=".presentation.screen.payment_cheque_fragments.PaymentChequeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,7 +27,7 @@
             android:paddingBottom="10dp"
             android:text="@string/payment_choice"
             android:textAllCaps="false"
-            android:textColor="@color/black"
+            android:textColor="@color/TextColorPrimary"
             android:textSize="22sp"
             app:backgroundTint="@null"
             app:layout_constraintTop_toTopOf="parent"

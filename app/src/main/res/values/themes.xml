@@ -20,72 +20,28 @@
         <item name="iconTint">@color/white</item>
     </style>
 
-    <style name="AuthInputTint">
-        <item name="backgroundTint">@color/gray_light</item>
-    </style>
-
-    <style name="SwitchButtonAuth" parent="auth_switch_btn">
-        <item name="android:backgroundTint">@color/gray_light</item>
-        <item name="android:textColor">@color/black</item>
-    </style>
-
-    <style name="LayoutBackgroundColor">
-        <item name="android:background">@color/white</item>
-    </style>
-
-    <style name="LayoutBackgroundColorSecondary">
-        <item name="android:background">@color/gray_light</item>
-    </style>
-
-    <style name="Tint">
-        <item name="android:backgroundTint">@color/gray_light</item>
-    </style>
-
-    <style name="NavBarColor">
-        <item name="android:background">@color/blue</item>
-    </style>
-
-    <style name="ButtonColor">
-        <item name="android:backgroundTint">@color/dark_blue</item>
-    </style>
-
-    <style name="ButtonColorSecondary">
-        <item name="android:backgroundTint">@color/gray_black</item>
-    </style>
-
-    <style name="CardBackgroundColor">
-        <item name="android:backgroundTint">@color/beige</item>
-    </style>
-
-    <style name="TextColorPrimary">
-        <item name="android:textColor">@color/black</item>
-    </style>
-
-    <style name="TextColorSecondary">
-        <item name="android:textColor">@color/gray_black</item>
-    </style>
-
-    <style name="BackGroundColorAuth">
-        <item name="android:background">@color/gray_light</item>
-    </style>
-
-    <style name="SwitchAuthColor">
-        <item name="android:background">@color/orange</item>
-    </style>
-
-    <style name="NavBarItemsColor">
-        <item name="android:tint">@color/white</item>
-    </style>
-
-    <style name="DoneProductStatusColor">
-        <item name="android:background">@color/green</item>
-    </style>
-
-    <style name="InProgressProductStatusColor">
-        <item name="android:background">@color/light_yellow</item>
-    </style>
-
-    <style name="StatusBarItemStatusColor">
-        <item name="android:background">@color/orange</item>
-    </style>
+    <color name="VectorItemColor">@color/black</color>
+    <color name="AuthInputTintColor">@color/gray_light</color>
+    <color name="SwitchButtonAuthTintColor">@color/gray_light</color>
+    <color name="SwitchButtonAuthTextColor">@color/black</color>
+    <color name="LayoutBackgroundColor">@color/white</color>
+    <color name="LayoutBackgroundColorSecondary">@color/gray_light</color>
+    <color name="ProgressStatusCheque">@color/white</color>
+    <color name="Tint">@color/black</color>
+    <color name="NavBarColor">@color/blue</color>
+    <color name="ButtonColor">@color/orange</color>
+    <color name="ButtonColorSecondary">@color/gray_black</color>
+    <color name="CardBackgroundColor">@color/beige</color>
+    <color name="TextColorPrimary">@color/black</color>
+    <color name="TextColorSecondary">@color/gray_black</color>
+    <color name="BackGroundColorAuth">@color/gray_light</color>
+    <color name="SwitchAuthColor">@color/orange</color>
+    <color name="NavBarItemsColor">@color/white</color>
+    <color name="DoneProductStatusColor">@color/green</color>
+    <color name="InProgressProductStatusColor">@color/light_yellow</color>
+    <color name="StatusBarItemStatusColor">@color/orange</color>
+    <color name="PaymentBackground">@color/white</color>
+    <color name="PaymentBackgroundButton">@color/white</color>
+    <color name="ProfileBackgroundColor">@color/blue</color>
+    <color name="BackgroundChangeButton">@color/white</color>
 </resources>

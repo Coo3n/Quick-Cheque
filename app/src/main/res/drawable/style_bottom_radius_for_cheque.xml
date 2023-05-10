@@ -3,7 +3,7 @@
     <item>
         <inset android:insetTop="-5dp">
             <shape android:shape="rectangle">
-                <solid android:color="@color/beige" />
+                <solid android:color="@color/CardBackgroundColor" />
                 <corners android:bottomLeftRadius="12dp" android:bottomRightRadius="12dp" />
             </shape>
         </inset>
