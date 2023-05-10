@@ -31,15 +31,15 @@ class MainActivity : AppCompatActivity() {
 
         (application as MyApp).appComponent.injectMainActivity(this)
 
-        bottomNavController = binding.mainBottomNav
-
         val nav = supportFragmentManager.findFragmentById(
             R.id.fragment_container_view
         ) as NavHost
-
         navController = nav.navController
 
+        bottomNavController = binding.mainBottomNav
+
         setupActionBarWithNavController(navController)
+
         supportActionBar?.hide()
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
         setupBottomNavController()
@@ -51,27 +51,22 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupBottomNavController() {
         bottomNavController.setupWithNavController(navController)
-
+        bottomNavController.setOnItemReselectedListener { }
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.joinScreenFragment -> {
-                    navController.popBackStack(R.id.joinScreenFragment, false)
                     bottomNavController.visibility = View.VISIBLE
                 }
                 R.id.profileScreenFragment -> {
-                    navController.popBackStack(R.id.profileScreenFragment, false)
                     bottomNavController.visibility = View.VISIBLE
                 }
                 R.id.choiceRoomFragment -> {
-                    navController.popBackStack(R.id.choiceRoomFragment, false)
                     bottomNavController.visibility = View.VISIBLE
                 }
                 R.id.createScreenFragment -> {
-                    navController.popBackStack(R.id.createScreenFragment, false)
                     bottomNavController.visibility = View.VISIBLE
                 }
                 R.id.fragmentSettings -> {
-                    navController.popBackStack(R.id.fragmentSettings, false)
                     bottomNavController.visibility = View.VISIBLE
                 }
                 else -> bottomNavController.visibility = View.GONE

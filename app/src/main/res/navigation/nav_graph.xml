@@ -9,10 +9,7 @@
         android:id="@+id/joinScreenFragment"
         android:name="com.example.quick_cheque.presentation.screen.main_pages_fragments.JoinScreenFragment"
         android:label=" "
-        tools:layout="@layout/fragment_join_screen" >
-        <action
-            android:id="@+id/action_joinScreenFragment_to_createScreenFragment"
-            app:destination="@id/createScreenFragment" />
+        tools:layout="@layout/fragment_join_screen">
         <action
             android:id="@+id/action_joinScreenFragment_to_choiceChequeFragment"
             app:destination="@id/choiceChequeFragment" />
@@ -24,14 +21,7 @@
         tools:layout="@layout/fragment_profile_screen">
         <action
             android:id="@+id/action_profileScreenFragment_to_fragmentSettings"
-            app:destination="@id/fragmentSettings"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-        <action
-            android:id="@+id/action_profileScreenFragment_to_createScreenFragment"
-            app:destination="@id/createScreenFragment" />
+            app:destination="@id/fragmentSettings" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -44,13 +34,10 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"
-            app:popUpToInclusive="true" />
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
-            android:id="@+id/action_loginFragment_to_createScreenFragment"
-            app:destination="@id/createScreenFragment"
-            app:popUpTo="@id/loginFragment"
-            app:popUpToInclusive="true" />
+            android:id="@+id/action_loginFragment_to_choiceRoomFragment"
+            app:destination="@id/choiceRoomFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -134,7 +121,8 @@
     <fragment
         android:id="@+id/fragmentSettings"
         android:name="com.example.quick_cheque.presentation.screen.main_pages_fragments.FragmentSettings"
-        android:label="Настройки" />
+        android:label="Настройки"
+        tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/choiceRoomFragment"
         android:name="com.example.quick_cheque.presentation.screen.room_cheque_fragments.ChoiceRoomFragment"
@@ -151,12 +139,6 @@
     <fragment
         android:id="@+id/createScreenFragment"
         android:name="com.example.quick_cheque.presentation.screen.main_pages_fragments.CreateScreenFragment"
-        android:label="CreateScreenFragment" >
-        <action
-            android:id="@+id/action_createScreenFragment_to_joinScreenFragment"
-            app:destination="@id/joinScreenFragment" />
-        <action
-            android:id="@+id/action_createScreenFragment_to_profileScreenFragment"
-            app:destination="@id/profileScreenFragment" />
-    </fragment>
+        android:label="CreateScreenFragment"
+        tools:layout="@layout/fragment_create_room" />
 </navigation>

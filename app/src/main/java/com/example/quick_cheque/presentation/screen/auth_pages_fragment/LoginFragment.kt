@@ -68,14 +68,14 @@ class LoginFragment : BaseFragment() {
         _binding.loginBtn.setOnClickListener {
             authorizationViewModel.onEvent(AuthFormEvent.AuthorizationSubmit)
             findNavController().navigate(
-                R.id.action_loginFragment_to_createScreenFragment
+                R.id.action_loginFragment_to_choiceRoomFragment
             )
             lifecycleScope.launchWhenStarted {
                 authorizationViewModel.validationEventChannel.collect { event ->
                     when (event) {
                         is ValidationEvent.Success -> {
                             findNavController().navigate(
-                                R.id.action_loginFragment_to_createScreenFragment
+                                R.id.action_loginFragment_to_choiceRoomFragment
                             )
 
                             Toast.makeText(

@@ -1,6 +1,7 @@
 package com.example.quick_cheque.presentation.screen.room_cheque_fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,6 +50,11 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
         setVisibleHomeButton(false)
         setVisibleToolBar()
         setupToolBar(R.menu.menu_with_search)
+        val fm = fragmentManager
+
+        for (i in 0 until fm?.backStackEntryCount!!) {
+            Log.i("TAG", "Found fragment: " + fm.getBackStackEntryAt(i)?.id);
+        }
 
         val list = roomRepositoryImpl.getRooms().map {
             it.toRoom().toRoomListItem()

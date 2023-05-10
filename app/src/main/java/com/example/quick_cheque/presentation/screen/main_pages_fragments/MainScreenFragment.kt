@@ -46,10 +46,6 @@ class MainScreenFragment : BaseFragment() {
         )?.visibility = View.INVISIBLE
     }
 
-    private fun takePicture() {
-
-    }
-
     //secret function Tsss...
     private fun initYandexADS() {
         val banner = binding.ads
