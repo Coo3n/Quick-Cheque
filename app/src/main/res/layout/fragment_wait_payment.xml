@@ -6,14 +6,14 @@
     android:id="@+id/WaitPaymentFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/LayoutBackgroundColor"
     android:fitsSystemWindows="true"
     android:paddingTop="?attr/actionBarSize"
     tools:context=".presentation.screen.payment_cheque_fragments.WaitPaymentFragment">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -41,7 +41,7 @@
                 android:singleLine="false"
                 android:text="@string/wait_for_cheque"
 
-                android:textColor="@color/black"
+                android:textColor="@color/TextColorSecondary"
                 android:textSize="32sp"
 
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -50,33 +50,34 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <View
-        android:id="@+id/second_dividing_strip"
+    <LinearLayout
+        android:id="@+id/bottom_section"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="10dp"
-        android:background="@color/gray"
-        app:layout_constraintBottom_toTopOf="@id/button_next"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
-    <Button
-        android:id="@+id/button_next"
-        android:layout_width="320dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/style_pay_button"
-        android:gravity="center"
-        android:paddingTop="1dp"
-        android:paddingBottom="4dp"
-        android:text="@string/next"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="22sp"
+        android:layout_height="wrap_content"
+        android:background="@color/ProgressStatusCheque"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
 
+        <View
+            android:id="@+id/second_dividing_strip"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/gray" />
+
+        <Button
+            android:id="@+id/button_next"
+            android:layout_width="320dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/style_pay_button"
+            android:paddingTop="1dp"
+            android:paddingBottom="4dp"
+            android:text="@string/next"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

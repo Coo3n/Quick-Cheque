@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/LayoutBackgroundColor"
     tools:context=".presentation.screen.main_pages_fragments.ProfileScreenFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -57,7 +57,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="@color/TextColorPrimary"
             android:text="@string/choose_language"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@id/language_radiogroup"
@@ -91,7 +91,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="@color/TextColorPrimary"
             android:text="@string/choose_theme"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@id/theme_radiogroup"

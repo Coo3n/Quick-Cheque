@@ -4,15 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/LayoutBackgroundColor"
     tools:context=".presentation.screen.room_cheque_fragments.ChoiceProductFragment">
+
+    <View
+        android:id="@+id/zero_dividing_strip"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/wrapperStagesMenu"
         android:layout_width="match_parent"
         android:layout_height="64dp"
+        android:background="@color/ProgressStatusCheque"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/zero_dividing_strip">
 
         <RelativeLayout
             android:id="@+id/stagesMenu"
@@ -41,8 +53,8 @@
                     android:layout_gravity="center"
                     android:maxLines="1"
                     android:text="@string/cheque"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textColor="@color/TextColorPrimary"
+                    android:textSize="10sp" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
@@ -117,8 +129,8 @@
                     android:layout_height="wrap_content"
                     android:maxLines="1"
                     android:text="@string/distribution"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"
+                    android:textColor="@color/TextColorPrimary"
+                    android:textSize="10sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -146,7 +158,8 @@
                     android:layout_marginStart="13dp"
                     android:layout_marginBottom="12dp"
                     android:background="@drawable/style_mini_dividing_line"
-                    android:backgroundTint="@color/black"
+                    android:backgroundTint="@color/Tint"
+
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toRightOf="@id/personImage"
                     app:layout_constraintRight_toLeftOf="@id/rectangle_6" />
@@ -158,7 +171,8 @@
                     android:layout_marginStart="3dp"
                     android:layout_marginBottom="12dp"
                     android:background="@drawable/style_mini_dividing_line"
-                    android:backgroundTint="@color/black"
+                    android:backgroundTint="@color/Tint"
+
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toRightOf="@id/dividingLine5"
                     app:layout_constraintRight_toRightOf="parent" />
@@ -175,7 +189,8 @@
                 android:layout_marginBottom="22dp"
                 android:layout_toEndOf="@id/distributionModule"
                 android:background="@drawable/style_mini_dividing_line"
-                android:backgroundTint="@color/black" />
+                android:backgroundTint="@color/Tint"
+                />
 
             <View
                 android:id="@+id/dividingLine8"
@@ -188,7 +203,8 @@
                 android:layout_marginBottom="22dp"
                 android:layout_toEndOf="@id/dividingLine7"
                 android:background="@drawable/style_mini_dividing_line"
-                android:backgroundTint="@color/black" />
+                android:backgroundTint="@color/Tint"
+                />
 
             <LinearLayout
                 android:id="@+id/paymentModule"
@@ -208,7 +224,7 @@
                     android:layout_height="wrap_content"
                     android:maxLines="1"
                     android:text="@string/payment"
-                    android:textColor="@color/black"
+                    android:textColor="@color/TextColorPrimary"
                     android:textSize="10sp"
                     tools:ignore="HardcodedText,SmallSp" />
 
@@ -220,7 +236,7 @@
                     android:adjustViewBounds="true"
                     android:contentDescription="stage distribution of the receipt"
                     android:scaleType="center"
-                    android:src="@drawable/payment"
+                    android:src="@drawable/payment1"
                     tools:ignore="HardcodedText" />
             </LinearLayout>
         </RelativeLayout>
@@ -234,7 +250,7 @@
         android:background="@color/gray"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wrapperStagesMenu" />
+        app:layout_constraintTop_toBottomOf="@id/wrapperStagesMenu" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_products"
@@ -244,41 +260,44 @@
         android:overScrollMode="never"
         android:scrollbars="none"
         app:layout_constrainedHeight="true"
-        app:layout_constraintBottom_toTopOf="@id/secondDividingStrip"
+        app:layout_constraintBottom_toTopOf="@id/bottom_section"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/wrapperStagesMenu"
         app:layout_constraintVertical_bias="0"
         tools:listitem="@layout/card_choice_product_item" />
 
-    <View
-        android:id="@+id/secondDividingStrip"
+    <LinearLayout
+        android:id="@+id/bottom_section"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="10dp"
-        android:background="@color/gray"
-        app:layout_constraintBottom_toTopOf="@id/button_next_to_distribution_cheque"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
-    <Button
-        android:id="@+id/button_next_to_distribution_cheque"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/style_orange_button_next"
-        android:gravity="center"
-        android:minWidth="320dp"
-        android:paddingTop="1dp"
-        android:paddingBottom="4dp"
-        android:text="@string/next"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="22sp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/ProgressStatusCheque">
+
+        <View
+            android:id="@+id/secondDividingStrip"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/gray" />
+
+        <Button
+            android:id="@+id/button_next_to_distribution_cheque"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/style_orange_button_next"
+            android:layout_gravity="center"
+            android:minWidth="320dp"
+            android:paddingTop="1dp"
+            android:paddingBottom="4dp"
+            android:text="@string/next"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

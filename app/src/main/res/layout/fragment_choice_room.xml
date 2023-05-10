@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    style="@style/LayoutBackgroundColor"
+    android:background="@color/LayoutBackgroundColor"
     tools:context=".presentation.screen.room_cheque_fragments.ChoiceRoomFragment">
 
     <LinearLayout
@@ -27,7 +27,7 @@
             android:id="@+id/no_rooms_yet_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/TextColorSecondary"
+            android:textColor="@color/TextColorSecondary"
             android:layout_gravity="center_horizontal"
             android:textSize="23sp"
             android:text="There is no rooms yet..." />
@@ -43,7 +43,7 @@
                 android:id="@+id/title_product"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/TextColorSecondary"
+                android:textColor="@color/TextColorSecondary"
                 android:gravity="center_horizontal"
                 android:textSize="16sp"
                 android:text="Press " />
@@ -57,7 +57,7 @@
                 android:id="@+id/text_create_room"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/TextColorSecondary"
+                android:textColor="@color/TextColorSecondary"
                 android:gravity="center_horizontal"
                 android:textSize="16sp"
                 android:text=" to create new Room" />
@@ -68,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            style="@style/TextColorSecondary"
+            android:textColor="@color/TextColorSecondary"
             android:gravity="center_horizontal"
             android:textSize="24sp"
             android:text="OR" />
@@ -84,7 +84,7 @@
                 android:id="@+id/text_join"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/TextColorSecondary"
+                android:textColor="@color/TextColorSecondary"
                 android:gravity="center_horizontal"
                 android:textSize="16sp"
                 android:text="Join an existing one using " />

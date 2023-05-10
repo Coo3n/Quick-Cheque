@@ -5,7 +5,7 @@
             <corners
                 android:topLeftRadius="12dp"
                 android:topRightRadius="12dp" />
-            <solid android:color="@color/design_default_color_on_primary" />
+            <solid android:color="@color/CardBackgroundColor" />
         </shape>
     </item>
 </layer-list>
