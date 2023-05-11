@@ -50,5 +50,5 @@
     <string name="members_count_in_room">Members count</string>
     <string name="room_name">Room name</string>
     <string name="name_cheque">Name cheque</string>
-    <string name="fragments_auth_username">username</string>
+    <string name="fragments_auth_username">Username</string>
 </resources>
