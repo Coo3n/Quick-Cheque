@@ -2,110 +2,110 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:fillViewport="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/BackGroundColorAuth"
+    android:fillViewport="true"
     tools:context=".presentation.screen.auth_pages_fragment.LoginFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout style="@style/auth_container">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="20dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="20dp">
 
-        <FrameLayout
-            android:id="@+id/fragment_login_background"
-            style="@style/auth_background"
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_corner_radius_6dp"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_max="400dp"
+            >
 
-        <FrameLayout
-            style="@style/auth_switch_background"
-            app:layout_constraintBottom_toBottomOf="@id/switch_button_register"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/switch_button_register" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fragment_auth_switch_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/light_gray_corner_radius_6dp">
 
-        <Button
-            android:id="@+id/switch_button_register"
-            style="@style/auth_switch_btn"
-            android:layout_marginStart="35dp"
-            android:layout_marginEnd="40dp"
-            android:text="@string/fragments_auth_switch_register"
-            app:layout_constraintEnd_toStartOf="@+id/switch_button_login"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <Button
+                    android:id="@+id/switch_button_register"
+                    style="@style/auth_switch_btn"
+                    android:text="@string/fragments_auth_switch_register"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/switch_button_login"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-        <Button
-            android:id="@+id/switch_button_login"
-            style="@style/auth_switch_btn"
-            android:backgroundTint="@color/ButtonColor"
-            android:layout_marginEnd="35dp"
-            android:text="@string/fragments_auth_switch_login"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/switch_button_register"
-            app:layout_constraintTop_toTopOf="parent" />
+                <Button
+                    android:id="@+id/switch_button_login"
+                    style="@style/auth_switch_btn"
+                    android:backgroundTint="@color/ButtonColor"
+                    android:text="@string/fragments_auth_switch_login"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toEndOf="@id/switch_button_register" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            style="@style/auth_field_text"
-            android:text="@string/fragments_auth_email"
-            app:layout_constraintBottom_toTopOf="@+id/fragment_login_email_field"
-            app:layout_constraintEnd_toEndOf="@+id/fragment_login_email_field"
-            app:layout_constraintStart_toStartOf="@+id/fragment_login_email_field" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/fragment_login_email_field"
-            style="@style/auth_field_new"
-            android:layout_marginTop="60dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switch_button_register">
+            <TextView
+                style="@style/auth_field_text"
+                android:text="@string/fragments_auth_email"
+                app:layout_constraintBottom_toTopOf="@+id/fragment_login_email_field"
+                app:layout_constraintEnd_toEndOf="@+id/fragment_login_email_field"
+                app:layout_constraintStart_toStartOf="@+id/fragment_login_email_field" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                style="@style/auth_field_text_new"
-                android:inputType="textEmailAddress" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fragment_login_email_field"
+                style="@style/auth_field_new">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/auth_field_text_new"
+                    android:inputType="textEmailAddress" />
 
-        <TextView
-            style="@style/auth_field_text"
-            android:text="@string/fragments_auth_password_1"
-            app:layout_constraintBottom_toTopOf="@+id/fragment_login_password_1_field"
-            app:layout_constraintEnd_toEndOf="@+id/fragment_login_password_1_field"
-            app:layout_constraintStart_toStartOf="@+id/fragment_login_password_1_field" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/fragment_login_password_1_field"
-            style="@style/auth_field_new"
-            app:endIconMode="password_toggle"
-            android:layout_marginTop="52dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_login_email_field">
+            <TextView
+                style="@style/auth_field_text"
+                android:layout_marginTop="25dp"
+                android:text="@string/fragments_auth_password_1" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                style="@style/auth_field_text_new"
-                android:inputType="textPassword" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fragment_login_password_1_field"
+                style="@style/auth_field_new"
+                app:endIconMode="password_toggle">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/auth_field_text_new"
+                    android:inputType="textPassword" />
 
-        <TextView
-            style="@style/auth_field_text"
-            android:layout_marginTop="6dp"
-            android:text="@string/fragment_login_forgot_password"
-            android:textColor="@color/blue"
-            app:layout_constraintEnd_toEndOf="@+id/fragment_login_password_1_field"
-            app:layout_constraintStart_toStartOf="@+id/fragment_login_password_1_field"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_login_password_1_field" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/login_btn"
-            style="@style/auth_bottom_btn"
-            android:layout_marginTop="60dp"
-            android:text="@string/fragment_login_btn_login"
-            app:layout_constraintTop_toBottomOf="@id/fragment_login_password_1_field"
-            app:layout_constraintBottom_toBottomOf="@id/fragment_login_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                style="@style/auth_field_text"
+                android:layout_marginTop="6dp"
+                android:text="@string/fragment_login_forgot_password"
+                android:textColor="@color/blue" />
+
+            <Button
+                android:id="@+id/login_btn"
+                style="@style/auth_bottom_btn"
+                android:layout_gravity="center"
+                android:text="@string/fragment_login_btn_login" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
