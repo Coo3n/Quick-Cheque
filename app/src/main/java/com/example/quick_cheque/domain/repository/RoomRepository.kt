@@ -2,15 +2,18 @@ package com.example.quick_cheque.domain.repository
 
 import com.example.quick_cheque.data.local.entity.RoomEntity
 import com.example.quick_cheque.data.local.entity.RoomEntityWithCheques
+import com.example.quick_cheque.domain.model.Room
+import com.example.quick_cheque.util.Resource
+import kotlinx.coroutines.flow.Flow
 
 interface RoomRepository {
-    fun getRooms(): List<RoomEntity>
+    suspend fun getMyRooms(
+        fetchFromRemote: Boolean
+    ): Flow<Resource<List<Room>>>
 
-    fun getRoomById(id: Int): RoomEntity?
+    suspend fun getRoomById(id: Int): Flow<Resource<Room?>>
 
-    fun getRoomWithCheques(id: Int): List<RoomEntityWithCheques>
+    suspend fun insertRoom(room: Room)
 
-    fun insertRoom(room: RoomEntity)
-
-    fun deleteRoom(room: RoomEntity)
+    suspend fun deleteRoom(room: Room)
 }

@@ -26,4 +26,9 @@ interface QuickChequeApi {
         @Query("token") token: String,
         @Body roomDto: RoomDto
     )
+
+    @POST("api/get_rooms")
+    suspend fun getMyRooms(
+        @Query("token") token: String,
+    ): Response<List<RoomDto>>
 }

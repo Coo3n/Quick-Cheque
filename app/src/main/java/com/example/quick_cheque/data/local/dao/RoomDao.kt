@@ -3,8 +3,6 @@ package com.example.quick_cheque.data.local.dao
 import androidx.room.*
 import com.example.quick_cheque.data.local.entity.RoomEntity
 import com.example.quick_cheque.data.local.entity.RoomEntityWithCheques
-import com.example.quick_cheque.domain.model.Room
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface RoomDao {
@@ -21,6 +19,12 @@ interface RoomDao {
     @Insert(entity = RoomEntity::class, onConflict = OnConflictStrategy.REPLACE)
     fun insertRoom(room: RoomEntity)
 
+    @Insert(entity = RoomEntity::class, onConflict = OnConflictStrategy.REPLACE)
+    fun insertRoomList(roomList: List<RoomEntity>)
+
     @Delete(entity = RoomEntity::class)
     fun deleteRoom(room: RoomEntity)
+
+    @Query("DELETE FROM room")
+    fun clearRooms()
 }
