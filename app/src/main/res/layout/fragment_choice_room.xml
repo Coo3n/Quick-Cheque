@@ -27,26 +27,25 @@
             android:id="@+id/no_rooms_yet_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/TextColorSecondary"
             android:layout_gravity="center_horizontal"
-            android:textSize="23sp"
-            android:text="There is no rooms yet..." />
+            android:text="There is no rooms yet..."
+            android:textColor="@color/TextColorSecondary"
+            android:textSize="23sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_gravity="center"
-            >
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/title_product"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/TextColorSecondary"
                 android:gravity="center_horizontal"
-                android:textSize="16sp"
-                android:text="Press " />
+                android:text="Press "
+                android:textColor="@color/TextColorSecondary"
+                android:textSize="16sp" />
 
             <ImageView
                 android:layout_width="24dp"
@@ -57,10 +56,10 @@
                 android:id="@+id/text_create_room"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/TextColorSecondary"
                 android:gravity="center_horizontal"
-                android:textSize="16sp"
-                android:text=" to create new Room" />
+                android:text=" to create new Room"
+                android:textColor="@color/TextColorSecondary"
+                android:textSize="16sp" />
         </LinearLayout>
 
         <TextView
@@ -68,26 +67,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textColor="@color/TextColorSecondary"
             android:gravity="center_horizontal"
-            android:textSize="24sp"
-            android:text="OR" />
+            android:text="OR"
+            android:textColor="@color/TextColorSecondary"
+            android:textSize="24sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_gravity="center"
-            >
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/text_join"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/TextColorSecondary"
                 android:gravity="center_horizontal"
-                android:textSize="16sp"
-                android:text="Join an existing one using " />
+                android:text="Join an existing one using "
+                android:textColor="@color/TextColorSecondary"
+                android:textSize="16sp" />
 
             <ImageView
                 android:layout_width="24dp"
@@ -97,20 +95,28 @@
 
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/cheque_List"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresher"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:overScrollMode="never"
-        android:paddingTop="15dp"
-        android:scrollbars="none"
-        app:layout_constrainedHeight="true"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:layout_constraintVertical_chainStyle="packed"
-        tools:listitem="@layout/card_choice_room_item" />
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cheque_List"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:overScrollMode="never"
+            android:paddingTop="15dp"
+            android:scrollbars="none"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:listitem="@layout/card_choice_room_item" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

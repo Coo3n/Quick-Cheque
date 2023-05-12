@@ -1,6 +1,8 @@
 package com.example.quick_cheque.di.modules
 
+import android.content.SharedPreferences
 import com.example.quick_cheque.data.remote.QuickChequeApi
+import com.example.quick_cheque.data.remote.TokenInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -14,34 +16,35 @@ import javax.inject.Singleton
 class RemoteModule {
     @Singleton
     @Provides
-    fun provideRxJava2CallAdapterFactory(): RxJava2CallAdapterFactory {
-        return RxJava2CallAdapterFactory.create()
+    fun provideGsonConverterFactory(): GsonConverterFactory {
+        return GsonConverterFactory.create()
     }
 
     @Singleton
     @Provides
-    fun provideGsonConverterFactory(): GsonConverterFactory {
-        return GsonConverterFactory.create()
-    }
-    @Singleton
-    @Provides
-    fun provideOkHttpClient(): OkHttpClient {
+    fun provideOkHttpClient(tokenInterceptor: TokenInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
+            .addInterceptor(tokenInterceptor)
             .connectTimeout(100, TimeUnit.SECONDS)
             .readTimeout(100, TimeUnit.SECONDS)
             .build()
     }
+
+    @Singleton
+    @Provides
+    fun provideTokenInterceptor(sharedPreferences: SharedPreferences): TokenInterceptor {
+        return TokenInterceptor(sharedPreferences)
+    }
+
     @Singleton
     @Provides
     fun provideRtApi(
         okHttpClient: OkHttpClient,
-        rxJava2CallAdapterFactory: RxJava2CallAdapterFactory,
         gsonConverterFactory: GsonConverterFactory
     ): QuickChequeApi {
         return Retrofit.Builder()
             .baseUrl("http://10.0.2.2:8080")
             .client(okHttpClient)
-            .addCallAdapterFactory(rxJava2CallAdapterFactory)
             .addConverterFactory(gsonConverterFactory)
             .build()
             .create(QuickChequeApi::class.java)

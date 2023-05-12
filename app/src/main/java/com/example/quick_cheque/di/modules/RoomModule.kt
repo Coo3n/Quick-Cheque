@@ -2,7 +2,6 @@ package com.example.quick_cheque.di.modules
 
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.room.Room
 import com.example.quick_cheque.data.local.QuickChequeDataBase
 import com.example.quick_cheque.data.local.dao.ChequeDao
 import com.example.quick_cheque.data.local.dao.ProductDao
@@ -11,7 +10,7 @@ import com.example.quick_cheque.data.remote.QuickChequeApi
 import com.example.quick_cheque.data.repository.AuthenticationRepositoryImpl
 import com.example.quick_cheque.data.repository.RoomRepositoryImpl
 import com.example.quick_cheque.domain.repository.AuthenticationRepository
-import com.example.quick_cheque.domain.repository.RoomRepository
+import com.example.quick_cheque.domain.repository.ChoiceItemRepository
 import dagger.Module
 import dagger.Provides
 
@@ -42,10 +41,11 @@ class RoomModule {
 
     @Provides
     fun provideRoomRepositoryImpl(
+        sharedPreferences: SharedPreferences,
         roomDao: RoomDao,
         quickChequeApi: QuickChequeApi
-    ): RoomRepository {
-        return RoomRepositoryImpl(roomDao, quickChequeApi)
+    ): RoomRepositoryImpl {
+        return RoomRepositoryImpl(sharedPreferences, roomDao, quickChequeApi)
     }
 
     @Provides

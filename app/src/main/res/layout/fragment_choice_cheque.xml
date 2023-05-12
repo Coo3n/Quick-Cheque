@@ -14,8 +14,7 @@
         android:layout_marginBottom="10dp"
         android:background="@color/gray"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/wrapper_stages_menu"
@@ -76,8 +75,7 @@
                 android:layout_marginBottom="22dp"
                 android:layout_toEndOf="@id/chequeModule"
                 android:background="@drawable/style_mini_dividing_line"
-                android:backgroundTint="@color/Tint"
-                />
+                android:backgroundTint="@color/Tint" />
 
             <View
                 android:id="@+id/dividing_line2"
@@ -89,8 +87,7 @@
                 android:layout_marginBottom="22dp"
                 android:layout_toEndOf="@id/dividing_line1"
                 android:background="@drawable/style_mini_dividing_line"
-                android:backgroundTint="@color/Tint"
-                />
+                android:backgroundTint="@color/Tint" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/distribution_module"
@@ -191,8 +188,7 @@
                 android:layout_marginBottom="22dp"
                 android:layout_toEndOf="@id/distribution_module"
                 android:background="@drawable/style_mini_dividing_line"
-                android:backgroundTint="@color/Tint"
-                />
+                android:backgroundTint="@color/Tint" />
 
             <View
                 android:id="@+id/dividing_line8"
@@ -205,8 +201,7 @@
                 android:layout_marginBottom="22dp"
                 android:layout_toEndOf="@id/dividing_line7"
                 android:background="@drawable/style_mini_dividing_line"
-                android:backgroundTint="@color/Tint"
-                />
+                android:backgroundTint="@color/Tint" />
 
             <LinearLayout
                 android:id="@+id/paymentModule"
@@ -252,32 +247,41 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/wrapper_stages_menu" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/cheque_List"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresher"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:background="@color/LayoutBackgroundColor"
-        android:overScrollMode="never"
-        android:paddingTop="15dp"
-        android:scrollbars="none"
-        app:layout_constrainedHeight="true"
-        app:layout_constraintBottom_toTopOf="@id/bottom_section"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/first_dividing_strip"
-        app:layout_constraintVertical_bias="0.0"
-        app:layout_constraintVertical_chainStyle="packed"
-        tools:listitem="@layout/card_choice_item" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/first_dividing_strip">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cheque_List"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@color/LayoutBackgroundColor"
+            android:overScrollMode="never"
+            android:paddingTop="15dp"
+            android:scrollbars="none"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toTopOf="@id/bottom_section"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/first_dividing_strip"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:listitem="@layout/card_choice_item" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <LinearLayout
         android:id="@+id/bottom_section"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/ProgressStatusCheque"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@color/ProgressStatusCheque">
+        app:layout_constraintStart_toStartOf="parent">
 
         <View
             android:id="@+id/second_dividing_strip"
@@ -290,10 +294,9 @@
             android:id="@+id/button_next_to_distribute_cheque"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-
+            android:layout_gravity="center"
             android:layout_marginBottom="10dp"
             android:background="@drawable/style_orange_button_next"
-            android:layout_gravity="center"
             android:minWidth="320dp"
             android:paddingTop="1dp"
             android:paddingBottom="4dp"

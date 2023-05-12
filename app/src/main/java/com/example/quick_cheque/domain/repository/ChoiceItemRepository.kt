@@ -1,15 +1,14 @@
 package com.example.quick_cheque.domain.repository
 
-import com.example.quick_cheque.data.local.entity.RoomEntity
-import com.example.quick_cheque.data.local.entity.RoomEntityWithCheques
+import com.example.quick_cheque.domain.model.ChoiceItem
 import com.example.quick_cheque.domain.model.Room
 import com.example.quick_cheque.util.Resource
 import kotlinx.coroutines.flow.Flow
 
-interface RoomRepository {
-    suspend fun getMyRooms(
+interface ChoiceItemRepository {
+    suspend fun getChoiceItems(
         fetchFromRemote: Boolean
-    ): Flow<Resource<List<Room>>>
+    ): Flow<Resource<List<ChoiceItem>>>
 
     suspend fun getRoomById(id: Int): Flow<Resource<Room?>>
 

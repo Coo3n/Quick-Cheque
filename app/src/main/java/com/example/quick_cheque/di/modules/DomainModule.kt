@@ -1,12 +1,6 @@
 package com.example.quick_cheque.di.modules
 
-import android.content.SharedPreferences
-import com.example.quick_cheque.data.local.dao.RoomDao
-import com.example.quick_cheque.data.remote.QuickChequeApi
-import com.example.quick_cheque.data.repository.AuthenticationRepositoryImpl
-import com.example.quick_cheque.data.repository.RoomRepositoryImpl
 import com.example.quick_cheque.domain.repository.AuthenticationRepository
-import com.example.quick_cheque.domain.repository.RoomRepository
 import com.example.quick_cheque.domain.use_case.ValidateLoginUseCase
 import com.example.quick_cheque.domain.use_case.ValidatePasswordUseCase
 import com.example.quick_cheque.domain.use_case.ValidateRepeatedPasswordUseCase

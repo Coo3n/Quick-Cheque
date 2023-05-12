@@ -1,6 +1,7 @@
 package com.example.quick_cheque.data.mapper
 
 import com.example.quick_cheque.data.local.entity.RoomEntity
+import com.example.quick_cheque.data.remote.dto.RoomData
 import com.example.quick_cheque.data.remote.dto.RoomDto
 import com.example.quick_cheque.domain.model.Room
 import com.example.quick_cheque.domain.model.RoomListItem
@@ -22,7 +23,7 @@ fun RoomEntity.toRoom(): Room {
     )
 }
 
-fun RoomDto.toRoom(): Room {
+fun RoomData.toRoom(): Room {
     return Room(
         id = id,
         title = title,
@@ -32,7 +33,7 @@ fun RoomDto.toRoom(): Room {
     )
 }
 
-fun RoomDto.toRoomEntity(): RoomEntity {
+fun RoomData.toRoomEntity(): RoomEntity {
     return RoomEntity(
         id = id,
         titleRoom = title,
