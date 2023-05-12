@@ -1,31 +1,54 @@
 package com.example.quick_cheque.presentation.screen.room_cheque_fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.quick_cheque.MyApp
 import com.example.quick_cheque.R
+import com.example.quick_cheque.data.repository.RoomRepositoryImpl
 import com.example.quick_cheque.presentation.adapter.ListExpandableChoiceChequeAdapter
 import com.example.quick_cheque.databinding.FragmentChoiceChequeBinding
 import com.example.quick_cheque.domain.model.*
 import com.example.quick_cheque.presentation.screen.BaseFragment
 import kotlinx.coroutines.launch
 import java.math.BigDecimal
+import javax.inject.Inject
 
 class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.Clickable {
     private var binding: FragmentChoiceChequeBinding? = null
     private val _binding: FragmentChoiceChequeBinding
         get() = binding!!
 
-    private val choiceItemViewModel: ChoiceItemViewModel by viewModels()
+    private lateinit var choiceItemViewModelFactory: ChoiceItemViewModelFactory
+    private lateinit var choiceItemViewModel: ChoiceItemViewModel
 
     private lateinit var chequeExpandableRecyclerViewList: RecyclerView
     private lateinit var chequeExpandableChequeAdapter: ListExpandableChoiceChequeAdapter
+
+    @Inject
+    lateinit var roomRepository: RoomRepositoryImpl
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireActivity().application as MyApp).appComponent.injectChoiceChequeFragment(this)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        choiceItemViewModelFactory = ChoiceItemViewModelFactory(roomRepository)
+        choiceItemViewModel = ViewModelProvider(
+            this,
+            choiceItemViewModelFactory
+        )[ChoiceItemViewModel::class.java]
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

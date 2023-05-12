@@ -1,5 +1,6 @@
 package com.example.quick_cheque.presentation.screen.auth_pages_fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -39,9 +40,13 @@ class LoginFragment : BaseFragment() {
         }
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireActivity().application as MyApp).appComponent.injectLoginFragment(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (requireActivity().application as MyApp).appComponent.injectLoginFragment(this)
         authorizationViewModel = ViewModelProvider(
             this,
             authorizationViewModelFactory
@@ -67,9 +72,6 @@ class LoginFragment : BaseFragment() {
 
         _binding.loginBtn.setOnClickListener {
             authorizationViewModel.onEvent(AuthFormEvent.AuthorizationSubmit)
-            findNavController().navigate(
-                R.id.action_loginFragment_to_choiceRoomFragment
-            )
             lifecycleScope.launchWhenStarted {
                 authorizationViewModel.validationEventChannel.collect { event ->
                     when (event) {

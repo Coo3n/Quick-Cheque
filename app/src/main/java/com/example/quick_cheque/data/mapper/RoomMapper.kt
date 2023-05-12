@@ -1,24 +1,43 @@
 package com.example.quick_cheque.data.mapper
 
 import com.example.quick_cheque.data.local.entity.RoomEntity
+import com.example.quick_cheque.data.remote.dto.RoomData
+import com.example.quick_cheque.data.remote.dto.RoomDto
 import com.example.quick_cheque.domain.model.Room
 import com.example.quick_cheque.domain.model.RoomListItem
+import com.example.quick_cheque.domain.model.User
+
+// dto - room
+// dto - roomEntity
+
+//entity - room
+// room - RoomListItem
 
 fun RoomEntity.toRoom(): Room {
     return Room(
         id = id!!,
         title = titleRoom,
-        host = ownerId.toString(),
-        membersRoom = mutableListOf(),
-        cheques = mutableListOf()
+        ownerId = ownerId,
+        membersRoom = mutableListOf(), // ?
+        cntCheques = 0,                // ?
     )
 }
 
-fun Room.toRoomEntity(): RoomEntity {
+fun RoomData.toRoom(): Room {
+    return Room(
+        id = id,
+        title = title,
+        ownerId = ownerId,
+        membersRoom = membersRoom,
+        cntCheques = cntCheques,
+    )
+}
+
+fun RoomData.toRoomEntity(): RoomEntity {
     return RoomEntity(
         id = id,
         titleRoom = title,
-        ownerId = host.toInt()
+        ownerId = ownerId
     )
 }
 

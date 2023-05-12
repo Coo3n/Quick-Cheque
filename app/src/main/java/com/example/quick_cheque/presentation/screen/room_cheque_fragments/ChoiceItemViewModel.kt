@@ -1,11 +1,17 @@
 package com.example.quick_cheque.presentation.screen.room_cheque_fragments
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.quick_cheque.domain.model.ChoiceItem
+import com.example.quick_cheque.domain.repository.ChoiceItemRepository
+import com.example.quick_cheque.util.Resource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 
-class ChoiceItemViewModel : ViewModel() {
+class ChoiceItemViewModel(
+    private val choiceItemRepository: ChoiceItemRepository
+) : ViewModel() {
     private var _choiceLastPosition = MutableStateFlow(0)
     val choiceLastPosition = _choiceLastPosition.asStateFlow()
 
@@ -14,6 +20,41 @@ class ChoiceItemViewModel : ViewModel() {
 
     private var _filteredListItems = MutableStateFlow<MutableList<ChoiceItem>>(mutableListOf())
     val filteredListItems = _filteredListItems.asStateFlow()
+
+    private val _choiceItemState = MutableStateFlow(ChoiceItemState())
+    val choiceItemState = _choiceItemState.asStateFlow()
+
+    fun initChoiceItems() {
+        getChoiceItem()
+    }
+
+    fun onEvent(choiceItemEvent: ChoiceItemEvent) {
+        when (choiceItemEvent) {
+            is ChoiceItemEvent.Refresh -> {
+                getChoiceItem()
+            }
+        }
+    }
+
+    private fun getChoiceItem() {
+        viewModelScope.launch {
+            choiceItemRepository.getChoiceItems(true).collect { result ->
+                when (result) {
+                    is Resource.Loading -> {
+                        _choiceItemState.value = _choiceItemState.value.copy(
+                            isLoading = result.isLoading
+                        )
+                    }
+                    is Resource.Error -> Unit
+                    is Resource.Success -> {
+                        val resultListItems = result.data?.toMutableList() ?: mutableListOf()
+                        setFilteredListItems(resultListItems)
+                        setListItems(resultListItems)
+                    }
+                }
+            }
+        }
+    }
 
     fun setChoiceCurrentPosition(choiceCurrentPosition: Int) {
         _choiceLastPosition.value = choiceCurrentPosition
@@ -33,7 +74,6 @@ class ChoiceItemViewModel : ViewModel() {
 
     fun getChoiceItemOnPosition(position: Int): ChoiceItem = _filteredListItems.value[position]
 
-    fun getFilteredListItems() = _filteredListItems.value
 
     fun changeChoiceItemState(
         currentClickedChoiceItem: Int,

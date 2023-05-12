@@ -1,17 +1,19 @@
 package com.example.quick_cheque.presentation.screen.room_cheque_fragments
 
+import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quick_cheque.MyApp
 import com.example.quick_cheque.R
-import com.example.quick_cheque.data.mapper.toRoom
 import com.example.quick_cheque.data.mapper.toRoomListItem
 import com.example.quick_cheque.data.repository.RoomRepositoryImpl
 import com.example.quick_cheque.presentation.adapter.ListRoomAdapter
@@ -19,7 +21,7 @@ import com.example.quick_cheque.databinding.FragmentChoiceRoomBinding
 import com.example.quick_cheque.domain.model.*
 import com.example.quick_cheque.presentation.screen.BaseFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import java.math.BigDecimal
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
@@ -27,20 +29,34 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
     private val _binding: FragmentChoiceRoomBinding
         get() = binding!!
 
-    private val choiceItemViewModel: ChoiceItemViewModel by viewModels()
+    private lateinit var choiceItemViewModelFactory: ChoiceItemViewModelFactory
+    private lateinit var choiceItemViewModel: ChoiceItemViewModel
 
     private lateinit var roomRecyclerViewList: RecyclerView
     private lateinit var roomChequeAdapter: ListRoomAdapter
 
     @Inject
-    lateinit var roomRepositoryImpl: RoomRepositoryImpl
+    lateinit var roomRepository: RoomRepositoryImpl
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireActivity().application as MyApp).appComponent.injectChoiceRoomFragment(this)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        choiceItemViewModelFactory = ChoiceItemViewModelFactory(roomRepository)
+        choiceItemViewModel = ViewModelProvider(
+            this,
+            choiceItemViewModelFactory
+        )[ChoiceItemViewModel::class.java]
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        (requireActivity().application as MyApp).appComponent.injectChoiceRoomFragment(this)
         binding = FragmentChoiceRoomBinding.inflate(inflater)
         return _binding.root
     }
@@ -50,58 +66,37 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
         setVisibleHomeButton(false)
         setVisibleToolBar()
         setupToolBar(R.menu.menu_with_search)
-        val fm = fragmentManager
 
-        for (i in 0 until fm?.backStackEntryCount!!) {
-            Log.i("TAG", "Found fragment: " + fm.getBackStackEntryAt(i)?.id);
-        }
+        choiceItemViewModel.initChoiceItems()
 
-        val list = roomRepositoryImpl.getRooms().map {
-            it.toRoom().toRoomListItem()
-        }.toMutableList()
-
-        choiceItemViewModel.setListItems(list as MutableList<ChoiceItem>)
-
-        if (choiceItemViewModel.listItems.value.size != 0) {
+        if (choiceItemViewModel.listItems.value.isNotEmpty()) {
             binding?.rectangle1?.visibility = View.GONE
         }
 
-        if (isEmptyLastQuerySearch()) {
-            choiceItemViewModel.setFilteredListItems(list as MutableList<ChoiceItem>)
+        _binding.refresher.setOnRefreshListener {
+            choiceItemViewModel.onEvent(ChoiceItemEvent.Refresh)
+            viewLifecycleOwner.lifecycleScope.launch {
+                repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    choiceItemViewModel.choiceItemState.collect { state ->
+                        if (!state.isLoading) {
+                            _binding.refresher.isRefreshing = false
+                        }
+                    }
+                }
+            }
         }
 
         setupRoomRecyclerViewList()
-
         activity?.findViewById<BottomNavigationView>(
             R.id.main_bottom_nav
         )?.visibility = View.VISIBLE
     }
 
     override fun handleAddButtonClicked() {
-        val v = requireActivity().findViewById<View>(R.id.add_button)
-        val popup = PopupMenu(v.context, v)
-        popup.inflate(R.menu.menu_popup_add)
-        popup.show()
-
-//        val dialogBinding = layoutInflater.inflate(R.layout.add_cheque_alert_dialog, null)
-//        val myDialog = Dialog(requireContext()).apply {
-//            setContentView(dialogBinding)
-//            setCancelable(true)
-//            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-//            show()
-//        }
-//
-//        myDialog.findViewById<Button>(R.id.alert_button_add_cheque).setOnClickListener {
-//
-//        }
-
-
-//        roomRepositoryImpl.insertRoom(
-//            RoomEntity(
-//                titleRoom = "ilya",
-//                ownerId = 123
-//            )
-//        )
+        val addButtonTopBar = requireActivity().findViewById<View>(R.id.add_button)
+        val popupMenu = PopupMenu(addButtonTopBar.context, addButtonTopBar)
+        popupMenu.inflate(R.menu.menu_popup_add)
+        popupMenu.show()
     }
 
     private fun setupRoomRecyclerViewList() {
@@ -109,11 +104,20 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
         roomRecyclerViewList.layoutManager = LinearLayoutManager(requireContext())
         roomChequeAdapter = ListRoomAdapter(this)
         roomRecyclerViewList.adapter = roomChequeAdapter
-        roomChequeAdapter.submitList(choiceItemViewModel.filteredListItems.value as MutableList<RoomListItem>)
+
+        choiceItemViewModel.onEvent(ChoiceItemEvent.Refresh)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                choiceItemViewModel.filteredListItems.collect { choiceItemList ->
+                    roomChequeAdapter.submitList((choiceItemList as MutableList<Room>).map { it.toRoomListItem() })
+                }
+            }
+        }
     }
 
     override fun onClick(position: Int) {
-        choiceItemViewModel.setChoiceCurrentPosition(position)
+        choiceItemViewModel.setChoiceLastPosition(position)
     }
 
     override fun filterSearchingItems(query: String) {
@@ -124,126 +128,17 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
             }.toMutableList()
         )
 
-        roomChequeAdapter.submitList(choiceItemViewModel.filteredListItems.value as MutableList<RoomListItem>)
-    }
-
-    private fun getChequeList(): MutableList<ChoiceItem> {
-        return mutableListOf(
-            RoomListItem(
-                room = Room(
-                    id = 1,
-                    title = "Крутецкая",
-                    host = "Никитос",
-                    membersRoom = mutableListOf(
-                        User("Kolya", R.drawable.person_filled),
-                        User("Olya", R.drawable.person_filled)
-                    ),
-                    cheques = mutableListOf(
-                        Cheque(
-                            id = 1,
-                            title = "Valera",
-                            owner = User("Zloi", R.drawable.person_filled),
-                            sumOfCheque = BigDecimal(30),
-                            products = mutableListOf(
-                                Product(
-                                    id = 1,
-                                    titleProduct = "Кола",
-                                    price = BigDecimal(35),
-                                    count = 1,
-                                    membersProduct = mutableListOf(
-                                        User("Kolya", R.drawable.person_filled),
-                                        User("Olya", R.drawable.person_filled)
-                                    )
-                                )
-                            ),
-                            membersCheque = mutableListOf(
-                                User("ZA", R.drawable.person_filled),
-                                User("ZA", R.drawable.person_filled),
-                                User("ZA", R.drawable.person_filled),
-                            )
-                        ),
-                        Cheque(
-                            id = 2,
-                            title = "Valera",
-                            owner = User("Zloi", R.drawable.person_filled),
-                            products = mutableListOf(
-                                Product(
-                                    id = 21,
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1,
-                                    membersProduct = mutableListOf(
-                                        User(
-                                            "Zloi",
-                                            R.drawable.person_filled
-                                        )
-                                    )
-                                ),
-
-                                Product(
-                                    id = 22,
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1
-                                )
-                            ),
-                        ),
-                        Cheque(
-                            id = 3,
-                            title = "Valera",
-                            owner = User("Zloi", R.drawable.person_filled),
-                            products = mutableListOf(
-                                Product(
-                                    id = 31,
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1,
-                                    membersProduct = mutableListOf(
-                                        User(
-                                            "Zloi",
-                                            R.drawable.person_filled
-                                        )
-                                    )
-                                ),
-
-                                Product(
-                                    id = 32,
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1
-                                )
-                            ),
-                        ),
-                        Cheque(
-                            id = 1,
-                            title = "Valera",
-                            owner = User("Zloi", R.drawable.person_filled),
-                            products = mutableListOf(
-                                Product(
-                                    id = 1,
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1,
-                                    membersProduct = mutableListOf(
-                                        User(
-                                            "Zloi",
-                                            R.drawable.person_filled
-                                        )
-                                    )
-                                ),
-
-                                Product(
-                                    id = 1,
-                                    titleProduct = "Чипсы",
-                                    price = BigDecimal(35),
-                                    count = 1
-                                )
-                            ),
-                        ),
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                choiceItemViewModel.filteredListItems.collect {
+                    roomChequeAdapter.submitList(
+                        (choiceItemViewModel.filteredListItems.value as MutableList<Room>).map {
+                            it.toRoomListItem()
+                        }
                     )
-                )
-            )
-        )
+                }
+            }
+        }
     }
 
     override fun onDestroy() {

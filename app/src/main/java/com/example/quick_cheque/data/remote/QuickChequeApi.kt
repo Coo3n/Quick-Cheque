@@ -1,8 +1,7 @@
 package com.example.quick_cheque.data.remote
 
-import com.example.quick_cheque.data.remote.dto.AuthenticationRequestDto
-import com.example.quick_cheque.data.remote.dto.AuthenticationResponseDto
-import com.example.quick_cheque.data.remote.dto.RoomDto
+import com.example.quick_cheque.data.remote.dto.*
+import com.google.gson.annotations.SerializedName
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.Headers
@@ -22,8 +21,13 @@ interface QuickChequeApi {
     ): Response<AuthenticationResponseDto>
 
     @POST("api/add_room")
-    suspend fun addRoom(
-        @Query("token") token: String,
-        @Body roomDto: RoomDto
-    )
+    suspend fun addRoom()
+
+    @POST("api/get_rooms_admin")
+    suspend fun getRooms(@Body token: S): Response<RoomDto>
 }
+
+data class S(
+    @SerializedName("token")
+    val token: String
+)

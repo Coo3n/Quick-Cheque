@@ -12,16 +12,21 @@ import androidx.navigation.NavHost
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.quick_cheque.data.local.dao.RoomDao
+import com.example.quick_cheque.data.local.entity.RoomEntity
 import com.example.quick_cheque.databinding.ActivityMainBinding
 import com.example.quick_cheque.di.AppComponent
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 import java.util.*
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
     private lateinit var bottomNavController: BottomNavigationView
+
+    @Inject lateinit var roomDao: RoomDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +44,6 @@ class MainActivity : AppCompatActivity() {
         bottomNavController = binding.mainBottomNav
 
         setupActionBarWithNavController(navController)
-
         supportActionBar?.hide()
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
         setupBottomNavController()

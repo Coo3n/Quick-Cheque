@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.quick_cheque.data.local.entity.RoomEntity
 import com.example.quick_cheque.data.repository.RoomRepositoryImpl
 import com.example.quick_cheque.databinding.FragmentCreateRoomBinding
 import com.example.quick_cheque.presentation.screen.BaseFragment
@@ -32,12 +31,7 @@ class CreateScreenFragment : BaseFragment() {
         setVisibleToolBar()
 
         binding.buttonCreateRoom.setOnClickListener {
-            roomRepositoryImpl.insertRoom(
-                RoomEntity(
-                    titleRoom = binding.editTextRoomName.text.toString(),
-                    ownerId = 101
-                )
-            )
+
         }
     }
 

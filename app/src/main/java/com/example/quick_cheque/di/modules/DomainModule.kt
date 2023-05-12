@@ -1,8 +1,5 @@
 package com.example.quick_cheque.di.modules
 
-import android.content.SharedPreferences
-import com.example.quick_cheque.data.remote.QuickChequeApi
-import com.example.quick_cheque.data.repository.AuthenticationRepositoryImpl
 import com.example.quick_cheque.domain.repository.AuthenticationRepository
 import com.example.quick_cheque.domain.use_case.ValidateLoginUseCase
 import com.example.quick_cheque.domain.use_case.ValidatePasswordUseCase
@@ -32,14 +29,6 @@ class DomainModule {
     @Provides
     fun provideValidateRepeatedPasswordUseCase(): ValidateRepeatedPasswordUseCase {
         return ValidateRepeatedPasswordUseCase()
-    }
-
-    @Provides
-    fun provideAuthenticationRepository(
-        sharedPreferences: SharedPreferences,
-        quickChequeApi: QuickChequeApi
-    ): AuthenticationRepository {
-        return AuthenticationRepositoryImpl(sharedPreferences, quickChequeApi)
     }
 
     @Provides

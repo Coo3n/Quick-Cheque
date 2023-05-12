@@ -56,8 +56,8 @@ open class ListRoomAdapter(private val clickable: Clickable) :
 
             with(room.room) {
                 roomTitle.text = title
-                nameOwnerRoom.text = host
-                chequeCount.text = cheques.size.toString()
+                nameOwnerRoom.text = title
+                chequeCount.text = cntCheques.toString()
                 membersCount.text = membersRoom.size.toString()
                 setupMembersRecyclerList(membersRoom)
             }
