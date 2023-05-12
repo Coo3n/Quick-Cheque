@@ -3,7 +3,7 @@
     <style name="Theme.Quick_Cheque" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/dark_orange</item>
-        <item name="colorPrimaryVariant">@color/dark_orange</item>
+        <item name="colorPrimaryVariant">#111111</item>
         <item name="colorOnPrimary">@color/gray_black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/orange</item>
