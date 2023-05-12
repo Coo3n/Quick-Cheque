@@ -73,6 +73,16 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
             binding?.rectangle1?.visibility = View.GONE
         }
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                choiceItemViewModel.filteredListItems.collect { item ->
+                    if (item.isNotEmpty()) {
+                        binding?.rectangle1?.visibility = View.GONE
+                    }
+                }
+            }
+        }
+
         _binding.refresher.setOnRefreshListener {
             choiceItemViewModel.onEvent(ChoiceItemEvent.Refresh)
             viewLifecycleOwner.lifecycleScope.launch {

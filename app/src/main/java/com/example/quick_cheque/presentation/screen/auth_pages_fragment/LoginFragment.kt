@@ -79,13 +79,11 @@ class LoginFragment : BaseFragment() {
                             findNavController().navigate(
                                 R.id.action_loginFragment_to_choiceRoomFragment
                             )
-
                             Toast.makeText(
                                 requireContext(),
                                 "Добро пожаловать!",
                                 Toast.LENGTH_SHORT
                             ).show()
-
                         }
                         is ValidationEvent.Failure -> {
                             Toast.makeText(
@@ -107,7 +105,6 @@ class LoginFragment : BaseFragment() {
             typeEvent = LoginEvent.EMAIL_CHANGED
         )?.addTo(disposeBag)
     }
-
 
     private fun EditText.textChanges(typeEvent: LoginEvent): Disposable {
         return RxTextView.textChanges(this)

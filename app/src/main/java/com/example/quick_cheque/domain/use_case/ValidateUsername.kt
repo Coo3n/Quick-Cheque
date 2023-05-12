@@ -9,10 +9,10 @@ class ValidateUsername {
             )
         }
 
-        if (username.length < 5) {
+        if (username.length < 2) {
             return ValidationResult(
                 successful = false,
-                errorMessage = "Пароль не совпадает с исходным!"
+                errorMessage = "Username должен быть побольше!"
             )
         }
 
