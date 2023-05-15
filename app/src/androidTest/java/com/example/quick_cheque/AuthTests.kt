@@ -1,22 +1,27 @@
 package com.example.quick_cheque
 
 
-import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.filters.LargeTest
 import androidx.test.runner.AndroidJUnit4
+import com.example.quick_cheque.feature.LoadableState
 import com.example.quick_cheque.pages.RegisterPage
+import org.hamcrest.CoreMatchers.instanceOf
 import org.junit.Assert.*
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
-class AuthTests {
-    @get:Rule
-    val activityScenario = ActivityScenarioRule(MainActivity::class.java)
+class AuthTests : BaseTest() {
     private lateinit var registerPage: RegisterPage
+
+    companion object {
+        const val EMPTY_LOGIN = ""
+        const val LOGIN = "ilya@mail.ru"
+        const val PASSWORD = "bkmz123123"
+        const val REPEATED_PASSWORD = "bkmz123123"
+    }
 
     @Before
     fun initData() {
@@ -26,18 +31,30 @@ class AuthTests {
     @Test
     fun unCorrectLoginAuthTest() {
         registerPage.checkoutLoginPage()
-        registerPage.inputPassword("bkmz")
-        registerPage.inputRepeatedPassword("bkmz")
-        registerPage.submitRegisterButton()
+            .inputLogin(EMPTY_LOGIN)
+            .inputPassword(PASSWORD)
+            .inputRepeatedPassword(REPEATED_PASSWORD)
+            .submitRegisterButton()
+
         registerPage.hasEmailError("Почта пустая!")
     }
 
     @Test
     fun correctAuthTest() {
-        registerPage.checkoutLoginPage()
-        registerPage.inputLogin("ilya@mail.ru")
-        registerPage.inputPassword("bkmz123123")
-        registerPage.inputRepeatedPassword("bkmz123123")
-        registerPage.submitRegisterButton()
+        val createRoomFragment = registerPage.checkoutLoginPage()
+            .inputLogin(LOGIN)
+            .inputPassword(PASSWORD)
+            .inputRepeatedPassword(REPEATED_PASSWORD)
+            .submitRegisterButton()
+
+        createRoomFragment.setLoadingState()
+            .apply {
+                assertThat(getCurrentState(), instanceOf(LoadableState.Loading::class.java))
+            }
+            .isVisibleCreateRoomButton()
+            .setSuccessState()
+            .apply {
+                assertThat(getCurrentState(), instanceOf(LoadableState.Success::class.java))
+            }
     }
 }
