@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class AuthenticationRequestDto(
     @SerializedName("email")
     val email: String,
-    @SerializedName("username")
+    @SerializedName("name")
     val username: String? = null,
     @SerializedName("password")
     val password: String

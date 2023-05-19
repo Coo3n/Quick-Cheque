@@ -66,8 +66,6 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
         super.onViewCreated(view, savedInstanceState)
         setupToolBar(R.menu.menu_with_search)
 
-        choiceItemViewModel.initChoiceItems()
-
         if (choiceItemViewModel.listItems.value.isNotEmpty()) {
             binding?.rectangle1?.visibility = View.GONE
         }

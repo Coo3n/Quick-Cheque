@@ -7,6 +7,7 @@ import com.example.quick_cheque.data.remote.QuickChequeApi
 import com.example.quick_cheque.data.remote.dto.AuthenticationRequestDto
 import com.example.quick_cheque.data.remote.dto.AuthenticationResponseDto
 import com.example.quick_cheque.domain.repository.AuthenticationRepository
+import com.example.quick_cheque.util.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -17,7 +18,7 @@ class AuthenticationRepositoryImpl @Inject constructor(
 ) : AuthenticationRepository {
     override suspend fun authenticate(
         authenticationRequestDto: AuthenticationRequestDto
-    ): Flow<AuthenticationResponseDto> = flow {
+    ): Flow<Resource<AuthenticationResponseDto>> = flow {
         val response = quickChequeApi.authorization(authenticationRequestDto)
 
         if (response.isSuccessful) {
@@ -27,25 +28,25 @@ class AuthenticationRepositoryImpl @Inject constructor(
                 putString("API_KEY", response.body()?.token)
                 apply()
             }
-            response.body()?.let { emit(it) }
+            response.body()?.let { emit(Resource.Success(it)) }
         } else {
             Log.i("MyTag", "UnSuccessful authentication")
-            emit(response.errorBody().toAuthenticationResponseDto())
+            emit(Resource.Error(response.errorBody().toString()))
         }
     }
 
     override suspend fun register(
         authenticationRequestDto: AuthenticationRequestDto
-    ): Flow<AuthenticationResponseDto> = flow {
+    ): Flow<Resource<AuthenticationResponseDto>> = flow {
         val response = quickChequeApi.register(authenticationRequestDto)
-        Log.i("MyTag", response.code().toString())
 
         if (response.isSuccessful) {
             Log.i("MyTag", "successful registration")
-            response.body()?.let { emit(it) }
+            response.body()?.let { emit(Resource.Success(it)) }
         } else {
             Log.i("MyTag", "UnSuccessful registration")
-            emit(response.errorBody().toAuthenticationResponseDto())
+            val errorMessage = response.errorBody().toAuthenticationResponseDto()
+            emit(Resource.Error(errorMessage.message))
         }
     }
 }

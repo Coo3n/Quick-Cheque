@@ -18,7 +18,6 @@ class RoomRepositoryImpl @Inject constructor(
     private val roomDao: RoomDao,
     private val quickChequeApi: QuickChequeApi,
 ) : ChoiceItemRepository {
-
     override suspend fun getChoiceItems(
         fetchFromRemote: Boolean
     ): Flow<Resource<List<ChoiceItem>>> {

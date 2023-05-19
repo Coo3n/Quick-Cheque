@@ -72,30 +72,33 @@ class LoginFragment : BaseFragment() {
         }
 
         _binding.loginBtn.setOnClickListener {
-            authorizationViewModel.onEvent(AuthFormEvent.AuthorizationSubmit)
-            lifecycleScope.launchWhenStarted {
-                authorizationViewModel.validationEventChannel.collect { event ->
-                    when (event) {
-                        is ValidationEvent.Success -> {
-                            findNavController().navigate(
-                                R.id.action_loginFragment_to_choiceRoomFragment
-                            )
-                            Toast.makeText(
-                                requireContext(),
-                                "Добро пожаловать!",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                        is ValidationEvent.Failure -> {
-                            Toast.makeText(
-                                requireContext(),
-                                "Попробуйте еще раз!",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
-                }
-            }
+            findNavController().navigate(
+                R.id.action_loginFragment_to_choiceRoomFragment
+            )
+//            authorizationViewModel.onEvent(AuthFormEvent.AuthorizationSubmit)
+//            lifecycleScope.launchWhenStarted {
+//                authorizationViewModel.validationEventChannel.collect { event ->
+//                    when (event) {
+//                        is ValidationEvent.Success -> {
+//                            findNavController().navigate(
+//                                R.id.action_loginFragment_to_choiceRoomFragment
+//                            )
+//                            Toast.makeText(
+//                                requireContext(),
+//                                "Добро пожаловать!",
+//                                Toast.LENGTH_SHORT
+//                            ).show()
+//                        }
+//                        is ValidationEvent.Failure -> {
+//                            Toast.makeText(
+//                                requireContext(),
+//                                "Попробуйте еще раз!",
+//                                Toast.LENGTH_SHORT
+//                            ).show()
+//                        }
+//                    }
+//                }
+//            }
         }
 
         _binding.fragmentLoginPassword1Field.editText?.textChanges(

@@ -38,7 +38,7 @@ open class ListRoomAdapter(private val clickable: Clickable) :
 
     class ListRoomDiffCallBack : DiffUtil.ItemCallback<RoomListItem>() {
         override fun areItemsTheSame(oldItem: RoomListItem, newItem: RoomListItem): Boolean {
-            return oldItem == newItem
+            return oldItem.room.id == newItem.room.id
         }
 
         override fun areContentsTheSame(oldItem: RoomListItem, newItem: RoomListItem): Boolean {
