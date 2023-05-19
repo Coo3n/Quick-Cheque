@@ -1,5 +1,6 @@
 package com.example.quick_cheque.presentation.screen.auth_pages_fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -45,9 +46,13 @@ class RegisterFragment : BaseFragment() {
         }
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireActivity().application as MyApp).appComponent.injectRegisterFragment(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (requireActivity().application as MyApp).appComponent.injectRegisterFragment(this)
         authorizationViewModel = ViewModelProvider(
             this,
             authorizationViewModelFactory

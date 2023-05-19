@@ -18,9 +18,7 @@ class AuthenticationRepositoryImpl @Inject constructor(
     override suspend fun authenticate(
         authenticationRequestDto: AuthenticationRequestDto
     ): Flow<AuthenticationResponseDto> = flow {
-        val response = quickChequeApi.authorization(
-            authenticationRequestDto
-        )
+        val response = quickChequeApi.authorization(authenticationRequestDto)
 
         if (response.isSuccessful) {
             Log.i("MyTag", "successful authentication")

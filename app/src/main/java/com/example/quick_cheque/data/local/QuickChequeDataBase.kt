@@ -29,7 +29,9 @@ abstract class QuickChequeDataBase : RoomDatabase() {
                     context,
                     QuickChequeDataBase::class.java,
                     "QuickChequeDataBase"
-                ).allowMainThreadQueries().build()
+                ).fallbackToDestructiveMigration()
+                    .allowMainThreadQueries()
+                    .build()
             } else {
                 quickChequeDataBaseInstance!!
             }

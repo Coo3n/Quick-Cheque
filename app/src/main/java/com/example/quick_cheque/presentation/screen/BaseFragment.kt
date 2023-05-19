@@ -40,10 +40,6 @@ open class BaseFragment : Fragment() {
         }
     }
 
-    fun setVisibleHomeButton(isVisible: Boolean = true) {
-        actionBar?.setDisplayHomeAsUpEnabled(isVisible)
-    }
-
     fun setupToolBar(toolbarMenu: Int) {
         val menuHost: MenuHost = requireActivity()
 

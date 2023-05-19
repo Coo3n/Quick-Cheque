@@ -45,6 +45,7 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setVisibleToolBar()
         choiceItemViewModelFactory = ChoiceItemViewModelFactory(roomRepository)
         choiceItemViewModel = ViewModelProvider(
             this,
@@ -63,8 +64,6 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setVisibleHomeButton(false)
-        setVisibleToolBar()
         setupToolBar(R.menu.menu_with_search)
 
         choiceItemViewModel.initChoiceItems()

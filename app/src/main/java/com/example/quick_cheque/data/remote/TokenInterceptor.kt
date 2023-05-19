@@ -12,7 +12,7 @@ class TokenInterceptor @Inject constructor(
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request().newBuilder()
         val token = sharedPreferences.getString("API_KEY", "")
-        request.addHeader("Authorization", "Bearer $token")
+        request.addHeader("x-access-token", token.toString())
         return chain.proceed(request.build())
     }
 }

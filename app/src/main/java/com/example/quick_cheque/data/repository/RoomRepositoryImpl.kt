@@ -5,7 +5,6 @@ import com.example.quick_cheque.data.local.dao.RoomDao
 import com.example.quick_cheque.data.mapper.toRoom
 import com.example.quick_cheque.data.mapper.toRoomEntity
 import com.example.quick_cheque.data.remote.QuickChequeApi
-import com.example.quick_cheque.data.remote.S
 import com.example.quick_cheque.domain.model.ChoiceItem
 import com.example.quick_cheque.domain.model.Room
 import com.example.quick_cheque.domain.repository.ChoiceItemRepository
@@ -36,9 +35,7 @@ class RoomRepositoryImpl @Inject constructor(
                 return@flow
             }
 
-            val remoteResponse = quickChequeApi.getRooms(
-                S(sharedPreferences.getString("API_KEY", "").toString())
-            ) // api key временно
+            val remoteResponse = quickChequeApi.getRooms()
 
             if (remoteResponse.isSuccessful) {
                 emit(Resource.Success(

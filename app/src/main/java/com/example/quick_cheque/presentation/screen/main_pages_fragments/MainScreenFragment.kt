@@ -27,8 +27,6 @@ class MainScreenFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setVisibleHomeButton(false)
-        setVisibleToolBar()
 
 //        requireContext().contentResolver.
 //        val pickImage = registerForActivityResult(

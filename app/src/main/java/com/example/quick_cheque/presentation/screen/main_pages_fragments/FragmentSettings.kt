@@ -32,19 +32,16 @@ class FragmentSettings : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setVisibleHomeButton(false)
-        setVisibleToolBar()
-
         val config = resources.configuration
-        val radioru = binding.languageRadiogroupRu
-        val radioen = binding.languageRadiogroupEn
+        val radioRu = binding.languageRadiogroupRu
+        val radioEn = binding.languageRadiogroupEn
         val themeDay = binding.themeRadiogroupDay
         val themeNight = binding.themeRadiogroupNight
 
         if (getSavedLocale()?.contains("ru") == true) {
-            radioru.isChecked = true
+            radioRu.isChecked = true
         } else if (getSavedLocale()?.contains("en") == true) {
-            radioen.isChecked = true
+            radioEn.isChecked = true
         }
 
         Log.d("MyTag", getSavedTheme().toString())
@@ -54,7 +51,7 @@ class FragmentSettings : BaseFragment() {
             AppCompatDelegate.MODE_NIGHT_NO -> themeDay.isChecked = true
         }
 
-        radioen.setOnClickListener {
+        radioEn.setOnClickListener {
             val locale = Locale("en")
             Locale.setDefault(locale)
             config.setLocale(locale)
@@ -65,7 +62,7 @@ class FragmentSettings : BaseFragment() {
             saveLocale("en")
         }
 
-        radioru.setOnClickListener {
+        radioRu.setOnClickListener {
             val locale = Locale("ru")
             Locale.setDefault(locale)
             config.setLocale(locale)

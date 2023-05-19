@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/joinScreenFragment"
         android:name="com.example.quick_cheque.presentation.screen.main_pages_fragments.JoinScreenFragment"
-        android:label=" "
+        android:label="Вход в комнату"
         tools:layout="@layout/fragment_join_screen">
         <action
             android:id="@+id/action_joinScreenFragment_to_choiceChequeFragment"
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/profileScreenFragment"
         android:name="com.example.quick_cheque.presentation.screen.main_pages_fragments.ProfileScreenFragment"
-        android:label=" "
+        android:label="Профиль"
         tools:layout="@layout/fragment_profile_screen">
         <action
             android:id="@+id/action_profileScreenFragment_to_fragmentSettings"

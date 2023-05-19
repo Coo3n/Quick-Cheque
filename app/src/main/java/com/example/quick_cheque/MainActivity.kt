@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavController
 import androidx.navigation.NavHost
 import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.quick_cheque.data.local.dao.RoomDao
@@ -26,26 +27,18 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var bottomNavController: BottomNavigationView
 
-    @Inject lateinit var roomDao: RoomDao
+    @Inject
+    lateinit var roomDao: RoomDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         (application as MyApp).appComponent.injectMainActivity(this)
 
-        val nav = supportFragmentManager.findFragmentById(
-            R.id.fragment_container_view
-        ) as NavHost
-        navController = nav.navController
-
-        bottomNavController = binding.mainBottomNav
-
-        setupActionBarWithNavController(navController)
+        setupActionAppBar()
         supportActionBar?.hide()
-        supportActionBar?.setDisplayHomeAsUpEnabled(false)
         setupBottomNavController()
     }
 
@@ -53,7 +46,26 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
+    private fun setupActionAppBar() {
+        val navHost = supportFragmentManager.findFragmentById(
+            R.id.fragment_container_view
+        ) as NavHost
+
+        navController = navHost.navController
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.choiceRoomFragment,
+                R.id.createScreenFragment,
+                R.id.joinScreenFragment,
+                R.id.profileScreenFragment
+            )
+        )
+
+        setupActionBarWithNavController(navController, appBarConfiguration)
+    }
+
     private fun setupBottomNavController() {
+        bottomNavController = binding.mainBottomNav
         bottomNavController.setupWithNavController(navController)
         bottomNavController.setOnItemReselectedListener { }
         navController.addOnDestinationChangedListener { _, destination, _ ->

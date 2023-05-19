@@ -61,7 +61,6 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setVisibleToolBar()
         setupToolBar(R.menu.menu_with_search)
 
         choiceItemViewModel.setListItems(getChequeList())

@@ -34,9 +34,7 @@ class DistributedProductsChequeFragments : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setVisibleToolBar()
         setupToolBar(R.menu.menu_with_search)
-
 
         val distributedChequeUserItem = mutableListOf(
             DistributedChequeUserItem(

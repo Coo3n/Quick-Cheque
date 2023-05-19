@@ -16,16 +16,12 @@ class JoinScreenFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        setVisibleToolBar()
-        setVisibleHomeButton(false)
         binding = FragmentJoinScreenBinding.inflate(inflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setVisibleHomeButton(false)
-        setVisibleToolBar()
 
         binding.joinButton.setOnClickListener {
             findNavController().navigate(R.id.action_joinScreenFragment_to_choiceChequeFragment)
