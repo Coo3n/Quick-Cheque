@@ -2,9 +2,11 @@ package com.example.quick_cheque.data.repository
 
 import android.content.SharedPreferences
 import com.example.quick_cheque.data.local.dao.RoomDao
+import com.example.quick_cheque.data.local.entity.RoomEntity
 import com.example.quick_cheque.data.mapper.toRoom
 import com.example.quick_cheque.data.mapper.toRoomEntity
 import com.example.quick_cheque.data.remote.QuickChequeApi
+import com.example.quick_cheque.data.remote.dto.InsertedRoomDto
 import com.example.quick_cheque.domain.model.ChoiceItem
 import com.example.quick_cheque.domain.model.Room
 import com.example.quick_cheque.domain.repository.ChoiceItemRepository
@@ -42,7 +44,7 @@ class RoomRepositoryImpl @Inject constructor(
                 ))
 
                 roomDao.clearRooms()
-                roomDao.insertRoomList(remoteResponse.body()!!.message.map { it.toRoomEntity() })
+                roomDao.insertRoomList(remoteResponse.body()!!.message!!.map { it.toRoomEntity() })
             } else {
                 emit(Resource.Error(message = "Что-то пошло не так, бро"))
             }
@@ -57,6 +59,32 @@ class RoomRepositoryImpl @Inject constructor(
 
     override suspend fun insertRoom(room: Room) {
         TODO("Not yet implemented")
+    }
+
+    suspend fun insertRoom(room: InsertedRoomDto): Int {
+        var insertedRoomId = -1
+
+        try {
+            val response = quickChequeApi.addRoom(room)
+
+            if (response.isSuccessful) {
+                val ownerId = sharedPreferences.getInt("MY_ID", -1)
+                insertedRoomId = response.body()?.id!!
+                if (ownerId != -1) {
+                    val roomEntity = RoomEntity(
+                        id = insertedRoomId,
+                        titleRoom = room.title,
+                        ownerId = ownerId
+                    )
+                    roomDao.insertRoom(roomEntity)
+                    return insertedRoomId
+                }
+            }
+        } catch (exception: Exception) {
+            return insertedRoomId
+        }
+
+        return insertedRoomId
     }
 
     override suspend fun deleteRoom(room: Room) {

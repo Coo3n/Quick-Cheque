@@ -1,4 +1,4 @@
-package com.example.quick_cheque.di.modules
+package com.example.quick_cheque.di.module
 
 import com.example.quick_cheque.domain.repository.AuthenticationRepository
 import com.example.quick_cheque.domain.use_case.ValidateLoginUseCase

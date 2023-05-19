@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.View
-import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
@@ -19,7 +17,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.quick_cheque.R
-import com.example.quick_cheque.presentation.screen.viewmodels.ToolBarViewModel
+import com.example.quick_cheque.presentation.screen.viewmodel.ToolBarViewModel
 import kotlinx.coroutines.launch
 
 open class BaseFragment : Fragment() {

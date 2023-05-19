@@ -6,14 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/LayoutBackgroundColor"
-    tools:context=".presentation.screen.main_pages_fragments.CreateScreenFragment"
-    >
+    tools:context=".presentation.screen.main_pages_fragments.CreateScreenFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/create_room_inputs"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/create_room_string"

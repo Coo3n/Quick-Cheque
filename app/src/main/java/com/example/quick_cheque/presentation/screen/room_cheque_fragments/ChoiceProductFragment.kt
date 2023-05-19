@@ -7,7 +7,6 @@ import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,9 +16,9 @@ import com.example.quick_cheque.data.repository.RoomRepositoryImpl
 import com.example.quick_cheque.presentation.adapter.ListProductsAdapter
 import com.example.quick_cheque.databinding.FragmentChoiceProductBinding
 import com.example.quick_cheque.domain.model.Cheque
-import com.example.quick_cheque.domain.model.ChoiceItem
 import com.example.quick_cheque.domain.model.Product
 import com.example.quick_cheque.presentation.screen.BaseFragment
+import com.example.quick_cheque.presentation.screen.viewmodel.ChoiceProductViewModel
 import javax.inject.Inject
 
 
@@ -28,8 +27,7 @@ class ChoiceProductFragment : BaseFragment() {
     private val _binding: FragmentChoiceProductBinding
         get() = binding!!
 
-    private lateinit var choiceItemViewModelFactory: ChoiceItemViewModelFactory
-    private lateinit var choiceItemViewModel: ChoiceItemViewModel
+    private lateinit var choiceProductViewModel: ChoiceProductViewModel
 
     private var transmittedCheque: Cheque? = null
     private lateinit var recyclerViewListProductsAdapter: ListProductsAdapter
@@ -44,11 +42,11 @@ class ChoiceProductFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        choiceItemViewModelFactory = ChoiceItemViewModelFactory(roomRepository)
-        choiceItemViewModel = ViewModelProvider(
+        val factory = ChoiceProductViewModel.ChoiceItemViewModelFactory(roomRepository)
+        choiceProductViewModel = ViewModelProvider(
             this,
-            choiceItemViewModelFactory
-        )[ChoiceItemViewModel::class.java]
+            factory
+        )[ChoiceProductViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -69,9 +67,9 @@ class ChoiceProductFragment : BaseFragment() {
             arguments?.getParcelable("CHEQUE_TAG") ?: transmittedCheque
         }
 
-        choiceItemViewModel.setListItems(transmittedCheque?.products as MutableList<ChoiceItem>)
+        transmittedCheque?.products?.let { choiceProductViewModel.setListItems(it) }
         if (isEmptyLastQuerySearch()) {
-            choiceItemViewModel.setFilteredListItems(transmittedCheque?.products as MutableList<ChoiceItem>)
+            transmittedCheque?.products?.let { choiceProductViewModel.setFilteredListItems(it) }
         }
 
         setupRecyclerViewListProducts()
@@ -94,21 +92,21 @@ class ChoiceProductFragment : BaseFragment() {
 
 
     override fun filterSearchingItems(query: String) {
-        choiceItemViewModel.setFilteredListItems(
-            choiceItemViewModel.listItems.value.filter { item ->
+        choiceProductViewModel.setFilteredListItems(
+            choiceProductViewModel.listItems.value.filter { item ->
                 val firstChequeTittle = item.getTitleItem().lowercase().trim()
                 firstChequeTittle.contains(query.lowercase().trim())
             }.toMutableList()
         )
 
-        recyclerViewListProductsAdapter.submitList(choiceItemViewModel.filteredListItems.value as List<Product>)
+        recyclerViewListProductsAdapter.submitList(choiceProductViewModel.filteredListItems.value as List<Product>)
     }
 
     private fun setupRecyclerViewListProducts() = with(_binding) {
         recyclerViewListProductsAdapter = ListProductsAdapter()
         listProducts.layoutManager = LinearLayoutManager(requireContext())
         listProducts.adapter = recyclerViewListProductsAdapter
-        recyclerViewListProductsAdapter.submitList(choiceItemViewModel.filteredListItems.value as List<Product>)
+        recyclerViewListProductsAdapter.submitList(choiceProductViewModel.filteredListItems.value as List<Product>)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

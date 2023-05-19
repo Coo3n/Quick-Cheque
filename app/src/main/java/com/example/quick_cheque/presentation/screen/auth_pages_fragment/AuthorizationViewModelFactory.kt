@@ -7,6 +7,7 @@ import com.example.quick_cheque.domain.use_case.ValidateLoginUseCase
 import com.example.quick_cheque.domain.use_case.ValidatePasswordUseCase
 import com.example.quick_cheque.domain.use_case.ValidateRepeatedPasswordUseCase
 import com.example.quick_cheque.domain.use_case.ValidateUsername
+import com.example.quick_cheque.presentation.screen.viewmodel.AuthorizationViewModel
 import javax.inject.Inject
 
 class AuthorizationViewModelFactory @Inject constructor(

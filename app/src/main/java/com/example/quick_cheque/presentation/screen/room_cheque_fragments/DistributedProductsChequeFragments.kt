@@ -21,7 +21,6 @@ class DistributedProductsChequeFragments : BaseFragment() {
     private val _binding: FragmentDistributedProductsChequeFragmentsBinding
         get() = binding!!
 
-    private val choiceItemViewModel: ChoiceItemViewModel by viewModels()
     private lateinit var distributionProductListAdapter: ListDistributedProductsAdapter
 
     override fun onCreateView(

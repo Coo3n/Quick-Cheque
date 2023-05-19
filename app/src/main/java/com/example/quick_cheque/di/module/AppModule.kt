@@ -1,4 +1,4 @@
-package com.example.quick_cheque.di.modules
+package com.example.quick_cheque.di.module
 
 import android.content.Context
 import android.content.SharedPreferences

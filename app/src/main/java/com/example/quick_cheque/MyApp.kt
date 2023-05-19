@@ -6,7 +6,7 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.quick_cheque.di.AppComponent
 import com.example.quick_cheque.di.DaggerAppComponent
-import com.example.quick_cheque.di.modules.AppModule
+import com.example.quick_cheque.di.module.AppModule
 import java.util.*
 
 class MyApp : Application() {

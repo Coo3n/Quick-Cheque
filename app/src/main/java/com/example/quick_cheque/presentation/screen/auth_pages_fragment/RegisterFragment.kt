@@ -15,9 +15,11 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.quick_cheque.MyApp
 import com.example.quick_cheque.R
-import com.example.quick_cheque.databinding.FragmentLoginBinding
 import com.example.quick_cheque.databinding.FragmentRegisterBinding
+import com.example.quick_cheque.presentation.events.AuthFormEvent
+import com.example.quick_cheque.presentation.events.ValidationEvent
 import com.example.quick_cheque.presentation.screen.BaseFragment
+import com.example.quick_cheque.presentation.screen.viewmodel.AuthorizationViewModel
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

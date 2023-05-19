@@ -5,16 +5,16 @@ import com.google.gson.annotations.SerializedName
 
 data class RoomDto(
     @SerializedName("msg")
-    val message: List<RoomData>,
+    val message: List<RoomData>?
 )
 
 data class RoomData(
     @SerializedName("id")
-    val id: Long,
+    val id: Int,
     @SerializedName("admin")
     val isAdmin: Boolean,
     @SerializedName("owner_id")
-    val ownerId: Long,
+    val ownerId: Int,
     @SerializedName("name")
     val title: String,
     @SerializedName("cheque_cnt")

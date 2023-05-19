@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.PopupMenu
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -18,19 +17,19 @@ import com.example.quick_cheque.data.mapper.toRoomListItem
 import com.example.quick_cheque.data.repository.RoomRepositoryImpl
 import com.example.quick_cheque.presentation.adapter.ListRoomAdapter
 import com.example.quick_cheque.databinding.FragmentChoiceRoomBinding
-import com.example.quick_cheque.domain.model.*
+import com.example.quick_cheque.presentation.events.ChoiceItemEvent
 import com.example.quick_cheque.presentation.screen.BaseFragment
+import com.example.quick_cheque.presentation.screen.viewmodel.ChoiceRoomViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
+class ChoiceRoomFragment : BaseFragment() {
     private var binding: FragmentChoiceRoomBinding? = null
     private val _binding: FragmentChoiceRoomBinding
         get() = binding!!
 
-    private lateinit var choiceItemViewModelFactory: ChoiceItemViewModelFactory
-    private lateinit var choiceItemViewModel: ChoiceItemViewModel
+    private lateinit var choiceRoomViewModel: ChoiceRoomViewModel
 
     private lateinit var roomRecyclerViewList: RecyclerView
     private lateinit var roomChequeAdapter: ListRoomAdapter
@@ -46,11 +45,11 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setVisibleToolBar()
-        choiceItemViewModelFactory = ChoiceItemViewModelFactory(roomRepository)
-        choiceItemViewModel = ViewModelProvider(
+        val factory = ChoiceRoomViewModel.ChoiceItemViewModelFactory(roomRepository)
+        choiceRoomViewModel = ViewModelProvider(
             this,
-            choiceItemViewModelFactory
-        )[ChoiceItemViewModel::class.java]
+            factory
+        )[ChoiceRoomViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -66,13 +65,13 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
         super.onViewCreated(view, savedInstanceState)
         setupToolBar(R.menu.menu_with_search)
 
-        if (choiceItemViewModel.listItems.value.isNotEmpty()) {
+        if (choiceRoomViewModel.getListRoomItem().isNotEmpty()) {
             binding?.rectangle1?.visibility = View.GONE
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                choiceItemViewModel.filteredListItems.collect { item ->
+                choiceRoomViewModel.roomListItems.collect { item ->
                     if (item.isNotEmpty()) {
                         binding?.rectangle1?.visibility = View.GONE
                     }
@@ -81,10 +80,10 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
         }
 
         _binding.refresher.setOnRefreshListener {
-            choiceItemViewModel.onEvent(ChoiceItemEvent.Refresh)
+            choiceRoomViewModel.onEvent(ChoiceItemEvent.Refresh)
             viewLifecycleOwner.lifecycleScope.launch {
                 repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    choiceItemViewModel.choiceItemState.collect { state ->
+                    choiceRoomViewModel.roomItemState.collect { state ->
                         if (!state.isLoading) {
                             _binding.refresher.isRefreshing = false
                         }
@@ -99,37 +98,26 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
         )?.visibility = View.VISIBLE
     }
 
-    override fun handleAddButtonClicked() {
-        val addButtonTopBar = requireActivity().findViewById<View>(R.id.add_button)
-        val popupMenu = PopupMenu(addButtonTopBar.context, addButtonTopBar)
-        popupMenu.inflate(R.menu.menu_popup_add)
-        popupMenu.show()
-    }
-
     private fun setupRoomRecyclerViewList() {
         roomRecyclerViewList = _binding.chequeList
         roomRecyclerViewList.layoutManager = LinearLayoutManager(requireContext())
-        roomChequeAdapter = ListRoomAdapter(this)
+        roomChequeAdapter = ListRoomAdapter()
         roomRecyclerViewList.adapter = roomChequeAdapter
 
-        choiceItemViewModel.onEvent(ChoiceItemEvent.Refresh)
+        choiceRoomViewModel.onEvent(ChoiceItemEvent.Refresh)
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                choiceItemViewModel.filteredListItems.collect { choiceItemList ->
-                    roomChequeAdapter.submitList((choiceItemList as MutableList<Room>).map { it.toRoomListItem() })
+                choiceRoomViewModel.filteredRoomListItems.collect { choiceItemList ->
+                    roomChequeAdapter.submitList((choiceItemList).map { it.toRoomListItem() })
                 }
             }
         }
     }
 
-    override fun onClick(position: Int) {
-        choiceItemViewModel.setChoiceLastPosition(position)
-    }
-
     override fun filterSearchingItems(query: String) {
-        choiceItemViewModel.setFilteredListItems(
-            choiceItemViewModel.listItems.value.filter { item ->
+        choiceRoomViewModel.setFilteredListItems(
+            choiceRoomViewModel.getListRoomItem().filter { item ->
                 val firstChequeTittle = item.getTitleItem().lowercase().trim()
                 firstChequeTittle.contains(query.lowercase().trim())
             }.toMutableList()
@@ -137,9 +125,9 @@ class ChoiceRoomFragment : BaseFragment(), ListRoomAdapter.Clickable {
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                choiceItemViewModel.filteredListItems.collect {
+                choiceRoomViewModel.filteredRoomListItems.collect {
                     roomChequeAdapter.submitList(
-                        (choiceItemViewModel.filteredListItems.value as MutableList<Room>).map {
+                        choiceRoomViewModel.getFilteredListRoomItem().map {
                             it.toRoomListItem()
                         }
                     )

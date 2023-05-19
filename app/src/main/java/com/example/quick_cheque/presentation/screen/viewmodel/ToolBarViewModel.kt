@@ -1,4 +1,4 @@
-package com.example.quick_cheque.presentation.screen.viewmodels
+package com.example.quick_cheque.presentation.screen.viewmodel
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

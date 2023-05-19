@@ -3,7 +3,6 @@ package com.example.quick_cheque.presentation.screen.room_cheque_fragments
 import android.content.Context
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -18,6 +17,7 @@ import com.example.quick_cheque.presentation.adapter.ListExpandableChoiceChequeA
 import com.example.quick_cheque.databinding.FragmentChoiceChequeBinding
 import com.example.quick_cheque.domain.model.*
 import com.example.quick_cheque.presentation.screen.BaseFragment
+import com.example.quick_cheque.presentation.screen.viewmodel.ChoiceChequeViewModel
 import kotlinx.coroutines.launch
 import java.math.BigDecimal
 import javax.inject.Inject
@@ -27,8 +27,7 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
     private val _binding: FragmentChoiceChequeBinding
         get() = binding!!
 
-    private lateinit var choiceItemViewModelFactory: ChoiceItemViewModelFactory
-    private lateinit var choiceItemViewModel: ChoiceItemViewModel
+    private lateinit var choiceChequeViewModel: ChoiceChequeViewModel
 
     private lateinit var chequeExpandableRecyclerViewList: RecyclerView
     private lateinit var chequeExpandableChequeAdapter: ListExpandableChoiceChequeAdapter
@@ -43,11 +42,12 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        choiceItemViewModelFactory = ChoiceItemViewModelFactory(roomRepository)
-        choiceItemViewModel = ViewModelProvider(
+        val factory = ChoiceChequeViewModel.ChoiceChequeViewModelFactory(roomRepository)
+
+        choiceChequeViewModel = ViewModelProvider(
             this,
-            choiceItemViewModelFactory
-        )[ChoiceItemViewModel::class.java]
+            factory
+        )[ChoiceChequeViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -63,9 +63,9 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
         super.onViewCreated(view, savedInstanceState)
         setupToolBar(R.menu.menu_with_search)
 
-        choiceItemViewModel.setListItems(getChequeList())
+        choiceChequeViewModel.setListItems(getChequeList())
         if (isEmptyLastQuerySearch()) {
-            choiceItemViewModel.setFilteredListItems(choiceItemViewModel.listItems.value)
+            choiceChequeViewModel.setFilteredListItems(choiceChequeViewModel.listItems.value)
         }
 
         setupChequeRecyclerViewList()
@@ -74,8 +74,8 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
             val bundle = Bundle().apply {
                 putParcelable(
                     "CHEQUE_TAG",
-                    (choiceItemViewModel.getChoiceItemOnPosition(
-                        choiceItemViewModel.choiceLastPosition.value
+                    (choiceChequeViewModel.getChoiceItemOnPosition(
+                        choiceChequeViewModel.choiceLastPosition.value
                     ) as ChequeListItem).cheque
                 )
             }
@@ -93,13 +93,13 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
         chequeExpandableChequeAdapter = ListExpandableChoiceChequeAdapter(this)
         chequeExpandableRecyclerViewList.adapter = chequeExpandableChequeAdapter
 
-        (choiceItemViewModel.getChoiceItemOnPosition(
-            choiceItemViewModel.choiceLastPosition.value
+        (choiceChequeViewModel.getChoiceItemOnPosition(
+            choiceChequeViewModel.choiceLastPosition.value
         ) as ChequeListItem).isClicked = true
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                choiceItemViewModel.filteredListItems.collect { choiceItemList ->
+                choiceChequeViewModel.filteredListItems.collect { choiceItemList ->
                     chequeExpandableChequeAdapter.submitList(choiceItemList as List<ChequeListItem>)
                 }
             }
@@ -107,15 +107,15 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
     }
 
     override fun onClick(position: Int) {
-        val prevItemChanged = (choiceItemViewModel.getChoiceItemOnPosition(
-            choiceItemViewModel.choiceLastPosition.value
+        val prevItemChanged = (choiceChequeViewModel.getChoiceItemOnPosition(
+            choiceChequeViewModel.choiceLastPosition.value
         ) as ChequeListItem)
 
-        val currentClickedItem = (choiceItemViewModel.getChoiceItemOnPosition(
+        val currentClickedItem = (choiceChequeViewModel.getChoiceItemOnPosition(
             position
         ) as ChequeListItem)
 
-        choiceItemViewModel.changeChoiceItemState(
+        choiceChequeViewModel.changeChoiceItemState(
             position,
             prevItemChanged.copy(
                 isClicked = false,
@@ -127,12 +127,12 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
             ),
         )
 
-        choiceItemViewModel.setChoiceCurrentPosition(position)
+        choiceChequeViewModel.setChoiceCurrentPosition(position)
     }
 
     override fun filterSearchingItems(query: String) {
-        choiceItemViewModel.setFilteredListItems(
-            choiceItemViewModel.listItems.value.filter { item ->
+        choiceChequeViewModel.setFilteredListItems(
+            choiceChequeViewModel.listItems.value.filter { item ->
                 val firstChequeTittle = item.getTitleItem().lowercase().trim()
                 firstChequeTittle.contains(query.lowercase().trim())
             }.toMutableList()
@@ -140,14 +140,14 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                choiceItemViewModel.filteredListItems.collect {
-                    chequeExpandableChequeAdapter.submitList(it as List<ChequeListItem>)
+                choiceChequeViewModel.filteredListItems.collect {
+                    chequeExpandableChequeAdapter.submitList(it)
                 }
             }
         }
     }
 
-    private fun getChequeList(): MutableList<ChoiceItem> {
+    private fun getChequeList(): MutableList<ChequeListItem> {
         return mutableListOf(
             ChequeListItem(
                 Cheque(

@@ -17,7 +17,9 @@ interface QuickChequeApi {
     ): Response<AuthenticationResponseDto>
 
     @POST("add_room")
-    suspend fun addRoom()
+    suspend fun addRoom(
+        @Body insertedRoomDto: InsertedRoomDto
+    ): Response<InsertedRoomDto>
 
     @GET("get_rooms")
     @Headers("Content-Type: application/json")

@@ -1,4 +1,4 @@
-package com.example.quick_cheque.di.modules
+package com.example.quick_cheque.di.module
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -10,7 +10,6 @@ import com.example.quick_cheque.data.remote.QuickChequeApi
 import com.example.quick_cheque.data.repository.AuthenticationRepositoryImpl
 import com.example.quick_cheque.data.repository.RoomRepositoryImpl
 import com.example.quick_cheque.domain.repository.AuthenticationRepository
-import com.example.quick_cheque.domain.repository.ChoiceItemRepository
 import dagger.Module
 import dagger.Provides
 

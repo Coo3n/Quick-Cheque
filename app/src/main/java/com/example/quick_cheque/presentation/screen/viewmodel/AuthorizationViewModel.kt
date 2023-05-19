@@ -1,4 +1,4 @@
-package com.example.quick_cheque.presentation.screen.auth_pages_fragment
+package com.example.quick_cheque.presentation.screen.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,6 +8,9 @@ import com.example.quick_cheque.domain.use_case.ValidateLoginUseCase
 import com.example.quick_cheque.domain.use_case.ValidatePasswordUseCase
 import com.example.quick_cheque.domain.use_case.ValidateRepeatedPasswordUseCase
 import com.example.quick_cheque.domain.use_case.ValidateUsername
+import com.example.quick_cheque.presentation.events.AuthFormEvent
+import com.example.quick_cheque.presentation.events.ValidationEvent
+import com.example.quick_cheque.presentation.screen.auth_pages_fragment.AuthorizationState
 import com.example.quick_cheque.util.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

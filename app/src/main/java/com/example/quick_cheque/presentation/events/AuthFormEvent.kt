@@ -1,4 +1,4 @@
-package com.example.quick_cheque.presentation.screen.auth_pages_fragment
+package com.example.quick_cheque.presentation.events
 
 sealed class AuthFormEvent {
     data class UsernameOnChanged(val username: String) : AuthFormEvent()

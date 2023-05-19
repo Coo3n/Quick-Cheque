@@ -7,14 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.quick_cheque.MyApp
 import com.example.quick_cheque.R
 import com.example.quick_cheque.databinding.FragmentLoginBinding
+import com.example.quick_cheque.presentation.events.AuthFormEvent
 import com.example.quick_cheque.presentation.screen.BaseFragment
+import com.example.quick_cheque.presentation.screen.viewmodel.AuthorizationViewModel
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

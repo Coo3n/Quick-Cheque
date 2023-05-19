@@ -1,4 +1,4 @@
-package com.example.quick_cheque.di.modules
+package com.example.quick_cheque.di.module
 
 import android.content.SharedPreferences
 import com.example.quick_cheque.data.remote.QuickChequeApi
@@ -7,7 +7,6 @@ import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton

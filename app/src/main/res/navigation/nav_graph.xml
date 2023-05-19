@@ -139,6 +139,10 @@
     <fragment
         android:id="@+id/createScreenFragment"
         android:name="com.example.quick_cheque.presentation.screen.main_pages_fragments.CreateScreenFragment"
-        android:label="CreateScreenFragment"
-        tools:layout="@layout/fragment_create_room" />
+        android:label="Создание комнаты"
+        tools:layout="@layout/fragment_create_room" >
+        <action
+            android:id="@+id/action_createScreenFragment_to_choiceChequeFragment"
+            app:destination="@id/choiceChequeFragment" />
+    </fragment>
 </navigation>

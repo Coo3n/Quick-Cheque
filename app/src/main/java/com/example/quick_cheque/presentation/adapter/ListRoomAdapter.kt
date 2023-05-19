@@ -14,10 +14,9 @@ import com.example.quick_cheque.databinding.CardChoiceRoomItemBinding
 import com.example.quick_cheque.domain.model.RoomListItem
 import com.example.quick_cheque.domain.model.User
 
-open class ListRoomAdapter(private val clickable: Clickable) :
-    ListAdapter<RoomListItem, ListRoomAdapter.ListRoomViewHolder>(
-        ListRoomDiffCallBack()
-    ) {
+class ListRoomAdapter : ListAdapter<RoomListItem, ListRoomAdapter.ListRoomViewHolder>(
+    ListRoomDiffCallBack()
+) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListRoomViewHolder {
         return ListRoomViewHolder(
             CardChoiceRoomItemBinding.inflate(
@@ -26,10 +25,6 @@ open class ListRoomAdapter(private val clickable: Clickable) :
                 false
             )
         )
-    }
-
-    interface Clickable {
-        fun onClick(position: Int)
     }
 
     override fun onBindViewHolder(holder: ListRoomViewHolder, position: Int) {
@@ -52,7 +47,7 @@ open class ListRoomAdapter(private val clickable: Clickable) :
     ) : RecyclerView.ViewHolder(binding.root) {
         private lateinit var innerListMembersChequeAdapter: InnerListMembersChequeAdapter
         fun bind(room: RoomListItem) = with(binding) {
-            changeExpandencity(room.isExpanded)
+            changeExpandable(room.isExpanded)
 
             with(room.room) {
                 roomTitle.text = title
@@ -65,7 +60,7 @@ open class ListRoomAdapter(private val clickable: Clickable) :
             with(binding.root) {
                 roomTitle.setOnClickListener {
                     val bundle = Bundle().apply {
-                        putParcelable("ROOM_TAG", (room.room))
+                        putParcelable("ROOM_TAG", room.room)
                     }
 
                     findNavController().navigate(
@@ -77,9 +72,7 @@ open class ListRoomAdapter(private val clickable: Clickable) :
 
             expandableButton.setOnClickListener {
                 room.isExpanded = !room.isExpanded
-                changeExpandencity(
-                    room.isExpanded
-                )
+                changeExpandable(room.isExpanded)
             }
 
             buttonAddNewMembersInRoom.setOnClickListener {
@@ -87,8 +80,6 @@ open class ListRoomAdapter(private val clickable: Clickable) :
                     User("Olya", R.drawable.person_filled)
                 )
             }
-
-            clickable.onClick(adapterPosition)
         }
 
         private fun setupMembersRecyclerList(membersRoom: MutableList<User>) = with(binding) {
@@ -99,7 +90,7 @@ open class ListRoomAdapter(private val clickable: Clickable) :
             innerListMembersChequeAdapter.submitList(membersRoom)
         }
 
-        private fun changeExpandencity(expanded: Boolean) = with(binding) {
+        private fun changeExpandable(expanded: Boolean) = with(binding) {
             expandableButton.rotation = if (expanded) -90f else 90f
             fullInformationOfRoom.visibility = if (expanded) View.VISIBLE else View.GONE
         }
