@@ -1,5 +1,6 @@
 package com.example.quick_cheque.presentation.screen.main_pages_fragments
 
+import android.app.LocaleManager
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -7,7 +8,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.LocaleListCompat
+import com.example.quick_cheque.MainActivity
 import com.example.quick_cheque.MyApp
 import com.example.quick_cheque.databinding.FragmentSettingsBinding
 import com.example.quick_cheque.presentation.screen.BaseFragment
@@ -34,7 +38,6 @@ class FragmentSettings : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         setVisibleToolBar()
         setVisibleHomeButton(false)
-        val config = resources.configuration
         val radioru = binding.languageRadiogroupRu
         val radioen = binding.languageRadiogroupEn
         val theme_day = binding.themeRadiogroupDay
@@ -52,31 +55,16 @@ class FragmentSettings : BaseFragment() {
         }
 
         radioen.setOnClickListener {
-            val locale = Locale("en")
-            Locale.setDefault(locale)
-            config.setLocale(locale)
-            resources.updateConfiguration(
-                config,
-                resources.displayMetrics
-            )
-            saveLocale("en")
+            val appLocale: LocaleListCompat = LocaleListCompat.forLanguageTags("en-EN")
+            saveLocale("en-EN")
+            AppCompatDelegate.setApplicationLocales(appLocale)
         }
-
-
 
         radioru.setOnClickListener {
-            val locale = Locale("ru")
-            Locale.setDefault(locale)
-            config.setLocale(locale)
-            resources.updateConfiguration(
-                config,
-                resources.displayMetrics
-            )
-            saveLocale("en")
-
+            val appLocale: LocaleListCompat = LocaleListCompat.forLanguageTags("ru-RU")
+            saveLocale("ru-Ru")
+            AppCompatDelegate.setApplicationLocales(appLocale)
         }
-
-
 
         theme_day.setOnClickListener {
             if (getSavedTheme() == AppCompatDelegate.MODE_NIGHT_YES) {

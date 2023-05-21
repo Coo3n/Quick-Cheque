@@ -49,4 +49,12 @@
     <string name="payment_choice">Choose Payment</string>
     <string name="members_count_in_room">Members count</string>
     <string name="room_name">Room name</string>
+    <string name="name_cheque">Name cheque</string>
+    <string name="fragments_auth_username">Username</string>
+    <string name="rooms">Rooms</string>
+    <string name="new_room">New</string>
+    <string name="join">Join</string>
+    <string name="profile">Profile</string>
+    <string name="register">Register</string>
+    <string name="settings">Settings</string>
 </resources>

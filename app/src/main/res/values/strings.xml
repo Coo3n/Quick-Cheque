@@ -49,4 +49,12 @@
     <string name="create_roo">Создать</string>
     <string name="payment_choice">Выбрать способ оплаты</string>
     <string name="members_count_in_room">Количество участников:</string>
+    <string name="name_cheque">Название чека</string>
+    <string name="fragments_auth_username">Имя</string>
+    <string name="rooms">Комнаты</string>
+    <string name="new_room">Создать</string>
+    <string name="join">Присоединиться</string>
+    <string name="profile">Профиль</string>
+    <string name="register">Регистрация</string>
+    <string name="settings">Настройки</string>
 </resources>

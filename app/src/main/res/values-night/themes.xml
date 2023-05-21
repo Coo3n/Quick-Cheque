@@ -45,6 +45,7 @@
     <color name="PaymentBackgroundButton">@color/gray_light</color>
     <color name="ProfileBackgroundColor">@color/dark_orange</color>
     <color name="BackgroundChangeButton">@color/gray</color>
+    <color name="TintChequeSum">@color/white</color>
     <style name="SwitchButtonAuth" parent="auth_switch_btn">
 
     </style>

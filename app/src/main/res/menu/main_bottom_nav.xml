@@ -5,21 +5,21 @@
     <item
         android:id="@+id/choiceRoomFragment"
         android:icon="@drawable/nav_bottom_rooms"
-        android:title="Rooms" />
+        android:title="@string/rooms" />
 
     <item
         android:id="@+id/createScreenFragment"
         android:icon="@drawable/nav_bottom_create_icon"
-        android:title="New" />
+        android:title="@string/new_room" />
 
     <item
         android:id="@+id/joinScreenFragment"
         android:icon="@drawable/nav_bottom_join_icon"
-        android:title="Join" />
+        android:title="@string/join" />
 
     <item
         android:id="@+id/profileScreenFragment"
         android:icon="@drawable/nav_bottom_profile_icon"
-        android:title="Profile" />
+        android:title="@string/profile" />
 
 </menu>
