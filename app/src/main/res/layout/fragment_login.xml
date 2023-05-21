@@ -61,7 +61,6 @@
                     app:layout_constraintStart_toEndOf="@id/switch_button_register" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
             <TextView
                 style="@style/auth_field_text"
                 android:text="@string/fragments_auth_email"

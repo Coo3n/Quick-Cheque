@@ -36,8 +36,7 @@ class FragmentSettings : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setVisibleToolBar()
-        setVisibleHomeButton(false)
+
         val radioru = binding.languageRadiogroupRu
         val radioen = binding.languageRadiogroupEn
         val theme_day = binding.themeRadiogroupDay

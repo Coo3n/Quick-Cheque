@@ -2,15 +2,12 @@ package com.example.quick_cheque
 
 import android.app.Application
 import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.app.ActivityCompat.recreate
 import androidx.core.os.LocaleListCompat
 import com.example.quick_cheque.di.AppComponent
 import com.example.quick_cheque.di.DaggerAppComponent
-import com.example.quick_cheque.di.modules.AppModule
-import java.util.*
+import com.example.quick_cheque.di.module.AppModule
 
 class MyApp : Application() {
     lateinit var appComponent: AppComponent
@@ -19,7 +16,7 @@ class MyApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        setSavedSettings()
+        //setSavedSettings()
 
         appComponent = DaggerAppComponent.builder()
             .appModule(AppModule(this)).build()

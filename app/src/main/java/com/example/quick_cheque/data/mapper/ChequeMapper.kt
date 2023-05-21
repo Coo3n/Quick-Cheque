@@ -4,6 +4,7 @@ import com.example.quick_cheque.R
 import com.example.quick_cheque.data.local.entity.ChequeEntity
 import com.example.quick_cheque.data.remote.dto.ChequeData
 import com.example.quick_cheque.domain.model.Cheque
+import com.example.quick_cheque.domain.model.User
 import java.math.BigDecimal
 
 //fun ChequeEntity.toCheque(): Cheque {
