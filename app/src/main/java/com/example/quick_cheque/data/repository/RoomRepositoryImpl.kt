@@ -2,6 +2,7 @@ package com.example.quick_cheque.data.repository
 
 import android.content.SharedPreferences
 import com.example.quick_cheque.data.local.dao.RoomDao
+import com.example.quick_cheque.data.local.entity.RoomEntity
 import com.example.quick_cheque.data.mapper.toRoom
 import com.example.quick_cheque.data.mapper.toRoomEntity
 import com.example.quick_cheque.data.mapper.toUserEntity
@@ -83,12 +84,14 @@ class RoomRepositoryImpl @Inject constructor(
                 val ownerId = sharedPreferences.getInt("MY_ID", -1)
                 insertedRoomId = response.body()?.id!!
                 if (ownerId != -1) {
-//                    val roomEntity = RoomEntity(
-//                        id = insertedRoomId,
-//                        titleRoom = room.title,
-//                        ownerId = ownerId
-//                    )
-//                    roomDao.insertRoom(roomEntity)
+                    roomDao.insertRoom(RoomEntity(
+                        id = insertedRoomId,
+                        isAdmin = true,
+                        ownerId = ownerId,
+                        title = room.title,
+                        cntCheques = 0,
+                        members = mutableListOf()
+                    ))
                     return insertedRoomId
                 }
             }

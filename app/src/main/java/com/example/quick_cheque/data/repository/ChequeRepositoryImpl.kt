@@ -32,9 +32,9 @@ class ChequeRepositoryImpl @Inject constructor(
             try {
                 emit(Resource.Loading(true))
                 val localRooms = chequeDao.getCheques()
-                emit(Resource.Success(
-                    data = localRooms.map { it.toCheque() }
-                ))
+//                emit(Resource.Success(
+//                    data = localRooms.map { it.toCheque() }
+//                ))
 
                 val shouldJustLoadOnCache = localRooms.isNotEmpty() && !fetchFromRemote
                 if (shouldJustLoadOnCache) {
