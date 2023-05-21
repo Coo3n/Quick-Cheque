@@ -7,7 +7,8 @@ import java.math.BigDecimal
 
 @Entity(tableName = "product")
 data class ProductEntity(
-    @PrimaryKey(autoGenerate = true) val id: Int? = null,
+    @PrimaryKey
+    val id: Int? = null,
     var titleProduct: String,
     var price: Double,
     var count: Int,

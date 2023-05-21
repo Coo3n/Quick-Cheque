@@ -2,29 +2,30 @@ package com.example.quick_cheque.data.local.dao
 
 import androidx.room.*
 import com.example.quick_cheque.data.local.entity.RoomEntity
-import com.example.quick_cheque.data.local.entity.RoomEntityWithCheques
+import com.example.quick_cheque.data.local.entity.RoomWithUser
+import com.example.quick_cheque.data.local.entity.UserEntity
 
 @Dao
 interface RoomDao {
-    @Query("SELECT * FROM room")
-    fun getRooms(): List<RoomEntity>
-
-    @Query("SELECT * FROM room WHERE id = :id")
-    fun getRoomById(id: Int): RoomEntity?
-
     @Transaction
-    @Query("SELECT* FROM room WHERE id = :id")
-    fun getRoomWithCheques(id: Int): List<RoomEntityWithCheques>
+    @Query("SELECT * FROM rooms")
+    fun getRooms(): List<RoomWithUser>
 
-    @Insert(entity = RoomEntity::class, onConflict = OnConflictStrategy.REPLACE)
-    fun insertRoom(room: RoomEntity)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertRoom(room: RoomEntity) // вставляем комнату
 
-    @Insert(entity = RoomEntity::class, onConflict = OnConflictStrategy.REPLACE)
-    fun insertRoomList(roomList: List<RoomEntity>)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertRoomList(roomList: List<RoomEntity>) // вставляем комнаты
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertUser(userEntity: UserEntity) // добавляем юзера
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertListUser(listUserEntity: List<UserEntity>) // добавляем список юзеров
 
     @Delete(entity = RoomEntity::class)
     fun deleteRoom(room: RoomEntity)
 
-    @Query("DELETE FROM room")
+    @Query("DELETE FROM rooms")
     fun clearRooms()
 }

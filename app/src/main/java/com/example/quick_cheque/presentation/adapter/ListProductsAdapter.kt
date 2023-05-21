@@ -50,7 +50,7 @@ open class ListProductsAdapter : ListAdapter<Product, ListProductsAdapter.ListPr
 
             buttonAddMembersInProduct.setOnClickListener {
                 innerListMembersProductAdapter.addNewListMemberCheque(
-                    User("Olua", R.drawable.person_filled)
+                    User("Olua", "es", R.drawable.person_filled)
                 )
             }
         }

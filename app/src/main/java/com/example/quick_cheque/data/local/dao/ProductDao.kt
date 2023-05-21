@@ -18,4 +18,7 @@ interface ProductDao {
 
     @Delete(entity = ProductEntity::class)
     fun deleteProduct(product: ProductEntity)
+
+    @Query("DELETE FROM product")
+    fun clearProducts()
 }

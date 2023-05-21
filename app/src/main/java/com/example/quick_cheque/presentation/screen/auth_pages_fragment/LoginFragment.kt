@@ -7,12 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.quick_cheque.MyApp
 import com.example.quick_cheque.R
 import com.example.quick_cheque.databinding.FragmentLoginBinding
 import com.example.quick_cheque.presentation.events.AuthFormEvent
+import com.example.quick_cheque.presentation.events.ValidationEvent
 import com.example.quick_cheque.presentation.screen.BaseFragment
 import com.example.quick_cheque.presentation.screen.viewmodel.AuthorizationViewModel
 import com.jakewharton.rxbinding2.widget.RxTextView
@@ -72,33 +75,33 @@ class LoginFragment : BaseFragment() {
         }
 
         _binding.loginBtn.setOnClickListener {
-            findNavController().navigate(
-                R.id.action_loginFragment_to_choiceRoomFragment
-            )
-//            authorizationViewModel.onEvent(AuthFormEvent.AuthorizationSubmit)
-//            lifecycleScope.launchWhenStarted {
-//                authorizationViewModel.validationEventChannel.collect { event ->
-//                    when (event) {
-//                        is ValidationEvent.Success -> {
-//                            findNavController().navigate(
+//            findNavController().navigate(
 //                                R.id.action_loginFragment_to_choiceRoomFragment
 //                            )
-//                            Toast.makeText(
-//                                requireContext(),
-//                                "Добро пожаловать!",
-//                                Toast.LENGTH_SHORT
-//                            ).show()
-//                        }
-//                        is ValidationEvent.Failure -> {
-//                            Toast.makeText(
-//                                requireContext(),
-//                                "Попробуйте еще раз!",
-//                                Toast.LENGTH_SHORT
-//                            ).show()
-//                        }
-//                    }
-//                }
-//            }
+            authorizationViewModel.onEvent(AuthFormEvent.AuthorizationSubmit)
+            lifecycleScope.launchWhenStarted {
+                authorizationViewModel.validationEventChannel.collect { event ->
+                    when (event) {
+                        is ValidationEvent.Success -> {
+                            findNavController().navigate(
+                                R.id.action_loginFragment_to_choiceRoomFragment
+                            )
+                            Toast.makeText(
+                                requireContext(),
+                                "Добро пожаловать!",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                        is ValidationEvent.Failure -> {
+                            Toast.makeText(
+                                requireContext(),
+                                "Попробуйте еще раз!",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
+            }
         }
 
         _binding.fragmentLoginPassword1Field.editText?.textChanges(

@@ -4,18 +4,19 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.example.quick_cheque.data.local.conventor.IntegerListConverter
 import com.example.quick_cheque.data.local.dao.ChequeDao
 import com.example.quick_cheque.data.local.dao.ProductDao
 import com.example.quick_cheque.data.local.dao.RoomDao
-import com.example.quick_cheque.data.local.entity.ChequeEntity
-import com.example.quick_cheque.data.local.entity.ProductEntity
-import com.example.quick_cheque.data.local.entity.RoomEntity
+import com.example.quick_cheque.data.local.entity.*
 
 @Database(
-    entities = [ChequeEntity::class, ProductEntity::class, RoomEntity::class],
+    entities = [ChequeEntity::class, ProductEntity::class, RoomEntity::class, UserEntity::class],
     version = 1,
     exportSchema = false
 )
+@TypeConverters(IntegerListConverter::class)
 abstract class QuickChequeDataBase : RoomDatabase() {
     abstract fun roomDao(): RoomDao
     abstract fun chequeDao(): ChequeDao

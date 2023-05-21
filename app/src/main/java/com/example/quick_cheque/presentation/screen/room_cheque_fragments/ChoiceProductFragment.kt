@@ -12,6 +12,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quick_cheque.MyApp
 import com.example.quick_cheque.R
+import com.example.quick_cheque.data.repository.ProductRepositoryImpl
 import com.example.quick_cheque.data.repository.RoomRepositoryImpl
 import com.example.quick_cheque.presentation.adapter.ListProductsAdapter
 import com.example.quick_cheque.databinding.FragmentChoiceProductBinding
@@ -33,7 +34,7 @@ class ChoiceProductFragment : BaseFragment() {
     private lateinit var recyclerViewListProductsAdapter: ListProductsAdapter
 
     @Inject
-    lateinit var roomRepository: RoomRepositoryImpl
+    lateinit var productRepositoryImpl: ProductRepositoryImpl
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -42,7 +43,7 @@ class ChoiceProductFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val factory = ChoiceProductViewModel.ChoiceItemViewModelFactory(roomRepository)
+        val factory = ChoiceProductViewModel.ChoiceItemViewModelFactory(productRepositoryImpl)
         choiceProductViewModel = ViewModelProvider(
             this,
             factory
@@ -61,27 +62,27 @@ class ChoiceProductFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         setupToolBar(R.menu.menu_with_search)
 
-        transmittedCheque = if (Build.VERSION.SDK_INT >= 33) {
-            arguments?.getParcelable("CHEQUE_TAG", Cheque::class.java) ?: transmittedCheque
-        } else {
-            arguments?.getParcelable("CHEQUE_TAG") ?: transmittedCheque
-        }
+//        transmittedCheque = if (Build.VERSION.SDK_INT >= 33) {
+//            arguments?.getParcelable("CHEQUE_TAG", Cheque::class.java) ?: transmittedCheque
+//        } else {
+//            arguments?.getParcelable("CHEQUE_TAG") ?: transmittedCheque
+//        }
 
-        transmittedCheque?.products?.let { choiceProductViewModel.setListItems(it) }
-        if (isEmptyLastQuerySearch()) {
-            transmittedCheque?.products?.let { choiceProductViewModel.setFilteredListItems(it) }
-        }
+//        transmittedCheque?.products?.let { choiceProductViewModel.setListItems(it) }
+//        if (isEmptyLastQuerySearch()) {
+//            transmittedCheque?.products?.let { choiceProductViewModel.setFilteredListItems(it) }
+//        }
 
         setupRecyclerViewListProducts()
 
         _binding.buttonNextToDistributionCheque.setOnClickListener {
             val bundle = Bundle().apply {
-                putParcelableArrayList(
-                    "PRODUCT_TAG",
-                    transmittedCheque?.products?.let { product ->
-                        ArrayList<Parcelable>(product)
-                    }
-                )
+//                putParcelableArrayList(
+//                    "PRODUCT_TAG",
+////                    transmittedCheque?.products?.let { product ->
+////                        ArrayList<Parcelable>(product)
+////                    }
+//                )
             }
 
             Navigation.findNavController(_binding.root).navigate(

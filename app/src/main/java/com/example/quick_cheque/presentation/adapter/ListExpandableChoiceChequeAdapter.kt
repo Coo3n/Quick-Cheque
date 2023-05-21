@@ -66,7 +66,7 @@ class ListExpandableChoiceChequeAdapter(private val clickable: Clickable) :
 
             buttonAddNewMembersInCheque.setOnClickListener {
                 innerListMembersChequeAdapter.addNewListMemberCheque(
-                    User("Olya", R.drawable.person_filled)
+                    User("Olya", "ds", R.drawable.person_filled)
                 )
             }
 

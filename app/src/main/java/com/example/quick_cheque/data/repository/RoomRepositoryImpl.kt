@@ -2,14 +2,13 @@ package com.example.quick_cheque.data.repository
 
 import android.content.SharedPreferences
 import com.example.quick_cheque.data.local.dao.RoomDao
-import com.example.quick_cheque.data.local.entity.RoomEntity
 import com.example.quick_cheque.data.mapper.toRoom
 import com.example.quick_cheque.data.mapper.toRoomEntity
+import com.example.quick_cheque.data.mapper.toUserEntity
 import com.example.quick_cheque.data.remote.QuickChequeApi
-import com.example.quick_cheque.data.remote.dto.InsertedRoomDto
-import com.example.quick_cheque.domain.model.ChoiceItem
+import com.example.quick_cheque.data.remote.dto.InsertedChoiceItem
 import com.example.quick_cheque.domain.model.Room
-import com.example.quick_cheque.domain.repository.ChoiceItemRepository
+import com.example.quick_cheque.domain.repository.RoomRepository
 import com.example.quick_cheque.util.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -19,37 +18,54 @@ class RoomRepositoryImpl @Inject constructor(
     private val sharedPreferences: SharedPreferences,
     private val roomDao: RoomDao,
     private val quickChequeApi: QuickChequeApi,
-) : ChoiceItemRepository {
-    override suspend fun getChoiceItems(
+) : RoomRepository {
+    override suspend fun getRooms(
         fetchFromRemote: Boolean
-    ): Flow<Resource<List<ChoiceItem>>> {
+    ): Flow<Resource<List<Room>>> {
         return flow {
-            emit(Resource.Loading(true))
-            val localRooms = roomDao.getRooms()
-            emit(Resource.Success(
-                data = localRooms.map { it.toRoom() }
-            ))
+            try {
+                emit(Resource.Loading(true))
+                val localRooms = roomDao.getRooms()
 
-            val shouldJustLoadOnCache = localRooms.isNotEmpty() && !fetchFromRemote
-            if (shouldJustLoadOnCache) {
-                emit(Resource.Loading(false))
-                return@flow
-            }
-
-            val remoteResponse = quickChequeApi.getRooms()
-
-            if (remoteResponse.isSuccessful) {
                 emit(Resource.Success(
-                    data = remoteResponse.body()?.message?.map { it.toRoom() }
+                    data = localRooms.map { it.toRoom() }
                 ))
 
-                roomDao.clearRooms()
-                roomDao.insertRoomList(remoteResponse.body()!!.message!!.map { it.toRoomEntity() })
-            } else {
-                emit(Resource.Error(message = "Что-то пошло не так, бро"))
-            }
+                val shouldJustLoadOnCache = localRooms.isNotEmpty() && !fetchFromRemote
+                if (shouldJustLoadOnCache) {
+                    emit(Resource.Loading(false))
+                    return@flow
+                }
 
-            emit(Resource.Loading(false))
+                val remoteResponse = quickChequeApi.getRooms()
+
+                if (remoteResponse.isSuccessful) {
+                    val remoteRooms = remoteResponse.body()?.message
+                    emit(Resource.Success(
+                        data = remoteRooms?.map { it.toRoom() }
+                    ))
+
+                    roomDao.clearRooms()
+
+                    val roomList = remoteRooms?.map { it.toRoomEntity() }
+                    if (roomList != null) {
+                        roomDao.insertRoomList(roomList)
+                    }
+
+                    val userList = remoteRooms?.map { it.owner.toUserEntity() }
+                    if (userList != null) {
+                        roomDao.insertListUser(userList)
+                    }
+                } else {
+                    emit(Resource.Error(message = "Что-то пошло не так, бро"))
+                }
+
+                emit(Resource.Loading(false))
+            } catch (exception: Exception) {
+                emit(Resource.Error(exception.message))
+            } finally {
+                emit(Resource.Loading(false))
+            }
         }
     }
 
@@ -57,11 +73,7 @@ class RoomRepositoryImpl @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    override suspend fun insertRoom(room: Room) {
-        TODO("Not yet implemented")
-    }
-
-    suspend fun insertRoom(room: InsertedRoomDto): Int {
+    override suspend fun insertRoom(room: InsertedChoiceItem): Int {
         var insertedRoomId = -1
 
         try {
@@ -71,12 +83,12 @@ class RoomRepositoryImpl @Inject constructor(
                 val ownerId = sharedPreferences.getInt("MY_ID", -1)
                 insertedRoomId = response.body()?.id!!
                 if (ownerId != -1) {
-                    val roomEntity = RoomEntity(
-                        id = insertedRoomId,
-                        titleRoom = room.title,
-                        ownerId = ownerId
-                    )
-                    roomDao.insertRoom(roomEntity)
+//                    val roomEntity = RoomEntity(
+//                        id = insertedRoomId,
+//                        titleRoom = room.title,
+//                        ownerId = ownerId
+//                    )
+//                    roomDao.insertRoom(roomEntity)
                     return insertedRoomId
                 }
             }

@@ -18,11 +18,20 @@ interface QuickChequeApi {
 
     @POST("add_room")
     suspend fun addRoom(
-        @Body insertedRoomDto: InsertedRoomDto
-    ): Response<InsertedRoomDto>
+        @Body insertedChoiceItem: InsertedChoiceItem
+    ): Response<ChoiceItemResponseDto>
 
     @GET("get_rooms")
     @Headers("Content-Type: application/json")
     suspend fun getRooms(): Response<RoomDto>
+
+    @POST("get_cheques")
+    suspend fun getChequesRoom(
+        @Body choiceItemResponseDto: ChoiceItemResponseDto
+    ): Response<ChequeDto>
+
+    suspend fun addCheque(
+        @Body insertedChoiceItem: InsertedChoiceItem
+    ): Response<ChoiceItemResponseDto>
 }
 

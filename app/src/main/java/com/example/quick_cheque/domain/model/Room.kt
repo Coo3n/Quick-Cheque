@@ -7,8 +7,9 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Room(
     val id: Int,
+    val isAdmin: Boolean,
     val title: String,
-    val ownerId: Int,
+    val owner: User,
     var membersRoom: MutableList<User>,
     val cntCheques: Int,
 ) : Parcelable, ChoiceItem {

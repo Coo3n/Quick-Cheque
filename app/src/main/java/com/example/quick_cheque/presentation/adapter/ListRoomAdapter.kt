@@ -51,7 +51,7 @@ class ListRoomAdapter : ListAdapter<RoomListItem, ListRoomAdapter.ListRoomViewHo
 
             with(room.room) {
                 roomTitle.text = title
-                nameOwnerRoom.text = title
+                nameOwnerRoom.text = owner.name
                 chequeCount.text = cntCheques.toString()
                 membersCount.text = membersRoom.size.toString()
                 setupMembersRecyclerList(membersRoom)
@@ -77,14 +77,17 @@ class ListRoomAdapter : ListAdapter<RoomListItem, ListRoomAdapter.ListRoomViewHo
 
             buttonAddNewMembersInRoom.setOnClickListener {
                 innerListMembersChequeAdapter.addNewListMemberCheque(
-                    User("Olya", R.drawable.person_filled)
+                    User("Olua", "es", R.drawable.person_filled)
                 )
             }
         }
 
         private fun setupMembersRecyclerList(membersRoom: MutableList<User>) = with(binding) {
-            listRoomMembers.layoutManager =
-                LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
+            listRoomMembers.layoutManager = LinearLayoutManager(
+                itemView.context,
+                LinearLayoutManager.HORIZONTAL,
+                false
+            )
             innerListMembersChequeAdapter = InnerListMembersChequeAdapter()
             listRoomMembers.adapter = innerListMembersChequeAdapter
             innerListMembersChequeAdapter.submitList(membersRoom)

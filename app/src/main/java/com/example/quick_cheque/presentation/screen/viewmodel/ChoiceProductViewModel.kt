@@ -3,6 +3,7 @@ package com.example.quick_cheque.presentation.screen.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.example.quick_cheque.data.repository.ProductRepositoryImpl
 import com.example.quick_cheque.data.repository.RoomRepositoryImpl
 import com.example.quick_cheque.domain.model.Product
 import com.example.quick_cheque.presentation.events.ChoiceItemEvent
@@ -12,15 +13,15 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class ChoiceProductViewModel(
-    private val roomRepository: RoomRepositoryImpl
+    private val productRepository: ProductRepositoryImpl
 ) : ViewModel() {
     class ChoiceItemViewModelFactory(
-        private val roomRepository: RoomRepositoryImpl
+        private val productRepository: ProductRepositoryImpl
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             return when (modelClass) {
                 ChoiceProductViewModel::class.java -> {
-                    ChoiceProductViewModel(roomRepository) as T
+                    ChoiceProductViewModel(productRepository) as T
                 }
                 else -> {
                     throw IllegalArgumentException("Unknown ViewModel class")
@@ -60,7 +61,7 @@ class ChoiceProductViewModel(
 
     private fun getChoiceItem() {
         viewModelScope.launch {
-            roomRepository.getChoiceItems(true).collect { result ->
+            productRepository.getProducts(true).collect { result ->
                 when (result) {
                     is Resource.Loading -> {
                         _choiceItemState.value = _choiceItemState.value.copy(

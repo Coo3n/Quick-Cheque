@@ -21,7 +21,6 @@ interface AppComponent {
     fun injectRegisterFragment(registerFragment: RegisterFragment)
     fun injectLoginFragment(loginFragment: LoginFragment)
     fun injectCreateScreenFragment(createScreenFragment: CreateScreenFragment)
-
     fun injectChoiceRoomFragment(choiceRoomFragment: ChoiceRoomFragment)
     fun injectChoiceChequeFragment(choiceChequeFragment: ChoiceChequeFragment)
     fun injectChoiceProductFragment(choiceProductFragment: ChoiceProductFragment)

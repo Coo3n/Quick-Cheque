@@ -109,7 +109,7 @@ class ChoiceRoomFragment : BaseFragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 choiceRoomViewModel.filteredRoomListItems.collect { choiceItemList ->
-                    roomChequeAdapter.submitList((choiceItemList).map { it.toRoomListItem() })
+                    roomChequeAdapter.submitList(choiceItemList.map { it.toRoomListItem() })
                 }
             }
         }

@@ -36,6 +36,7 @@ class CreateScreenFragment : BaseFragment() {
     private val disposeBag = CompositeDisposable()
 
     private lateinit var createRoomViewModel: CreateRoomViewModel
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         (requireActivity().application as MyApp).appComponent.injectCreateScreenFragment(this)
@@ -73,7 +74,15 @@ class CreateScreenFragment : BaseFragment() {
                                 "Комната создана!",
                                 Toast.LENGTH_SHORT
                             ).show()
-                            findNavController().navigate(R.id.action_createScreenFragment_to_choiceChequeFragment)
+
+                            val bundle = Bundle().apply {
+                                putInt("ROOM_ID", createRoomViewModel.getRoomId())
+                            }
+
+                            findNavController().navigate(
+                                R.id.action_createScreenFragment_to_choiceChequeFragment,
+                                bundle
+                            )
                         }
                         is ValidationEvent.Failure -> {
                             Toast.makeText(

@@ -3,12 +3,12 @@ package com.example.quick_cheque.data.remote.dto
 import com.example.quick_cheque.domain.model.User
 import com.google.gson.annotations.SerializedName
 
-data class RoomDto(
+data class ChequeDto(
     @SerializedName("msg")
-    val message: List<RoomData>?
+    val message: List<ChequeData>?
 )
 
-data class RoomData(
+data class ChequeData(
     @SerializedName("id")
     val id: Int,
     @SerializedName("admin")
@@ -17,8 +17,8 @@ data class RoomData(
     val owner: UserDto,
     @SerializedName("name")
     val title: String,
-    @SerializedName("cheque_cnt")
-    val cntCheques: Int,
+    @SerializedName("sum")
+    val sumCheque: Int,
     @SerializedName("member")
-    var membersRoom: MutableList<UserDto>,
+    var membersCheque: MutableList<UserDto>,
 )

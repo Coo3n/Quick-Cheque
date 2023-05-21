@@ -3,6 +3,8 @@ package com.example.quick_cheque.presentation.screen.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.example.quick_cheque.data.remote.dto.ChoiceItemResponseDto
+import com.example.quick_cheque.data.repository.ChequeRepositoryImpl
 import com.example.quick_cheque.data.repository.RoomRepositoryImpl
 import com.example.quick_cheque.domain.model.ChequeListItem
 import com.example.quick_cheque.domain.model.ChoiceItem
@@ -13,15 +15,15 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class ChoiceChequeViewModel(
-    private val roomRepository: RoomRepositoryImpl
+    private val chequeRepository: ChequeRepositoryImpl
 ) : ViewModel() {
     class ChoiceChequeViewModelFactory(
-        private val roomRepository: RoomRepositoryImpl
+        private val chequeRepository: ChequeRepositoryImpl
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             return when (modelClass) {
                 ChoiceChequeViewModel::class.java -> {
-                    ChoiceChequeViewModel(roomRepository) as T
+                    ChoiceChequeViewModel(chequeRepository) as T
                 }
                 else -> {
                     throw IllegalArgumentException("Unknown ViewModel class")
@@ -29,6 +31,7 @@ class ChoiceChequeViewModel(
             }
         }
     }
+
     data class ChoiceItemState(
         val isLoading: Boolean = false,
         val isRefreshing: Boolean = false
@@ -60,7 +63,10 @@ class ChoiceChequeViewModel(
 
     private fun getChoiceItem() {
         viewModelScope.launch {
-            roomRepository.getChoiceItems(true).collect { result ->
+            chequeRepository.getCheques(
+                choiceItemResponseDto = ChoiceItemResponseDto(id = 1),
+                fetchFromRemote = true
+            ).collect { result ->
                 when (result) {
                     is Resource.Loading -> {
                         _choiceItemState.value = _choiceItemState.value.copy(

@@ -2,6 +2,7 @@ package com.example.quick_cheque.presentation.screen.room_cheque_fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quick_cheque.MyApp
 import com.example.quick_cheque.R
+import com.example.quick_cheque.data.repository.ChequeRepositoryImpl
 import com.example.quick_cheque.data.repository.RoomRepositoryImpl
 import com.example.quick_cheque.presentation.adapter.ListExpandableChoiceChequeAdapter
 import com.example.quick_cheque.databinding.FragmentChoiceChequeBinding
@@ -33,7 +35,7 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
     private lateinit var chequeExpandableChequeAdapter: ListExpandableChoiceChequeAdapter
 
     @Inject
-    lateinit var roomRepository: RoomRepositoryImpl
+    lateinit var chequeRepository: ChequeRepositoryImpl
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -42,7 +44,7 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val factory = ChoiceChequeViewModel.ChoiceChequeViewModelFactory(roomRepository)
+        val factory = ChoiceChequeViewModel.ChoiceChequeViewModelFactory(chequeRepository)
 
         choiceChequeViewModel = ViewModelProvider(
             this,
@@ -62,6 +64,8 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupToolBar(R.menu.menu_with_search)
+
+        Log.i("room_id", arguments?.getInt("ROOM_ID").toString())
 
         choiceChequeViewModel.setListItems(getChequeList())
         if (isEmptyLastQuerySearch()) {
@@ -153,24 +157,12 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
                 Cheque(
                     id = 1,
                     title = "Valera",
-                    owner = User("Zloi", R.drawable.person_filled),
+                    owner = User("Olua", "es", R.drawable.person_filled),
                     sumOfCheque = BigDecimal(30),
-                    products = mutableListOf(
-                        Product(
-                            id = 11,
-                            titleProduct = "Кола",
-                            price = BigDecimal(35),
-                            count = 1,
-                            membersProduct = mutableListOf(
-                                User("Kolya", R.drawable.person_filled),
-                                User("Olya", R.drawable.person_filled)
-                            )
-                        )
-                    ),
                     membersCheque = mutableListOf(
-                        User("ZA", R.drawable.person_filled),
-                        User("ZA", R.drawable.person_filled),
-                        User("ZA", R.drawable.person_filled),
+                        User("Olua", "es", R.drawable.person_filled),
+                        User("Olua", "es", R.drawable.person_filled),
+                        User("Olua", "es", R.drawable.person_filled),
                     ),
                 )
             ),
@@ -179,40 +171,24 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
                 Cheque(
                     id = 2,
                     title = "Valera",
-                    owner = User("Zloi", R.drawable.person_filled),
-                    products = mutableListOf(
-                        Product(
-                            id = 21,
-                            titleProduct = "Чипсы",
-                            price = BigDecimal(35),
-                            count = 1,
-                            membersProduct = mutableListOf(User("Zloi", R.drawable.person_filled))
-                        ),
-
-                        Product(
-                            id = 23,
-                            titleProduct = "Бутер",
-                            price = BigDecimal(35),
-                            count = 1
-                        )
-                    ),
+                    owner = User("Olua", "es", R.drawable.person_filled),
                 )
+
             ),
 
             ChequeListItem(
                 Cheque(
                     id = 3,
                     title = "Dii",
-                    owner = User("Zloi", R.drawable.person_filled),
+                    owner = User("Olua", "es", R.drawable.person_filled),
                     sumOfCheque = BigDecimal(30),
                     membersCheque = mutableListOf(
-                        User("ZA", R.drawable.person_filled),
-                        User("ZA", R.drawable.person_filled),
-                        User("ZA", R.drawable.person_filled),
-                        User("ZA", R.drawable.person_filled),
-                        User("ZA", R.drawable.person_filled),
-                        User("ZA", R.drawable.person_filled),
-                        User("ZA", R.drawable.person_filled),
+                        User("Olua", "es", R.drawable.person_filled),
+                        User("Olua", "es", R.drawable.person_filled),
+                        User("Olua", "es", R.drawable.person_filled),
+                        User("Olua", "es", R.drawable.person_filled),
+                        User("Olua", "es", R.drawable.person_filled),
+                        User("Olua", "es", R.drawable.person_filled),
                     ),
                 ),
             ),
@@ -221,16 +197,16 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
                 Cheque(
                     id = 3,
                     title = "Dii",
-                    owner = User("Zloi", R.drawable.person_filled),
+                    owner = User("Olua", "es", R.drawable.person_filled),
                     sumOfCheque = BigDecimal(30),
                     membersCheque = mutableListOf(
-                        User("ZA", R.drawable.person_filled),
-                        User("ZA", R.drawable.person_filled),
-                        User("ZA", R.drawable.person_filled),
-                        User("ZA", R.drawable.person_filled),
-                        User("ZA", R.drawable.person_filled),
-                        User("ZA", R.drawable.person_filled),
-                        User("ZA", R.drawable.person_filled),
+                        User("Olua", "es", R.drawable.person_filled),
+                        User("Olua", "es", R.drawable.person_filled),
+                        User("Olua", "es", R.drawable.person_filled),
+                        User("Olua", "es", R.drawable.person_filled),
+                        User("Olua", "es", R.drawable.person_filled),
+                        User("Olua", "es", R.drawable.person_filled),
+                        User("Olua", "es", R.drawable.person_filled)
                     ),
                 ),
             ),
@@ -239,16 +215,15 @@ class ChoiceChequeFragment : BaseFragment(), ListExpandableChoiceChequeAdapter.C
                 Cheque(
                     id = 3,
                     title = "Dii",
-                    owner = User("Zloi", R.drawable.person_filled),
+                    owner = User("Olua", "es", R.drawable.person_filled),
                     sumOfCheque = BigDecimal(30),
                     membersCheque = mutableListOf(
-                        User("ZA", R.drawable.person_filled),
-                        User("ZA", R.drawable.person_filled),
-                        User("ZA", R.drawable.person_filled),
-                        User("ZA", R.drawable.person_filled),
-                        User("ZA", R.drawable.person_filled),
-                        User("ZA", R.drawable.person_filled),
-                        User("ZA", R.drawable.person_filled),
+                        User("Olua", "es", R.drawable.person_filled),
+                        User("Olua", "es", R.drawable.person_filled),
+                        User("Olua", "es", R.drawable.person_filled),
+                        User("Olua", "es", R.drawable.person_filled),
+                        User("Olua", "es", R.drawable.person_filled),
+                        User("Olua", "es", R.drawable.person_filled),
                     ),
                 ),
             )

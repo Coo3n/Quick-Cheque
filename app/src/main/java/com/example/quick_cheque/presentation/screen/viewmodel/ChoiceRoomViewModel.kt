@@ -58,7 +58,7 @@ class ChoiceRoomViewModel(
 
     private fun getRoomItem() {
         viewModelScope.launch {
-            roomRepository.getChoiceItems(true).collect { result ->
+            roomRepository.getRooms(true).collect { result ->
                 when (result) {
                     is Resource.Loading -> {
                         _roomItemState.value = _roomItemState.value.copy(
@@ -68,8 +68,8 @@ class ChoiceRoomViewModel(
                     is Resource.Error -> Unit
                     is Resource.Success -> {
                         val resultListItems = result.data?.toMutableList() ?: mutableListOf()
-                        setFilteredListItems(resultListItems as MutableList<Room>)
-                        setListItems(resultListItems as MutableList<Room>)
+                        setFilteredListItems(resultListItems)
+                        setListItems(resultListItems)
                     }
                 }
             }

@@ -1,34 +1,30 @@
 package com.example.quick_cheque.data.mapper
 
 import com.example.quick_cheque.data.local.entity.RoomEntity
+import com.example.quick_cheque.data.local.entity.RoomWithUser
 import com.example.quick_cheque.data.remote.dto.RoomData
-import com.example.quick_cheque.data.remote.dto.RoomDto
 import com.example.quick_cheque.domain.model.Room
 import com.example.quick_cheque.domain.model.RoomListItem
-import com.example.quick_cheque.domain.model.User
 
-// dto - room
-// dto - roomEntity
 
-//entity - room
-// room - RoomListItem
-
-fun RoomEntity.toRoom(): Room {
+fun RoomWithUser.toRoom(): Room {
     return Room(
-        id = id!!,
-        title = titleRoom,
-        ownerId = ownerId,
-        membersRoom = mutableListOf(), // ?
-        cntCheques = 0,                // ?
+        id = room.id,
+        isAdmin = room.isAdmin,
+        title = room.title,
+        owner = owner.toUser(),
+        membersRoom = members.map { it.toUser() }.toMutableList(),
+        cntCheques = room.cntCheques,
     )
 }
 
 fun RoomData.toRoom(): Room {
     return Room(
         id = id,
+        isAdmin = isAdmin,
         title = title,
-        ownerId = ownerId,
-        membersRoom = membersRoom,
+        owner = owner.toUser(),
+        membersRoom = membersRoom.map { it.toUser() }.toMutableList(),
         cntCheques = cntCheques,
     )
 }
@@ -36,8 +32,11 @@ fun RoomData.toRoom(): Room {
 fun RoomData.toRoomEntity(): RoomEntity {
     return RoomEntity(
         id = id,
-        titleRoom = title,
-        ownerId = ownerId
+        isAdmin = isAdmin,
+        ownerId = owner.id,
+        title = title,
+        cntCheques = cntCheques,
+        members = membersRoom.map { it.id }
     )
 }
 

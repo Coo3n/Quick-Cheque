@@ -37,7 +37,7 @@ class DistributedProductsChequeFragments : BaseFragment() {
 
         val distributedChequeUserItem = mutableListOf(
             DistributedChequeUserItem(
-                user = User("Zloi", R.drawable.person_filled),
+                user = User("Olua", "es", R.drawable.person_filled),
                 listProductsUser = mutableListOf(
                     Product(
                         id = 1,
@@ -45,8 +45,8 @@ class DistributedProductsChequeFragments : BaseFragment() {
                         price = BigDecimal(35),
                         count = 1,
                         membersProduct = mutableListOf(
-                            User("Kolya", R.drawable.person_filled),
-                            User("Olya", R.drawable.person_filled)
+                            User("Olua", "es", R.drawable.person_filled),
+                            User("Olua", "es", R.drawable.person_filled),
                         )
                     ),
 
@@ -56,15 +56,15 @@ class DistributedProductsChequeFragments : BaseFragment() {
                         price = BigDecimal(35),
                         count = 1,
                         membersProduct = mutableListOf(
-                            User("Kolya", R.drawable.person_filled),
-                            User("Olya", R.drawable.person_filled)
+                            User("Olua", "es", R.drawable.person_filled),
+                            User("Olua", "es", R.drawable.person_filled),
                         )
                     )
                 ),
             ),
 
             DistributedChequeUserItem(
-                user = User("Zloi", R.drawable.person_filled),
+                user = User("Olua", "es", R.drawable.person_filled),
                 listProductsUser = mutableListOf(
 
                 ),

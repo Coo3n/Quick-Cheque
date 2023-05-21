@@ -8,8 +8,13 @@ import com.example.quick_cheque.data.local.dao.ProductDao
 import com.example.quick_cheque.data.local.dao.RoomDao
 import com.example.quick_cheque.data.remote.QuickChequeApi
 import com.example.quick_cheque.data.repository.AuthenticationRepositoryImpl
+import com.example.quick_cheque.data.repository.ChequeRepositoryImpl
+import com.example.quick_cheque.data.repository.ProductRepositoryImpl
 import com.example.quick_cheque.data.repository.RoomRepositoryImpl
 import com.example.quick_cheque.domain.repository.AuthenticationRepository
+import com.example.quick_cheque.domain.repository.ChequeRepository
+import com.example.quick_cheque.domain.repository.ProductRepository
+import com.example.quick_cheque.domain.repository.RoomRepository
 import dagger.Module
 import dagger.Provides
 
@@ -47,6 +52,23 @@ class RoomModule {
         return RoomRepositoryImpl(sharedPreferences, roomDao, quickChequeApi)
     }
 
+    @Provides
+    fun provideChequeRepositoryImpl(
+        sharedPreferences: SharedPreferences,
+        chequeDao: ChequeDao,
+        quickChequeApi: QuickChequeApi
+    ): ChequeRepositoryImpl {
+        return ChequeRepositoryImpl(sharedPreferences, chequeDao, quickChequeApi)
+    }
+
+    @Provides
+    fun provideProductRepositoryImpl(
+        sharedPreferences: SharedPreferences,
+        productDao: ProductDao,
+        quickChequeApi: QuickChequeApi
+    ): ProductRepositoryImpl {
+        return ProductRepositoryImpl(sharedPreferences, productDao, quickChequeApi)
+    }
     @Provides
     fun provideQuickChequeDataBase(context: Context): QuickChequeDataBase {
         return QuickChequeDataBase.getQuickChequeDataBaseInstance(context)
