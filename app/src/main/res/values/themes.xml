@@ -44,4 +44,5 @@
     <color name="PaymentBackgroundButton">@color/white</color>
     <color name="ProfileBackgroundColor">@color/blue</color>
     <color name="BackgroundChangeButton">@color/white</color>
+    <color name="TintChequeSum">@color/white</color>
 </resources>

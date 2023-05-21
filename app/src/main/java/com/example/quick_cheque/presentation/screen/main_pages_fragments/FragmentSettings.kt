@@ -1,5 +1,6 @@
 package com.example.quick_cheque.presentation.screen.main_pages_fragments
 
+import android.app.LocaleManager
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -7,7 +8,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.LocaleListCompat
+import com.example.quick_cheque.MainActivity
 import com.example.quick_cheque.MyApp
 import com.example.quick_cheque.databinding.FragmentSettingsBinding
 import com.example.quick_cheque.presentation.screen.BaseFragment
@@ -32,63 +36,48 @@ class FragmentSettings : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val config = resources.configuration
-        val radioRu = binding.languageRadiogroupRu
-        val radioEn = binding.languageRadiogroupEn
-        val themeDay = binding.themeRadiogroupDay
-        val themeNight = binding.themeRadiogroupNight
+        setVisibleToolBar()
+        setVisibleHomeButton(false)
+        val radioru = binding.languageRadiogroupRu
+        val radioen = binding.languageRadiogroupEn
+        val theme_day = binding.themeRadiogroupDay
+        val theme_night = binding.themeRadiogroupNight
 
         if (getSavedLocale()?.contains("ru") == true) {
-            radioRu.isChecked = true
+            radioru.isChecked = true
         } else if (getSavedLocale()?.contains("en") == true) {
-            radioEn.isChecked = true
+            radioen.isChecked = true
         }
-
-        Log.d("MyTag", getSavedTheme().toString())
 
         when (getSavedTheme()) {
-            AppCompatDelegate.MODE_NIGHT_YES -> themeNight.isChecked = true
-            AppCompatDelegate.MODE_NIGHT_NO -> themeDay.isChecked = true
+            AppCompatDelegate.MODE_NIGHT_YES -> theme_night.isChecked = true
+            AppCompatDelegate.MODE_NIGHT_NO -> theme_day.isChecked = true
         }
 
-        radioEn.setOnClickListener {
-            val locale = Locale("en")
-            Locale.setDefault(locale)
-            config.setLocale(locale)
-            resources.updateConfiguration(
-                config,
-                resources.displayMetrics
-            )
-            saveLocale("en")
+        radioen.setOnClickListener {
+            val appLocale: LocaleListCompat = LocaleListCompat.forLanguageTags("en-EN")
+            saveLocale("en-EN")
+            AppCompatDelegate.setApplicationLocales(appLocale)
         }
 
-        radioRu.setOnClickListener {
-            val locale = Locale("ru")
-            Locale.setDefault(locale)
-            config.setLocale(locale)
-            resources.updateConfiguration(
-                config,
-                resources.displayMetrics
-            )
-            saveLocale("en")
-
+        radioru.setOnClickListener {
+            val appLocale: LocaleListCompat = LocaleListCompat.forLanguageTags("ru-RU")
+            saveLocale("ru-Ru")
+            AppCompatDelegate.setApplicationLocales(appLocale)
         }
 
-        themeDay.setOnClickListener {
-            //if (getSavedTheme() == AppCompatDelegate.MODE_NIGHT_YES) {
+        theme_day.setOnClickListener {
+            if (getSavedTheme() == AppCompatDelegate.MODE_NIGHT_YES) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 saveTheme(AppCompatDelegate.MODE_NIGHT_NO)
-                Log.d("MyTag", getSavedTheme().toString() + "1")
-            //}
+            }
         }
 
-        themeNight.setOnClickListener {
-            //if (getSavedTheme() == AppCompatDelegate.MODE_NIGHT_NO) {
+        theme_night.setOnClickListener {
+            if (getSavedTheme() == AppCompatDelegate.MODE_NIGHT_NO) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 saveTheme(AppCompatDelegate.MODE_NIGHT_YES)
-                Log.d("MyTag", getSavedTheme().toString() + "2")
-
-            //}
+            }
         }
     }
 
