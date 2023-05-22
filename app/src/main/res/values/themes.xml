@@ -46,10 +46,10 @@
     <color name="BackgroundChangeButton">@color/white</color>
     <color name="TintChequeSum">@color/white</color>
 
-    <color name="CornerColor">@color/gray</color>
+    <color name="CornerColor">#C9C9C9</color>
     <color name="backgroundCircleColor">@color/white</color>
 
-    <color name="CornerColor1">@color/gray</color>
+    <color name="CornerColor1">#C9C9C9</color>
     <color name="backgroundCircleColor1">@color/white</color>
 
     <color name="LanguageColor">@color/blue</color>

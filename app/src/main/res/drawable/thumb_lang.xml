@@ -5,7 +5,7 @@
         <shape android:shape="oval">
             <solid android:color="@color/backgroundCircleColor" />
             <stroke android:width="2dp" android:color="@color/CornerColor" />
-            <size android:width="50dp" android:height="50dp" />
+            <size android:width="38dp" android:height="38dp" />
         </shape>
     </item>
 
@@ -13,7 +13,7 @@
         <shape android:shape="oval">
             <solid android:color="@color/backgroundCircleColor" />
             <stroke android:width="2dp" android:color="@color/CornerColor" />
-            <size android:width="50dp" android:height="50dp" />
+            <size android:width="38dp" android:height="38dp" />
         </shape>
     </item>
 
