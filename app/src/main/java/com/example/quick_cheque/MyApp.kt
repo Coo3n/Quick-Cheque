@@ -16,7 +16,7 @@ class MyApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        //setSavedSettings()
+        setSavedSettings()
 
         appComponent = DaggerAppComponent.builder()
             .appModule(AppModule(this)).build()

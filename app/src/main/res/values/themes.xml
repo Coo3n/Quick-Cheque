@@ -45,4 +45,12 @@
     <color name="ProfileBackgroundColor">@color/blue</color>
     <color name="BackgroundChangeButton">@color/white</color>
     <color name="TintChequeSum">@color/white</color>
+
+    <color name="CornerColor">@color/gray</color>
+    <color name="backgroundCircleColor">@color/white</color>
+
+    <color name="CornerColor1">@color/gray</color>
+    <color name="backgroundCircleColor1">@color/white</color>
+
+    <color name="LanguageColor">@color/blue</color>
 </resources>

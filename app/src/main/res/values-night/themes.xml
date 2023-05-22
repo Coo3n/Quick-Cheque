@@ -46,6 +46,14 @@
     <color name="ProfileBackgroundColor">@color/dark_orange</color>
     <color name="BackgroundChangeButton">@color/gray</color>
     <color name="TintChequeSum">@color/white</color>
+    <color name="LanguageColor">@color/dark_orange</color>
+    <color name="CornerColor">@color/dark_orange</color>
+    <color name="backgroundCircleColor">@color/gray_darkest</color>
+
+    <color name="CornerColor1">@color/gray_darkest</color>
+    <color name="backgroundCircleColor1">@color/dark_orange</color>
+
+
     <style name="SwitchButtonAuth" parent="auth_switch_btn">
 
     </style>

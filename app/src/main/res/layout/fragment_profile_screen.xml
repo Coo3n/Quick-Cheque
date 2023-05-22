@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/LayoutBackgroundColor"
     tools:context=".presentation.screen.main_pages_fragments.ProfileScreenFragment">
 
@@ -91,28 +91,56 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/fragment_profile_opt_history" />
 
+
         <FrameLayout
             style="@style/profile_black_line"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/fragment_profile_opt_card" />
+
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/fragment_profile_opt_settings"
+            android:id="@+id/fragment_profile_logout"
             style="@style/profile_option"
-            android:text="@string/profile_opt_settings"
+            android:text="@string/profile_logout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/fragment_profile_opt_card" />
 
         <FrameLayout
             style="@style/profile_black_line"
-            android:layout_marginBottom="60dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fragment_profile_opt_settings" />
+            app:layout_constraintTop_toBottomOf="@id/fragment_profile_logout"/>
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchThemeBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintHorizontal_bias="0.5"
+            android:thumb="@drawable/thumb_layerlist"
+            app:layout_constraintTop_toBottomOf="@id/fragment_profile_logout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:showText="false"
+            app:track="@drawable/track_backgrounds" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchLanguageBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintHorizontal_bias="0.5"
+            android:thumb="@drawable/thumb_layerlist_lang"
+            app:layout_constraintTop_toBottomOf="@id/switchThemeBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:showText="false"
+            app:track="@drawable/track_lang" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </ScrollView>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:gravity="fill"
+        android:drawable="@drawable/thumb_backgrouds"/>
+
+    <item android:gravity="center"
+        android:drawable="@drawable/thumb_icons"
+        android:top="10dp"
+        android:bottom="10dp"
+        android:left="10dp"
+        android:right="10dp"/>
+</layer-list>

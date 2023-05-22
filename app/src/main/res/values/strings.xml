@@ -53,8 +53,9 @@
     <string name="fragments_auth_username">Имя</string>
     <string name="rooms">Комнаты</string>
     <string name="new_room">Создать</string>
-    <string name="join">Присоединиться</string>
+    <string name="join">Войти</string>
     <string name="profile">Профиль</string>
     <string name="register">Регистрация</string>
     <string name="settings">Настройки</string>
+    <string name="profile_logout">Выйти</string>
 </resources>

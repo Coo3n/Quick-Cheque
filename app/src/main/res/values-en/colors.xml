@@ -19,4 +19,8 @@
     <color name="light_yellow">#F3C874</color>
     <color name="dark_blue">#1B2239</color>
     <color name="green">#64D262</color>
+    <color name="blue_moon">#FF25316D</color>
+    <color name="blue_soft">#FF5F9DF7</color>
+    <color name="orange_sun">#FFFD841F</color>
+    <color name="yellow_soft">#FFFDFDBD</color>
 </resources>
