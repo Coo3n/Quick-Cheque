@@ -74,6 +74,7 @@
                 style="@style/auth_field_new">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/fragment_login_email_field_input"
                     style="@style/auth_field_text_new"
                     android:inputType="textEmailAddress" />
 
@@ -90,6 +91,7 @@
                 app:endIconMode="password_toggle">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/fragment_login_password_1_field_input"
                     style="@style/auth_field_text_new"
                     android:inputType="textPassword" />
 
