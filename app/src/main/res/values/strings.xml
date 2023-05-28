@@ -51,4 +51,5 @@
     <string name="members_count_in_room">Количество участников:</string>
     <string name="name_cheque">Название чека</string>
     <string name="fragments_auth_username">Имя</string>
+    <string name="toast_message_auth_try_again">Попробуйте еще раз!</string>
 </resources>
