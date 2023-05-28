@@ -95,7 +95,7 @@ class LoginFragment : BaseFragment() {
                         is ValidationEvent.Failure -> {
                             Toast.makeText(
                                 requireContext(),
-                                "Попробуйте еще раз!",
+                                getString(R.string.toast_message_auth_try_again),
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
